@@ -1,6 +1,6 @@
 # Reversa
 .reversa/config.user.toml
-_reversa_sdd/
+_reversa_*/
 # Dependencies and build output
 node_modules/
 ui/web/dist/
