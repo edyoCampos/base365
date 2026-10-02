@@ -90,7 +90,7 @@ export function ChannelAdvancedTab({ instance, onUpdate }: ChannelAdvancedTabPro
       <button
         onClick={handleSave}
         disabled={saving}
-        className="px-4 py-1.5 text-xs bg-accent text-white rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 cursor-pointer"
+        className="px-4 py-1.5 text-xs bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 cursor-pointer"
       >
         {saving ? t('form.saving') : t('detail.saveConfig')}
       </button>

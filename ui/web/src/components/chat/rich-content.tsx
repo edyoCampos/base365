@@ -47,11 +47,11 @@ function MediaBadge({ mediaType }: { mediaType: string }) {
 function ForwardBadge({ from, date }: { from: string; date: string }) {
   const { t } = useTranslation("chat");
   return (
-    <div className="flex items-center gap-1.5 rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs text-amber-700 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300">
+    <div className="flex items-center gap-1.5 rounded-md border border-warning/50 bg-badge-warning px-2.5 py-1 text-xs text-badge-warning-foreground dark:text-badge-warning-foreground">
       <Forward className="h-3.5 w-3.5" />
       <span>
         {t("forwardedFrom")} <span className="font-medium">{from}</span>
-        {date && <span className="text-amber-600 dark:text-amber-400"> &middot; {date}</span>}
+        {date && <span className="text-primary dark:text-primary"> &middot; {date}</span>}
       </span>
     </div>
   );

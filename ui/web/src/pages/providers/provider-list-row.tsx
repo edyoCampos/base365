@@ -174,7 +174,7 @@ export function ProviderListRow({
                   "shrink-0 font-medium",
                   oauthPool?.availability === "disabled"
                     ? "text-muted-foreground"
-                    : "text-amber-700 dark:text-amber-400",
+                    : "text-badge-warning-foreground dark:text-badge-warning-foreground",
                 )}
               >
                 {availabilityWarningLabel}

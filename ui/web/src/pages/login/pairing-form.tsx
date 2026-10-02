@@ -230,7 +230,7 @@ function PairingCodeDisplay({
       </p>
 
       <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-        <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-amber-500" />
+        <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-primary" />
         {t("pairing.waitingForApproval")}
       </div>
 

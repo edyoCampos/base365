@@ -40,9 +40,9 @@ function buildToolSummary(args: Record<string, unknown>): string | null {
 function ToolIcon({ state, isSkill }: { state: ToolCall['state']; isSkill: boolean }) {
   const cls = 'h-3.5 w-3.5 shrink-0'
   if (isSkill) {
-    if (state === 'calling') return <ZapIcon className={`${cls} animate-pulse text-amber-500`} />
+    if (state === 'calling') return <ZapIcon className={`${cls} animate-pulse text-accent`} />
     if (state === 'error') return <AlertIcon className={`${cls} text-error`} />
-    return <ZapIcon className={`${cls} text-amber-500`} />
+    return <ZapIcon className={`${cls} text-accent`} />
   }
   if (state === 'calling') return <WrenchIcon className={`${cls} animate-wobble text-blue-500`} />
   if (state === 'error') return <AlertIcon className={`${cls} text-error`} />

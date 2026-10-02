@@ -63,7 +63,7 @@ export function PairedDevicesSection() {
                       <button onClick={() => setDenyTarget(p)} className="px-2 py-1 text-[11px] border border-border rounded-lg text-text-secondary hover:bg-surface-tertiary transition-colors cursor-pointer">
                         {t('pairing.deny')}
                       </button>
-                      <button onClick={() => setApproveTarget(p)} className="px-2 py-1 text-[11px] bg-accent text-white rounded-lg font-medium hover:bg-accent-hover transition-colors cursor-pointer">
+                      <button onClick={() => setApproveTarget(p)} className="px-2 py-1 text-[11px] bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent-hover transition-colors cursor-pointer">
                         {t('pairing.approve')}
                       </button>
                     </div>

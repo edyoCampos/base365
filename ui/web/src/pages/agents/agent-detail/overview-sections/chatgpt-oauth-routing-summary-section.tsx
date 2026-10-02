@@ -33,7 +33,7 @@ function statusBadgeClass(availability: ChatGPTOAuthAvailability): string {
   if (availability === "disabled") {
     return "border-muted-foreground/30 bg-muted text-muted-foreground";
   }
-  return "border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300";
+  return "border-primary/30 bg-primary/10 text-accent-foreground dark:text-primary";
 }
 
 

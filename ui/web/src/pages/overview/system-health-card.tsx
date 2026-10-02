@@ -105,7 +105,7 @@ export function SystemHealthCard({
                 <CheckCircle2 className="h-3 w-3 text-emerald-500" />
               )}
               {health.updateAvailable && health.latestVersion && (
-                <span className="ml-1 rounded-full bg-amber-500/15 px-2 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+                <span className="ml-1 rounded-full bg-primary/15 px-2 py-0.5 text-xs font-medium text-primary dark:text-primary">
                   {health.latestVersion} available
                 </span>
               )}

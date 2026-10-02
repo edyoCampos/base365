@@ -31,7 +31,7 @@ interface ChatGPTOAuthQuotaStripProps {
 
 function quotaBarClass(remaining: number): string {
   if (remaining <= 20) return "bg-destructive";
-  if (remaining <= 50) return "bg-amber-500";
+  if (remaining <= 50) return "bg-warning";
   return "bg-emerald-500";
 }
 

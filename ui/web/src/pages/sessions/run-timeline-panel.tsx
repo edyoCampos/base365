@@ -104,7 +104,7 @@ export function getRunTimelineDisplay(item: Pick<RunTimelineItem, "item_type" | 
   if (item.item_type === "tool.call" || item.item_type === "tool.result") {
     return {
       icon: Wrench,
-      dotClass: "bg-amber-500/10 text-amber-700 dark:text-amber-300",
+      dotClass: "bg-primary/10 text-accent-foreground dark:text-primary",
       labelKey: item.item_type === "tool.call" ? "detail.timeline.toolCall" : "detail.timeline.toolResult",
     };
   }

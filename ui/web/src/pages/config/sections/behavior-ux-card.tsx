@@ -23,13 +23,13 @@ export function BehaviorUxCard({ value, onChange }: Props) {
   const items: FeatureSwitchItem[] = [
     {
       icon: Brain,
-      iconClass: "text-orange-500",
+      iconClass: "text-primary",
       label: t("agents.intentClassify"),
       hint: t("behavior.intentClassifyHint"),
       checked: value.intent_classify !== false,
       onCheckedChange: (v) => onChange({ ...value, intent_classify: v }),
       infoWhenOn: t("behavior.intentClassifyInfo"),
-      infoClass: "border-orange-200 bg-orange-50 text-orange-700 dark:border-orange-800 dark:bg-orange-950/30 dark:text-orange-300",
+      infoClass: "border-warning/50 bg-badge-warning text-badge-warning-foreground dark:border-warning/50 dark:bg-badge-warning/30 dark:text-badge-warning-foreground",
     },
     {
       icon: UsersRound,

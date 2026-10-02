@@ -53,7 +53,7 @@ export function SpanTreeNode({ node, depth }: { node: SpanNode; depth: number })
               <span className="hidden shrink-0 text-xs text-muted-foreground sm:inline">
                 {formatTokens(span.input_tokens)}/{formatTokens(span.output_tokens)}
                 {(span.metadata?.cache_read_tokens ?? 0) > 0 && <span className="ml-1 text-green-400">({formatTokens(span.metadata!.cache_read_tokens!)} {t("span.cached")})</span>}
-                {(span.metadata?.thinking_tokens ?? 0) > 0 && <span className="ml-1 text-orange-400">({formatTokens(span.metadata!.thinking_tokens!)} {t("span.thinking")})</span>}
+                {(span.metadata?.thinking_tokens ?? 0) > 0 && <span className="ml-1 text-primary">({formatTokens(span.metadata!.thinking_tokens!)} {t("span.thinking")})</span>}
               </span>
             )}
             {span.created_at && <Badge variant="outline" className="hidden shrink-0 text-xs text-muted-foreground lg:inline-flex">{formatDate(span.created_at, tz)}</Badge>}
@@ -98,7 +98,7 @@ function SpanDetailPanel({ span }: { span: SpanData }) {
             </span>
           )}
           {(span.metadata?.thinking_tokens ?? 0) > 0 && (
-            <span className="ml-2 text-muted-foreground">(<span className="text-orange-400">{formatTokens(span.metadata!.thinking_tokens!)} {t("span.thinking")}</span>)</span>
+            <span className="ml-2 text-muted-foreground">(<span className="text-primary">{formatTokens(span.metadata!.thinking_tokens!)} {t("span.thinking")}</span>)</span>
           )}
         </div>
       )}

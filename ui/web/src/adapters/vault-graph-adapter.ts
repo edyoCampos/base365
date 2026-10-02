@@ -9,18 +9,18 @@ import { getNodeSize, truncateMiddle } from "@/components/graph/graph-utils";
 export const VAULT_TYPE_COLORS_LIGHT: Record<string, string> = {
   context: "#2563eb",  // blue-600 (matches text-blue-600)
   memory: "#9333ea",   // purple-600 (matches text-purple-600)
-  note: "#d97706",     // amber-600 (matches text-amber-600)
+  note: "#7c4fe0",     // chart-1 / primary (brand violet)
   skill: "#059669",    // emerald-600 (matches text-emerald-600)
-  episodic: "#ea580c", // orange-600 (matches text-orange-600)
+  episodic: "#4a4560", // chart-5 (violet neutral)
   media: "#e11d48",    // rose-600 (matches text-rose-600)
   document: "#0891b2", // cyan-600 (matches text-cyan-600)
 };
 export const VAULT_TYPE_COLORS_DARK: Record<string, string> = {
   context: "#60a5fa",  // blue-400 (matches dark:text-blue-400)
   memory: "#c084fc",   // purple-400 (matches dark:text-purple-400)
-  note: "#fbbf24",     // amber-400 (matches dark:text-amber-400)
+  note: "#a487f2",     // chart-1 / primary, dark theme
   skill: "#34d399",    // emerald-400 (matches dark:text-emerald-400)
-  episodic: "#fb923c", // orange-400 (matches dark:text-orange-400)
+  episodic: "#c9c3dc", // chart-5, dark theme
   media: "#fb7185",    // rose-400 (matches dark:text-rose-400)
   document: "#22d3ee", // cyan-400 (matches dark:text-cyan-400)
 };

@@ -14,9 +14,9 @@ import { useVaultSearchAll } from "./hooks/use-vault";
 const DOC_TYPE_CONFIG: Record<string, { color: string; bg: string; icon: typeof FileText; dotColor: string }> = {
   context:  { color: "text-blue-600 dark:text-blue-400",    bg: "bg-blue-500/10",    icon: FileText, dotColor: "bg-blue-500" },
   memory:   { color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-500/10",  icon: Brain,    dotColor: "bg-purple-500" },
-  note:     { color: "text-amber-600 dark:text-amber-400",   bg: "bg-amber-500/10",   icon: StickyNote, dotColor: "bg-amber-500" },
+  note:     { color: "text-primary dark:text-primary",   bg: "bg-primary/10",   icon: StickyNote, dotColor: "bg-primary" },
   skill:    { color: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-500/10", icon: Sparkles, dotColor: "bg-emerald-500" },
-  episodic: { color: "text-orange-600 dark:text-orange-400", bg: "bg-orange-500/10",  icon: Clock,    dotColor: "bg-orange-500" },
+  episodic: { color: "text-primary dark:text-primary", bg: "bg-primary/10",  icon: Clock,    dotColor: "bg-primary" },
   media:    { color: "text-rose-600 dark:text-rose-400",     bg: "bg-rose-500/10",    icon: Image,    dotColor: "bg-rose-500" },
   document: { color: "text-cyan-600 dark:text-cyan-400",     bg: "bg-cyan-500/10",    icon: FileType, dotColor: "bg-cyan-500" },
 };

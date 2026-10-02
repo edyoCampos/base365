@@ -45,11 +45,11 @@ export function FileIcon({ name }: { name: string }) {
   let color = 'text-text-muted'
   if (ext === 'md' || ext === 'mdx') color = 'text-blue-500'
   else if (ext === 'json' || ext === 'json5') color = 'text-yellow-600'
-  else if (ext === 'yaml' || ext === 'yml' || ext === 'toml') color = 'text-orange-500'
+  else if (ext === 'yaml' || ext === 'yml' || ext === 'toml') color = 'text-accent'
   else if (ext === 'csv') color = 'text-green-600'
   else if (ext === 'sh' || ext === 'bash' || ext === 'zsh') color = 'text-lime-600'
   else if (IMAGE_EXTENSIONS.has(ext)) color = 'text-emerald-500'
-  else if (CODE_EXTENSIONS.has(ext)) color = 'text-orange-500'
+  else if (CODE_EXTENSIONS.has(ext)) color = 'text-accent'
 
   return (
     <svg className={`${cls} ${color}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">

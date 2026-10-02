@@ -39,7 +39,7 @@ export function AgentCard({ agent, onEdit, onDelete, onResummon }: AgentCardProp
           <div className="flex items-center gap-2">
             <span className="truncate text-sm font-semibold text-text-primary">{displayName}</span>
             {agent.is_default && (
-              <svg className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <svg className="h-3.5 w-3.5 shrink-0 fill-warning text-warning" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
               </svg>
             )}
@@ -50,7 +50,7 @@ export function AgentCard({ agent, onEdit, onDelete, onResummon }: AgentCardProp
         </div>
         {/* Status badge — colors match web UI badge variants */}
         {isSummoning ? (
-          <span className="shrink-0 animate-pulse rounded-full border border-orange-500/25 bg-orange-500/15 px-2 py-0.5 text-[11px] font-medium text-orange-700 dark:text-orange-400 dark:bg-orange-500/10 dark:border-orange-500/20">
+          <span className="shrink-0 animate-pulse rounded-full border border-accent/25 bg-accent/15 px-2 py-0.5 text-[11px] font-medium text-accent dark:bg-accent/10 dark:border-accent/20">
             Summoning
           </span>
         ) : isFailed ? (
@@ -90,7 +90,7 @@ export function AgentCard({ agent, onEdit, onDelete, onResummon }: AgentCardProp
         {agent.agent_type === 'predefined' && (
           <span className={`rounded-full px-2 py-0.5 text-[11px] flex items-center gap-0.5 ${
             selfEvolve
-              ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300'
+              ? 'bg-accent/15 text-accent dark:bg-accent/30 dark:text-accent'
               : 'border border-border text-text-muted'
           }`}>
             <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">

@@ -102,12 +102,12 @@ Segurança, contratos externos, extrator, banco, desktop, ativos e cores.
 | T054 | Aplicar os tokens de cor do PDF (V1) no tema claro e escuro da web, mais os badges de status. | T029 | `[//]` | `ui/web/src/index.css` | 🟢 | `[X]` |
 | T055 | Aplicar os tokens de cor do PDF (V1) no tema claro e escuro do desktop (abre no escuro por padrão). | T029 | `[//]` | `ui/desktop/frontend/src/index.css` | 🟢 | `[X]` |
 | T056 | Listar todas as ocorrências de `orange-*` e `amber-*` e classificar cada uma como aviso ou decoração pela regra do PDF, em `docs/rebrand-amber-review.md`. | T054, T055 | - | `docs/rebrand-amber-review.md` | 🟡 | `[X]` |
-| T057 | Converter as classes `orange-*` da web para os tokens da paleta. | T056 | `[//]` | `ui/web/src/**` | 🟡 | `[ ]` |
-| T058 | Converter as classes `orange-*` do desktop para os tokens da paleta. | T056 | `[//]` | `ui/desktop/frontend/src/**` | 🟡 | `[ ]` |
-| T059 | Converter as classes `amber-*` decorativas de `ui/web/src/components/**` conforme a tabela (aviso fica no token `warning`). | T057 | - | `ui/web/src/components/**` | 🟡 | `[ ]` |
-| T060 | Converter as classes `amber-*` decorativas de `ui/web/src/pages/**` conforme a tabela. | T059 | - | `ui/web/src/pages/**` | 🟡 | `[ ]` |
-| T061 | Converter as classes `amber-*` decorativas do desktop conforme a tabela. | T058 | - | `ui/desktop/frontend/src/**` | 🟡 | `[ ]` |
-| T062 | Criar e rodar um verificador de contraste dos pares texto/fundo aplicados (mínimo 4,5:1 e 3:1 para foco, borda de campo e gráficos), nos dois temas. | T054, T055 | `[//]` | `scripts/rebrand/contrast-check.mjs` | 🟢 | `[ ]` |
+| T057 | Converter as classes `orange-*` da web para os tokens da paleta. | T056 | `[//]` | `ui/web/src/**` | 🟡 | `[X]` |
+| T058 | Converter as classes `orange-*` do desktop para os tokens da paleta. | T056 | `[//]` | `ui/desktop/frontend/src/**` | 🟡 | `[X]` |
+| T059 | Converter as classes `amber-*` decorativas de `ui/web/src/components/**` conforme a tabela (aviso fica no token `warning`). | T057 | - | `ui/web/src/components/**` | 🟡 | `[X]` |
+| T060 | Converter as classes `amber-*` decorativas de `ui/web/src/pages/**` conforme a tabela. | T059 | - | `ui/web/src/pages/**` | 🟡 | `[X]` |
+| T061 | Converter as classes `amber-*` decorativas do desktop conforme a tabela. | T058 | - | `ui/desktop/frontend/src/**` | 🟡 | `[X]` |
+| T062 | Criar e rodar um verificador de contraste dos pares texto/fundo aplicados (mínimo 4,5:1 e 3:1 para foco, borda de campo e gráficos), nos dois temas. | T054, T055 | `[//]` | `scripts/rebrand/contrast-check.mjs` | 🟢 | `[X]` |
 
 ## Fase 5, Polimento
 

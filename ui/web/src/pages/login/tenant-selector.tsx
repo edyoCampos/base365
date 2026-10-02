@@ -32,8 +32,8 @@ export function TenantSelectorPage() {
     return (
       <LoginLayout subtitle={t("noAccess")}>
         <div className="space-y-5 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-950/40">
-            <ShieldAlert className="h-7 w-7 text-amber-600 dark:text-amber-400" />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-badge-warning dark:bg-badge-warning/40">
+            <ShieldAlert className="h-7 w-7 text-badge-warning-foreground dark:text-badge-warning-foreground" />
           </div>
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">{t("noAccessDescription")}</p>

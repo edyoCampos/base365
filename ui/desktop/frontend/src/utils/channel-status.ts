@@ -21,7 +21,7 @@ export function getChannelStatusDisplay(
         statusText = t("status.running");
         break;
       case "degraded":
-        dotColor = "bg-amber-500";
+        dotColor = "bg-warning";
         statusText = t("status.degraded", { defaultValue: "Degraded" });
         break;
       case "starting":

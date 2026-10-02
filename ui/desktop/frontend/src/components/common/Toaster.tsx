@@ -3,7 +3,7 @@ import { useToastStore, type Toast } from '../../stores/toast-store'
 const styles: Record<Toast['variant'], string> = {
   success: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300',
   destructive: 'border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300',
-  warning: 'border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300',
+  warning: 'border-warning/30 bg-warning/10 text-warning dark:text-warning',
   default: 'border-border bg-surface-secondary text-text-primary',
 }
 

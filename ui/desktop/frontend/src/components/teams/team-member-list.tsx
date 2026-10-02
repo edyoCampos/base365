@@ -4,8 +4,8 @@ import { IconClose, IconPlus, IconUser, IconSpinner } from '../common/Icons'
 import type { TeamMemberData } from '../../types/team'
 
 const ROLE_COLORS: Record<string, string> = {
-  lead: 'bg-amber-500/15 text-amber-600 dark:text-amber-400',
-  reviewer: 'bg-orange-500/15 text-orange-600 dark:text-orange-400',
+  lead: 'bg-accent/15 text-accent dark:text-accent',
+  reviewer: 'bg-accent/15 text-accent dark:text-accent',
   member: 'bg-surface-tertiary text-text-muted',
 }
 
@@ -47,7 +47,7 @@ export function TeamMemberList({
           <button
             onClick={onAddMember}
             disabled={!addAgent || adding}
-            className="shrink-0 px-3 py-1.5 text-xs font-medium bg-accent text-white rounded-lg hover:bg-accent/90 disabled:opacity-50 cursor-pointer"
+            className="shrink-0 px-3 py-1.5 text-xs font-medium bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 disabled:opacity-50 cursor-pointer"
           >
             {adding ? '...' : t('settings.add', 'Add')}
           </button>

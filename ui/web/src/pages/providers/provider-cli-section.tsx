@@ -81,31 +81,31 @@ export function CLISection({ open }: { open: boolean }) {
           </details>
         </div>
       ) : cliAuth ? (
-        <div className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 dark:border-amber-800 dark:bg-amber-950">
+        <div className="rounded-md border border-warning/50 bg-badge-warning px-3 py-2 dark:bg-badge-warning">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
-              <p className="text-sm font-medium text-amber-700 dark:text-amber-300">{t("cli.notAuthenticated")}</p>
+              <AlertTriangle className="h-4 w-4 text-badge-warning-foreground dark:text-badge-warning-foreground" />
+              <p className="text-sm font-medium text-badge-warning-foreground dark:text-badge-warning-foreground">{t("cli.notAuthenticated")}</p>
             </div>
             <Button
               type="button"
               variant="ghost"
               size="sm"
-              className="h-7 px-2 text-amber-700 hover:text-amber-800 dark:text-amber-400 dark:hover:text-amber-300"
+              className="h-7 px-2 text-accent-foreground hover:text-accent-foreground dark:text-primary dark:hover:text-primary"
               onClick={checkAuth}
             >
               <RefreshCw className="h-3.5 w-3.5 mr-1" />
               <span className="text-xs">{t("cli.recheckButton")}</span>
             </Button>
           </div>
-          <p className="mt-1 text-sm text-amber-600 dark:text-amber-400">
+          <p className="mt-1 text-sm text-primary dark:text-primary">
             {t("cli.runOnServer")}
           </p>
-          <code className="mt-1 block rounded bg-amber-100 px-2 py-1 text-xs font-mono dark:bg-amber-900 dark:text-amber-300">
+          <code className="mt-1 block rounded bg-accent px-2 py-1 text-xs font-mono dark:text-primary">
             {cliAuth.in_docker ? "docker compose exec base365 claude auth login" : "claude auth login"}
           </code>
           {cliAuth.error && (
-            <p className="mt-1 text-xs text-amber-500">{cliAuth.error}</p>
+            <p className="mt-1 text-xs text-primary">{cliAuth.error}</p>
           )}
         </div>
       ) : null}

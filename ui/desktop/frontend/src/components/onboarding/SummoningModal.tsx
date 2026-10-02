@@ -121,12 +121,12 @@ export function SummoningModal({ agentId, agentName, onContinue, onCancel }: Sum
             {status === 'summoning' && (
               <>
                 <motion.div
-                  className="absolute inset-0 rounded-full bg-orange-500/20"
+                  className="absolute inset-0 rounded-full bg-accent/20"
                   animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.1, 0.3] }}
                   transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                 />
                 <motion.div
-                  className="absolute inset-2 rounded-full bg-orange-500/30"
+                  className="absolute inset-2 rounded-full bg-accent/30"
                   animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.2, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
                 />
@@ -138,7 +138,7 @@ export function SummoningModal({ agentId, agentName, onContinue, onCancel }: Sum
                   ? 'bg-emerald-100 dark:bg-emerald-900/30'
                   : status === 'failed'
                     ? 'bg-red-100 dark:bg-red-900/30'
-                    : 'bg-orange-100 dark:bg-orange-900/30'
+                    : 'bg-accent/15 dark:bg-accent/30'
               }`}
               animate={
                 status === 'summoning'
@@ -197,7 +197,7 @@ export function SummoningModal({ agentId, agentName, onContinue, onCancel }: Sum
           {status === 'completed' && (
             <button
               onClick={onContinue}
-              className="px-5 py-2 bg-accent text-white rounded-lg text-sm font-medium hover:bg-accent-hover transition-colors"
+              className="px-5 py-2 bg-accent text-accent-foreground rounded-lg text-sm font-medium hover:bg-accent-hover transition-colors"
             >
               Continue →
             </button>

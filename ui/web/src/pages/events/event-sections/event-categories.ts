@@ -17,8 +17,8 @@ export interface EventCategoryConfig {
 const teamTask: EventCategoryConfig = {
   label: "Task",
   icon: ListTodo,
-  borderColor: "border-l-amber-500",
-  iconColor: "text-amber-500",
+  borderColor: "border-l-primary",
+  iconColor: "text-primary",
 };
 
 const teamMessage: EventCategoryConfig = {
@@ -31,8 +31,8 @@ const teamMessage: EventCategoryConfig = {
 const agent: EventCategoryConfig = {
   label: "Agent",
   icon: Bot,
-  borderColor: "border-l-orange-500",
-  iconColor: "text-orange-500",
+  borderColor: "border-l-chart-5",
+  iconColor: "text-primary",
 };
 
 const teamCrud: EventCategoryConfig = {

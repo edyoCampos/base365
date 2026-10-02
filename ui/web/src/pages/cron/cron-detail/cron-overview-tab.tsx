@@ -158,14 +158,14 @@ export function CronOverviewTab({ job, onUpdate }: CronOverviewTabProps) {
       />
 
       {isCommandCron(job) ? (
-        <section className="space-y-3 rounded-lg border border-amber-200 bg-amber-50/40 p-3 sm:p-4 overflow-hidden dark:border-amber-900/50 dark:bg-amber-950/20">
+        <section className="space-y-3 rounded-lg border border-warning/50 bg-badge-warning/40 p-3 sm:p-4 overflow-hidden dark:bg-badge-warning/20">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Terminal className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+              <Terminal className="h-4 w-4 text-primary dark:text-primary" />
               <h3 className="text-sm font-medium">{t("detail.commandSection")}</h3>
             </div>
             <div className="flex items-center gap-2">
-              <span className="rounded-full border border-amber-300 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-amber-700 dark:border-amber-800 dark:text-amber-300">
+              <span className="rounded-full border border-warning/50 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-badge-warning-foreground dark:text-badge-warning-foreground">
                 {t("payload.command")}
               </span>
               {!readonly && (

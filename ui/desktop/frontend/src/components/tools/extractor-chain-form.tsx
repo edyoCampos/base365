@@ -112,7 +112,7 @@ export function ExtractorChainForm({ tool, onSave, onClose }: ExtractorChainForm
         <button type="button" onClick={onClose} className="border border-border rounded-lg px-4 py-1.5 text-sm text-text-secondary hover:bg-surface-tertiary transition-colors">
           {t('builtin.settingsDialog.cancel')}
         </button>
-        <button type="button" onClick={handleSave} disabled={saving} className="bg-accent rounded-lg px-4 py-1.5 text-sm text-white hover:bg-accent-hover disabled:opacity-50 transition-colors">
+        <button type="button" onClick={handleSave} disabled={saving} className="bg-accent rounded-lg px-4 py-1.5 text-sm text-accent-foreground hover:bg-accent-hover disabled:opacity-50 transition-colors">
           {saving ? t('builtin.settingsDialog.saving') : t('builtin.settingsDialog.save')}
         </button>
       </div>

@@ -21,7 +21,7 @@ export function AgentAvatar({ name, status, size = 'sm', emoji }: AgentAvatarPro
   return (
     <div className="relative shrink-0" style={{ width: dim, height: dim }}>
       <div
-        className={`flex items-center justify-center rounded-full ${emoji ? 'bg-accent/10' : 'bg-accent text-white'} font-semibold select-none ${textSize}`}
+        className={`flex items-center justify-center rounded-full ${emoji ? 'bg-accent/10' : 'bg-accent text-accent-foreground'} font-semibold select-none ${textSize}`}
         style={{ width: dim, height: dim }}
       >
         {emoji || name.charAt(0).toUpperCase()}

@@ -141,7 +141,7 @@ export function AgentFilesTab({ agentId, agentKey, agentType }: AgentFilesTabPro
                 <button
                   onClick={handleSave}
                   disabled={!dirty || saving}
-                  className="px-3 py-1 text-[11px] bg-accent text-white rounded-md font-medium hover:bg-accent-hover transition-colors disabled:opacity-40 flex items-center gap-1.5"
+                  className="px-3 py-1 text-[11px] bg-accent text-accent-foreground rounded-md font-medium hover:bg-accent-hover transition-colors disabled:opacity-40 flex items-center gap-1.5"
                 >
                   {saving && <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />}
                   {saving ? t('files.saving') : t('files.save')}

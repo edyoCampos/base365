@@ -5,7 +5,7 @@ import { V3FeatureCard } from "./v3-feature-card";
 const FEATURES = [
   { key: "memory", icon: Brain, iconColor: "text-pink-500" },
   { key: "retrieval", icon: Search, iconColor: "text-cyan-500" },
-  { key: "vault", icon: Library, iconColor: "text-amber-500" },
+  { key: "vault", icon: Library, iconColor: "text-primary" },
 ] as const;
 
 export function V3InfoTabMemory() {

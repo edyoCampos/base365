@@ -148,7 +148,7 @@ export function McpGrantsDialog({ open, onOpenChange, server, agents, onLoadGran
               <button
                 onClick={handleGrant}
                 disabled={!selectedAgent || granting}
-                className="bg-accent text-white rounded-lg px-4 py-2.5 text-xs hover:bg-accent-hover disabled:opacity-50 transition-colors shrink-0"
+                className="bg-accent text-accent-foreground rounded-lg px-4 py-2.5 text-xs hover:bg-accent-hover disabled:opacity-50 transition-colors shrink-0"
               >
                 {granting ? t('common:loading') : t('grants.grant')}
               </button>

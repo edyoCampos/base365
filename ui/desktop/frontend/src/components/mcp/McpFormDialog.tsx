@@ -205,7 +205,7 @@ export function McpFormDialog({ open, onOpenChange, server, onSubmit, onTest }: 
             </button>
             <div className="flex items-center gap-2">
               <button type="button" onClick={() => onOpenChange(false)} className="border border-border rounded-lg px-4 py-1.5 text-sm text-text-secondary hover:bg-surface-tertiary transition-colors">{t('form.cancel')}</button>
-              <button type="button" onClick={handleSubmit(onValid)} disabled={!canSubmit || isSubmitting} className="bg-accent rounded-lg px-4 py-1.5 text-sm text-white hover:bg-accent-hover disabled:opacity-50 transition-colors">
+              <button type="button" onClick={handleSubmit(onValid)} disabled={!canSubmit || isSubmitting} className="bg-accent rounded-lg px-4 py-1.5 text-sm text-accent-foreground hover:bg-accent-hover disabled:opacity-50 transition-colors">
                 {isSubmitting ? t('form.saving') : isEdit ? t('form.update') : t('form.create')}
               </button>
             </div>

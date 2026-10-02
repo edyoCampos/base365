@@ -120,7 +120,7 @@ export function TaskCreateDialog({ teamId, members, onClose, onCreate }: TaskCre
             <button
               type="submit"
               disabled={!subject.trim() || saving}
-              className="text-xs font-medium bg-accent text-white px-4 py-1.5 rounded-lg hover:bg-accent/90 transition-colors disabled:opacity-50 cursor-pointer"
+              className="text-xs font-medium bg-accent text-accent-foreground px-4 py-1.5 rounded-lg hover:bg-accent/90 transition-colors disabled:opacity-50 cursor-pointer"
             >
               {saving ? t('creating', 'Creating...') : t('create', 'Create')}
             </button>

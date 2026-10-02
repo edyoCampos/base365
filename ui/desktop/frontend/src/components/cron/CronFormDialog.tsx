@@ -201,7 +201,7 @@ export function CronFormDialog({ open, onOpenChange, onSubmit }: CronFormDialogP
           <button type="button" onClick={() => onOpenChange(false)} className="border border-border rounded-lg px-4 py-1.5 text-sm text-text-secondary hover:bg-surface-tertiary transition-colors">
             {t('create.cancel')}
           </button>
-          <button type="button" onClick={handleSubmit(onValid)} disabled={!canSubmit || isSubmitting} className="bg-accent rounded-lg px-4 py-1.5 text-sm text-white hover:bg-accent-hover disabled:opacity-50 transition-colors">
+          <button type="button" onClick={handleSubmit(onValid)} disabled={!canSubmit || isSubmitting} className="bg-accent rounded-lg px-4 py-1.5 text-sm text-accent-foreground hover:bg-accent-hover disabled:opacity-50 transition-colors">
             {isSubmitting ? t('create.creating') : t('create.create')}
           </button>
         </div>

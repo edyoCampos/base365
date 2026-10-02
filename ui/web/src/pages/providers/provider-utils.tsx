@@ -115,7 +115,7 @@ export function ProviderApiKeyBadge({
   if (provider.provider_type === "chatgpt_oauth") {
     if (oauthAvailability === "needs_sign_in") {
       return (
-        <span className="flex items-center gap-1 text-xs-plus text-amber-700 dark:text-amber-400">
+        <span className="flex items-center gap-1 text-xs-plus text-badge-warning-foreground dark:text-badge-warning-foreground">
           <AlertTriangle className="h-3 w-3" />{t("card.signInNeeded")}
         </span>
       );

@@ -43,7 +43,7 @@ export function ImportExportPage() {
       </div>
 
       {/* Beta warning */}
-      <div className="mx-auto max-w-3xl flex items-start gap-2.5 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-300">
+      <div className="mx-auto max-w-3xl flex items-start gap-2.5 rounded-md border border-warning/50 bg-badge-warning px-4 py-3 text-sm text-badge-warning-foreground dark:border-warning/40 dark:bg-badge-warning/20 dark:text-badge-warning-foreground">
         <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
         <span>{t("betaWarning")}</span>
       </div>

@@ -32,7 +32,7 @@ export function ThinkingSection({ reasoningMode, thinkingLevel, onReasoningModeC
             className={[
               'px-3 py-1.5 text-xs rounded-lg border transition-colors',
               reasoningMode === m
-                ? 'bg-accent text-white border-accent'
+                ? 'bg-accent text-accent-foreground border-accent'
                 : 'border-border text-text-secondary hover:bg-surface-tertiary',
             ].join(' ')}
           >
@@ -52,7 +52,7 @@ export function ThinkingSection({ reasoningMode, thinkingLevel, onReasoningModeC
                 className={[
                   'flex-1 px-2 py-1.5 text-xs rounded-lg border transition-colors text-center',
                   thinkingLevel === lv.key
-                    ? 'bg-accent text-white border-accent'
+                    ? 'bg-accent text-accent-foreground border-accent'
                     : 'border-border text-text-secondary hover:bg-surface-tertiary',
                 ].join(' ')}
               >

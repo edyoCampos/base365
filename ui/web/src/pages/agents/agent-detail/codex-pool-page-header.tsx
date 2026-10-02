@@ -74,7 +74,7 @@ export function CodexPoolPageHeader({
                   summaryTone === "healthy" &&
                     "border-emerald-500/30 bg-emerald-500/[0.07] text-emerald-700 dark:text-emerald-200",
                   summaryTone === "warning" &&
-                    "border-amber-500/30 bg-amber-500/[0.08] text-amber-800 dark:text-amber-200",
+                    "border-warning/30 bg-warning/[0.08] text-badge-warning-foreground dark:text-badge-warning-foreground",
                   summaryTone === "manual" && "border-border/70 bg-muted/20",
                 )}
               >

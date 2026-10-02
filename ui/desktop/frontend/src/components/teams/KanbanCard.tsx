@@ -7,7 +7,7 @@ import type { TeamTaskData } from '../../types/team'
 const PRIORITY_STYLE: Record<number, { label: string; color: string }> = {
   0: { label: 'P-0', color: 'text-slate-400' },
   1: { label: 'P-1', color: 'text-blue-500' },
-  2: { label: 'P-2', color: 'text-amber-500' },
+  2: { label: 'P-2', color: 'text-accent' },
   3: { label: 'P-3', color: 'text-red-500' },
 }
 
@@ -35,7 +35,7 @@ export function KanbanCard({ task, ownerName, ownerEmoji, onClick }: KanbanCardP
       onClick={onClick}
       className={[
         'w-full text-left rounded-lg border bg-surface-primary p-3 transition-colors hover:bg-accent/5 cursor-pointer group',
-        locked ? 'border-l-2 border-l-green-500' : blocked ? 'border-l-2 border-l-amber-500' : 'border-border',
+        locked ? 'border-l-2 border-l-green-500' : blocked ? 'border-l-2 border-l-warning' : 'border-border',
       ].join(' ')}
     >
       {/* Top row: identifier + priority + running */}
@@ -63,7 +63,7 @@ export function KanbanCard({ task, ownerName, ownerEmoji, onClick }: KanbanCardP
 
       {/* Blocked indicator */}
       {hasBlockers && (
-        <p className="mt-1 flex items-center gap-1 text-[10px] text-amber-600 dark:text-amber-400">
+        <p className="mt-1 flex items-center gap-1 text-[10px] text-warning dark:text-warning">
           <IconBlocked size={10} className="shrink-0" />
           <span className="truncate">
             {task.blocked_by!.map((id) => id.slice(0, 8)).join(', ')}

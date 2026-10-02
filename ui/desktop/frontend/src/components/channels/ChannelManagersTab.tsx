@@ -169,7 +169,7 @@ export function ChannelManagersTab({
             <button
               onClick={handleStandaloneAdd}
               disabled={addingMap['_new'] || !newGroupId.trim() || !newUserId.trim()}
-              className="px-3 py-1.5 bg-accent text-white text-xs rounded-lg disabled:opacity-50 cursor-pointer hover:bg-accent-hover transition-colors shrink-0"
+              className="px-3 py-1.5 bg-accent text-accent-foreground text-xs rounded-lg disabled:opacity-50 cursor-pointer hover:bg-accent-hover transition-colors shrink-0"
             >
               {t('detail.managers.addForm.addManager')}
             </button>

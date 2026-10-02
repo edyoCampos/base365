@@ -53,7 +53,7 @@ export function SkillList() {
           <button
             onClick={() => fileRef.current?.click()}
             disabled={atLimit || uploading}
-            className="bg-accent text-white rounded-lg px-3 py-1.5 text-xs hover:bg-accent-hover disabled:opacity-50 transition-colors flex items-center gap-1.5"
+            className="bg-accent text-accent-foreground rounded-lg px-3 py-1.5 text-xs hover:bg-accent-hover disabled:opacity-50 transition-colors flex items-center gap-1.5"
           >
             {uploading ? (
               <>
@@ -75,19 +75,19 @@ export function SkillList() {
       </div>
 
       {atLimit && (
-        <p className="text-[11px] text-amber-600 dark:text-amber-400">{t('deps.runtimeMissing')}</p>
+        <p className="text-[11px] text-warning dark:text-warning">{t('deps.runtimeMissing')}</p>
       )}
       {uploadError && <p className="text-xs text-error">{uploadError}</p>}
 
       {/* Runtime status */}
       {runtimes && !runtimes.ready && (
-        <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3 flex items-start gap-2">
-          <svg className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <div className="rounded-lg border border-accent/20 bg-accent/5 p-3 flex items-start gap-2">
+          <svg className="h-4 w-4 text-accent shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
             <line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
           </svg>
           <div>
-            <p className="text-xs font-medium text-amber-600 dark:text-amber-400">{t('deps.runtimeMissing')}</p>
+            <p className="text-xs font-medium text-warning dark:text-warning">{t('deps.runtimeMissing')}</p>
             <p className="text-[11px] text-text-muted mt-0.5">
               {t('deps.runtimeMissingDesc')}{' '}
               {runtimes.runtimes.filter((r) => !r.available).map((r) => r.name).join(', ')}

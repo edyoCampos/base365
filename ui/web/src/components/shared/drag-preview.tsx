@@ -16,7 +16,7 @@ function PreviewIcon({ name, isDir }: { name: string; isDir: boolean }) {
   if (ext === "md" || ext === "mdx") return <FileText className={`${cls} text-blue-500`} />;
   if (ext === "json" || ext === "json5") return <FileJson2 className={`${cls} text-yellow-600`} />;
   if (IMAGE_EXTENSIONS.has(ext)) return <FileImage className={`${cls} text-emerald-500`} />;
-  if (CODE_EXTENSIONS.has(ext)) return <FileCode2 className={`${cls} text-orange-500`} />;
+  if (CODE_EXTENSIONS.has(ext)) return <FileCode2 className={`${cls} text-primary`} />;
   return <File className={`${cls} text-muted-foreground`} />;
 }
 

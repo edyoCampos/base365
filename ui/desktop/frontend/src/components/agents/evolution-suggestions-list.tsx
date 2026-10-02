@@ -12,7 +12,7 @@ interface EvolutionSuggestionsListProps {
 
 const TYPE_COLORS: Record<string, string> = {
   threshold: 'bg-blue-500/10 text-blue-600',
-  tool_order: 'bg-orange-500/10 text-orange-600',
+  tool_order: 'bg-accent/10 text-accent',
   skill_add: 'bg-green-500/10 text-green-600',
 }
 
@@ -58,7 +58,7 @@ export function EvolutionSuggestionsList({ suggestions, loading, onUpdateStatus 
                 </>
               )}
               {s.status === 'applied' && (
-                <button onClick={() => setConfirm({ id: s.id, action: 'rolled_back' })} className="px-2 py-1 text-[10px] rounded bg-orange-500/10 text-orange-600 hover:bg-orange-500/20 transition-colors">{t('detail.evolutionTab.rollback')}</button>
+                <button onClick={() => setConfirm({ id: s.id, action: 'rolled_back' })} className="px-2 py-1 text-[10px] rounded bg-accent/10 text-accent hover:bg-accent/20 transition-colors">{t('detail.evolutionTab.rollback')}</button>
               )}
             </div>
           </div>

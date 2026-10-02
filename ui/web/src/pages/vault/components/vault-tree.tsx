@@ -12,9 +12,9 @@ import type { VaultTreeEntry } from "../hooks/use-vault-tree";
 const DOC_TYPE_ICONS: Record<string, { icon: LucideIcon; color: string }> = {
   context:  { icon: FileText,   color: "text-blue-600 dark:text-blue-400" },
   memory:   { icon: Brain,      color: "text-purple-600 dark:text-purple-400" },
-  note:     { icon: StickyNote, color: "text-amber-600 dark:text-amber-400" },
+  note:     { icon: StickyNote, color: "text-primary dark:text-primary" },
   skill:    { icon: Sparkles,   color: "text-emerald-600 dark:text-emerald-400" },
-  episodic: { icon: Clock,      color: "text-orange-600 dark:text-orange-400" },
+  episodic: { icon: Clock,      color: "text-primary dark:text-primary" },
   media:    { icon: Image,      color: "text-rose-600 dark:text-rose-400" },
   document: { icon: FileType,   color: "text-cyan-600 dark:text-cyan-400" },
 };
@@ -23,7 +23,7 @@ const DEFAULT_ICON = { icon: FileText, color: "text-muted-foreground" };
 const SCOPE_DOT: Record<string, string> = {
   personal: "bg-blue-400",
   team:     "bg-green-400",
-  shared:   "bg-amber-400",
+  shared:   "bg-warning",
 };
 
 /** Truncate filename in the middle: "very-long-file-name.md" → "very-lo…me.md" */

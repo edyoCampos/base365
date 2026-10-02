@@ -286,7 +286,7 @@ export function MCPUserCredentialsDialog({
                 {selectedUserId && selectedUserId !== userSearchText && (
                   <p className="text-xs text-muted-foreground font-mono">{selectedUserId}</p>
                 )}
-                <p className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 rounded-md px-2.5 py-1.5 border border-amber-200 dark:border-amber-800">{t("userCredentials.mergeHint")}</p>
+                <p className="text-xs text-badge-warning-foreground bg-badge-warning dark:bg-badge-warning/30 rounded-md px-2.5 py-1.5 border border-warning/50 dark:border-warning/50">{t("userCredentials.mergeHint")}</p>
               </div>
             )}
 
@@ -308,9 +308,9 @@ export function MCPUserCredentialsDialog({
                     <div className="space-y-0.5">
                       <div className="flex items-center gap-2 text-xs">
                         {oauthIsExpired
-                          ? <ShieldX className="h-3.5 w-3.5 text-amber-500" />
+                          ? <ShieldX className="h-3.5 w-3.5 text-badge-warning-foreground" />
                           : <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />}
-                        <span className={oauthIsExpired ? "text-amber-600 dark:text-amber-400" : "text-emerald-600 dark:text-emerald-400"}>
+                        <span className={oauthIsExpired ? "text-badge-warning-foreground dark:text-badge-warning-foreground" : "text-emerald-600 dark:text-emerald-400"}>
                           {oauthIsExpired ? t("form.oauth.expired") : t("form.oauth.authorized")}
                         </span>
                       </div>

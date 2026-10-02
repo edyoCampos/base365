@@ -190,7 +190,7 @@ function ContextUsageBar({
 
   let barColor = "bg-emerald-500";
   if (pct >= 85) barColor = "bg-red-500";
-  else if (pct >= 60) barColor = "bg-amber-500";
+  else if (pct >= 60) barColor = "bg-primary";
 
   const tooltip = `~${formatTokens(estimatedTokens)} / ${formatTokens(contextWindow)} tokens (${pct}%)`;
 

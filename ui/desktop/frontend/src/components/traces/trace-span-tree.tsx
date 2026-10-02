@@ -98,7 +98,7 @@ export function SpanRow({ node, expanded, onToggle }: { node: SpanNode; expanded
             <span className="font-mono">
               {formatTokens(span.input_tokens)}/{formatTokens(span.output_tokens)}
               {cacheRead > 0 && <span className="ml-1 text-emerald-600 dark:text-emerald-400">({formatTokens(cacheRead)} cached)</span>}
-              {thinkingTokens > 0 && <span className="ml-1 text-orange-600 dark:text-orange-400">({formatTokens(thinkingTokens)} thinking)</span>}
+              {thinkingTokens > 0 && <span className="ml-1 text-accent dark:text-accent">({formatTokens(thinkingTokens)} thinking)</span>}
             </span>
           )}
           <span>{formatDuration(span.duration_ms, span.start_time, span.end_time)}</span>

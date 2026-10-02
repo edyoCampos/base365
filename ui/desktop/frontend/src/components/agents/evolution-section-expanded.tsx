@@ -37,8 +37,8 @@ export function EvolutionSectionExpanded({
       </div>
 
       {selfEvolve && (
-        <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 p-3">
-          <p className="text-[11px] text-orange-600 dark:text-orange-400">{t('general.selfEvolutionInfo')}</p>
+        <div className="rounded-lg border border-accent/20 bg-accent/5 p-3">
+          <p className="text-[11px] text-accent dark:text-accent">{t('general.selfEvolutionInfo')}</p>
         </div>
       )}
 

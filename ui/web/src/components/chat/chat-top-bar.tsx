@@ -67,7 +67,7 @@ export function ChatTopBar({ agentId, isRunning, isBusy, activity, teamTasks, on
     const max = session.contextWindow;
     const percent = Math.min(100, Math.round((used / max) * 100));
     const color =
-      percent >= 90 ? "text-destructive" : percent >= 75 ? "text-amber-600 dark:text-amber-400" : "text-muted-foreground";
+      percent >= 90 ? "text-destructive" : percent >= 75 ? "text-primary dark:text-primary" : "text-muted-foreground";
     return { used, max, percent, color };
   })();
 

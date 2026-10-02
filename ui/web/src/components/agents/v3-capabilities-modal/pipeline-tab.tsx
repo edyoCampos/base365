@@ -81,8 +81,8 @@ export function PipelineTab() {
       {/* Finalize */}
       <div className="rounded-lg border p-3 space-y-1">
         <div className="flex items-center gap-2">
-          <Flag className="h-3.5 w-3.5 text-amber-500" />
-          <span className="text-xs font-medium text-amber-700 dark:text-amber-400">
+          <Flag className="h-3.5 w-3.5 text-primary" />
+          <span className="text-xs font-medium text-accent-foreground dark:text-primary">
             {t("pipeline.finalize")}
           </span>
         </div>

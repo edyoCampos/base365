@@ -47,8 +47,8 @@ export function WorkspaceSharingSection({ value, onChange }: WorkspaceSharingSec
       {/* ── Section 1: Memory & Knowledge Graph ── */}
       <section className="space-y-3">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-900/30">
-            <Brain className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent dark:bg-primary/30">
+            <Brain className="h-4 w-4 text-primary dark:text-primary" />
           </div>
           <div>
             <h3 className="text-sm font-semibold">{t(`${s}.memoryGroupLabel`)}</h3>
@@ -57,7 +57,7 @@ export function WorkspaceSharingSection({ value, onChange }: WorkspaceSharingSec
         </div>
 
         <div className="space-y-2">
-          <div className={`rounded-lg border p-3 sm:p-4 ${value.share_memory ? "border-orange-400/60 bg-orange-50/30 dark:border-orange-500/30 dark:bg-orange-950/10" : ""}`}>
+          <div className={`rounded-lg border p-3 sm:p-4 ${value.share_memory ? "border-primary/60 bg-primary/30 dark:border-primary/30 dark:bg-primary/10" : ""}`}>
             <div className="flex items-center justify-between">
               <InfoLabel tip={t(`${s}.shareMemoryTip`)}>{t(`${s}.shareMemory`)}</InfoLabel>
               <Switch
@@ -66,13 +66,13 @@ export function WorkspaceSharingSection({ value, onChange }: WorkspaceSharingSec
               />
             </div>
             {value.share_memory && (
-              <p className="mt-2 text-xs text-orange-600 dark:text-orange-400">
+              <p className="mt-2 text-xs text-primary dark:text-primary">
                 {t(`${s}.shareMemoryNote`)}
               </p>
             )}
           </div>
 
-          <div className={`rounded-lg border p-3 sm:p-4 ${value.share_knowledge_graph ? "border-orange-400/60 bg-orange-50/30 dark:border-orange-500/30 dark:bg-orange-950/10" : ""}`}>
+          <div className={`rounded-lg border p-3 sm:p-4 ${value.share_knowledge_graph ? "border-primary/60 bg-primary/30 dark:border-primary/30 dark:bg-primary/10" : ""}`}>
             <div className="flex items-center justify-between">
               <InfoLabel tip={t(`${s}.shareKGTip`)}>{t(`${s}.shareKG`)}</InfoLabel>
               <Switch
@@ -81,13 +81,13 @@ export function WorkspaceSharingSection({ value, onChange }: WorkspaceSharingSec
               />
             </div>
             {value.share_knowledge_graph && (
-              <p className="mt-2 text-xs text-orange-600 dark:text-orange-400">
+              <p className="mt-2 text-xs text-primary dark:text-primary">
                 {t(`${s}.shareKGNote`)}
               </p>
             )}
           </div>
 
-          <div className={`rounded-lg border p-3 sm:p-4 ${value.share_sessions ? "border-orange-400/60 bg-orange-50/30 dark:border-orange-500/30 dark:bg-orange-950/10" : ""}`}>
+          <div className={`rounded-lg border p-3 sm:p-4 ${value.share_sessions ? "border-primary/60 bg-primary/30 dark:border-primary/30 dark:bg-primary/10" : ""}`}>
             <div className="flex items-center justify-between">
               <InfoLabel tip={t(`${s}.shareSessionsTip`)}>{t(`${s}.shareSessions`)}</InfoLabel>
               <Switch
@@ -96,7 +96,7 @@ export function WorkspaceSharingSection({ value, onChange }: WorkspaceSharingSec
               />
             </div>
             {value.share_sessions && (
-              <p className="mt-2 text-xs text-orange-600 dark:text-orange-400">
+              <p className="mt-2 text-xs text-primary dark:text-primary">
                 {t(`${s}.shareSessionsNote`)}
               </p>
             )}
@@ -107,8 +107,8 @@ export function WorkspaceSharingSection({ value, onChange }: WorkspaceSharingSec
       {/* ── Section 2: Workspace File Sharing ── */}
       <section className="space-y-3">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-100 dark:bg-amber-900/30">
-            <Shield className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent dark:bg-primary/30">
+            <Shield className="h-4 w-4 text-primary dark:text-primary" />
           </div>
           <div>
             <h3 className="text-sm font-semibold">{t(`${s}.title`)}</h3>
@@ -116,9 +116,9 @@ export function WorkspaceSharingSection({ value, onChange }: WorkspaceSharingSec
           </div>
         </div>
 
-        <div className={`rounded-lg border p-3 space-y-4 sm:p-4 ${isWorkspaceActive ? "border-amber-400/60 bg-amber-50/30 dark:border-amber-500/30 dark:bg-amber-950/10" : ""}`}>
+        <div className={`rounded-lg border p-3 space-y-4 sm:p-4 ${isWorkspaceActive ? "border-warning/60 bg-badge-warning/30 dark:border-warning/30 dark:bg-badge-warning/10" : ""}`}>
           {/* Security warning */}
-          <Alert variant="destructive" className="border-amber-500/50 bg-amber-500/10 text-amber-700 dark:text-amber-400 [&>svg]:text-amber-600">
+          <Alert variant="destructive" className="border-warning/50 bg-warning/10 text-badge-warning-foreground [&>svg]:text-badge-warning-foreground">
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription className="text-xs">
               {t(`${s}.warning`)}

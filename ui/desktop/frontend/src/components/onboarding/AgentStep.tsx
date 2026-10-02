@@ -263,7 +263,7 @@ export function AgentStep({ provider, model, onBack, onComplete }: AgentStepProp
         <button
           onClick={handleSubmit}
           disabled={loading || !canSubmit}
-          className="px-6 py-2.5 bg-accent text-white rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+          className="px-6 py-2.5 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
         >
           {loading && <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />}
           {t('desktop:agent.summon')}

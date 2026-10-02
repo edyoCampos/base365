@@ -31,10 +31,10 @@ const CALLOUT_CONFIG: Record<CalloutType, CalloutConfig> = {
   },
   warning: {
     icon: AlertTriangle,
-    borderColor: "border-amber-400 dark:border-amber-500",
-    bgColor: "bg-amber-50 dark:bg-amber-950/40",
-    titleColor: "text-amber-700 dark:text-amber-300",
-    iconColor: "text-amber-500 dark:text-amber-400",
+    borderColor: "border-warning/50 dark:border-warning",
+    bgColor: "bg-badge-warning dark:bg-badge-warning/40",
+    titleColor: "text-badge-warning-foreground dark:text-badge-warning-foreground",
+    iconColor: "text-badge-warning-foreground dark:text-badge-warning-foreground",
   },
   tip: {
     icon: Lightbulb,

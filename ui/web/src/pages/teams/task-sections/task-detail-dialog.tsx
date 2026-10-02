@@ -27,7 +27,7 @@ import { TaskDetailTimeline } from "./task-detail-timeline";
 
 const PRIORITY_CONFIG: Record<number, { icon: typeof ArrowUp; color: string; label: string }> = {
   4: { icon: AlertTriangle, color: "text-red-500", label: "critical" },
-  3: { icon: ArrowUp, color: "text-orange-500", label: "high" },
+  3: { icon: ArrowUp, color: "text-badge-warning-foreground", label: "high" },
   2: { icon: ArrowRight, color: "text-yellow-500", label: "medium" },
   1: { icon: ArrowDown, color: "text-muted-foreground", label: "low" },
 };
@@ -308,8 +308,8 @@ export function TaskDetailDialog({
 
           {/* Follow-up banner (V2) */}
           {isTeamV2 && task.followup_at && task.status === "in_progress" && (
-            <div className="rounded-md border border-amber-500/30 bg-amber-500/5 p-3">
-              <p className="mb-1 text-xs font-semibold text-amber-700 dark:text-amber-400">
+            <div className="rounded-md border border-primary/30 bg-primary/5 p-3">
+              <p className="mb-1 text-xs font-semibold text-accent-foreground dark:text-primary">
                 {t("tasks.detail.followupStatus")}
               </p>
               {task.followup_message && (

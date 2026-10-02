@@ -7,11 +7,11 @@ interface ActivityIndicatorProps {
 }
 
 const PHASE_COLOR: Record<string, string> = {
-  thinking: 'text-amber-500',
+  thinking: 'text-warning',
   tool_exec: 'text-blue-500',
   compacting: 'text-warning',
   streaming: 'text-text-secondary',
-  retrying: 'text-amber-500',
+  retrying: 'text-warning',
   leader_processing: 'text-emerald-500',
 }
 

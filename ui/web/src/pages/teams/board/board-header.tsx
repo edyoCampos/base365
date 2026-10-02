@@ -60,7 +60,7 @@ export function BoardHeader({ team, members, onBack, onDelete, onSettings, onMem
             {team.status}
           </Badge>
           <button type="button" className="relative inline-flex items-center" onClick={() => setFeaturesOpen(true)}>
-            <Badge className="bg-gradient-to-r from-orange-500 to-amber-500 text-2xs px-2 py-0.5 text-white border-0 font-semibold hover:from-orange-600 hover:to-amber-600">
+            <Badge className="bg-gradient-to-r from-primary to-primary/60 text-2xs px-2 py-0.5 text-white border-0 font-semibold hover:from-primary hover:to-primary/60">
               v2 Super Team
             </Badge>
           </button>

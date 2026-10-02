@@ -40,8 +40,8 @@ export function MissingDepsPanel({ missing, onInstallItem, runtimes }: MissingDe
   function renderDepRow(dep: string, label: string) {
     const status = itemStatus[dep] ?? "idle";
     return (
-      <div key={dep} className="flex items-center justify-between gap-2 py-1 px-2 -mx-2 rounded hover:bg-amber-100/60 dark:hover:bg-amber-900/20 transition-colors">
-        <span className="text-xs text-amber-700 dark:text-amber-300 font-mono">{label}</span>
+      <div key={dep} className="flex items-center justify-between gap-2 py-1 px-2 -mx-2 rounded hover:bg-badge-warning/60 dark:hover:bg-badge-warning/20 transition-colors">
+        <span className="text-xs text-badge-warning-foreground font-mono">{label}</span>
         <div className="flex items-center gap-1.5 shrink-0">
           {status === "success" && <CheckCircle2 className="h-3.5 w-3.5 text-green-500" />}
           {status === "error" && <XCircle className="h-3.5 w-3.5 text-red-500" />}
@@ -49,7 +49,7 @@ export function MissingDepsPanel({ missing, onInstallItem, runtimes }: MissingDe
             <Button
               size="sm"
               variant="ghost"
-              className="h-6 px-2 text-xs border border-amber-300 text-amber-800 hover:bg-amber-100 dark:border-amber-700 dark:text-amber-200 dark:hover:bg-amber-900/50"
+              className="h-6 px-2 text-xs border border-warning/50 text-badge-warning-foreground hover:bg-badge-warning dark:hover:bg-badge-warning/50"
               onClick={() => handleInstall(dep)}
               disabled={status === "installing" || !runtimesReady}
               title={!runtimesReady ? t("deps.runtimeRequired") : undefined}
@@ -106,14 +106,14 @@ export function MissingDepsPanel({ missing, onInstallItem, runtimes }: MissingDe
 
       {/* Missing package dependencies — only show when runtimes are ready (installing deps without runtime is pointless) */}
       {missing.length > 0 && runtimesReady && (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 dark:border-amber-900/50 dark:bg-amber-950/30 p-4">
-          <h3 className="text-sm font-medium text-amber-800 dark:text-amber-200 mb-2">
+        <div className="rounded-lg border border-warning/50 bg-badge-warning dark:bg-badge-warning/30 p-4">
+          <h3 className="text-sm font-medium text-badge-warning-foreground mb-2">
             {t("deps.missingTitle")}
           </h3>
           <div className="space-y-1">
             {system.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-amber-700 dark:text-amber-400 mb-0.5">
+                <p className="text-xs font-medium text-badge-warning-foreground mb-0.5">
                   {t("deps.systemLabel")}
                 </p>
                 {system.map((pkg) => renderDepRow(pkg, pkg))}
@@ -121,7 +121,7 @@ export function MissingDepsPanel({ missing, onInstallItem, runtimes }: MissingDe
             )}
             {pip.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-amber-700 dark:text-amber-400 mb-0.5">
+                <p className="text-xs font-medium text-badge-warning-foreground mb-0.5">
                   {t("deps.pythonLabel")}
                 </p>
                 {pip.map((pkg) => renderDepRow(`pip:${pkg}`, pkg))}
@@ -129,7 +129,7 @@ export function MissingDepsPanel({ missing, onInstallItem, runtimes }: MissingDe
             )}
             {npm.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-amber-700 dark:text-amber-400 mb-0.5">
+                <p className="text-xs font-medium text-badge-warning-foreground mb-0.5">
                   {t("deps.nodeLabel")}
                 </p>
                 {npm.map((pkg) => renderDepRow(`npm:${pkg}`, pkg))}

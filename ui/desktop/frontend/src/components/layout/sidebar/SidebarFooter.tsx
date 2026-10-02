@@ -30,7 +30,7 @@ export function SidebarFooter() {
     <div className="p-3 space-y-2">
       <button
         onClick={() => { createSession(); closeSettings() }}
-        className="wails-no-drag w-full py-2 px-3 rounded-lg bg-accent text-white text-sm font-medium text-center hover:bg-accent-hover transition-colors"
+        className="wails-no-drag w-full py-2 px-3 rounded-lg bg-accent text-accent-foreground text-sm font-medium text-center hover:bg-accent-hover transition-colors"
       >
         {t('sidebar.newChat')}
       </button>
@@ -68,7 +68,7 @@ export function SidebarFooter() {
                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
               </svg>
-              <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-amber-500 text-[8px] text-white font-bold flex items-center justify-center">
+              <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-warning text-[8px] text-white font-bold flex items-center justify-center">
                 {pendingCount}
               </span>
             </button>

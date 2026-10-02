@@ -53,7 +53,7 @@ export function ChannelList() {
           <button
             onClick={() => setFormOpen(true)}
             disabled={atLimit}
-            className="px-3 py-1.5 text-xs bg-accent text-white rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 cursor-pointer"
+            className="px-3 py-1.5 text-xs bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 cursor-pointer"
             title={atLimit ? t('atLimit') : undefined}
           >
             {t('addChannel')}
@@ -63,8 +63,8 @@ export function ChannelList() {
 
       {/* Limit warning */}
       {atLimit && (
-        <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 px-3 py-2">
-          <p className="text-[11px] text-amber-600 dark:text-amber-400">{t('atLimit')}</p>
+        <div className="rounded-lg border border-warning/30 bg-warning/5 px-3 py-2">
+          <p className="text-[11px] text-warning dark:text-warning">{t('atLimit')}</p>
         </div>
       )}
 

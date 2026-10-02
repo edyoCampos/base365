@@ -167,7 +167,7 @@ export function StorageUploadDialog({
           {done ? (
             <button
               onClick={() => handleClose(false)}
-              className="px-3 py-1.5 text-xs bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors"
+              className="px-3 py-1.5 text-xs bg-accent text-accent-foreground rounded-lg hover:bg-accent-hover transition-colors"
             >
               {t('done', 'Done')}
             </button>
@@ -175,7 +175,7 @@ export function StorageUploadDialog({
             <button
               onClick={handleSubmit}
               disabled={readyCount === 0 || uploading}
-              className="px-3 py-1.5 text-xs bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-50"
+              className="px-3 py-1.5 text-xs bg-accent text-accent-foreground rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-50"
             >
               {uploading
                 ? t('upload.uploading')

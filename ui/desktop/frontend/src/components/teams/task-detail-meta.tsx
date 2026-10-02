@@ -133,7 +133,7 @@ export function TaskDetailBody({ task, members, attachments }: TaskDetailBodyPro
           <span className="text-xs text-text-muted">{t('blockedBy', 'Blocked by')}</span>
           <div className="mt-1 flex flex-wrap gap-1.5">
             {task.blocked_by.map((id) => (
-              <span key={id} className="text-xs font-mono bg-amber-500/15 text-amber-600 dark:text-amber-400 px-2 py-0.5 rounded border border-amber-500/20">
+              <span key={id} className="text-xs font-mono bg-warning/15 text-warning px-2 py-0.5 rounded border border-warning/20">
                 {id.slice(0, 8)}
               </span>
             ))}

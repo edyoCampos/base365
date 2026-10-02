@@ -48,7 +48,7 @@ export function SystemRestorePanel() {
       <div className="space-y-4">
         <h3 className="text-sm font-medium">{t("restore.running")}</h3>
         <OperationProgress steps={restore.steps} elapsed={restore.elapsed} />
-        <p className="text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1">
+        <p className="text-xs text-badge-warning-foreground flex items-center gap-1">
           <AlertTriangle className="h-3.5 w-3.5" />
           {t("restore.doNotClose")}
         </p>
@@ -103,9 +103,9 @@ export function SystemRestorePanel() {
 
         {warnings.length > 0 && (
           <div className="space-y-1">
-            <p className="text-xs font-medium text-amber-600">{t("restore.warnings")}</p>
+            <p className="text-xs font-medium text-badge-warning-foreground">{t("restore.warnings")}</p>
             {warnings.map((w, i) => (
-              <p key={i} className="text-xs text-amber-600">{w}</p>
+              <p key={i} className="text-xs text-badge-warning-foreground">{w}</p>
             ))}
           </div>
         )}

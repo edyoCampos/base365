@@ -149,7 +149,7 @@ export function ChannelFormDialog({ open, onOpenChange, agents, telegramExists, 
           <button onClick={() => onOpenChange(false)} className="px-3 py-1.5 text-xs border border-border rounded-lg text-text-secondary hover:bg-surface-tertiary transition-colors cursor-pointer">
             {t('form.cancel')}
           </button>
-          <button onClick={handleSubmit(onValid)} disabled={!canCreate || isSubmitting} className="px-4 py-1.5 text-xs bg-accent text-white rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 cursor-pointer">
+          <button onClick={handleSubmit(onValid)} disabled={!canCreate || isSubmitting} className="px-4 py-1.5 text-xs bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 cursor-pointer">
             {isSubmitting ? t('form.saving') : t('form.create')}
           </button>
         </div>

@@ -252,7 +252,7 @@ export function HeartbeatConfigDialog({
           {/* Provider / Model override */}
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <Cpu className="h-3.5 w-3.5 text-orange-500" />
+              <Cpu className="h-3.5 w-3.5 text-primary" />
               <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 {t("heartbeat.sectionModel")}
               </h4>

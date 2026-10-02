@@ -103,7 +103,7 @@ function JsonHighlight({ json }: { json: string }) {
         // Boolean / null
         if (part === "true" || part === "false" || part === "null") {
           return (
-            <span key={i} className="text-amber-600 dark:text-amber-400">
+            <span key={i} className="text-primary dark:text-primary">
               {part}
             </span>
           );
@@ -111,7 +111,7 @@ function JsonHighlight({ json }: { json: string }) {
         // Number
         if (/^-?\d/.test(part)) {
           return (
-            <span key={i} className="text-orange-600 dark:text-orange-400">
+            <span key={i} className="text-primary dark:text-primary">
               {part}
             </span>
           );

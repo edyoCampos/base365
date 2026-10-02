@@ -51,7 +51,7 @@ const DEFAULT_ORDER: ProviderKey[] = ["exa", "tavily", "brave", "parallel"];
 const RAIL_COLOR: Record<ProviderKey, string> = {
   exa: "bg-blue-600",
   tavily: "bg-cyan-500",
-  brave: "bg-orange-500",
+  brave: "bg-primary",
   parallel: "bg-violet-500",
   duckduckgo: "bg-slate-500",
 };

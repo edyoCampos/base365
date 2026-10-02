@@ -242,7 +242,7 @@ function PermissionsNote() {
       {open && (
         <ul className="px-3 pb-3 space-y-1 text-xs text-muted-foreground">
           {PERM_CHANNELS.map((ch) => (
-            <li key={ch} className={ch === "feishu" ? "text-amber-600 dark:text-amber-400 font-medium" : ""}>
+            <li key={ch} className={ch === "feishu" ? "text-primary dark:text-primary font-medium" : ""}>
               {t(`${p}.${ch}`)}
             </li>
           ))}

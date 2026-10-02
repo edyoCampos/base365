@@ -151,12 +151,12 @@ export function SummoningModal({
             {status === "summoning" && (
               <>
                 <motion.div
-                  className="absolute inset-0 rounded-full bg-orange-500/20"
+                  className="absolute inset-0 rounded-full bg-primary/20"
                   animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.1, 0.3] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <motion.div
-                  className="absolute inset-2 rounded-full bg-orange-500/30"
+                  className="absolute inset-2 rounded-full bg-primary/30"
                   animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.2, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                 />
@@ -168,7 +168,7 @@ export function SummoningModal({
                   ? "bg-emerald-100 dark:bg-emerald-900/30"
                   : status === "failed"
                     ? "bg-red-100 dark:bg-red-900/30"
-                    : "bg-orange-100 dark:bg-orange-900/30"
+                    : "bg-accent dark:bg-primary/30"
               }`}
               animate={
                 status === "summoning"
@@ -218,7 +218,7 @@ export function SummoningModal({
                     <motion.div
                       className={`flex h-5 w-5 items-center justify-center rounded-full text-xs ${
                         done
-                          ? "bg-orange-100 text-orange-600 dark:bg-orange-900/40 dark:text-orange-400"
+                          ? "bg-accent text-primary dark:bg-primary/40 dark:text-primary"
                           : "bg-muted text-muted-foreground"
                       }`}
                       animate={done ? { scale: [0.8, 1.2, 1] } : {}}
@@ -236,7 +236,7 @@ export function SummoningModal({
                       <motion.span
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="text-xs text-orange-600 dark:text-orange-400"
+                        className="text-xs text-primary dark:text-primary"
                       >
                         {t("summoning.done")}
                       </motion.span>

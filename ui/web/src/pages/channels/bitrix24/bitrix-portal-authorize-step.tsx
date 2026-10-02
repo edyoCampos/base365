@@ -69,8 +69,8 @@ export function BitrixPortalAuthorizeStep({
       <span>{t("bitrix24.create.authorize.installed", { defaultValue: "Portal installed successfully!" })}</span>
     </div>
   ) : timedOut ? (
-    <div className="flex items-center gap-2 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm dark:border-amber-900 dark:bg-amber-950">
-      <AlertCircle className="h-4 w-4 text-amber-600" />
+    <div className="flex items-center gap-2 rounded-md border border-warning/50 bg-badge-warning p-3 text-sm dark:bg-badge-warning">
+      <AlertCircle className="h-4 w-4 text-badge-warning-foreground" />
       <span>
         {t("bitrix24.create.authorize.timedOut", {
           defaultValue: "Authorization not completed yet. You can resume from the dropdown.",
@@ -94,7 +94,7 @@ export function BitrixPortalAuthorizeStep({
       </div>
 
       {warning && (
-        <div className="rounded-md border border-amber-200 bg-amber-50 p-3 text-xs dark:border-amber-900 dark:bg-amber-950">
+        <div className="rounded-md border border-warning/50 bg-badge-warning p-3 text-xs dark:bg-badge-warning">
           ⚠ {warning}
         </div>
       )}

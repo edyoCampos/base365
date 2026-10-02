@@ -46,13 +46,13 @@ export function SkillCard({ skill, onToggle, onDelete }: SkillCardProps) {
         <div>
           <span className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium border ${
             isArchived
-              ? 'bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400 dark:bg-amber-500/5 dark:border-amber-500/15'
+              ? 'bg-accent/10 text-accent border-accent/20 dark:bg-accent/5 dark:border-accent/15'
               : 'bg-emerald-500/15 text-emerald-700 border-emerald-500/25 dark:text-emerald-400 dark:bg-emerald-500/10 dark:border-emerald-500/20'
           }`}>
             {isArchived ? t('deps.statusArchived') : t('deps.statusActive')}
           </span>
           {hasMissing && (
-            <p className="text-[10px] text-amber-600 dark:text-amber-400 mt-0.5">
+            <p className="text-[10px] text-warning mt-0.5">
               {skill.missing_deps!.slice(0, 3).join(', ')}
               {skill.missing_deps!.length > 3 && ` +${skill.missing_deps!.length - 3}`}
             </p>

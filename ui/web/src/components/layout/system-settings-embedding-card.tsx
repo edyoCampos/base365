@@ -81,7 +81,7 @@ export function SystemSettingsEmbeddingCard({
           {verifyResult && (
             <span className={`flex items-center gap-1 text-xs ${
               verifyResult.valid
-                ? verifyResult.dimension_mismatch ? "text-amber-600 dark:text-amber-400" : "text-emerald-600 dark:text-emerald-400"
+                ? verifyResult.dimension_mismatch ? "text-primary dark:text-primary" : "text-emerald-600 dark:text-emerald-400"
                 : "text-destructive"
             }`}>
               {verifyResult.valid ? (

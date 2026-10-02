@@ -24,7 +24,7 @@ export function ThinkingBlock({ text, isStreaming }: ThinkingBlockProps) {
         className="flex items-center gap-2 w-full px-3 py-2 text-xs text-text-muted hover:text-text-secondary transition-colors"
       >
         {/* Brain icon */}
-        <svg className={`w-3.5 h-3.5 shrink-0 ${isStreaming ? 'text-amber-500' : 'text-text-muted'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <svg className={`w-3.5 h-3.5 shrink-0 ${isStreaming ? 'text-accent' : 'text-text-muted'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
           <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
           <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" />

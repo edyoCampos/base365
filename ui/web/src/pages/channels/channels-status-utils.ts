@@ -255,11 +255,11 @@ export function getChannelStatusMeta(
       };
     case "degraded":
       return {
-        dotClass: "bg-amber-500",
+        dotClass: "bg-warning",
         badgeVariant: "warning",
         label: t("status.degraded", { defaultValue: "Degraded" }),
         surfaceClass:
-          "border-amber-200/80 bg-amber-500/[0.06] dark:border-amber-500/25 dark:bg-amber-500/10",
+          "border-warning/80 bg-warning/[0.06] dark:border-warning/25 dark:bg-warning/10",
         priority: 4,
         attention: true,
       };

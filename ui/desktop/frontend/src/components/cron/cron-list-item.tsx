@@ -27,7 +27,7 @@ export function statusBadgeClass(status?: string): string {
   if (status === 'running') {
     return 'bg-blue-500/15 text-blue-700 border border-blue-500/25 dark:text-blue-400 dark:bg-blue-500/10 dark:border-blue-500/20 animate-pulse'
   }
-  return 'bg-amber-500/15 text-amber-700 border border-amber-500/25 dark:text-amber-400 dark:bg-amber-500/10 dark:border-amber-500/20'
+  return 'bg-accent/15 text-accent border border-accent/25 dark:bg-accent/10 dark:border-accent/20'
 }
 
 interface CronListItemProps {

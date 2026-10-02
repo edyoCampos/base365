@@ -254,8 +254,8 @@ export function OAuthSection({
             <Loader2 className="h-4 w-4 shrink-0 animate-spin" />
             <span>{t("oauth.waiting")}</span>
           </div>
-          <div className="rounded-md border border-amber-500/30 bg-amber-500/5 p-3 space-y-2">
-            <p className="text-xs text-amber-700 dark:text-amber-400">
+          <div className="rounded-md border border-primary/30 bg-primary/5 p-3 space-y-2">
+            <p className="text-xs text-accent-foreground dark:text-primary">
               <strong>{t("oauth.remoteVps")}</strong>{" "}{t("oauth.remoteVpsHint")}{" "}
               <code className="text-xs">localhost:1455</code>{" "}{t("oauth.remoteVpsError")}
             </p>

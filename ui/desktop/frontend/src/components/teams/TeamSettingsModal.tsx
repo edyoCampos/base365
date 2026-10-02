@@ -188,14 +188,14 @@ export function TeamSettingsModal({ teamId, onClose, onSaved }: TeamSettingsModa
                   </button>
                 ))}
               </div>
-              {notifyMode === 'leader' && <p className="text-xs text-amber-500">{t('settings.notifyModeLeaderWarn', 'Only the lead agent will receive notifications.')}</p>}
+              {notifyMode === 'leader' && <p className="text-xs text-warning">{t('settings.notifyModeLeaderWarn', 'Only the lead agent will receive notifications.')}</p>}
             </div>
           </section>
         </div>
 
         {/* Footer */}
         <div className="px-6 py-3 border-t border-border shrink-0 flex justify-end">
-          <button onClick={handleSubmit(onValid)} disabled={isSubmitting || !watch('name').trim()} className="px-4 py-2 text-sm font-medium bg-accent text-white rounded-lg hover:bg-accent/90 disabled:opacity-50 cursor-pointer flex items-center gap-2">
+          <button onClick={handleSubmit(onValid)} disabled={isSubmitting || !watch('name').trim()} className="px-4 py-2 text-sm font-medium bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 disabled:opacity-50 cursor-pointer flex items-center gap-2">
             {isSubmitting && <IconSpinner size={14} className="border-white" />}
             {t('settings.save', 'Save')}
           </button>

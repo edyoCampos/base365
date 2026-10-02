@@ -23,8 +23,8 @@ const EVENT_BADGE_CLASSES: Record<string, string> = {
   cancelled:  "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400",
   commented:  "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300",
   progress:   "bg-cyan-100 text-cyan-700 dark:bg-cyan-900 dark:text-cyan-300",
-  reviewed:   "bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300",
-  stale:      "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300",
+  reviewed:   "bg-badge-warning text-badge-warning-foreground dark:bg-badge-warning dark:text-badge-warning-foreground",
+  stale:      "bg-badge-warning text-badge-warning-foreground dark:bg-badge-warning dark:text-badge-warning-foreground",
 };
 
 interface EventDataDetails {

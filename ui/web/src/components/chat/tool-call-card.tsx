@@ -79,8 +79,8 @@ function ToolIcon({ phase, isSkill }: { phase: ToolStreamEntry["phase"]; isSkill
   const cls = "h-3.5 w-3.5";
   if (isSkill) {
     switch (phase) {
-      case "calling": return <Zap className={`${cls} animate-pulse text-amber-500`} />;
-      case "completed": return <Zap className={`${cls} text-amber-500`} />;
+      case "calling": return <Zap className={`${cls} animate-pulse text-primary`} />;
+      case "completed": return <Zap className={`${cls} text-primary`} />;
       case "error": return <AlertTriangle className={`${cls} text-red-500`} />;
       default: return <Zap className={`${cls} text-muted-foreground`} />;
     }

@@ -173,7 +173,7 @@ export function SttProviderForm({ initialSettings, onSave, onCancel }: Props) {
         <div className="space-y-2">
           {/* Privacy banner */}
           <div
-            className="flex items-start gap-2 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-xs text-amber-800"
+            className="flex items-start gap-2 rounded-md border border-warning/40 bg-warning/15 px-3 py-2 text-xs text-warning"
             data-testid="whatsapp-privacy-banner"
           >
             <svg className="mt-0.5 h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -207,7 +207,7 @@ export function SttProviderForm({ initialSettings, onSave, onCancel }: Props) {
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="px-4 py-1.5 text-xs bg-accent text-white rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 flex items-center gap-1.5"
+          className="px-4 py-1.5 text-xs bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 flex items-center gap-1.5"
         >
           {saving && (
             <svg className="w-3 h-3 animate-spin" viewBox="0 0 24 24" fill="none">

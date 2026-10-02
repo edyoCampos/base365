@@ -68,9 +68,9 @@ export function BackupPreflightPanel() {
 
       {data.warnings?.length > 0 && (
         <div className="space-y-1 pt-1">
-          <p className="text-xs font-medium text-amber-600 dark:text-amber-400">{t("backup.preflight.warnings")}</p>
+          <p className="text-xs font-medium text-badge-warning-foreground dark:text-badge-warning-foreground">{t("backup.preflight.warnings")}</p>
           {data.warnings.map((w, i) => (
-            <div key={i} className="flex items-start gap-1.5 text-xs text-amber-600 dark:text-amber-400">
+            <div key={i} className="flex items-start gap-1.5 text-xs text-badge-warning-foreground dark:text-badge-warning-foreground">
               <AlertTriangle className="h-3 w-3 mt-0.5 shrink-0" />
               <span>{w}</span>
             </div>
@@ -85,13 +85,13 @@ export function BackupPreflightPanel() {
       )}
 
       {!data.pg_dump_available && (
-        <Alert className="border-amber-200/70 bg-amber-50/70 text-amber-950 dark:border-amber-900/50 dark:bg-amber-950/20 dark:text-amber-100">
-          <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-300" />
-          <AlertTitle className="text-amber-900 dark:text-amber-100">
+        <Alert className="border-warning/70 bg-badge-warning/70 text-badge-warning-foreground dark:border-warning/50 dark:bg-badge-warning/20 dark:text-badge-warning-foreground">
+          <AlertTriangle className="h-4 w-4 text-badge-warning-foreground dark:text-badge-warning-foreground" />
+          <AlertTitle className="text-badge-warning-foreground dark:text-badge-warning-foreground">
             {t("backup.preflight.pgDumpMissing")}
           </AlertTitle>
-          <AlertDescription className="text-xs text-amber-800 dark:text-amber-200">
-            <Link to="/packages" className="underline font-medium hover:text-amber-950 dark:hover:text-amber-50">
+          <AlertDescription className="text-xs text-badge-warning-foreground dark:text-badge-warning-foreground">
+            <Link to="/packages" className="underline font-medium hover:text-badge-warning-foreground dark:hover:text-badge-warning-foreground">
               {t("backup.preflight.goToPackages")}
             </Link>
           </AlertDescription>

@@ -43,25 +43,25 @@ export const REQUEST_ACCENTS: RequestAccentClasses[] = [
       "text-sky-700 hover:border-sky-500/25 hover:bg-sky-500/10 hover:text-sky-800 dark:text-sky-200 dark:hover:border-sky-500/30 dark:hover:bg-sky-500/15 dark:hover:text-sky-100",
   },
   {
-    card: "border-amber-500/20",
+    card: "border-primary/20",
     glow:
-      "from-amber-500/[0.12] via-amber-500/[0.04] to-transparent dark:from-amber-500/[0.16] dark:via-amber-500/[0.06]",
-    stripe: "from-amber-400/90 via-orange-400/75 to-yellow-400/35",
-    marker: "bg-amber-500",
+      "from-primary via-primary/80 to-transparent dark:from-primary dark:via-primary/80",
+    stripe: "from-primary via-primary/80 to-yellow-400/35",
+    marker: "bg-primary",
     index:
-      "border-amber-500/30 bg-amber-500/10 text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/15 dark:text-amber-100",
+      "border-primary/30 bg-primary/10 text-accent-foreground dark:border-primary/30 dark:bg-primary/15 dark:text-primary",
     directBadge:
-      "border-amber-500/20 bg-amber-500/10 text-amber-800 dark:border-amber-500/25 dark:bg-amber-500/15 dark:text-amber-100",
+      "border-primary/20 bg-primary/10 text-accent-foreground dark:border-primary/25 dark:bg-primary/15 dark:text-primary",
     pill:
-      "border-amber-500/15 bg-amber-500/[0.07] text-amber-950 dark:border-amber-500/20 dark:bg-amber-500/[0.12] dark:text-amber-50",
+      "border-primary/15 bg-primary/[0.07] text-accent-foreground dark:border-primary/20 dark:bg-primary/[0.12] dark:text-primary",
     trace:
-      "text-amber-800 hover:border-amber-500/25 hover:bg-amber-500/10 hover:text-amber-900 dark:text-amber-100 dark:hover:border-amber-500/30 dark:hover:bg-amber-500/15 dark:hover:text-amber-50",
+      "text-accent-foreground hover:border-primary/25 hover:bg-primary/10 hover:text-accent-foreground dark:text-primary dark:hover:border-primary/30 dark:hover:bg-primary/15 dark:hover:text-primary",
   },
   {
     card: "border-rose-500/20",
     glow:
       "from-rose-500/[0.12] via-rose-500/[0.04] to-transparent dark:from-rose-500/[0.16] dark:via-rose-500/[0.06]",
-    stripe: "from-rose-400/90 via-pink-400/75 to-orange-300/35",
+    stripe: "from-rose-400/90 via-pink-400/75 to-primary/60",
     marker: "bg-rose-500",
     index:
       "border-rose-500/30 bg-rose-500/10 text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/15 dark:text-rose-200",

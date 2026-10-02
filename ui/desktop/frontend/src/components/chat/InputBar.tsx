@@ -165,7 +165,7 @@ export function InputBar({ onSend, onStop, disabled, isRunning, placeholder }: I
               <button
                 onClick={handleSend}
                 disabled={!hasContent || disabled}
-                className="w-8 h-8 flex items-center justify-center rounded-xl bg-accent text-white hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-8 h-8 flex items-center justify-center rounded-xl bg-accent text-accent-foreground hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 title={t('sendMessageTitle')}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

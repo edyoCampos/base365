@@ -174,7 +174,7 @@ export function UpdateAllModal({
                   <span className="text-xs text-muted-foreground font-mono">
                     {u.currentVersion} → {u.latestVersion}
                     {u.meta?.prerelease && (
-                      <span className="ml-1.5 text-amber-600 dark:text-amber-400">(pre-release)</span>
+                      <span className="ml-1.5 text-badge-warning-foreground dark:text-badge-warning-foreground">(pre-release)</span>
                     )}
                   </span>
                 </div>

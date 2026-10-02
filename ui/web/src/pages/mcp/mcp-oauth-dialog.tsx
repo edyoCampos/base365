@@ -158,9 +158,9 @@ export function MCPOAuthDialog({
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-sm">
                   {isExpired
-                    ? <ShieldX className="h-3.5 w-3.5 text-amber-500" />
+                    ? <ShieldX className="h-3.5 w-3.5 text-badge-warning-foreground" />
                     : <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />}
-                  <span className={isExpired ? "text-amber-600 dark:text-amber-400" : "text-emerald-600 dark:text-emerald-400"}>
+                  <span className={isExpired ? "text-badge-warning-foreground dark:text-badge-warning-foreground" : "text-emerald-600 dark:text-emerald-400"}>
                     {isExpired ? t("form.oauth.expired") : t("form.oauth.authorized")}
                   </span>
                 </div>

@@ -175,7 +175,7 @@ export function SkillSubtitle({
     );
   }
   if (skill.status === "warning") {
-    return <p className="text-xs text-amber-600 truncate">{skill.error ?? t("upload.failed")}</p>;
+    return <p className="text-xs text-badge-warning-foreground truncate">{skill.error ?? t("upload.failed")}</p>;
   }
   if (skill.status === "validating") {
     return <p className="text-xs text-muted-foreground">{t("upload.validating")}</p>;
@@ -228,7 +228,7 @@ export function SkillStatusIcon({ status }: { status: SkillStatus }) {
     case "success":
       return <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600" />;
     case "warning":
-      return <TriangleAlert className="h-4 w-4 shrink-0 text-amber-600" />;
+      return <TriangleAlert className="h-4 w-4 shrink-0 text-badge-warning-foreground" />;
     case "invalid":
     case "error":
       return <XCircle className="h-4 w-4 shrink-0 text-destructive" />;

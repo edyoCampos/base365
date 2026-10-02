@@ -136,7 +136,7 @@ export function TeamCreateDialog({ agents, onClose, onCreated }: TeamCreateDialo
 
           {/* Validation: need at least lead + 1 member */}
           {lead && memberKeys.length === 0 && memberOptions.length > 0 && (
-            <p className="text-[10px] text-amber-500 px-1">
+            <p className="text-[10px] text-accent px-1">
               {t('needMembers', 'Select at least 1 member for the team')}
             </p>
           )}
@@ -149,7 +149,7 @@ export function TeamCreateDialog({ agents, onClose, onCreated }: TeamCreateDialo
             <button
               type="submit"
               disabled={!name.trim() || !lead || memberKeys.length === 0 || saving}
-              className="text-xs font-medium bg-accent text-white px-4 py-1.5 rounded-lg hover:bg-accent/90 transition-colors disabled:opacity-50 cursor-pointer"
+              className="text-xs font-medium bg-accent text-accent-foreground px-4 py-1.5 rounded-lg hover:bg-accent/90 transition-colors disabled:opacity-50 cursor-pointer"
             >
               {saving ? t('creating', 'Creating...') : t('create', 'Create')}
             </button>

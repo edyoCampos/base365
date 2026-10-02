@@ -29,7 +29,7 @@ export function SummoningProgressSteps({ generatedFiles }: SummoningProgressStep
               <motion.div
                 className={`flex h-5 w-5 items-center justify-center rounded-full text-xs ${
                   done
-                    ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/40 dark:text-orange-400'
+                    ? 'bg-accent/15 text-accent dark:bg-accent/40 dark:text-accent'
                     : 'bg-surface-tertiary text-text-muted'
                 }`}
                 animate={done ? { scale: [0.8, 1.2, 1] } : {}}
@@ -47,7 +47,7 @@ export function SummoningProgressSteps({ generatedFiles }: SummoningProgressStep
                 <motion.span
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-xs text-orange-600 dark:text-orange-400"
+                  className="text-xs text-accent dark:text-accent"
                 >
                   Done
                 </motion.span>

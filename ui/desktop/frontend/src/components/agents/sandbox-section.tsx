@@ -25,8 +25,8 @@ export function SandboxSection({ enabled, value, onToggle, onChange }: SandboxSe
       enabled={enabled}
       onToggle={onToggle}
     >
-      <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-2.5">
-        <p className="text-[11px] text-amber-600 dark:text-amber-400">
+      <div className="rounded-lg border border-warning/20 bg-warning/5 p-2.5">
+        <p className="text-[11px] text-warning dark:text-warning">
           Requires Docker installed locally. Sandbox containers run on this machine.
         </p>
       </div>

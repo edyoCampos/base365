@@ -16,7 +16,7 @@ function QuotaBar({ used, limit }: { used: number; limit: number }) {
     pct > 85
       ? "bg-red-500"
       : pct > 60
-        ? "bg-amber-500"
+        ? "bg-warning"
         : "bg-emerald-500";
   return (
     <div className="h-1.5 w-full rounded-full bg-muted">

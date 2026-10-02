@@ -12,7 +12,7 @@ import type { EvolutionSuggestion } from "@/types/evolution";
 
 const TYPE_COLORS: Record<string, string> = {
   threshold: "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300",
-  tool_order: "bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300",
+  tool_order: "bg-accent text-accent-foreground dark:bg-accent dark:text-primary",
   skill_add: "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300",
 };
 
@@ -113,7 +113,7 @@ export function EvolutionSuggestionsTable({ suggestions, loading, onUpdateStatus
                       {s.status === "applied" && (
                         <Button
                           size="sm" variant="ghost"
-                          className="h-7 w-7 p-0 text-orange-600 hover:text-orange-700"
+                          className="h-7 w-7 p-0 text-primary hover:text-accent-foreground"
                           title={t("detail.evolution.rollback")}
                           onClick={() => setConfirm({ id: s.id, action: "rolled_back" })}
                         >
