@@ -72,3 +72,7 @@
 {"ts": "2026-10-02T13:09:23Z", "action": "T072", "status": "done", "files": ["CONTRIBUTING.md"]}
 {"ts": "2026-10-02T13:09:31Z", "action": "T073", "status": "done", "files": ["scripts/check-brand.test.sh"]}
 {"ts": "2026-10-02T13:09:31Z", "action": "T074", "status": "done", "files": ["scripts/check-brand.sh"]}
+{"ts": "2026-10-02T13:14:02Z", "action": "T075", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/gates-finais.md"]}
+{"ts": "2026-10-02T13:14:03Z", "action": "T076", "status": "done", "files": ["ui/web/dist", "ui/desktop/frontend/dist"]}
+{"ts": "2026-10-02T13:14:03Z", "action": "T077", "status": "blocked", "files": ["tests/integration"]}
+{"ts":"2026-10-02T13:15:00Z","action":"T078","status":"pending","files":[],"note":"depende de T077 (integracao PG bloqueada: Docker daemon indisponivel)"}
