@@ -1,6 +1,6 @@
 // Package sessions — session key builder and parser.
 //
-// Session keys follow the TS OpenClaw canonical format:
+// Session keys follow the canonical format:
 //
 //	agent:{agentKey}:{rest}
 //

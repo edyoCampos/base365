@@ -5,7 +5,7 @@ import (
 )
 
 // TestParseEntityContext_TableDriven covers every chat surface base365 currently
-// receives from a tamgiac.bitrix24.com portal (verified via raw webhook dumps)
+// receives from a example.bitrix24.com portal (verified via raw webhook dumps)
 // plus a handful of malformed-input cases so future Bitrix schema drift does
 // not crash the handler. Each row asserts on the produced metadata map — the
 // unit under test is the composition of ParseEntityContext + ToMeta, matching

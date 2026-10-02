@@ -250,7 +250,7 @@ func TestResolveActorUserID(t *testing.T) {
 		// discriminator does no harm.
 		{
 			name:        "bitrix24_group_uses_sender",
-			userID:      "group:bitrix-tamgiac:chat4686",
+			userID:      "group:bitrix-example:chat4686",
 			senderID:    "62",
 			peerKind:    "group",
 			channelType: "bitrix24",

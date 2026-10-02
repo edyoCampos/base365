@@ -30,7 +30,7 @@ func TestAIMLAPIProviderSendsAttributionHeaders(t *testing.T) {
 
 	checks := map[string]string{
 		"Authorization":                 "Bearer test-key",
-		"X-AIMLAPI-Partner-ID":          "nextlevelbuilder",
+		"X-AIMLAPI-Partner-ID":          "base365",
 		"X-AIMLAPI-Integration-Repo":    "edyoCampos/base365",
 		"X-AIMLAPI-Integration-Version": "1.0.0",
 	}

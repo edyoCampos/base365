@@ -24,7 +24,7 @@ var (
 var rootCmd = &cobra.Command{
 	Use:   "base365",
 	Short: "Base365 — AI agent gateway",
-	Long:  "Base365: multi-agent AI platform with WebSocket RPC, tool execution, and channel integration. A Go port of OpenClaw with enhanced security and multi-tenant support.",
+	Long:  "Base365: multi-agent AI platform with WebSocket RPC, tool execution, and channel integration. Enhanced security and multi-tenant support.",
 	Run: func(cmd *cobra.Command, args []string) {
 		runGateway()
 	},

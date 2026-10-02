@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** là cổng AI đa agent, kết nối các LLM với công cụ, kênh giao tiếp và dữ liệu của bạn — triển khai dưới dạng một tệp nhị phân Go duy nhất, không phụ thuộc runtime. Base365 điều phối nhóm agent và ủy quyền giữa các agent trên hơn 20 nhà cung cấp LLM với multi-tenant isolation hoàn chỉnh.
 
-Phiên bản Go của [OpenClaw](https://github.com/openclaw/openclaw) với bảo mật nâng cao, multi-tenant PostgreSQL, và observability cấp production.
-
 🌐 **Ngôn ngữ:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -58,32 +56,32 @@ Phiên bản Go của [OpenClaw](https://github.com/openclaw/openclaw) với b�
 
 ## Hệ Sinh Thái Claw
 
-|                          | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| ------------------------ | --------------- | -------- | -------- | --------------------------------------- |
-| Ngôn ngữ                 | TypeScript      | Rust     | Go       | **Go**                                  |
-| Kích thước tệp nhị phân  | 28 MB + Node.js | 3,4 MB   | ~8 MB    | **~25 MB** (cơ bản) / **~36 MB** (+ OTel) |
-| Docker image             | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (khi nhàn rỗi)       | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Thời gian khởi động      | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Phần cứng mục tiêu       | Mac Mini $599+  | $10 edge | $10 edge | **VPS $5+**                             |
+|                          | **Base365**                              |
+| ------------------------ | --------------------------------------- |
+| Ngôn ngữ                 | **Go**                                  |
+| Kích thước tệp nhị phân  | **~25 MB** (cơ bản) / **~36 MB** (+ OTel) |
+| Docker image             | **~50 MB** (Alpine)                     |
+| RAM (khi nhàn rỗi)       | **~35 MB**                              |
+| Thời gian khởi động      | **< 1 s**                               |
+| Phần cứng mục tiêu       | **VPS $5+**                             |
 
-| Tính năng                            | OpenClaw                             | ZeroClaw                                     | PicoClaw                                    | **Base365**                     |
-| ------------------------------------ | ------------------------------------ | -------------------------------------------- | ------------------------------------------- | ------------------------------ |
-| Multi-tenant (PostgreSQL)            | —                                    | —                                            | —                                           | ✅                             |
-| Tích hợp MCP                        | — (dùng ACP)                         | —                                            | —                                           | ✅ (stdio/SSE/streamable-http) |
-| Nhóm agent                          | —                                    | —                                            | —                                           | ✅ Bảng nhiệm vụ + hộp thư    |
-| Tăng cường bảo mật                  | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing)  | Cơ bản (giới hạn workspace, từ chối exec)   | ✅ Phòng thủ 5 lớp            |
-| Observability (OTel)                 | ✅ (phần mở rộng tùy chọn)          | ✅ (Prometheus + OTLP)                       | —                                           | ✅ OTLP (tùy chọn build tag)  |
-| Prompt caching                      | —                                    | —                                            | —                                           | ✅ Anthropic + OpenAI-compat   |
-| Knowledge graph                     | —                                    | —                                            | —                                           | ✅ Trích xuất LLM + duyệt đồ thị |
-| Hệ thống skill                      | ✅ Embedding/semantic                | ✅ SKILL.md + TOML                           | ✅ Cơ bản                                   | ✅ BM25 + pgvector hybrid      |
-| Bộ lập lịch theo lane               | ✅                                   | Đồng thời giới hạn                          | —                                           | ✅ (main/subagent/team/cron)   |
-| Kênh nhắn tin                       | 37+                                  | 15+                                          | 10+                                         | 7+                             |
-| Ứng dụng đồng hành                  | macOS, iOS, Android                  | Python SDK                                   | —                                           | Web dashboard                  |
-| Live Canvas / Giọng nói             | ✅ (A2UI + TTS/STT)                  | —                                            | Voice transcription                         | TTS (4 nhà cung cấp)          |
-| Nhà cung cấp LLM                    | 10+                                  | 8 gốc + 29 tương thích                      | 13+                                         | **20+**                        |
-| Workspace theo người dùng           | ✅ (dựa trên tệp)                   | —                                            | —                                           | ✅ (PostgreSQL)                |
-| Encrypted secrets                   | — (chỉ biến môi trường)             | ✅ ChaCha20-Poly1305                         | — (JSON không mã hóa)                      | ✅ AES-256-GCM trong CSDL     |
+| Tính năng                            | **Base365**                     |
+| ------------------------------------ | ------------------------------ |
+| Multi-tenant (PostgreSQL)            | ✅                             |
+| Tích hợp MCP                        | ✅ (stdio/SSE/streamable-http) |
+| Nhóm agent                          | ✅ Bảng nhiệm vụ + hộp thư    |
+| Tăng cường bảo mật                  | ✅ Phòng thủ 5 lớp            |
+| Observability (OTel)                 | ✅ OTLP (tùy chọn build tag)  |
+| Prompt caching                      | ✅ Anthropic + OpenAI-compat   |
+| Knowledge graph                     | ✅ Trích xuất LLM + duyệt đồ thị |
+| Hệ thống skill                      | ✅ BM25 + pgvector hybrid      |
+| Bộ lập lịch theo lane               | ✅ (main/subagent/team/cron)   |
+| Kênh nhắn tin                       | 7+                             |
+| Ứng dụng đồng hành                  | Web dashboard                  |
+| Live Canvas / Giọng nói             | TTS (4 nhà cung cấp)          |
+| Nhà cung cấp LLM                    | **20+**                        |
+| Workspace theo người dùng           | ✅ (PostgreSQL)                |
+| Encrypted secrets                   | ✅ AES-256-GCM trong CSDL     |
 
 ## Kiến Trúc
 
@@ -216,10 +214,6 @@ go test -v ./tests/integration/ -timeout 120s    # Kiểm thử tích hợp (yê
 ## Trạng Thái Dự Án
 
 Xem [CHANGELOG.md](CHANGELOG.md) để biết chi tiết trạng thái tính năng — những gì đã được kiểm thử trong môi trường production và những gì vẫn đang phát triển.
-
-## Lời Cảm Ơn
-
-Base365 được xây dựng dựa trên dự án [OpenClaw](https://github.com/openclaw/openclaw) gốc. Chúng tôi trân trọng kiến trúc và tầm nhìn đã truyền cảm hứng cho phiên bản Go này.
 
 ## Giấy Phép
 

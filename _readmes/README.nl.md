@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** is een multi-agent AI gateway die LLM's verbindt met uw tools, kanalen en gegevens — uitgerold als één enkel Go-binary zonder runtime-afhankelijkheden. Het orkestreert agentteams en inter-agent-delegatie via 20+ LLM-providers met volledige multi-tenant isolatie.
 
-Een Go-port van [OpenClaw](https://github.com/openclaw/openclaw) met verbeterde beveiliging, multi-tenant PostgreSQL en productieklare observeerbaarheid.
-
 🌐 **Talen:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Een Go-port van [OpenClaw](https://github.com/openclaw/openclaw) met verbeterde 
 
 ## Claw-ecosysteem
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Taal            | TypeScript      | Rust     | Go       | **Go**                                  |
-| Binary-grootte  | 28 MB + Node.js | 3,4 MB   | ~8 MB    | **~25 MB** (basis) / **~36 MB** (+ OTel) |
-| Docker-image    | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (inactief)  | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Opstartijd      | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Doelhardware    | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Taal            | **Go**                                  |
+| Binary-grootte  | **~25 MB** (basis) / **~36 MB** (+ OTel) |
+| Docker-image    | **~50 MB** (Alpine)                     |
+| RAM (inactief)  | **~35 MB**                              |
+| Opstartijd      | **< 1 s**                               |
+| Doelhardware    | **$5 VPS+**                             |
 
-| Functie                         | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| ------------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Multi-tenant (PostgreSQL)       | —                                    | —                                            | —                                     | ✅                             |
-| MCP-integratie                  | — (gebruikt ACP)                     | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Agentteams                      | —                                    | —                                            | —                                     | ✅ Taakbord + postvak          |
-| Beveiligingsverharding          | ✅ (SSRF, padtraversal, injectie)    | ✅ (sandbox, snelheidsbeperking, injectie, koppeling) | Basis (werkruimtebeperking, exec-weigering) | ✅ 5-laagse verdediging        |
-| OTel-observeerbaarheid          | ✅ (opt-in extensie)                 | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (opt-in build-tag)     |
-| Prompt-caching                  | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Kennisgraaf                     | —                                    | —                                            | —                                     | ✅ LLM-extractie + doorloop    |
-| Vaardigheidssysteem             | ✅ Embeddings/semantisch             | ✅ SKILL.md + TOML                           | ✅ Basis                              | ✅ BM25 + pgvector hybride     |
-| Op rijstroken gebaseerde planner | ✅                                  | Begrensde gelijktijdigheid                   | —                                     | ✅ (main/subagent/team/cron)   |
-| Berichtenkanalen                | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Companion-apps                  | macOS, iOS, Android                  | Python SDK                                   | —                                     | Webdashboard                   |
-| Live Canvas / Spraak            | ✅ (A2UI + TTS/STT)                  | —                                            | Spraaktranscriptie                    | TTS (4 providers)              |
-| LLM-providers                   | 10+                                  | 8 native + 29 compat                         | 13+                                   | **20+**                        |
-| Werkruimtes per gebruiker       | ✅ (bestandsgebaseerd)               | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Versleutelde geheimen           | — (alleen omgevingsvariabelen)       | ✅ ChaCha20-Poly1305                         | — (gewone tekst JSON)                 | ✅ AES-256-GCM in DB           |
+| Functie                         | **Base365**                     |
+| ------------------------------- | ------------------------------ |
+| Multi-tenant (PostgreSQL)       | ✅                             |
+| MCP-integratie                  | ✅ (stdio/SSE/streamable-http) |
+| Agentteams                      | ✅ Taakbord + postvak          |
+| Beveiligingsverharding          | ✅ 5-laagse verdediging        |
+| OTel-observeerbaarheid          | ✅ OTLP (opt-in build-tag)     |
+| Prompt-caching                  | ✅ Anthropic + OpenAI-compat   |
+| Kennisgraaf                     | ✅ LLM-extractie + doorloop    |
+| Vaardigheidssysteem             | ✅ BM25 + pgvector hybride     |
+| Op rijstroken gebaseerde planner | ✅ (main/subagent/team/cron)   |
+| Berichtenkanalen                | 7+                             |
+| Companion-apps                  | Webdashboard                   |
+| Live Canvas / Spraak            | TTS (4 providers)              |
+| LLM-providers                   | **20+**                        |
+| Werkruimtes per gebruiker       | ✅ (PostgreSQL)                |
+| Versleutelde geheimen           | ✅ AES-256-GCM in DB           |
 
 ## Architectuur
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integratietests (vereist acti
 ## Projectstatus
 
 Zie [CHANGELOG.md](CHANGELOG.md) voor gedetailleerde functiestatus, inclusief wat in productie is getest en wat nog in ontwikkeling is.
-
-## Dankbetuigingen
-
-Base365 is gebouwd op het originele [OpenClaw](https://github.com/openclaw/openclaw)-project. We zijn dankbaar voor de architectuur en visie die deze Go-port hebben geïnspireerd.
 
 ## Licentie
 

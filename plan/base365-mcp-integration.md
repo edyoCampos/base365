@@ -60,7 +60,7 @@
 User chat với bot trong Bitrix
          ↓
 Bitrix gửi ONIMBOTMESSAGEADD
-  - auth[domain]=tamgiac.bitrix24.com
+  - auth[domain]=example.bitrix24.com
   - auth[access_token], auth[refresh_token], auth[expires_in]=3600
   - data[PARAMS][FROM_USER_ID]=62  ← senderID / bitrix_user_id (Base365 chỉ đọc chỗ này)
   - data[USER][NAME]=...           ← optional (thường không có trong webhook)
@@ -162,7 +162,7 @@ Content-Type: application/json
 **Request body**:
 ```json
 {
-  "domain": "tamgiac.bitrix24.com",
+  "domain": "example.bitrix24.com",
   "bitrix_user_id": "62",
   "access_token": "<user access token từ event.auth>",
   "refresh_token": "<user refresh token từ event.auth>",

@@ -192,14 +192,14 @@ func TestIsPrivateOrLoopback_Hostnames(t *testing.T) {
 // would cause a false "changed" comparison on re-install.
 func TestDerivePublicURL_PreservesHostAsReceived(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/bitrix24/install", nil)
-	req.Host = "Base365.TamGiac.com" // mixed case
+	req.Host = "Base365.Example.com" // mixed case
 	req.Header.Set("X-Forwarded-Proto", "https")
 	got, err := derivePublicURL(req)
 	if err != nil {
 		t.Fatalf("err: %v", err)
 	}
 	// Host casing preserved in URL string — only scheme is lowercased.
-	if !strings.HasSuffix(got, "Base365.TamGiac.com") {
+	if !strings.HasSuffix(got, "Base365.Example.com") {
 		t.Errorf("expected host casing preserved, got %q", got)
 	}
 }

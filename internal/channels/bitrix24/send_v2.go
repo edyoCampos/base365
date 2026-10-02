@@ -10,7 +10,7 @@ import (
 // connector (Zalo, FB, etc.). If replyToMID > 0, fields.replyId links the
 // bot's reply to the inbound message in the Bitrix UI ("↩ tin gốc").
 //
-// Params shape verified live against tamgiac.bitrix24.com:
+// Params shape verified live against example.bitrix24.com:
 //
 //	{
 //	  "botId":    1058,

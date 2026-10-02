@@ -25,7 +25,7 @@ func NewAIMLAPIProvider(name, apiKey, apiBase string) *OpenAIProvider {
 	}
 	return NewOpenAIProvider(name, apiKey, apiBase, AIMLAPIDefaultModel).
 		WithExtraHeaders(map[string]string{
-			"X-AIMLAPI-Partner-ID":          "nextlevelbuilder",
+			"X-AIMLAPI-Partner-ID":          "base365",
 			"X-AIMLAPI-Integration-Repo":    "edyoCampos/base365",
 			"X-AIMLAPI-Integration-Version": "1.0.0",
 		})

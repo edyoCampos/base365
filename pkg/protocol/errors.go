@@ -1,6 +1,6 @@
 package protocol
 
-// Error codes from OpenClaw source (ErrorCodes enum in error-codes.ts)
+// Error codes shared by the gateway wire protocol.
 const (
 	ErrInvalidRequest = "INVALID_REQUEST"
 	ErrUnavailable    = "UNAVAILABLE"

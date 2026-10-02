@@ -157,6 +157,20 @@ docs: update API reference for v2 endpoints
 refactor: extract provider retry logic
 ```
 
+## Brand Check
+
+The product is **Base365**. The previous product name must not appear in file contents or file names.
+
+```bash
+make check-brand          # fails and prints file:line when the old name is found
+scripts/check-brand.test.sh   # self-test of the check
+```
+
+- Allowed exceptions live in `scripts/brand-exceptions.txt`, one path per line with a justification.
+- The check also prints a non-failing warning for terms inherited from the original infrastructure (see `docs/rebrand-pendencias.md`).
+- CI: this repository has no `.github/` yet. When workflows are added, run `make check-brand` as a step of the PR check (for example `run: make check-brand`).
+- External resources still pointing to provisional addresses are tracked in `docs/rebrand-pendencias.md`.
+
 ## Workflow
 
 ```

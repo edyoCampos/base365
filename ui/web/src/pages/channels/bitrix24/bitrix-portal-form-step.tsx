@@ -98,7 +98,7 @@ export function BitrixPortalFormStep({ onSuccess, onCancel }: BitrixPortalFormSt
   const [serverError, setServerError] = useState("");
 
   // Auto-derive name from domain subdomain when user hasn't manually edited
-  // the name field. "tamgiac.bitrix24.com" → "tamgiac".
+  // the name field. "example.bitrix24.com" → "example".
   const handleDomainBlur = () => {
     if (nameTouched || !domain) return;
     const m = domain.toLowerCase().match(/^([a-z0-9-]+)\./);
@@ -209,7 +209,7 @@ export function BitrixPortalFormStep({ onSuccess, onCancel }: BitrixPortalFormSt
             setName(e.target.value);
             setNameTouched(true);
           }}
-          placeholder="tamgiac"
+          placeholder="example"
           autoComplete="off"
         />
         {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}

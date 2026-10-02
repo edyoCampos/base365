@@ -719,7 +719,7 @@ func TestBitrixPortals_Delete_RBAC_OperatorDenied(t *testing.T) {
 
 func TestBitrixDomainRegex(t *testing.T) {
 	good := []string{
-		"tamgiac.bitrix24.com",
+		"example.bitrix24.com",
 		"my-corp.bitrix24.eu",
 		"a.bitrix24.com",
 		"company.bitrix.info",
@@ -729,8 +729,8 @@ func TestBitrixDomainRegex(t *testing.T) {
 		"empresa.bitrix24.com.br",
 	}
 	bad := []string{
-		"tamgiac.bitrix24",
-		"tamgiac.bitrix24.xx",
+		"example.bitrix24",
+		"example.bitrix24.xx",
 		"-bad.bitrix24.com",
 		"UPPER.bitrix24.com", // we lowercase before match
 		"a.b.bitrix24.com",   // multi-level subdomain not allowed
@@ -774,7 +774,7 @@ func TestSelfHostedDomainRegex(t *testing.T) {
 }
 
 func TestPortalNameRegex(t *testing.T) {
-	good := []string{"tamgiac", "my-portal", "my_portal", "p1", "ab"}
+	good := []string{"example", "my-portal", "my_portal", "p1", "ab"}
 	// Bad: uppercase, whitespace, leading/trailing hyphen-or-underscore, single-char, empty.
 	// Consecutive hyphens internally are allowed — many slug conventions permit it.
 	bad := []string{"P", "with space", "ends-", "-starts", "p", ""}

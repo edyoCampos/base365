@@ -1,6 +1,6 @@
 package browser
 
-// Role sets ported from OpenClaw TS pw-role-snapshot.ts:26-78.
+// Accessibility role sets for Playwright-style role snapshots.
 // Used to determine which AX tree nodes get ref assignments.
 
 // interactiveRoles are elements users can interact with.

@@ -11,7 +11,6 @@ import (
 )
 
 // CronTool lets agents manage Gateway cron jobs.
-// Matching OpenClaw src/agents/tools/cron-tool.ts.
 type CronTool struct {
 	cronStore      store.CronStore
 	permStore      store.ConfigPermissionStore // nil = no group restriction

@@ -37,7 +37,6 @@ func (p *OpenAIProvider) buildRequestBody(model string, req ChatRequest, stream 
 	// Detect native OpenAI endpoint to enable developer role.
 	// GPT-4o+ models prioritize "developer" messages over "system" for instruction
 	// adherence. Non-OpenAI backends (proxies, Qwen, DeepSeek, etc.) reject "developer".
-	// Matching OpenClaw TS: model-compat.ts → isOpenAINativeEndpoint().
 	useDevRole := isOpenAINativeEndpoint(p.apiBase)
 
 	// A conversation where some assistant turn captured reasoning is running in

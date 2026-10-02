@@ -208,13 +208,13 @@ func TestModelFallbackProviderContinuesAfterContentPolicyFallback(t *testing.T) 
 
 func TestModelFallbackProviderFallsBackOnCodexSafetyRefusalString(t *testing.T) {
 	primary := &testFallbackProvider{
-		name:  "codex-digitop",
+		name:  "codex-acme",
 		model: "gpt-5.5",
 		err:   errors.New("codex: response failed: Invalid prompt: we've limited access to this content for safety reasons"),
 	}
 	backup := &testFallbackProvider{name: "anthropic", model: "claude-sonnet-4-5"}
 	provider := NewModelFallbackProvider(FallbackCandidate{
-		ProviderName: "codex-digitop",
+		ProviderName: "codex-acme",
 		Provider:     primary,
 		Model:        "gpt-5.5",
 	}, []FallbackCandidate{

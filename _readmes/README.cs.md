@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** je multi-agentní AI gateway, která propojuje LLM s vašimi nástroji, kanály a daty — nasazena jako jediný Go binární soubor bez runtime závislostí. Orchestruje týmy agentů a delegování mezi agenty napříč 20+ poskytovateli LLM s plnou multi-tenant izolací.
 
-Go port projektu [OpenClaw](https://github.com/openclaw/openclaw) s vylepšeným zabezpečením, multi-tenant PostgreSQL a produkční pozorovatelností.
-
 🌐 **Jazyky:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Go port projektu [OpenClaw](https://github.com/openclaw/openclaw) s vylepšeným
 
 ## Ekosystém Claw
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Jazyk           | TypeScript      | Rust     | Go       | **Go**                                  |
-| Velikost binárního souboru | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (základ) / **~36 MB** (+ OTel) |
-| Docker image    | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (nečinnost) | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Spuštění        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Cílový hardware | Mac Mini od $599+ | edge za $10 | edge za $10 | **VPS od $5+**                   |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Jazyk           | **Go**                                  |
+| Velikost binárního souboru | **~25 MB** (základ) / **~36 MB** (+ OTel) |
+| Docker image    | **~50 MB** (Alpine)                     |
+| RAM (nečinnost) | **~35 MB**                              |
+| Spuštění        | **< 1 s**                               |
+| Cílový hardware | **VPS od $5+**                   |
 
-| Funkce                     | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Multi-tenant (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
-| Integrace MCP              | — (používá ACP)                      | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Týmy agentů                | —                                    | —                                            | —                                     | ✅ Nástěnka úkolů + schránka   |
-| Posílení bezpečnosti       | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, omezení rychlosti, injection, párování) | Základní (omezení workspace, zamítnutí exec) | ✅ 5vrstvá obrana    |
-| Pozorovatelnost OTel       | ✅ (volitelné rozšíření)             | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (volitelný build tag)  |
-| Cachování promptů          | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Znalostní graf             | —                                    | —                                            | —                                     | ✅ Extrakce LLM + procházení   |
-| Systém dovedností          | ✅ Embeddings/sémantické             | ✅ SKILL.md + TOML                           | ✅ Základní                           | ✅ BM25 + pgvector hybrid      |
-| Plánovač na základě pruhů  | ✅                                   | Omezená souběžnost                           | —                                     | ✅ (main/subagent/team/cron)   |
-| Komunikační kanály         | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Doprovodné aplikace        | macOS, iOS, Android                  | Python SDK                                   | —                                     | Webový dashboard               |
-| Live Canvas / Hlas         | ✅ (A2UI + TTS/STT)                  | —                                            | Přepis hlasu                          | TTS (4 poskytovatelé)          |
-| Poskytovatelé LLM          | 10+                                  | 8 nativních + 29 compat                      | 13+                                   | **20+**                        |
-| Pracovní prostory na uživatele | ✅ (souborové)                   | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Šifrovaná tajemství        | — (pouze env proměnné)               | ✅ ChaCha20-Poly1305                         | — (plaintext JSON)                    | ✅ AES-256-GCM v DB            |
+| Funkce                     | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Multi-tenant (PostgreSQL)  | ✅                             |
+| Integrace MCP              | ✅ (stdio/SSE/streamable-http) |
+| Týmy agentů                | ✅ Nástěnka úkolů + schránka   |
+| Posílení bezpečnosti       | ✅ 5vrstvá obrana    |
+| Pozorovatelnost OTel       | ✅ OTLP (volitelný build tag)  |
+| Cachování promptů          | ✅ Anthropic + OpenAI-compat   |
+| Znalostní graf             | ✅ Extrakce LLM + procházení   |
+| Systém dovedností          | ✅ BM25 + pgvector hybrid      |
+| Plánovač na základě pruhů  | ✅ (main/subagent/team/cron)   |
+| Komunikační kanály         | 7+                             |
+| Doprovodné aplikace        | Webový dashboard               |
+| Live Canvas / Hlas         | TTS (4 poskytovatelé)          |
+| Poskytovatelé LLM          | **20+**                        |
+| Pracovní prostory na uživatele | ✅ (PostgreSQL)                |
+| Šifrovaná tajemství        | ✅ AES-256-GCM v DB            |
 
 ## Architektura
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integrační testy (vyžaduje
 ## Stav projektu
 
 Podrobný stav funkcí včetně toho, co bylo otestováno v produkci a co je stále ve vývoji, viz [CHANGELOG.md](CHANGELOG.md).
-
-## Poděkování
-
-Base365 je postaven na původním projektu [OpenClaw](https://github.com/openclaw/openclaw). Jsme vděčni za architekturu a vizi, která inspirovala tento Go port.
 
 ## Licence
 

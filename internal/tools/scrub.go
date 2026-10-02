@@ -8,7 +8,6 @@ import (
 )
 
 // Credential patterns to scrub from tool output before returning to the LLM.
-// Inspired by zeroclaw's credential scrubbing system.
 var credentialPatterns = []*regexp.Regexp{
 	// OpenAI
 	regexp.MustCompile(`sk-[a-zA-Z0-9]{20,}`),

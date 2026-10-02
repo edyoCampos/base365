@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365**, LLM'leri araçlarınıza, kanallarınıza ve verilerinize bağlayan çok ajanlı bir yapay zeka ağ geçididir — sıfır çalışma zamanı bağımlılığıyla tek bir Go ikili dosyası olarak dağıtılır. 20'den fazla LLM sağlayıcısında tam çok kiracılı izolasyonla ajan ekiplerini ve ajanlar arası devri yönetir.
 
-[OpenClaw](https://github.com/openclaw/openclaw) projesinin, geliştirilmiş güvenlik, çok kiracılı PostgreSQL ve üretim düzeyinde gözlemlenebilirlik ile yazılmış bir Go portudur.
-
 🌐 **Diller:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw Ekosistemi
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Dil             | TypeScript      | Rust     | Go       | **Go**                                  |
-| İkili dosya boyutu | 28 MB + Node.js | 3.4 MB | ~8 MB    | **~25 MB** (temel) / **~36 MB** (+ OTel) |
-| Docker imajı    | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (boşta)     | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Başlatma        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Hedef donanım   | $599+ Mac Mini  | $10 uç   | $10 uç   | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Dil             | **Go**                                  |
+| İkili dosya boyutu | **~25 MB** (temel) / **~36 MB** (+ OTel) |
+| Docker imajı    | **~50 MB** (Alpine)                     |
+| RAM (boşta)     | **~35 MB**                              |
+| Başlatma        | **< 1 s**                               |
+| Hedef donanım   | **$5 VPS+**                             |
 
-| Özellik                    | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Çok kiracılı (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
-| MCP entegrasyonu           | — (ACP kullanır)                     | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Ajan ekipleri              | —                                    | —                                            | —                                     | ✅ Görev panosu + posta kutusu |
-| Güvenlik sertleştirme      | ✅ (SSRF, yol geçişi, enjeksiyon)   | ✅ (kum havuzu, hız sınırı, enjeksiyon, eşleştirme) | Temel (çalışma alanı kısıtla, exec reddet) | ✅ 5 katmanlı savunma      |
-| OTel gözlemlenebilirlik    | ✅ (isteğe bağlı uzantı)             | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (isteğe bağlı derleme etiketi) |
-| İstem önbellekleme         | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI uyumlu   |
-| Bilgi grafiği              | —                                    | —                                            | —                                     | ✅ LLM çıkarımı + geçiş       |
-| Yetenek sistemi            | ✅ Gömme/anlamsal                    | ✅ SKILL.md + TOML                           | ✅ Temel                              | ✅ BM25 + pgvector hibrit      |
-| Şerit tabanlı zamanlayıcı  | ✅                                   | Sınırlı eşzamanlılık                         | —                                     | ✅ (main/subagent/team/cron)   |
-| Mesajlaşma kanalları       | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Yardımcı uygulamalar       | macOS, iOS, Android                  | Python SDK                                   | —                                     | Web panosu                     |
-| Canlı Tuval / Ses          | ✅ (A2UI + TTS/STT)                  | —                                            | Ses transkripsiyonu                   | TTS (4 sağlayıcı)              |
-| LLM sağlayıcıları          | 10+                                  | 8 yerel + 29 uyumlu                          | 13+                                   | **20+**                        |
-| Kullanıcı başına çalışma alanları | ✅ (dosya tabanlı)             | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Şifreli gizli bilgiler     | — (yalnızca ortam değişkenleri)      | ✅ ChaCha20-Poly1305                         | — (düz metin JSON)                    | ✅ DB'de AES-256-GCM           |
+| Özellik                    | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Çok kiracılı (PostgreSQL)  | ✅                             |
+| MCP entegrasyonu           | ✅ (stdio/SSE/streamable-http) |
+| Ajan ekipleri              | ✅ Görev panosu + posta kutusu |
+| Güvenlik sertleştirme      | ✅ 5 katmanlı savunma      |
+| OTel gözlemlenebilirlik    | ✅ OTLP (isteğe bağlı derleme etiketi) |
+| İstem önbellekleme         | ✅ Anthropic + OpenAI uyumlu   |
+| Bilgi grafiği              | ✅ LLM çıkarımı + geçiş       |
+| Yetenek sistemi            | ✅ BM25 + pgvector hibrit      |
+| Şerit tabanlı zamanlayıcı  | ✅ (main/subagent/team/cron)   |
+| Mesajlaşma kanalları       | 7+                             |
+| Yardımcı uygulamalar       | Web panosu                     |
+| Canlı Tuval / Ses          | TTS (4 sağlayıcı)              |
+| LLM sağlayıcıları          | **20+**                        |
+| Kullanıcı başına çalışma alanları | ✅ (PostgreSQL)                |
+| Şifreli gizli bilgiler     | ✅ DB'de AES-256-GCM           |
 
 ## Mimari
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Entegrasyon testleri (çalı�
 ## Proje Durumu
 
 Üretimde test edilenler ve hâlâ devam edenler dahil ayrıntılı özellik durumu için [CHANGELOG.md](CHANGELOG.md) dosyasına bakın.
-
-## Teşekkürler
-
-Base365, orijinal [OpenClaw](https://github.com/openclaw/openclaw) projesi üzerine inşa edilmiştir. Bu Go portuna ilham veren mimari ve vizyona minnettarız.
 
 ## Lisans
 

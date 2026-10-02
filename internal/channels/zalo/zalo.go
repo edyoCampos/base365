@@ -1,5 +1,4 @@
 // Package zalo implements the Zalo OA Bot channel.
-// Ported from OpenClaw TS extensions/zalo/.
 //
 // Zalo Bot API: https://bot-api.zaloplatforms.com
 // DM only (no groups), text limit 2000 chars, polling + webhook modes.

@@ -29,7 +29,7 @@ func TestDisplayWidth(t *testing.T) {
 
 func TestRenderTableAsCode_Vietnamese(t *testing.T) {
 	lines := []string{
-		"| Metric | OpenClaw | ZeroClaw |",
+		"| Metric | Product A | Product B |",
 		"|--------|----------|----------|",
 		"| Ngôn ngữ | TypeScript/Node.js | Rust |",
 		"| Khởi động | > 500s | < 10ms |",

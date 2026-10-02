@@ -347,7 +347,6 @@ type MemoryFlushConfig struct {
 }
 
 // ContextPruningConfig configures in-memory context pruning of old tool results.
-// Matches TS openclaw/src/agents/pi-hooks/context-pruning/settings.ts.
 //
 // Mode "" (default) or "off" → pruning disabled, zero overhead.
 // Mode "cache-ttl" → prune eligible tool results when ratio exceeds softTrimRatio,

@@ -71,14 +71,14 @@ func TestDeriveGroupUserID(t *testing.T) {
 			msg: bus.InboundMessage{
 				Channel:  "zalo_ol",
 				ChatID:   "chat4878",
-				SenderID: "openlines:tamgiac:chat4878:111222",
-				UserID:   "openlines:tamgiac:chat4878:111222",
+				SenderID: "openlines:example:chat4878:111222",
+				UserID:   "openlines:example:chat4878:111222",
 				Metadata: map[string]string{
-					bitrix24.MetaKeyParticipantUserID: "openlines:tamgiac:chat4878:111222",
+					bitrix24.MetaKeyParticipantUserID: "openlines:example:chat4878:111222",
 				},
 			},
 			peerKind: group,
-			want:     "openlines:tamgiac:chat4878:111222",
+			want:     "openlines:example:chat4878:111222",
 		},
 		{
 			name: "no participant id falls back to group-level",

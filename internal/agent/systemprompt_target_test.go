@@ -53,25 +53,25 @@ func TestSystemPromptBitrix24EntityLinkSection(t *testing.T) {
 	cfg := fullTestConfig()
 	cfg.Channel = "bitrix-sales"
 	cfg.ChannelType = "bitrix24"
-	cfg.BitrixPortalDomain = "tamgiac.bitrix24.com"
+	cfg.BitrixPortalDomain = "example.bitrix24.com"
 	cfg.SenderID = "614" // numeric Bitrix24 user id from FROM_USER_ID
 
 	prompt := BuildSystemPrompt(cfg)
 
 	for _, want := range []string{
 		"## Bitrix24 Entity URLs",
-		"Portal domain: `tamgiac.bitrix24.com`",
+		"Portal domain: `example.bitrix24.com`",
 		// Task URL must substitute the sender's user_id directly so the LLM
 		// doesn't fall back to the placeholder path (which 404s).
-		"https://tamgiac.bitrix24.com/company/personal/user/614/tasks/task/view/{task_id}/",
-		"https://tamgiac.bitrix24.com/crm/deal/details/{deal_id}/",
-		"https://tamgiac.bitrix24.com/crm/lead/details/{lead_id}/",
-		"https://tamgiac.bitrix24.com/crm/contact/details/{contact_id}/",
-		"https://tamgiac.bitrix24.com/crm/company/details/{company_id}/",
-		"https://tamgiac.bitrix24.com/shop/orders/details/{order_id}/",
-		"https://tamgiac.bitrix24.com/shop/orders/payment/details/{payment_id}/",
-		"https://tamgiac.bitrix24.com/shop/orders/shipment/details/{shipment_id}/",
-		"https://tamgiac.bitrix24.com/calendar/?EVENT_ID={event_id}",
+		"https://example.bitrix24.com/company/personal/user/614/tasks/task/view/{task_id}/",
+		"https://example.bitrix24.com/crm/deal/details/{deal_id}/",
+		"https://example.bitrix24.com/crm/lead/details/{lead_id}/",
+		"https://example.bitrix24.com/crm/contact/details/{contact_id}/",
+		"https://example.bitrix24.com/crm/company/details/{company_id}/",
+		"https://example.bitrix24.com/shop/orders/details/{order_id}/",
+		"https://example.bitrix24.com/shop/orders/payment/details/{payment_id}/",
+		"https://example.bitrix24.com/shop/orders/shipment/details/{shipment_id}/",
+		"https://example.bitrix24.com/calendar/?EVENT_ID={event_id}",
 		"never use `example.com`",
 		"trailing `/`",
 	} {
@@ -105,7 +105,7 @@ func TestSystemPromptBitrix24EntityLinkSection_SkippedForOtherChannel(t *testing
 	cfg := fullTestConfig()
 	cfg.Channel = "telegram"
 	cfg.ChannelType = "telegram"
-	cfg.BitrixPortalDomain = "tamgiac.bitrix24.com" // ignored
+	cfg.BitrixPortalDomain = "example.bitrix24.com" // ignored
 
 	prompt := BuildSystemPrompt(cfg)
 	if strings.Contains(prompt, "## Bitrix24 Entity URLs") {
@@ -143,7 +143,7 @@ func TestBuildBitrix24EntityLinkSection_SenderIDGate(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			lines := buildBitrix24EntityLinkSection("tamgiac.bitrix24.com", tc.sender)
+			lines := buildBitrix24EntityLinkSection("example.bitrix24.com", tc.sender)
 			joined := strings.Join(lines, "\n")
 			if tc.wantSubst {
 				want := "/company/personal/user/" + tc.sender + "/tasks/task/view/"
@@ -166,15 +166,15 @@ func TestBuildBitrix24EntityLinkSection_SenderIDGate(t *testing.T) {
 // the full client_endpoint URL); helper must extract just the host.
 func TestBuildBitrix24EntityLinkSection_NormalizesInput(t *testing.T) {
 	cases := []string{
-		"tamgiac.bitrix24.com",
-		"https://tamgiac.bitrix24.com",
-		"https://tamgiac.bitrix24.com/rest/",
-		"  tamgiac.bitrix24.com  ",
+		"example.bitrix24.com",
+		"https://example.bitrix24.com",
+		"https://example.bitrix24.com/rest/",
+		"  example.bitrix24.com  ",
 	}
 	for _, in := range cases {
 		lines := buildBitrix24EntityLinkSection(in, "614")
 		joined := strings.Join(lines, "\n")
-		if !strings.Contains(joined, "Portal domain: `tamgiac.bitrix24.com`") {
+		if !strings.Contains(joined, "Portal domain: `example.bitrix24.com`") {
 			t.Errorf("input %q did not normalize to bare domain; got: %s", in, joined)
 		}
 		if strings.Contains(joined, "https://https://") {

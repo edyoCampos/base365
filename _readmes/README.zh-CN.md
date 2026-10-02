@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** 是一个多智能体 AI 网关，将大语言模型连接到你的工具、渠道和数据 —— 以单个 Go 二进制文件部署，零运行时依赖。它跨 20 多个大语言模型提供商编排智能体团队和跨智能体委托，并提供完整的多租户隔离。
 
-这是 [OpenClaw](https://github.com/openclaw/openclaw) 的 Go 移植版本，具备增强的安全性、多租户 PostgreSQL 支持以及生产级可观测性。
-
 🌐 **语言：**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -58,32 +56,32 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw 生态系统
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| 语言            | TypeScript      | Rust     | Go       | **Go**                                  |
-| 二进制大小      | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB**（基础）/ **~36 MB**（含 OTel） |
-| Docker 镜像     | —               | —        | —        | **~50 MB**（Alpine）                    |
-| 内存占用（空闲）| > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| 启动时间        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| 目标硬件        | $599+ Mac Mini  | $10 边缘设备 | $10 边缘设备 | **$5 VPS+**                         |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| 语言            | **Go**                                  |
+| 二进制大小      | **~25 MB**（基础）/ **~36 MB**（含 OTel） |
+| Docker 镜像     | **~50 MB**（Alpine）                    |
+| 内存占用（空闲）| **~35 MB**                              |
+| 启动时间        | **< 1 s**                               |
+| 目标硬件        | **$5 VPS+**                         |
 
-| 功能特性                   | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| 多租户（PostgreSQL）       | —                                    | —                                            | —                                     | ✅                             |
-| MCP 集成                   | —（使用 ACP）                        | —                                            | —                                     | ✅（stdio/SSE/streamable-http）|
-| 智能体团队                 | —                                    | —                                            | —                                     | ✅ 任务板 + 邮箱               |
-| 安全加固                   | ✅（SSRF、路径遍历、注入）           | ✅（沙箱、速率限制、注入、配对）             | 基础（工作区限制、exec 拒绝）         | ✅ 5 层防御                    |
-| OTel 可观测性              | ✅（可选扩展）                       | ✅（Prometheus + OTLP）                      | —                                     | ✅ OTLP（可选构建标签）        |
-| 提示词缓存                 | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI 兼容     |
-| 知识图谱                   | —                                    | —                                            | —                                     | ✅ 大语言模型提取 + 遍历       |
-| 技能系统                   | ✅ 嵌入/语义                         | ✅ SKILL.md + TOML                           | ✅ 基础                               | ✅ BM25 + pgvector 混合        |
-| 基于通道的调度器           | ✅                                   | 有界并发                                     | —                                     | ✅（main/subagent/team/cron）  |
-| 消息渠道                   | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| 伴侣应用                   | macOS、iOS、Android                  | Python SDK                                   | —                                     | Web 控制台                     |
-| 实时画布 / 语音            | ✅（A2UI + TTS/STT）                 | —                                            | 语音转录                              | TTS（4 个提供商）              |
-| 大语言模型提供商           | 10+                                  | 8 原生 + 29 兼容                             | 13+                                   | **20+**                        |
-| 每用户工作空间             | ✅（基于文件）                       | —                                            | —                                     | ✅（PostgreSQL）               |
-| 加密密钥                   | —（仅环境变量）                      | ✅ ChaCha20-Poly1305                         | —（明文 JSON）                        | ✅ 数据库中 AES-256-GCM        |
+| 功能特性                   | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| 多租户（PostgreSQL）       | ✅                             |
+| MCP 集成                   | ✅（stdio/SSE/streamable-http）|
+| 智能体团队                 | ✅ 任务板 + 邮箱               |
+| 安全加固                   | ✅ 5 层防御                    |
+| OTel 可观测性              | ✅ OTLP（可选构建标签）        |
+| 提示词缓存                 | ✅ Anthropic + OpenAI 兼容     |
+| 知识图谱                   | ✅ 大语言模型提取 + 遍历       |
+| 技能系统                   | ✅ BM25 + pgvector 混合        |
+| 基于通道的调度器           | ✅（main/subagent/team/cron）  |
+| 消息渠道                   | 7+                             |
+| 伴侣应用                   | Web 控制台                     |
+| 实时画布 / 语音            | TTS（4 个提供商）              |
+| 大语言模型提供商           | **20+**                        |
+| 每用户工作空间             | ✅（PostgreSQL）               |
+| 加密密钥                   | ✅ 数据库中 AES-256-GCM        |
 
 ## 架构
 
@@ -216,10 +214,6 @@ go test -v ./tests/integration/ -timeout 120s    # 集成测试（需要正在�
 ## 项目状态
 
 有关详细功能状态（包括已在生产环境测试的内容和仍在进行中的内容），请参阅 [CHANGELOG.md](CHANGELOG.md)。
-
-## 致谢
-
-Base365 基于原始的 [OpenClaw](https://github.com/openclaw/openclaw) 项目构建。我们对启发这个 Go 移植版本的架构设计和愿景深表感谢。
 
 ## 许可证
 

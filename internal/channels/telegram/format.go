@@ -9,7 +9,7 @@ import (
 )
 
 // --- Markdown to Telegram HTML conversion ---
-// Adapted from PicoClaw's telegram.go, extended with table support (matching TS "code" mode).
+// Extended with table support ("code" mode).
 
 // htmlTagToMarkdown converts common HTML tags in LLM output to markdown equivalents
 // so they survive the escapeHTML step and get re-converted by the markdown pipeline.

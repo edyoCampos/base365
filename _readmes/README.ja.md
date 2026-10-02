@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** は、LLM をあなたのツール、チャンネル、データに接続するマルチエージェント AI ゲートウェイです。ランタイム依存ゼロの単一 Go バイナリとしてデプロイでき、20以上の LLM プロバイダにまたがるエージェントチームとエージェント間デリゲーションを、完全なマルチテナント分離のもとでオーケストレーションします。
 
-セキュリティ強化、マルチテナント PostgreSQL、本番グレードのオブザーバビリティを備えた [OpenClaw](https://github.com/openclaw/openclaw) の Go 移植版です。
-
 🌐 **Languages:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -58,32 +56,32 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw エコシステム
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| 言語            | TypeScript      | Rust     | Go       | **Go**                                  |
-| バイナリサイズ  | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (base) / **~36 MB** (+ OTel) |
-| Docker イメージ | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM（アイドル） | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| 起動時間        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| 対象ハードウェア| $599+ Mac Mini  | $10 エッジ| $10 エッジ| **$5 VPS+**                            |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| 言語            | **Go**                                  |
+| バイナリサイズ  | **~25 MB** (base) / **~36 MB** (+ OTel) |
+| Docker イメージ | **~50 MB** (Alpine)                     |
+| RAM（アイドル） | **~35 MB**                              |
+| 起動時間        | **< 1 s**                               |
+| 対象ハードウェア| **$5 VPS+**                            |
 
-| 機能                              | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| --------------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| マルチテナント（PostgreSQL）       | —                                    | —                                            | —                                     | ✅                             |
-| MCP 統合                          | — (uses ACP)                         | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| エージェントチーム                 | —                                    | —                                            | —                                     | ✅ タスクボード + メールボックス |
-| セキュリティ強化                   | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing) | Basic (workspace restrict, exec deny) | ✅ 5層防御                     |
-| OTel オブザーバビリティ            | ✅ (opt-in extension)                | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (opt-in build tag)     |
-| プロンプトキャッシュ               | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| ナレッジグラフ                    | —                                    | —                                            | —                                     | ✅ LLM 抽出 + トラバーサル     |
-| スキルシステム                    | ✅ Embeddings/semantic               | ✅ SKILL.md + TOML                           | ✅ Basic                              | ✅ BM25 + pgvector ハイブリッド |
-| レーンベーススケジューラ           | ✅                                   | Bounded concurrency                          | —                                     | ✅ (main/subagent/team/cron)   |
-| メッセージングチャンネル           | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| コンパニオンアプリ                 | macOS, iOS, Android                  | Python SDK                                   | —                                     | Web ダッシュボード              |
-| ライブキャンバス / 音声            | ✅ (A2UI + TTS/STT)                  | —                                            | Voice transcription                   | TTS (4 providers)              |
-| LLM プロバイダ                    | 10+                                  | 8 native + 29 compat                         | 13+                                   | **20+**                        |
-| ユーザーごとのワークスペース       | ✅ (file-based)                      | —                                            | —                                     | ✅ (PostgreSQL)                |
-| 暗号化されたシークレット           | — (env vars only)                    | ✅ ChaCha20-Poly1305                         | — (plaintext JSON)                    | ✅ AES-256-GCM in DB           |
+| 機能                              | **Base365**                     |
+| --------------------------------- | ------------------------------ |
+| マルチテナント（PostgreSQL）       | ✅                             |
+| MCP 統合                          | ✅ (stdio/SSE/streamable-http) |
+| エージェントチーム                 | ✅ タスクボード + メールボックス |
+| セキュリティ強化                   | ✅ 5層防御                     |
+| OTel オブザーバビリティ            | ✅ OTLP (opt-in build tag)     |
+| プロンプトキャッシュ               | ✅ Anthropic + OpenAI-compat   |
+| ナレッジグラフ                    | ✅ LLM 抽出 + トラバーサル     |
+| スキルシステム                    | ✅ BM25 + pgvector ハイブリッド |
+| レーンベーススケジューラ           | ✅ (main/subagent/team/cron)   |
+| メッセージングチャンネル           | 7+                             |
+| コンパニオンアプリ                 | Web ダッシュボード              |
+| ライブキャンバス / 音声            | TTS (4 providers)              |
+| LLM プロバイダ                    | **20+**                        |
+| ユーザーごとのワークスペース       | ✅ (PostgreSQL)                |
+| 暗号化されたシークレット           | ✅ AES-256-GCM in DB           |
 
 ## アーキテクチャ
 
@@ -216,10 +214,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integration tests (requires r
 ## プロジェクトステータス
 
 本番環境でテスト済みの内容と進行中の内容を含む詳細な機能ステータスは [CHANGELOG.md](CHANGELOG.md) を参照してください。
-
-## 謝辞
-
-Base365 はオリジナルの [OpenClaw](https://github.com/openclaw/openclaw) プロジェクトをベースに構築されています。この Go 移植版を着想させたアーキテクチャとビジョンに感謝します。
 
 ## ライセンス
 

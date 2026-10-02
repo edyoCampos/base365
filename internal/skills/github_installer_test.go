@@ -111,12 +111,12 @@ func TestAllowedOrg(t *testing.T) {
 	if !empty.AllowedOrg("anyone") {
 		t.Error("empty allowlist should permit all orgs")
 	}
-	locked := NewGitHubInstaller(nil, &GitHubPackagesConfig{AllowedOrgs: []string{"GoodOrg", " digitop "}})
+	locked := NewGitHubInstaller(nil, &GitHubPackagesConfig{AllowedOrgs: []string{"GoodOrg", " acme "}})
 	if !locked.AllowedOrg("goodorg") {
 		t.Error("goodorg should be allowed (case-insensitive)")
 	}
-	if !locked.AllowedOrg("Digitop") {
-		t.Error("digitop should be allowed after trim+lowercase")
+	if !locked.AllowedOrg("Acme") {
+		t.Error("acme should be allowed after trim+lowercase")
 	}
 	if locked.AllowedOrg("evil") {
 		t.Error("evil should be rejected")

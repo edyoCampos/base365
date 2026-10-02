@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** este un gateway AI multi-agent care conectează LLM-uri la instrumentele, canalele și datele tale — implementat ca un singur binar Go fără dependențe de rulare. Orchestrează echipe de agenți și delegare inter-agent prin 20+ furnizori LLM cu izolare completă multi-tenant.
 
-Un port Go al [OpenClaw](https://github.com/openclaw/openclaw) cu securitate îmbunătățită, PostgreSQL multi-tenant și observabilitate la nivel de producție.
-
 🌐 **Limbi:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Un port Go al [OpenClaw](https://github.com/openclaw/openclaw) cu securitate îm
 
 ## Ecosistemul Claw
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Limbaj          | TypeScript      | Rust     | Go       | **Go**                                  |
-| Dimensiune binar | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (de bază) / **~36 MB** (+ OTel) |
-| Imagine Docker  | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (inactiv)   | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Pornire         | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Hardware țintă  | Mac Mini $599+  | edge $10 | edge $10 | **VPS $5+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Limbaj          | **Go**                                  |
+| Dimensiune binar | **~25 MB** (de bază) / **~36 MB** (+ OTel) |
+| Imagine Docker  | **~50 MB** (Alpine)                     |
+| RAM (inactiv)   | **~35 MB**                              |
+| Pornire         | **< 1 s**                               |
+| Hardware țintă  | **VPS $5+**                             |
 
-| Funcționalitate               | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| ----------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Multi-tenant (PostgreSQL)     | —                                    | —                                            | —                                     | ✅                             |
-| Integrare MCP                 | — (folosește ACP)                    | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Echipe de agenți              | —                                    | —                                            | —                                     | ✅ Panou sarcini + cutie poștală |
-| Întărire securitate           | ✅ (SSRF, traversare cale, injecție) | ✅ (sandbox, limitare rată, injecție, asociere) | De bază (restricție spațiu lucru, refuz exec) | ✅ Apărare în 5 straturi |
-| Observabilitate OTel          | ✅ (extensie opțională)              | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (etichetă build opțională) |
-| Cache prompturi               | —                                    | —                                            | —                                     | ✅ Anthropic + compat OpenAI   |
-| Graf de cunoaștere            | —                                    | —                                            | —                                     | ✅ Extragere LLM + traversare  |
-| Sistem skill-uri              | ✅ Embeddings/semantic               | ✅ SKILL.md + TOML                           | ✅ De bază                            | ✅ BM25 + hibrid pgvector      |
-| Programator bazat pe benzi    | ✅                                   | Concurență limitată                          | —                                     | ✅ (main/subagent/team/cron)   |
-| Canale de mesagerie           | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Aplicații companion           | macOS, iOS, Android                  | Python SDK                                   | —                                     | Tablou de bord web             |
-| Canvas Live / Voce            | ✅ (A2UI + TTS/STT)                  | —                                            | Transcriere voce                      | TTS (4 furnizori)              |
-| Furnizori LLM                 | 10+                                  | 8 nativi + 29 compat                         | 13+                                   | **20+**                        |
-| Spații de lucru per utilizator | ✅ (bazat pe fișiere)               | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Secrete criptate              | — (doar variabile env)               | ✅ ChaCha20-Poly1305                         | — (JSON text simplu)                  | ✅ AES-256-GCM în BD           |
+| Funcționalitate               | **Base365**                     |
+| ----------------------------- | ------------------------------ |
+| Multi-tenant (PostgreSQL)     | ✅                             |
+| Integrare MCP                 | ✅ (stdio/SSE/streamable-http) |
+| Echipe de agenți              | ✅ Panou sarcini + cutie poștală |
+| Întărire securitate           | ✅ Apărare în 5 straturi |
+| Observabilitate OTel          | ✅ OTLP (etichetă build opțională) |
+| Cache prompturi               | ✅ Anthropic + compat OpenAI   |
+| Graf de cunoaștere            | ✅ Extragere LLM + traversare  |
+| Sistem skill-uri              | ✅ BM25 + hibrid pgvector      |
+| Programator bazat pe benzi    | ✅ (main/subagent/team/cron)   |
+| Canale de mesagerie           | 7+                             |
+| Aplicații companion           | Tablou de bord web             |
+| Canvas Live / Voce            | TTS (4 furnizori)              |
+| Furnizori LLM                 | **20+**                        |
+| Spații de lucru per utilizator | ✅ (PostgreSQL)                |
+| Secrete criptate              | ✅ AES-256-GCM în BD           |
 
 ## Arhitectură
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Teste de integrare (necesită
 ## Starea Proiectului
 
 Consultați [CHANGELOG.md](CHANGELOG.md) pentru starea detaliată a funcționalităților, inclusiv ce a fost testat în producție și ce este încă în desfășurare.
-
-## Mulțumiri
-
-Base365 este construit pe baza proiectului original [OpenClaw](https://github.com/openclaw/openclaw). Suntem recunoscători pentru arhitectura și viziunea care au inspirat acest port Go.
 
 ## Licență
 

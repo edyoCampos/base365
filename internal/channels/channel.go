@@ -2,7 +2,7 @@
 // Channels connect external platforms (Telegram, Discord, Slack, etc.) to the agent runtime
 // via the message bus.
 //
-// Adapted from PicoClaw's pkg/channels with Base365-specific additions:
+// Base365-specific additions:
 // - DM/Group policies (pairing, allowlist, open, disabled)
 // - Mention gating for group chats
 // - Rich MsgContext metadata

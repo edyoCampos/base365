@@ -16,7 +16,7 @@ func TestOAuthState_RoundTrip(t *testing.T) {
 		UserID:      "1058",
 		TenantID:    "0193a5b0-7000-7000-8000-000000000001",
 		ChannelName: "b24-syn",
-		Domain:      "tamgiac.bitrix24.com",
+		Domain:      "example.bitrix24.com",
 		DialogID:    "chat4878",
 		ExpiresAt:   time.Now().Add(10 * time.Minute).Unix(),
 	}

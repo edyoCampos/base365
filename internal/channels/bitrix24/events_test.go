@@ -418,7 +418,7 @@ func TestParseEvent_NilRequest(t *testing.T) {
 // fields drive MCP "this deal/task" resolution downstream — without parsing
 // them the agent has no deterministic way to know which entity the chat
 // belongs to. Fixtures match real Bitrix24 webhooks captured against
-// tamgiac.bitrix24.com (see plans/.../reports/event-payloads/05 + 07).
+// example.bitrix24.com (see plans/.../reports/event-payloads/05 + 07).
 func TestParseEvent_Form_ChatEntity(t *testing.T) {
 	cases := []struct {
 		name        string

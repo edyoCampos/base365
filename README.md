@@ -360,10 +360,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integration tests (requires r
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed feature status including what's been tested in production and what's still in progress.
 
-## Acknowledgments
-
-Base365 was originally inspired by the [OpenClaw](https://github.com/openclaw/openclaw) project architecture.
-
 ## License
 
 [CC BY-NC 4.0](LICENSE) — Creative Commons Attribution-NonCommercial 4.0 International

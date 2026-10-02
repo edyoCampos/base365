@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 Ang **Base365** ay isang multi-agent AI gateway na nagkokonekta ng mga LLM sa iyong mga kasangkapan, channel, at datos — na inilunsad bilang isang Go binary na walang runtime dependencies. Inooorkestra nito ang mga agent team at inter-agent delegation sa 20+ LLM provider na may ganap na multi-tenant isolation.
 
-Isang Go port ng [OpenClaw](https://github.com/openclaw/openclaw) na may pinahusay na seguridad, multi-tenant PostgreSQL, at production-grade observability.
-
 🌐 **Mga Wika:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Isang Go port ng [OpenClaw](https://github.com/openclaw/openclaw) na may pinahus
 
 ## Claw Ecosystem
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Wika            | TypeScript      | Rust     | Go       | **Go**                                  |
-| Laki ng binary  | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (base) / **~36 MB** (+ OTel) |
-| Docker image    | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (walang gawa) | > 1 GB        | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Pagsisimula     | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Target hardware | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Wika            | **Go**                                  |
+| Laki ng binary  | **~25 MB** (base) / **~36 MB** (+ OTel) |
+| Docker image    | **~50 MB** (Alpine)                     |
+| RAM (walang gawa) | **~35 MB**                              |
+| Pagsisimula     | **< 1 s**                               |
+| Target hardware | **$5 VPS+**                             |
 
-| Tampok                     | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Multi-tenant (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
-| MCP integration            | — (gumagamit ng ACP)                 | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Mga agent team             | —                                    | —                                            | —                                     | ✅ Task board + mailbox        |
-| Pagpapatibay ng seguridad  | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing) | Basic (workspace restrict, exec deny) | ✅ 5-layer defense             |
-| OTel observability         | ✅ (opt-in extension)                | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (opt-in build tag)     |
-| Prompt caching             | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Knowledge graph            | —                                    | —                                            | —                                     | ✅ LLM extraction + traversal  |
-| Sistema ng skill           | ✅ Embeddings/semantic               | ✅ SKILL.md + TOML                           | ✅ Basic                              | ✅ BM25 + pgvector hybrid      |
-| Lane-based scheduler       | ✅                                   | Bounded concurrency                          | —                                     | ✅ (main/subagent/team/cron)   |
-| Mga messaging channel      | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Mga kasama na app          | macOS, iOS, Android                  | Python SDK                                   | —                                     | Web dashboard                  |
-| Live Canvas / Boses        | ✅ (A2UI + TTS/STT)                  | —                                            | Voice transcription                   | TTS (4 provider)               |
-| Mga LLM provider           | 10+                                  | 8 native + 29 compat                         | 13+                                   | **20+**                        |
-| Bawat user ay may workspace | ✅ (file-based)                     | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Naka-encrypt na lihim      | — (env vars lamang)                  | ✅ ChaCha20-Poly1305                         | — (plaintext JSON)                    | ✅ AES-256-GCM sa DB           |
+| Tampok                     | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Multi-tenant (PostgreSQL)  | ✅                             |
+| MCP integration            | ✅ (stdio/SSE/streamable-http) |
+| Mga agent team             | ✅ Task board + mailbox        |
+| Pagpapatibay ng seguridad  | ✅ 5-layer defense             |
+| OTel observability         | ✅ OTLP (opt-in build tag)     |
+| Prompt caching             | ✅ Anthropic + OpenAI-compat   |
+| Knowledge graph            | ✅ LLM extraction + traversal  |
+| Sistema ng skill           | ✅ BM25 + pgvector hybrid      |
+| Lane-based scheduler       | ✅ (main/subagent/team/cron)   |
+| Mga messaging channel      | 7+                             |
+| Mga kasama na app          | Web dashboard                  |
+| Live Canvas / Boses        | TTS (4 provider)               |
+| Mga LLM provider           | **20+**                        |
+| Bawat user ay may workspace | ✅ (PostgreSQL)                |
+| Naka-encrypt na lihim      | ✅ AES-256-GCM sa DB           |
 
 ## Arkitektura
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Mga integration test (nangang
 ## Katayuan ng Proyekto
 
 Tingnan ang [CHANGELOG.md](CHANGELOG.md) para sa detalyadong katayuan ng mga tampok kasama ang kung ano na ang nasubok sa produksyon at kung ano pa ang isinasagawa.
-
-## Mga Pagkilala
-
-Ang Base365 ay itinayo batay sa orihinal na proyektong [OpenClaw](https://github.com/openclaw/openclaw). Nagpapasalamat kami sa arkitektura at bisyon na nagbigay-inspirasyon sa Go port na ito.
 
 ## Lisensya
 

@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** adalah gateway AI multi-agen yang menghubungkan LLM ke alat, saluran, dan data Anda — dideploy sebagai satu binary Go tanpa dependensi runtime. Base365 mengorkestasi tim agen dan delegasi antar-agen ke lebih dari 20 penyedia LLM dengan isolasi multi-tenant penuh.
 
-Merupakan port Go dari [OpenClaw](https://github.com/openclaw/openclaw) dengan keamanan yang ditingkatkan, PostgreSQL multi-tenant, dan observabilitas kelas produksi.
-
 🌐 **Bahasa:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Merupakan port Go dari [OpenClaw](https://github.com/openclaw/openclaw) dengan k
 
 ## Ekosistem Claw
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Bahasa          | TypeScript      | Rust     | Go       | **Go**                                  |
-| Ukuran binary   | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (dasar) / **~36 MB** (+ OTel) |
-| Image Docker    | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (idle)      | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Startup         | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Target hardware | Mac Mini $599+  | edge $10 | edge $10 | **VPS $5+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Bahasa          | **Go**                                  |
+| Ukuran binary   | **~25 MB** (dasar) / **~36 MB** (+ OTel) |
+| Image Docker    | **~50 MB** (Alpine)                     |
+| RAM (idle)      | **~35 MB**                              |
+| Startup         | **< 1 s**                               |
+| Target hardware | **VPS $5+**                             |
 
-| Fitur                      | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Multi-tenant (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
-| Integrasi MCP              | — (menggunakan ACP)                  | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Tim agen                   | —                                    | —                                            | —                                     | ✅ Papan tugas + kotak surat   |
-| Penguatan keamanan         | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing) | Dasar (workspace restrict, exec deny) | ✅ Pertahanan 5 lapisan        |
-| Observabilitas OTel        | ✅ (ekstensi opsional)               | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (build tag opsional)   |
-| Prompt caching             | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Graf pengetahuan           | —                                    | —                                            | —                                     | ✅ Ekstraksi LLM + traversal   |
-| Sistem skill               | ✅ Embeddings/semantik               | ✅ SKILL.md + TOML                           | ✅ Dasar                              | ✅ BM25 + pgvector hybrid      |
-| Penjadwal berbasis jalur   | ✅                                   | Konkurensi terbatas                          | —                                     | ✅ (main/subagent/team/cron)   |
-| Saluran pesan              | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Aplikasi pendamping        | macOS, iOS, Android                  | Python SDK                                   | —                                     | Dasbor Web                     |
-| Live Canvas / Suara        | ✅ (A2UI + TTS/STT)                  | —                                            | Transkripsi suara                     | TTS (4 penyedia)               |
-| Penyedia LLM               | 10+                                  | 8 native + 29 compat                         | 13+                                   | **20+**                        |
-| Ruang kerja per-pengguna   | ✅ (berbasis file)                   | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Rahasia terenkripsi        | — (hanya env vars)                   | ✅ ChaCha20-Poly1305                         | — (plaintext JSON)                    | ✅ AES-256-GCM di DB           |
+| Fitur                      | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Multi-tenant (PostgreSQL)  | ✅                             |
+| Integrasi MCP              | ✅ (stdio/SSE/streamable-http) |
+| Tim agen                   | ✅ Papan tugas + kotak surat   |
+| Penguatan keamanan         | ✅ Pertahanan 5 lapisan        |
+| Observabilitas OTel        | ✅ OTLP (build tag opsional)   |
+| Prompt caching             | ✅ Anthropic + OpenAI-compat   |
+| Graf pengetahuan           | ✅ Ekstraksi LLM + traversal   |
+| Sistem skill               | ✅ BM25 + pgvector hybrid      |
+| Penjadwal berbasis jalur   | ✅ (main/subagent/team/cron)   |
+| Saluran pesan              | 7+                             |
+| Aplikasi pendamping        | Dasbor Web                     |
+| Live Canvas / Suara        | TTS (4 penyedia)               |
+| Penyedia LLM               | **20+**                        |
+| Ruang kerja per-pengguna   | ✅ (PostgreSQL)                |
+| Rahasia terenkripsi        | ✅ AES-256-GCM di DB           |
 
 ## Arsitektur
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Tes integrasi (memerlukan gat
 ## Status Proyek
 
 Lihat [CHANGELOG.md](CHANGELOG.md) untuk status fitur terperinci termasuk apa yang telah diuji di produksi dan apa yang masih dalam proses.
-
-## Ucapan Terima Kasih
-
-Base365 dibangun di atas proyek [OpenClaw](https://github.com/openclaw/openclaw) yang asli. Kami berterima kasih atas arsitektur dan visi yang menginspirasi port Go ini.
 
 ## Lisensi
 

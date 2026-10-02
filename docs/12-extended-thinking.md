@@ -243,7 +243,7 @@ OpenAI-compatible providers handle thinking/reasoning content as metadata. The `
 
 ---
 
-## 6. Reasoning Content Stripping (Phase 6 — OpenClaw TS port)
+## 6. Reasoning Content Stripping (Phase 6)
 
 Some models emit chain-of-thought reasoning tokens even when `effort="off"` is specified. To prevent that raw CoT from reaching end users, Base365 supports a `StripThinking` flag on `ReasoningDecision`.
 

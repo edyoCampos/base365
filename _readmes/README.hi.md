@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** एक मल्टी-एजेंट AI गेटवे है जो LLMs को आपके टूल्स, चैनलों और डेटा से जोड़ता है — एक सिंगल Go बाइनरी के रूप में तैनात, बिना किसी रनटाइम निर्भरता के। यह 20+ LLM प्रदाताओं के साथ पूर्ण मल्टी-टेनेंट आइसोलेशन के साथ एजेंट टीमों और इंटर-एजेंट डेलीगेशन को ऑर्केस्ट्रेट करता है।
 
-[OpenClaw](https://github.com/openclaw/openclaw) का एक Go पोर्ट, जिसमें उन्नत सुरक्षा, मल्टी-टेनेंट PostgreSQL और प्रोडक्शन-ग्रेड ऑब्ज़र्वेबिलिटी है।
-
 🌐 **Languages:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw इकोसिस्टम
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| भाषा            | TypeScript      | Rust     | Go       | **Go**                                  |
-| बाइनरी आकार     | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (base) / **~36 MB** (+ OTel) |
-| Docker इमेज     | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (निष्क्रिय) | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| स्टार्टअप       | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| लक्ष्य हार्डवेयर | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| भाषा            | **Go**                                  |
+| बाइनरी आकार     | **~25 MB** (base) / **~36 MB** (+ OTel) |
+| Docker इमेज     | **~50 MB** (Alpine)                     |
+| RAM (निष्क्रिय) | **~35 MB**                              |
+| स्टार्टअप       | **< 1 s**                               |
+| लक्ष्य हार्डवेयर | **$5 VPS+**                             |
 
-| फीचर                       | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| मल्टी-टेनेंट (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
-| MCP इंटीग्रेशन             | — (uses ACP)                         | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| एजेंट टीमें                | —                                    | —                                            | —                                     | ✅ Task board + mailbox        |
-| सुरक्षा हार्डनिंग           | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing) | Basic (workspace restrict, exec deny) | ✅ 5-layer defense             |
-| OTel ऑब्ज़र्वेबिलिटी       | ✅ (opt-in extension)                | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (opt-in build tag)     |
-| प्रॉम्प्ट कैशिंग           | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| नॉलेज ग्राफ                | —                                    | —                                            | —                                     | ✅ LLM extraction + traversal  |
-| स्किल सिस्टम               | ✅ Embeddings/semantic               | ✅ SKILL.md + TOML                           | ✅ Basic                              | ✅ BM25 + pgvector hybrid      |
-| लेन-आधारित शेड्यूलर        | ✅                                   | Bounded concurrency                          | —                                     | ✅ (main/subagent/team/cron)   |
-| मैसेजिंग चैनल              | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| कम्पेनियन ऐप्स             | macOS, iOS, Android                  | Python SDK                                   | —                                     | Web dashboard                  |
-| लाइव कैनवास / वॉइस         | ✅ (A2UI + TTS/STT)                  | —                                            | Voice transcription                   | TTS (4 providers)              |
-| LLM प्रदाता                | 10+                                  | 8 native + 29 compat                         | 13+                                   | **20+**                        |
-| प्रति-उपयोगकर्ता वर्कस्पेस | ✅ (file-based)                      | —                                            | —                                     | ✅ (PostgreSQL)                |
-| एन्क्रिप्टेड सीक्रेट्स     | — (env vars only)                    | ✅ ChaCha20-Poly1305                         | — (plaintext JSON)                    | ✅ AES-256-GCM in DB           |
+| फीचर                       | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| मल्टी-टेनेंट (PostgreSQL)  | ✅                             |
+| MCP इंटीग्रेशन             | ✅ (stdio/SSE/streamable-http) |
+| एजेंट टीमें                | ✅ Task board + mailbox        |
+| सुरक्षा हार्डनिंग           | ✅ 5-layer defense             |
+| OTel ऑब्ज़र्वेबिलिटी       | ✅ OTLP (opt-in build tag)     |
+| प्रॉम्प्ट कैशिंग           | ✅ Anthropic + OpenAI-compat   |
+| नॉलेज ग्राफ                | ✅ LLM extraction + traversal  |
+| स्किल सिस्टम               | ✅ BM25 + pgvector hybrid      |
+| लेन-आधारित शेड्यूलर        | ✅ (main/subagent/team/cron)   |
+| मैसेजिंग चैनल              | 7+                             |
+| कम्पेनियन ऐप्स             | Web dashboard                  |
+| लाइव कैनवास / वॉइस         | TTS (4 providers)              |
+| LLM प्रदाता                | **20+**                        |
+| प्रति-उपयोगकर्ता वर्कस्पेस | ✅ (PostgreSQL)                |
+| एन्क्रिप्टेड सीक्रेट्स     | ✅ AES-256-GCM in DB           |
 
 ## आर्किटेक्चर
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integration tests (requires r
 ## प्रोजेक्ट स्थिति
 
 विस्तृत फीचर स्थिति के लिए [CHANGELOG.md](CHANGELOG.md) देखें, जिसमें शामिल है कि प्रोडक्शन में क्या परीक्षण किया गया है और क्या अभी भी प्रगति में है।
-
-## आभार
-
-Base365 मूल [OpenClaw](https://github.com/openclaw/openclaw) प्रोजेक्ट पर निर्मित है। हम उस आर्किटेक्चर और दृष्टिकोण के आभारी हैं जिसने इस Go पोर्ट को प्रेरित किया।
 
 ## लाइसेंस
 

@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** er en AI-gateway for flere agenter som kobler LLM-er til verktøyene, kanalene og dataene dine — distribuert som én enkelt Go-binærfil uten kjøretidsavhengigheter. Den orkestrerer agentteam og delegering mellom agenter på tvers av 20+ LLM-leverandører med full flerleietaker-isolasjon.
 
-En Go-port av [OpenClaw](https://github.com/openclaw/openclaw) med forbedret sikkerhet, flerleietaker PostgreSQL og produksjonsklar observerbarhet.
-
 🌐 **Språk:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ En Go-port av [OpenClaw](https://github.com/openclaw/openclaw) med forbedret sik
 
 ## Claw-økosystemet
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Språk           | TypeScript      | Rust     | Go       | **Go**                                  |
-| Binærstørrelse  | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (base) / **~36 MB** (+ OTel) |
-| Docker-bilde    | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (inaktiv)   | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Oppstart        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Målmaskinvare   | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Språk           | **Go**                                  |
+| Binærstørrelse  | **~25 MB** (base) / **~36 MB** (+ OTel) |
+| Docker-bilde    | **~50 MB** (Alpine)                     |
+| RAM (inaktiv)   | **~35 MB**                              |
+| Oppstart        | **< 1 s**                               |
+| Målmaskinvare   | **$5 VPS+**                             |
 
-| Funksjon                    | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Flerleietaker (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
-| MCP-integrasjon            | — (bruker ACP)                       | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Agentteam                  | —                                    | —                                            | —                                     | ✅ Oppgavetavle + postboks     |
-| Sikkerhetsherdning          | ✅ (SSRF, banetraversering, injeksjon) | ✅ (sandbox, hastighetsbegrensning, injeksjon, paring) | Grunnleggende (arbeidsområdebegrensning, exec-avvisning) | ✅ 5-lags forsvar             |
-| OTel-observerbarhet         | ✅ (valgfri utvidelse)               | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (valgfritt build-tag)  |
-| Prompt-mellomlagring        | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Kunnskapsgraf               | —                                    | —                                            | —                                     | ✅ LLM-uttrekk + traversering  |
-| Ferdighetssystem            | ✅ Innbygging/semantisk              | ✅ SKILL.md + TOML                           | ✅ Grunnleggende                      | ✅ BM25 + pgvector hybrid      |
-| Banebasert planlegger       | ✅                                   | Begrenset samtidighet                        | —                                     | ✅ (main/subagent/team/cron)   |
-| Meldingskanaler             | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Følgeapper                  | macOS, iOS, Android                  | Python SDK                                   | —                                     | Web-dashbord                   |
-| Live Canvas / Tale          | ✅ (A2UI + TTS/STT)                  | —                                            | Taletranskripsjoner                   | TTS (4 leverandører)           |
-| LLM-leverandører            | 10+                                  | 8 innebygde + 29 compat                      | 13+                                   | **20+**                        |
-| Arbeidsområde per bruker    | ✅ (filbasert)                       | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Krypterte hemmeligheter     | — (kun env-variabler)                | ✅ ChaCha20-Poly1305                         | — (ren JSON)                          | ✅ AES-256-GCM i DB            |
+| Funksjon                    | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Flerleietaker (PostgreSQL)  | ✅                             |
+| MCP-integrasjon            | ✅ (stdio/SSE/streamable-http) |
+| Agentteam                  | ✅ Oppgavetavle + postboks     |
+| Sikkerhetsherdning          | ✅ 5-lags forsvar             |
+| OTel-observerbarhet         | ✅ OTLP (valgfritt build-tag)  |
+| Prompt-mellomlagring        | ✅ Anthropic + OpenAI-compat   |
+| Kunnskapsgraf               | ✅ LLM-uttrekk + traversering  |
+| Ferdighetssystem            | ✅ BM25 + pgvector hybrid      |
+| Banebasert planlegger       | ✅ (main/subagent/team/cron)   |
+| Meldingskanaler             | 7+                             |
+| Følgeapper                  | Web-dashbord                   |
+| Live Canvas / Tale          | TTS (4 leverandører)           |
+| LLM-leverandører            | **20+**                        |
+| Arbeidsområde per bruker    | ✅ (PostgreSQL)                |
+| Krypterte hemmeligheter     | ✅ AES-256-GCM i DB            |
 
 ## Arkitektur
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integrasjonstester (krever kj
 ## Prosjektstatus
 
 Se [CHANGELOG.md](CHANGELOG.md) for detaljert funksjonsstatus, inkludert hva som er testet i produksjon og hva som fremdeles pågår.
-
-## Anerkjennelser
-
-Base365 er bygd på det opprinnelige [OpenClaw](https://github.com/openclaw/openclaw)-prosjektet. Vi er takknemlige for arkitekturen og visjonen som inspirerte denne Go-porten.
 
 ## Lisens
 

@@ -5,7 +5,6 @@ import "strings"
 // isOpenAINativeEndpoint returns true for endpoints confirmed to be native OpenAI
 // infrastructure that accepts the "developer" message role.
 // Azure OpenAI, proxies, and other OpenAI-compatible backends only support "system".
-// Matching OpenClaw TS: model-compat.ts → isOpenAINativeEndpoint().
 func isOpenAINativeEndpoint(apiBase string) bool {
 	// Extract hostname from the API base URL.
 	lower := strings.ToLower(apiBase)

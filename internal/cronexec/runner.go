@@ -1,6 +1,5 @@
 // Package cronexec runs deterministic shell-command cron payloads inside the
-// gateway process WITHOUT invoking an LLM. It mirrors openclaw's
-// src/cron/command-runner.ts: wall-clock timeout, a no-output watchdog, output
+// gateway process WITHOUT invoking an LLM: wall-clock timeout, a no-output watchdog, output
 // capping, and process-group termination so a timed-out command's forked
 // children do not survive.
 package cronexec
@@ -189,7 +188,7 @@ func commandError(termination string, exitCode int, stderr string) error {
 	return errors.New(msg)
 }
 
-// buildSummary mirrors openclaw: prefer stdout, fall back to stderr, and when
+// buildSummary prefers stdout, fall back to stderr, and when
 // both are present, label them.
 func buildSummary(stdout, stderr string) string {
 	so := strings.TrimSpace(stdout)

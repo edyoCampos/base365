@@ -12,8 +12,8 @@ import (
 )
 
 // compactionSummaryPrompt is the structured summarization instruction used by both
-// mid-loop compaction and background summarization. Matching OpenClaw TS compaction.ts
-// MERGE_SUMMARIES_INSTRUCTIONS + IDENTIFIER_PRESERVATION_INSTRUCTIONS.
+// mid-loop compaction and background summarization (merge-summaries and
+// identifier-preservation instructions).
 const compactionSummaryPrompt = `Summarize this conversation concisely for the AI agent to resume work.
 
 MUST PRESERVE:

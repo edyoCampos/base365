@@ -164,7 +164,7 @@ to authorize the app — the install handler writes the OAuth token into the
 				return fmt.Errorf("invalid --tenant-id: %w", err)
 			}
 			// Strip protocol + trailing slash from domain; Bitrix24 identifies
-			// the portal by bare host (e.g. `tamgiac.bitrix24.com`).
+			// the portal by bare host (e.g. `example.bitrix24.com`).
 			dom := normalizeBitrixDomain(domain)
 
 			dsn, err := resolveDSN()
@@ -225,7 +225,7 @@ to authorize the app — the install handler writes the OAuth token into the
 	}
 	cmd.Flags().StringVar(&tenantID, "tenant-id", "", "Tenant UUID this portal belongs to (required)")
 	cmd.Flags().StringVar(&name, "name", "", "Short portal name, referenced by channel_instance.config.portal (required)")
-	cmd.Flags().StringVar(&domain, "domain", "", "Bitrix24 portal host, e.g. tamgiac.bitrix24.com (required)")
+	cmd.Flags().StringVar(&domain, "domain", "", "Bitrix24 portal host, e.g. example.bitrix24.com (required)")
 	cmd.Flags().StringVar(&clientID, "client-id", "", "Bitrix24 application client_id / application_id (required)")
 	cmd.Flags().StringVar(&clientSecret, "client-secret", "", "Bitrix24 application client_secret / application key (required)")
 	return cmd
@@ -370,7 +370,7 @@ initial backfill.`,
 }
 
 // normalizeBitrixDomain strips scheme and trailing slashes so callers can paste
-// either `https://tamgiac.bitrix24.com/` or bare `tamgiac.bitrix24.com` and get
+// either `https://example.bitrix24.com/` or bare `example.bitrix24.com` and get
 // a consistent value in the DB. Bitrix24's OAuth callback compares the bare
 // host, so storing it with scheme would silently break the install flow.
 func normalizeBitrixDomain(raw string) string {

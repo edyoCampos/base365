@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** är en multi-agent AI-gateway som kopplar ihop LLM:er med dina verktyg, kanaler och data — driftsatt som en enda Go-binärfil utan externa körtidsberoenden. Den orkestrerar agentteam och inter-agent-delegering mellan 20+ LLM-leverantörer med full flertenantsisolering.
 
-En Go-port av [OpenClaw](https://github.com/openclaw/openclaw) med förbättrad säkerhet, flertenants PostgreSQL och observerbarhet för produktionsmiljö.
-
 🌐 **Språk:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ En Go-port av [OpenClaw](https://github.com/openclaw/openclaw) med förbättrad 
 
 ## Claw-ekosystemet
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Språk           | TypeScript      | Rust     | Go       | **Go**                                  |
-| Binärstorlek    | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (bas) / **~36 MB** (+ OTel) |
-| Docker-avbild   | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (vilande)   | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Uppstart        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Målhårdvara     | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Språk           | **Go**                                  |
+| Binärstorlek    | **~25 MB** (bas) / **~36 MB** (+ OTel) |
+| Docker-avbild   | **~50 MB** (Alpine)                     |
+| RAM (vilande)   | **~35 MB**                              |
+| Uppstart        | **< 1 s**                               |
+| Målhårdvara     | **$5 VPS+**                             |
 
-| Funktion                   | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Flertenants (PostgreSQL)   | —                                    | —                                            | —                                     | ✅                             |
-| MCP-integration            | — (använder ACP)                     | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Agentteam                  | —                                    | —                                            | —                                     | ✅ Uppgiftstavla + brevlåda    |
-| Säkerhetshärdning          | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing) | Grundläggande (workspace-begränsning, exec-neka) | ✅ 5-lagers försvar            |
-| OTel-observerbarhet        | ✅ (valfri tillägg)                  | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (valfri build-tag)     |
-| Prompt caching             | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Kunskapsgraf               | —                                    | —                                            | —                                     | ✅ LLM-extraktion + traversering |
-| Färdighetssystem           | ✅ Inbäddningar/semantisk            | ✅ SKILL.md + TOML                           | ✅ Grundläggande                      | ✅ BM25 + pgvector hybrid      |
-| Filbaserad schemaläggare   | ✅                                   | Begränsad samtidighet                        | —                                     | ✅ (main/subagent/team/cron)   |
-| Meddelandekanaler          | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Medföljande appar          | macOS, iOS, Android                  | Python SDK                                   | —                                     | Webbinstrumentpanel            |
-| Live Canvas / Röst         | ✅ (A2UI + TTS/STT)                  | —                                            | Rösttransskription                    | TTS (4 leverantörer)           |
-| LLM-leverantörer           | 10+                                  | 8 native + 29 compat                         | 13+                                   | **20+**                        |
-| Per-användararbetsytor     | ✅ (filbaserad)                      | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Krypterade hemligheter     | — (endast miljövariabler)            | ✅ ChaCha20-Poly1305                         | — (klartext-JSON)                     | ✅ AES-256-GCM i DB            |
+| Funktion                   | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Flertenants (PostgreSQL)   | ✅                             |
+| MCP-integration            | ✅ (stdio/SSE/streamable-http) |
+| Agentteam                  | ✅ Uppgiftstavla + brevlåda    |
+| Säkerhetshärdning          | ✅ 5-lagers försvar            |
+| OTel-observerbarhet        | ✅ OTLP (valfri build-tag)     |
+| Prompt caching             | ✅ Anthropic + OpenAI-compat   |
+| Kunskapsgraf               | ✅ LLM-extraktion + traversering |
+| Färdighetssystem           | ✅ BM25 + pgvector hybrid      |
+| Filbaserad schemaläggare   | ✅ (main/subagent/team/cron)   |
+| Meddelandekanaler          | 7+                             |
+| Medföljande appar          | Webbinstrumentpanel            |
+| Live Canvas / Röst         | TTS (4 leverantörer)           |
+| LLM-leverantörer           | **20+**                        |
+| Per-användararbetsytor     | ✅ (PostgreSQL)                |
+| Krypterade hemligheter     | ✅ AES-256-GCM i DB            |
 
 ## Arkitektur
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integrationstester (kräver k
 ## Projektstatus
 
 Se [CHANGELOG.md](CHANGELOG.md) för detaljerad funktionsstatus, inklusive vad som testats i produktion och vad som fortfarande pågår.
-
-## Erkännanden
-
-Base365 är byggt på det ursprungliga [OpenClaw](https://github.com/openclaw/openclaw)-projektet. Vi är tacksamma för den arkitektur och vision som inspirerade denna Go-port.
 
 ## Licens
 

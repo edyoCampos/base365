@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** คือ AI gateway แบบ multi-agent ที่เชื่อมต่อ LLM เข้ากับเครื่องมือ ช่องทางสื่อสาร และข้อมูลของคุณ — ติดตั้งเป็น Go binary ไฟล์เดียวโดยไม่มี runtime dependency ใดๆ รองรับการประสานงาน agent teams และการส่งต่องานระหว่าง agent ผ่านผู้ให้บริการ LLM มากกว่า 20 รายพร้อมการแยกข้อมูลแบบ multi-tenant อย่างสมบูรณ์
 
-เป็น Go port ของ [OpenClaw](https://github.com/openclaw/openclaw) ที่เสริมด้วยความปลอดภัยขั้นสูง, PostgreSQL แบบ multi-tenant และความสามารถด้าน observability ระดับ production
-
 🌐 **ภาษา:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -60,32 +58,32 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw Ecosystem
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| ภาษา            | TypeScript      | Rust     | Go       | **Go**                                  |
-| ขนาด binary     | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (base) / **~36 MB** (+ OTel) |
-| Docker image    | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (ขณะ idle)  | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| เวลาเริ่มทำงาน  | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| ฮาร์ดแวร์เป้าหมาย | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| ภาษา            | **Go**                                  |
+| ขนาด binary     | **~25 MB** (base) / **~36 MB** (+ OTel) |
+| Docker image    | **~50 MB** (Alpine)                     |
+| RAM (ขณะ idle)  | **~35 MB**                              |
+| เวลาเริ่มทำงาน  | **< 1 s**                               |
+| ฮาร์ดแวร์เป้าหมาย | **$5 VPS+**                             |
 
-| ฟีเจอร์                    | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Multi-tenant (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
-| การรวม MCP                 | — (ใช้ ACP)                          | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Agent teams                | —                                    | —                                            | —                                     | ✅ Task board + mailbox        |
-| การเสริมความปลอดภัย        | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing) | พื้นฐาน (workspace restrict, exec deny) | ✅ การป้องกัน 5 ชั้น          |
-| OTel observability         | ✅ (opt-in extension)                | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (opt-in build tag)     |
-| Prompt caching             | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Knowledge graph            | —                                    | —                                            | —                                     | ✅ LLM extraction + traversal  |
-| ระบบ skill                 | ✅ Embeddings/semantic               | ✅ SKILL.md + TOML                           | ✅ พื้นฐาน                            | ✅ BM25 + pgvector hybrid      |
-| Lane-based scheduler       | ✅                                   | Bounded concurrency                          | —                                     | ✅ (main/subagent/team/cron)   |
-| ช่องทางสื่อสาร             | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Companion apps             | macOS, iOS, Android                  | Python SDK                                   | —                                     | Web dashboard                  |
-| Live Canvas / เสียง        | ✅ (A2UI + TTS/STT)                  | —                                            | Voice transcription                   | TTS (4 ผู้ให้บริการ)           |
-| ผู้ให้บริการ LLM           | 10+                                  | 8 native + 29 compat                         | 13+                                   | **20+**                        |
-| workspace ต่อผู้ใช้        | ✅ (file-based)                      | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Encrypted secrets          | — (env vars เท่านั้น)               | ✅ ChaCha20-Poly1305                         | — (plaintext JSON)                    | ✅ AES-256-GCM ใน DB           |
+| ฟีเจอร์                    | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Multi-tenant (PostgreSQL)  | ✅                             |
+| การรวม MCP                 | ✅ (stdio/SSE/streamable-http) |
+| Agent teams                | ✅ Task board + mailbox        |
+| การเสริมความปลอดภัย        | ✅ การป้องกัน 5 ชั้น          |
+| OTel observability         | ✅ OTLP (opt-in build tag)     |
+| Prompt caching             | ✅ Anthropic + OpenAI-compat   |
+| Knowledge graph            | ✅ LLM extraction + traversal  |
+| ระบบ skill                 | ✅ BM25 + pgvector hybrid      |
+| Lane-based scheduler       | ✅ (main/subagent/team/cron)   |
+| ช่องทางสื่อสาร             | 7+                             |
+| Companion apps             | Web dashboard                  |
+| Live Canvas / เสียง        | TTS (4 ผู้ให้บริการ)           |
+| ผู้ให้บริการ LLM           | **20+**                        |
+| workspace ต่อผู้ใช้        | ✅ (PostgreSQL)                |
+| Encrypted secrets          | ✅ AES-256-GCM ใน DB           |
 
 ## สถาปัตยกรรม
 
@@ -218,10 +216,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integration tests (ต้อ�
 ## สถานะโครงการ
 
 ดู [CHANGELOG.md](CHANGELOG.md) สำหรับสถานะฟีเจอร์โดยละเอียด รวมถึงสิ่งที่ได้รับการทดสอบใน production แล้วและสิ่งที่ยังอยู่ระหว่างดำเนินการ
-
-## ขอบคุณ
-
-Base365 สร้างขึ้นจากโครงการ [OpenClaw](https://github.com/openclaw/openclaw) ต้นฉบับ เราขอขอบคุณสถาปัตยกรรมและวิสัยทัศน์ที่เป็นแรงบันดาลใจในการ port มาเป็น Go
 
 ## สัญญาอนุญาต
 

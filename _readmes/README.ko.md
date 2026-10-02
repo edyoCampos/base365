@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365**는 LLM을 도구, 채널, 데이터에 연결하는 멀티 에이전트 AI 게이트웨이입니다 — 런타임 의존성 없이 단일 Go 바이너리로 배포됩니다. 20개 이상의 LLM 공급자에서 완전한 멀티 테넌트 격리와 함께 에이전트 팀과 에이전트 간 위임을 조율합니다.
 
-향상된 보안, 멀티 테넌트 PostgreSQL, 프로덕션 수준의 관측 가능성을 갖춘 [OpenClaw](https://github.com/openclaw/openclaw)의 Go 포트입니다.
-
 🌐 **Languages:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -58,32 +56,32 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw 에코시스템
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| 언어            | TypeScript      | Rust     | Go       | **Go**                                  |
-| 바이너리 크기   | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (기본) / **~36 MB** (+ OTel) |
-| Docker 이미지   | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (유휴)      | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| 시작 시간       | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| 대상 하드웨어   | $599+ Mac Mini  | $10 엣지 | $10 엣지 | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| 언어            | **Go**                                  |
+| 바이너리 크기   | **~25 MB** (기본) / **~36 MB** (+ OTel) |
+| Docker 이미지   | **~50 MB** (Alpine)                     |
+| RAM (유휴)      | **~35 MB**                              |
+| 시작 시간       | **< 1 s**                               |
+| 대상 하드웨어   | **$5 VPS+**                             |
 
-| 기능                       | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| 멀티 테넌트 (PostgreSQL)   | —                                    | —                                            | —                                     | ✅                             |
-| MCP 통합                   | — (ACP 사용)                         | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| 에이전트 팀                | —                                    | —                                            | —                                     | ✅ 태스크 보드 + 메일박스      |
-| 보안 강화                  | ✅ (SSRF, 경로 순회, 인젝션)         | ✅ (샌드박스, 속도 제한, 인젝션, 페어링)     | 기본 (워크스페이스 제한, exec 차단)   | ✅ 5계층 방어                  |
-| OTel 관측 가능성           | ✅ (옵트인 확장)                     | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (옵트인 빌드 태그)     |
-| 프롬프트 캐싱              | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI 호환     |
-| 지식 그래프                | —                                    | —                                            | —                                     | ✅ LLM 추출 + 순회             |
-| 스킬 시스템                | ✅ 임베딩/시맨틱                     | ✅ SKILL.md + TOML                           | ✅ 기본                               | ✅ BM25 + pgvector 하이브리드  |
-| 레인 기반 스케줄러         | ✅                                   | 제한된 동시성                                | —                                     | ✅ (main/subagent/team/cron)   |
-| 메시징 채널                | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| 동반 앱                    | macOS, iOS, Android                  | Python SDK                                   | —                                     | 웹 대시보드                    |
-| 라이브 캔버스 / 음성       | ✅ (A2UI + TTS/STT)                  | —                                            | 음성 전사                             | TTS (4개 공급자)               |
-| LLM 공급자                 | 10+                                  | 8 네이티브 + 29 호환                         | 13+                                   | **20+**                        |
-| 사용자별 워크스페이스      | ✅ (파일 기반)                       | —                                            | —                                     | ✅ (PostgreSQL)                |
-| 암호화된 시크릿            | — (환경 변수만)                      | ✅ ChaCha20-Poly1305                         | — (평문 JSON)                         | ✅ DB의 AES-256-GCM            |
+| 기능                       | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| 멀티 테넌트 (PostgreSQL)   | ✅                             |
+| MCP 통합                   | ✅ (stdio/SSE/streamable-http) |
+| 에이전트 팀                | ✅ 태스크 보드 + 메일박스      |
+| 보안 강화                  | ✅ 5계층 방어                  |
+| OTel 관측 가능성           | ✅ OTLP (옵트인 빌드 태그)     |
+| 프롬프트 캐싱              | ✅ Anthropic + OpenAI 호환     |
+| 지식 그래프                | ✅ LLM 추출 + 순회             |
+| 스킬 시스템                | ✅ BM25 + pgvector 하이브리드  |
+| 레인 기반 스케줄러         | ✅ (main/subagent/team/cron)   |
+| 메시징 채널                | 7+                             |
+| 동반 앱                    | 웹 대시보드                    |
+| 라이브 캔버스 / 음성       | TTS (4개 공급자)               |
+| LLM 공급자                 | **20+**                        |
+| 사용자별 워크스페이스      | ✅ (PostgreSQL)                |
+| 암호화된 시크릿            | ✅ DB의 AES-256-GCM            |
 
 ## 아키텍처
 
@@ -216,10 +214,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integration tests (requires r
 ## 프로젝트 상태
 
 프로덕션에서 테스트된 내용과 진행 중인 내용을 포함한 상세 기능 상태는 [CHANGELOG.md](CHANGELOG.md)를 참조하세요.
-
-## 감사의 말
-
-Base365는 원본 [OpenClaw](https://github.com/openclaw/openclaw) 프로젝트를 기반으로 만들어졌습니다. 이 Go 포트에 영감을 준 아키텍처와 비전에 감사드립니다.
 
 ## 라이선스
 

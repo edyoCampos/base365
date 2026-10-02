@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** on moniagentin AI-yhdyskäytävä, joka yhdistää LLM:t työkaluihisi, kanaviin ja tietoihin — käytetään yksittäisenä Go-binäärinä ilman ajonaikaisriippuvuuksia. Se orkestroi agenttiryhmiä ja agenttien välistä delegointia yli 20 LLM-tarjoajan kautta täydellä monivuokraajan eristyksellä.
 
-Go-portti [OpenClaw](https://github.com/openclaw/openclaw)-projektista, jossa on parannettu turvallisuus, monivuokraaja-PostgreSQL ja tuotantotason observoitavuus.
-
 🌐 **Kielet:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Go-portti [OpenClaw](https://github.com/openclaw/openclaw)-projektista, jossa on
 
 ## Claw-ekosysteemi
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Kieli           | TypeScript      | Rust     | Go       | **Go**                                  |
-| Binäärikoko     | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (perus) / **~36 MB** (+ OTel) |
-| Docker-kuva     | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (jouten)    | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Käynnistys      | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Kohdealusta     | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Kieli           | **Go**                                  |
+| Binäärikoko     | **~25 MB** (perus) / **~36 MB** (+ OTel) |
+| Docker-kuva     | **~50 MB** (Alpine)                     |
+| RAM (jouten)    | **~35 MB**                              |
+| Käynnistys      | **< 1 s**                               |
+| Kohdealusta     | **$5 VPS+**                             |
 
-| Ominaisuus                 | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Monivuokraaja (PostgreSQL) | —                                    | —                                            | —                                     | ✅                             |
-| MCP-integraatio            | — (käyttää ACP:ta)                   | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Agenttiryhmät              | —                                    | —                                            | —                                     | ✅ Tehtävätaulu + postilaatikko |
-| Turvallisuuden kovennos    | ✅ (SSRF, polun läpikulku, injektio) | ✅ (hiekkalaatikko, nopeusrajoitus, injektio, parittaminen) | Perus (työtilan rajoitus, suorituksen esto) | ✅ 5-kerroksinen puolustus |
-| OTel-observoitavuus        | ✅ (valinnainen laajennus)           | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (valinnainen rakennustagi) |
-| Kehotteen välimuisti       | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Tietoverkko                | —                                    | —                                            | —                                     | ✅ LLM-poiminta + läpikulku    |
-| Taitojärjestelmä           | ✅ Upotukset/semanttinen             | ✅ SKILL.md + TOML                           | ✅ Perus                              | ✅ BM25 + pgvector hybriidi    |
-| Kaistapohjainen ajastin    | ✅                                   | Rajoitettu samanaikaisuus                    | —                                     | ✅ (main/subagent/team/cron)   |
-| Viestintäkanavat           | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Kumppanisovellukset        | macOS, iOS, Android                  | Python SDK                                   | —                                     | Web-koontinäyttö               |
-| Live Canvas / Ääni         | ✅ (A2UI + TTS/STT)                  | —                                            | Äänen transkriptio                    | TTS (4 tarjoajaa)              |
-| LLM-tarjoajat              | 10+                                  | 8 natiivi + 29 yhteensopiva                  | 13+                                   | **20+**                        |
-| Käyttäjäkohtaiset työtilat | ✅ (tiedostopohjainen)               | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Salatut salaisuudet        | — (vain ympäristömuuttujat)          | ✅ ChaCha20-Poly1305                         | — (pelkkä teksti JSON)                | ✅ AES-256-GCM tietokannassa   |
+| Ominaisuus                 | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Monivuokraaja (PostgreSQL) | ✅                             |
+| MCP-integraatio            | ✅ (stdio/SSE/streamable-http) |
+| Agenttiryhmät              | ✅ Tehtävätaulu + postilaatikko |
+| Turvallisuuden kovennos    | ✅ 5-kerroksinen puolustus |
+| OTel-observoitavuus        | ✅ OTLP (valinnainen rakennustagi) |
+| Kehotteen välimuisti       | ✅ Anthropic + OpenAI-compat   |
+| Tietoverkko                | ✅ LLM-poiminta + läpikulku    |
+| Taitojärjestelmä           | ✅ BM25 + pgvector hybriidi    |
+| Kaistapohjainen ajastin    | ✅ (main/subagent/team/cron)   |
+| Viestintäkanavat           | 7+                             |
+| Kumppanisovellukset        | Web-koontinäyttö               |
+| Live Canvas / Ääni         | TTS (4 tarjoajaa)              |
+| LLM-tarjoajat              | **20+**                        |
+| Käyttäjäkohtaiset työtilat | ✅ (PostgreSQL)                |
+| Salatut salaisuudet        | ✅ AES-256-GCM tietokannassa   |
 
 ## Arkkitehtuuri
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integraatiotestit (vaatii kä
 ## Projektin tila
 
 Katso [CHANGELOG.md](CHANGELOG.md) yksityiskohtainen ominaisuuksien tila, mukaan lukien mitä on testattu tuotannossa ja mitä on vielä kesken.
-
-## Tunnustukset
-
-Base365 on rakennettu alkuperäisen [OpenClaw](https://github.com/openclaw/openclaw)-projektin pohjalta. Olemme kiitollisia arkkitehtuurista ja visiosta, joka inspiroi tätä Go-porttia.
 
 ## Lisenssi
 

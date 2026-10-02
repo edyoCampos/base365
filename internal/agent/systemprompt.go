@@ -100,7 +100,7 @@ type SystemPromptConfig struct {
 	Channel     string // runtime channel instance name (e.g. "my-telegram-bot")
 	ChannelType string // platform type (e.g. "zalo_personal", "telegram")
 	// BitrixPortalDomain — bitrix24 channel only. The portal domain (e.g.
-	// "tamgiac.bitrix24.com") looked up from the channel runtime/DB. Used by
+	// "example.bitrix24.com") looked up from the channel runtime/DB. Used by
 	// buildBitrix24EntityLinkSection to teach the LLM the correct domain for
 	// entity links (tasks, deals, contacts). Empty for non-bitrix24 channels.
 	BitrixPortalDomain string

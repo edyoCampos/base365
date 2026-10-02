@@ -543,7 +543,7 @@ func TestBuildAddressMention(t *testing.T) {
 			// Synthetic openline per-participant id is not a real Bitrix user —
 			// emitting [USER=openlines:...] would render as literal garbage.
 			name:  "synthetic_openline_id_suppressed",
-			meta:  map[string]string{"bitrix_address_user_id": "openlines:tamgiac:chat4878:111222"},
+			meta:  map[string]string{"bitrix_address_user_id": "openlines:example:chat4878:111222"},
 			botID: 940,
 			want:  "",
 		},

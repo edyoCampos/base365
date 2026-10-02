@@ -269,9 +269,9 @@ fi
 The canonical source of this script lives in the repo at [`scripts/zuey/base365-deploy.sh`](../scripts/zuey/base365-deploy.sh), alongside [`scripts/zuey/base365-upgrade-release.sh`](../scripts/zuey/base365-upgrade-release.sh). The VPS copies at `/usr/local/bin/base365-deploy` and `/usr/local/bin/base365-upgrade-release` are downstream replicas. CI auto-syncs both on every beta release via the `Sync zuey ops scripts to VPS` step in `.github/workflows/dev-beta-release.yaml`. For manual sync (off-CI):
 
 ```bash
-scp -P 2233 scripts/zuey/base365-deploy.sh scripts/zuey/base365-upgrade-release.sh \
-  zuey@82.197.71.246:/tmp/
-ssh -p 2233 zuey@82.197.71.246 'bash -s' <<'EOF'
+scp -P <SSH_PORT> scripts/zuey/base365-deploy.sh scripts/zuey/base365-upgrade-release.sh \
+  zuey@<VPS_HOST>:/tmp/
+ssh -p <SSH_PORT> zuey@<VPS_HOST> 'bash -s' <<'EOF'
 set -euo pipefail
 ts=$(date +%Y%m%d-%H%M%S)
 for name in base365-deploy base365-upgrade-release; do
@@ -292,15 +292,15 @@ The `Sync zuey ops scripts to VPS` step in `dev-beta-release.yaml` runs `scp + s
 
 | Secret | Purpose |
 |---|---|
-| `ZUEY_SSH_PRIVATE_KEY_B64` | CI-only ed25519/rsa key, **base64-encoded as a single line** (`base64 -w0 < /path/to/key`). Its public key must be appended to `zuey@82.197.71.246:~/.ssh/authorized_keys`. **Do not reuse the operator's personal key.** Base64 avoids the `error in libcrypto` failure caused by GitHub Secrets normalizing newlines inside multi-line PEM blocks. |
+| `ZUEY_SSH_PRIVATE_KEY_B64` | CI-only ed25519/rsa key, **base64-encoded as a single line** (`base64 -w0 < /path/to/key`). Its public key must be appended to `zuey@<VPS_HOST>:~/.ssh/authorized_keys`. **Do not reuse the operator's personal key.** Base64 avoids the `error in libcrypto` failure caused by GitHub Secrets normalizing newlines inside multi-line PEM blocks. |
 | `ZUEY_SUDO_PASS` | Same value as `ZUEY_BASE365_SUDO_PASS` in the operator's local `.env`; used by `sudo -S` over the SSH session to install scripts. |
 
 Optional repository **variables** (override defaults if the VPS endpoint changes):
 
 | Variable | Default |
 |---|---|
-| `ZUEY_SSH_HOST` | `82.197.71.246` |
-| `ZUEY_SSH_PORT` | `2233` |
+| `ZUEY_SSH_HOST` | `<VPS_HOST>` |
+| `ZUEY_SSH_PORT` | `<SSH_PORT>` |
 | `ZUEY_SSH_USER` | `zuey` |
 
 To rotate the CI SSH key:

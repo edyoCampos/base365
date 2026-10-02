@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 A **Base365** egy többügynökös AI átjáró, amely összeköti az LLM-eket az eszközeiddel, csatornáiddal és adataiddal — egyetlen Go binárisként telepítve, futásidejű függőségek nélkül. Ügynökcsapatokat és ügynökök közötti delegálást vezényel több mint 20 LLM-szolgáltatón keresztül, teljes többbérlős izolációval.
 
-Az [OpenClaw](https://github.com/openclaw/openclaw) Go portja, fokozott biztonsággal, többbérlős PostgreSQL-lel és éles környezetre alkalmas megfigyelhetőséggel.
-
 🌐 **Nyelvek:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -80,32 +78,32 @@ Az [OpenClaw](https://github.com/openclaw/openclaw) Go portja, fokozott biztons�
 
 ## Claw Ökoszisztéma
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Nyelv           | TypeScript      | Rust     | Go       | **Go**                                  |
-| Bináris méret   | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (alap) / **~36 MB** (+ OTel) |
-| Docker image    | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (tétlen)    | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Indulás         | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Célhardver      | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Nyelv           | **Go**                                  |
+| Bináris méret   | **~25 MB** (alap) / **~36 MB** (+ OTel) |
+| Docker image    | **~50 MB** (Alpine)                     |
+| RAM (tétlen)    | **~35 MB**                              |
+| Indulás         | **< 1 s**                               |
+| Célhardver      | **$5 VPS+**                             |
 
-| Funkció                    | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Többbérlős (PostgreSQL)    | —                                    | —                                            | —                                     | ✅                             |
-| MCP integráció             | — (ACP-t használ)                   | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Ügynökcsapatok             | —                                    | —                                            | —                                     | ✅ Feladattábla + postaláda    |
-| Biztonsági megerősítés     | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing) | Alapszintű (workspace korlát, exec tiltás) | ✅ 5 rétegű védelem        |
-| OTel megfigyelhetőség      | ✅ (opt-in bővítmény)               | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (opt-in build tag)     |
-| Prompt gyorsítótárazás     | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Tudásgráf                  | —                                    | —                                            | —                                     | ✅ LLM kinyerés + bejárás      |
-| Skill rendszer             | ✅ Embeddings/szemantikus            | ✅ SKILL.md + TOML                           | ✅ Alapszintű                         | ✅ BM25 + pgvector hibrid      |
-| Sáv alapú ütemező          | ✅                                   | Korlátozott párhuzamosság                    | —                                     | ✅ (main/subagent/team/cron)   |
-| Üzenetküldő csatornák      | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Kísérő alkalmazások        | macOS, iOS, Android                  | Python SDK                                   | —                                     | Webes irányítópult              |
-| Live Canvas / Hang         | ✅ (A2UI + TTS/STT)                  | —                                            | Hangtranszkripció                     | TTS (4 szolgáltató)            |
-| LLM-szolgáltatók           | 10+                                  | 8 natív + 29 kompatibilis                    | 13+                                   | **20+**                        |
-| Felhasználónkénti munkaterület | ✅ (fájl alapú)                  | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Titkosított titkok         | — (csak env változók)               | ✅ ChaCha20-Poly1305                         | — (plaintext JSON)                    | ✅ AES-256-GCM az adatbázisban |
+| Funkció                    | **Base365**                     |
+| -------------------------- | ------------------------------ |
+| Többbérlős (PostgreSQL)    | ✅                             |
+| MCP integráció             | ✅ (stdio/SSE/streamable-http) |
+| Ügynökcsapatok             | ✅ Feladattábla + postaláda    |
+| Biztonsági megerősítés     | ✅ 5 rétegű védelem        |
+| OTel megfigyelhetőség      | ✅ OTLP (opt-in build tag)     |
+| Prompt gyorsítótárazás     | ✅ Anthropic + OpenAI-compat   |
+| Tudásgráf                  | ✅ LLM kinyerés + bejárás      |
+| Skill rendszer             | ✅ BM25 + pgvector hibrid      |
+| Sáv alapú ütemező          | ✅ (main/subagent/team/cron)   |
+| Üzenetküldő csatornák      | 7+                             |
+| Kísérő alkalmazások        | Webes irányítópult              |
+| Live Canvas / Hang         | TTS (4 szolgáltató)            |
+| LLM-szolgáltatók           | **20+**                        |
+| Felhasználónkénti munkaterület | ✅ (PostgreSQL)                |
+| Titkosított titkok         | ✅ AES-256-GCM az adatbázisban |
 
 ## Architektúra
 
@@ -238,10 +236,6 @@ go test -v ./tests/integration/ -timeout 120s    # Integrációs tesztek (futó 
 ## Projekt állapota
 
 Részletes funkció-állapotért, beleértve azt, hogy mi lett tesztelve éles környezetben és mi van még folyamatban, lásd a [CHANGELOG.md](CHANGELOG.md) fájlt.
-
-## Köszönetnyilvánítás
-
-A Base365 az eredeti [OpenClaw](https://github.com/openclaw/openclaw) projektre épül. Hálásak vagyunk az architektúráért és a vízióért, amely ezt a Go portot ihlette.
 
 ## Licenc
 

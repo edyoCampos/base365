@@ -30,8 +30,6 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 **Base365** es una pasarela de agentes de IA multi-agente que conecta LLMs a tus herramientas, canales y datos — desplegada como un único binario Go sin dependencias de tiempo de ejecución. Orquesta equipos de agentes y delegación inter-agente entre más de 20 proveedores de LLM con total aislamiento multi-tenant.
 
-Un port en Go de [OpenClaw](https://github.com/openclaw/openclaw) con seguridad mejorada, PostgreSQL multi-tenant y observabilidad de nivel productivo.
-
 🌐 **Idiomas:**
 [🇺🇸 English](../README.md) ·
 [🇨🇳 简体中文](README.zh-CN.md) ·
@@ -58,32 +56,32 @@ Un port en Go de [OpenClaw](https://github.com/openclaw/openclaw) con seguridad 
 
 ## Ecosistema Claw
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
-| --------------- | --------------- | -------- | -------- | --------------------------------------- |
-| Lenguaje        | TypeScript      | Rust     | Go       | **Go**                                  |
-| Tamaño binario  | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (base) / **~36 MB** (+ OTel) |
-| Imagen Docker   | —               | —        | —        | **~50 MB** (Alpine)                     |
-| RAM (inactivo)  | > 1 GB          | < 5 MB   | < 10 MB  | **~35 MB**                              |
-| Inicio          | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
-| Hardware objetivo | $599+ Mac Mini | $10 edge | $10 edge | **$5 VPS+**                             |
+|                 | **Base365**                              |
+| --------------- | --------------------------------------- |
+| Lenguaje        | **Go**                                  |
+| Tamaño binario  | **~25 MB** (base) / **~36 MB** (+ OTel) |
+| Imagen Docker   | **~50 MB** (Alpine)                     |
+| RAM (inactivo)  | **~35 MB**                              |
+| Inicio          | **< 1 s**                               |
+| Hardware objetivo | **$5 VPS+**                             |
 
-| Característica                  | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
-| ------------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
-| Multi-tenant (PostgreSQL)       | —                                    | —                                            | —                                     | ✅                             |
-| Integración MCP                 | — (usa ACP)                          | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
-| Equipos de agentes              | —                                    | —                                            | —                                     | ✅ Tablero de tareas + buzón   |
-| Seguridad reforzada             | ✅ (SSRF, path traversal, injection) | ✅ (sandbox, rate limit, injection, pairing) | Básica (workspace restrict, exec deny) | ✅ Defensa de 5 capas          |
-| Observabilidad OTel             | ✅ (extensión opt-in)                | ✅ (Prometheus + OTLP)                       | —                                     | ✅ OTLP (build tag opt-in)     |
-| Caché de prompts                | —                                    | —                                            | —                                     | ✅ Anthropic + OpenAI-compat   |
-| Grafo de conocimiento           | —                                    | —                                            | —                                     | ✅ Extracción LLM + traversal  |
-| Sistema de habilidades          | ✅ Embeddings/semántico              | ✅ SKILL.md + TOML                           | ✅ Básico                             | ✅ BM25 + pgvector híbrido     |
-| Programador por carriles        | ✅                                   | Concurrencia acotada                         | —                                     | ✅ (main/subagent/team/cron)   |
-| Canales de mensajería           | 37+                                  | 15+                                          | 10+                                   | 7+                             |
-| Aplicaciones complementarias   | macOS, iOS, Android                  | Python SDK                                   | —                                     | Panel web                      |
-| Live Canvas / Voz               | ✅ (A2UI + TTS/STT)                  | —                                            | Transcripción de voz                  | TTS (4 proveedores)            |
-| Proveedores LLM                 | 10+                                  | 8 nativo + 29 compat                         | 13+                                   | **20+**                        |
-| Espacios de trabajo por usuario | ✅ (basado en archivos)              | —                                            | —                                     | ✅ (PostgreSQL)                |
-| Secretos cifrados               | — (solo vars de entorno)             | ✅ ChaCha20-Poly1305                         | — (JSON en texto plano)               | ✅ AES-256-GCM en BD           |
+| Característica                  | **Base365**                     |
+| ------------------------------- | ------------------------------ |
+| Multi-tenant (PostgreSQL)       | ✅                             |
+| Integración MCP                 | ✅ (stdio/SSE/streamable-http) |
+| Equipos de agentes              | ✅ Tablero de tareas + buzón   |
+| Seguridad reforzada             | ✅ Defensa de 5 capas          |
+| Observabilidad OTel             | ✅ OTLP (build tag opt-in)     |
+| Caché de prompts                | ✅ Anthropic + OpenAI-compat   |
+| Grafo de conocimiento           | ✅ Extracción LLM + traversal  |
+| Sistema de habilidades          | ✅ BM25 + pgvector híbrido     |
+| Programador por carriles        | ✅ (main/subagent/team/cron)   |
+| Canales de mensajería           | 7+                             |
+| Aplicaciones complementarias   | Panel web                      |
+| Live Canvas / Voz               | TTS (4 proveedores)            |
+| Proveedores LLM                 | **20+**                        |
+| Espacios de trabajo por usuario | ✅ (PostgreSQL)                |
+| Secretos cifrados               | ✅ AES-256-GCM en BD           |
 
 ## Arquitectura
 
@@ -216,10 +214,6 @@ go test -v ./tests/integration/ -timeout 120s    # Pruebas de integración (requ
 ## Estado del Proyecto
 
 Consulta [CHANGELOG.md](CHANGELOG.md) para el estado detallado de las características, incluyendo qué se ha probado en producción y qué está aún en progreso.
-
-## Agradecimientos
-
-Base365 está construido sobre el proyecto original [OpenClaw](https://github.com/openclaw/openclaw). Agradecemos la arquitectura y visión que inspiró este port en Go.
 
 ## Licencia
 
