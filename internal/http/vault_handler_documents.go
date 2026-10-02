@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/vault"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/vault"
 )
 
 // writeDocumentContent writes the given content bytes to a tenant-workspace-

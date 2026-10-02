@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 // TestFactory_ValidCredsProducesChannel verifies Factory constructs a live

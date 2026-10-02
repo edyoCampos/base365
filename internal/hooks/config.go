@@ -6,7 +6,7 @@ import (
 	"github.com/dop251/goja"
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
+	"github.com/edyoCampos/base365/internal/edition"
 )
 
 // Defaults and limits for HookConfig fields. Exported so the UI layer can
@@ -28,13 +28,13 @@ const (
 // Extending the hook system requires adding the new event both here and in
 // types.go's const block.
 var knownEvents = map[HookEvent]struct{}{
-	EventSessionStart:     {},
-	EventUserPromptSubmit: {},
-	EventPreToolUse:       {},
-	EventPostToolUse:      {},
-	EventStop:             {},
-	EventSubagentStart:    {},
-	EventSubagentStop:     {},
+	EventSessionStart:      {},
+	EventUserPromptSubmit:  {},
+	EventPreToolUse:        {},
+	EventPostToolUse:       {},
+	EventStop:              {},
+	EventSubagentStart:     {},
+	EventSubagentStop:      {},
 	EventPostModelResponse: {},
 }
 

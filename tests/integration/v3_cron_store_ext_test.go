@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // TestStoreCron_RemoveJob verifies that RemoveJob deletes the row and is tenant-scoped.

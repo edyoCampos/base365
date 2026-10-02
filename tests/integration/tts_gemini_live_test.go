@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/gemini"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/gemini"
 )
 
 // TestGeminiLive_UpstreamContract verifies that the Gemini provider maintains

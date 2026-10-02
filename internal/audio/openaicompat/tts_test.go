@@ -11,8 +11,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/openaicompat"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/openaicompat"
 )
 
 // piperVoice is a real Piper voice ID. It is deliberately used throughout:

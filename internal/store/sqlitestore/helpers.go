@@ -11,8 +11,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/base"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/base"
 )
 
 // --- Nullable helpers (delegated to base/) ---
@@ -127,4 +127,3 @@ func requireTenantID(ctx context.Context) (uuid.UUID, error) {
 	}
 	return tid, nil
 }
-

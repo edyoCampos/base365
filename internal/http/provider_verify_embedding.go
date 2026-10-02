@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/memory"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/memory"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // handleVerifyEmbedding tests a provider's embedding capability with a minimal API call.

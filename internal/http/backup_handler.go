@@ -9,12 +9,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/backup"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/backup"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // backupInProgress prevents concurrent backup/restore operations.
@@ -23,10 +23,10 @@ var backupInProgress atomic.Bool
 // BackupHandler handles system backup endpoints.
 // All routes require admin role; download/preflight routes further require owner.
 type BackupHandler struct {
-	cfg      *config.Config
-	dsn      string
-	version  string
-	isOwner  func(string) bool
+	cfg     *config.Config
+	dsn     string
+	version string
+	isOwner func(string) bool
 }
 
 // NewBackupHandler creates a handler for system backup endpoints.
@@ -110,7 +110,7 @@ func (h *BackupHandler) handleBackup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpFile, err := os.CreateTemp("", "goclaw-backup-*.tar.gz")
+	tmpFile, err := os.CreateTemp("", "base365-backup-*.tar.gz")
 	if err != nil {
 		sendSSE(w, flusher, "error", ProgressEvent{Phase: "init", Status: "error", Detail: "failed to create temp file"})
 		return
@@ -122,14 +122,14 @@ func (h *BackupHandler) handleBackup(w http.ResponseWriter, r *http.Request) {
 	fileName := fmt.Sprintf("backup-%s.tar.gz", ts)
 
 	opts := backup.Options{
-		DSN:           h.dsn,
-		DataDir:       h.cfg.ResolvedDataDir(),
-		WorkspacePath: h.cfg.WorkspacePath(),
-		OutputPath:    tmpPath,
-		CreatedBy:     userID,
-		GoclawVersion: h.version,
-		ExcludeDB:     req.ExcludeDB,
-		ExcludeFiles:  req.ExcludeFiles,
+		DSN:            h.dsn,
+		DataDir:        h.cfg.ResolvedDataDir(),
+		WorkspacePath:  h.cfg.WorkspacePath(),
+		OutputPath:     tmpPath,
+		CreatedBy:      userID,
+		Base365Version: h.version,
+		ExcludeDB:      req.ExcludeDB,
+		ExcludeFiles:   req.ExcludeFiles,
 		ProgressFn: func(phase, detail string) {
 			sendSSE(w, flusher, "progress", ProgressEvent{Phase: phase, Status: "running", Detail: detail})
 		},

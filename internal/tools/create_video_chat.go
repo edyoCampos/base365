@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // callChatVideoGen tries OpenAI-compatible chat completions with video modality.

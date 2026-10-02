@@ -421,10 +421,10 @@ func TestParseEvent_NilRequest(t *testing.T) {
 // tamgiac.bitrix24.com (see plans/.../reports/event-payloads/05 + 07).
 func TestParseEvent_Form_ChatEntity(t *testing.T) {
 	cases := []struct {
-		name           string
-		entityType     string
-		entityID       string
-		messageType    string
+		name        string
+		entityType  string
+		entityID    string
+		messageType string
 	}{
 		{name: "crm_deal", entityType: "CRM", entityID: "DEAL|2064", messageType: "C"},
 		{name: "crm_lead", entityType: "CRM", entityID: "LEAD|7", messageType: "C"},

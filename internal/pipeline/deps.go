@@ -4,13 +4,13 @@ import (
 	"context"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/tokencount"
-	"github.com/nextlevelbuilder/goclaw/internal/workspace"
+	"github.com/edyoCampos/base365/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/hooks"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/tokencount"
+	"github.com/edyoCampos/base365/internal/workspace"
 )
 
 // PruneStats holds counts from a single pruneContextMessages invocation.

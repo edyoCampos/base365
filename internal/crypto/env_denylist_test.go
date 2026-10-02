@@ -3,7 +3,7 @@ package crypto
 import "testing"
 
 func TestIsDeniedEnvKey_ProductPrefix(t *testing.T) {
-	for _, k := range []string{"GOCLAW_X", "GOCLAW_GATEWAY_TOKEN", "goclaw_encryption_key"} {
+	for _, k := range []string{"BASE365_X", "BASE365_GATEWAY_TOKEN", "base365_encryption_key"} {
 		if !IsDeniedEnvKey(k) {
 			t.Errorf("%q must be denied (product env prefix)", k)
 		}
@@ -14,8 +14,8 @@ func TestIsDeniedEnvKey_ProductPrefix(t *testing.T) {
 }
 
 func TestValidateGrantEnvVars_RejectsProductPrefix(t *testing.T) {
-	rejected, _ := ValidateGrantEnvVars(map[string]string{"GOCLAW_ENCRYPTION_KEY": "x", "OK_KEY": "y"})
-	if len(rejected) != 1 || rejected[0] != "GOCLAW_ENCRYPTION_KEY" {
-		t.Fatalf("expected only GOCLAW_ENCRYPTION_KEY rejected, got %v", rejected)
+	rejected, _ := ValidateGrantEnvVars(map[string]string{"BASE365_ENCRYPTION_KEY": "x", "OK_KEY": "y"})
+	if len(rejected) != 1 || rejected[0] != "BASE365_ENCRYPTION_KEY" {
+		t.Fatalf("expected only BASE365_ENCRYPTION_KEY rejected, got %v", rejected)
 	}
 }

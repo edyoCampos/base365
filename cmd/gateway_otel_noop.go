@@ -5,8 +5,8 @@ package cmd
 import (
 	"context"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/tracing"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/tracing"
 )
 
 // initOTelExporter is a no-op when built without the "otel" tag.

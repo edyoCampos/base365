@@ -10,8 +10,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // mockTeamStoreLead serves ListTeams and nothing else; the embedded interface is

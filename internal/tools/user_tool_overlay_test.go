@@ -10,14 +10,14 @@ import (
 	"context"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // overlayFakeTool is a minimal Tool standing in for a per-user MCP BridgeTool.
 type overlayFakeTool struct{ name string }
 
-func (f *overlayFakeTool) Name() string              { return f.name }
+func (f *overlayFakeTool) Name() string               { return f.name }
 func (f *overlayFakeTool) Description() string        { return "fake " + f.name }
 func (f *overlayFakeTool) Parameters() map[string]any { return map[string]any{"type": "object"} }
 func (f *overlayFakeTool) Execute(context.Context, map[string]any) *Result {

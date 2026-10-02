@@ -11,14 +11,14 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/safego"
-	"github.com/nextlevelbuilder/goclaw/internal/scheduler"
-	"github.com/nextlevelbuilder/goclaw/internal/sessions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/safego"
+	"github.com/edyoCampos/base365/internal/scheduler"
+	"github.com/edyoCampos/base365/internal/sessions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // handleSubagentAnnounce processes subagent announce messages: bypass debounce,
@@ -264,18 +264,18 @@ func handleTeammateMessage(
 	schedCtx := tools.WithTaskActionFlags(ctx, taskActionFlags)
 
 	outCh := deps.Sched.Schedule(schedCtx, scheduler.LaneTeam, agent.RunRequest{
-		SessionKey:      sessionKey,
-		Message:         msg.Content,
-		Channel:         origChannel,
-		ChannelType:     origChannelType,
-		ChatID:          origChatID,
-		ChatTitle:       resolveGroupDisplayTitle(schedCtx, deps.ChannelMgr, origChannel, origChatID, origPeerKind, ""),
-		PeerKind:        origPeerKind,
-		LocalKey:        origLocalKey,
-		UserID:          announceUserID,
-		SenderID:        teammateSenderID, // real user who triggered the teammate dispatch (#915)
-		Role:            teammateRole,     // RBAC role for admin bypass during teammate turn (#915)
-		RunID:           fmt.Sprintf("teammate-%s-%s", msg.Metadata[tools.MetaFromAgent], msg.Metadata[tools.MetaToAgent]),
+		SessionKey:  sessionKey,
+		Message:     msg.Content,
+		Channel:     origChannel,
+		ChannelType: origChannelType,
+		ChatID:      origChatID,
+		ChatTitle:   resolveGroupDisplayTitle(schedCtx, deps.ChannelMgr, origChannel, origChatID, origPeerKind, ""),
+		PeerKind:    origPeerKind,
+		LocalKey:    origLocalKey,
+		UserID:      announceUserID,
+		SenderID:    teammateSenderID, // real user who triggered the teammate dispatch (#915)
+		Role:        teammateRole,     // RBAC role for admin bypass during teammate turn (#915)
+		RunID:       fmt.Sprintf("teammate-%s-%s", msg.Metadata[tools.MetaFromAgent], msg.Metadata[tools.MetaToAgent]),
 		// Streamed for connection liveness, not for delivery. A teammate run is
 		// never registered with the channel manager, so HandleAgentEvent drops its
 		// chunks on the first line and nothing is delivered incrementally; the task

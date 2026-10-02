@@ -4,14 +4,14 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/memory"
-	"github.com/nextlevelbuilder/goclaw/internal/pipeline"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tokencount"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/memory"
+	"github.com/edyoCampos/base365/internal/pipeline"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tokencount"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // runViaPipeline delegates a run to the v3 pipeline.

@@ -3,11 +3,11 @@ package methods
 import (
 	"context"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/internal/tools"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // Response shape matches TS AgentConfig (ui/web/src/types/agent.ts).
@@ -22,13 +22,13 @@ type configDefaultsAgents struct {
 }
 
 type pruningDefaultsJSON struct {
-	KeepLastAssistants   int                   `json:"keepLastAssistants"`
-	SoftTrimRatio        float64               `json:"softTrimRatio"`
-	HardClearRatio       float64               `json:"hardClearRatio"`
-	MinPrunableToolChars int                   `json:"minPrunableToolChars"`
-	TTL                  string                `json:"ttl"`
-	SoftTrim             pruningSoftTrimJSON   `json:"softTrim"`
-	HardClear            pruningHardClearJSON  `json:"hardClear"`
+	KeepLastAssistants   int                  `json:"keepLastAssistants"`
+	SoftTrimRatio        float64              `json:"softTrimRatio"`
+	HardClearRatio       float64              `json:"hardClearRatio"`
+	MinPrunableToolChars int                  `json:"minPrunableToolChars"`
+	TTL                  string               `json:"ttl"`
+	SoftTrim             pruningSoftTrimJSON  `json:"softTrim"`
+	HardClear            pruningHardClearJSON `json:"hardClear"`
 }
 
 type pruningSoftTrimJSON struct {

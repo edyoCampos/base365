@@ -14,12 +14,12 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/workstation"
+	"github.com/edyoCampos/base365/pkg/protocol"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/workstation"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
 )
 
 // PermCheckFn is the signature for workstation permission checks.

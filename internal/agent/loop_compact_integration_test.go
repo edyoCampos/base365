@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/tokencount"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/tokencount"
 )
 
 // buildVietnameseMsgs constructs n alternating user/assistant messages with

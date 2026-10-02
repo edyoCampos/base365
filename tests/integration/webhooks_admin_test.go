@@ -9,9 +9,9 @@ import (
 	"encoding/hex"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
 )
 
 // seedWebhook creates a webhook in the database and returns its ID + raw secret.

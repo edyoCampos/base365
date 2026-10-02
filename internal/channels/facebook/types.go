@@ -1,4 +1,4 @@
-// Package facebook implements the Facebook Fanpage channel for GoClaw.
+// Package facebook implements the Facebook Fanpage channel for Base365.
 // Supports: comment auto-reply, Messenger inbox auto-reply, first inbox DM.
 package facebook
 

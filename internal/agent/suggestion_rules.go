@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // Minimum data points required before a rule triggers.

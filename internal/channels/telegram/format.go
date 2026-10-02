@@ -63,7 +63,6 @@ func markdownToTelegramHTML(text string) string {
 	inlineCodes := extractInlineCodes(text)
 	text = inlineCodes.text
 
-
 	// Extract and protect bare URLs from italic parsing.
 	// URLs with underscores (e.g. syngas_dailymail_2026_ai) get broken by
 	// the italic regex which matches _text_ patterns inside URLs.

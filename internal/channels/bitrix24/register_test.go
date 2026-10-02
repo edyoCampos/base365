@@ -192,8 +192,8 @@ func TestAtoiSafe(t *testing.T) {
 		{"  ", 0},
 		{"42", 42},
 		{"  42  ", 42},
-		{"-5", 0},        // negative rejected
-		{"12a", 0},       // non-digit rejected
+		{"-5", 0},  // negative rejected
+		{"12a", 0}, // non-digit rejected
 		{"9999999", 9999999},
 	}
 	for _, tc := range cases {

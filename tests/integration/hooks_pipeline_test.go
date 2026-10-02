@@ -10,11 +10,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
-	hookhandlers "github.com/nextlevelbuilder/goclaw/internal/hooks/handlers"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/edition"
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/hooks"
+	hookhandlers "github.com/edyoCampos/base365/internal/hooks/handlers"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // newDispatcher wires a StdDispatcher with the supplied handler map over a

@@ -11,17 +11,17 @@
 # Dashboard via nginx: http://localhost:3000
 
 services:
-  goclaw-ui:
-    image: ghcr.io/nextlevelbuilder/goclaw-web:latest
+  base365-ui:
+    image: ghcr.io/edyocampos/base365-web:latest
     build:
-      context: ${GOCLAW_DIR:-.}/ui/web
+      context: ${BASE365_DIR:-.}/ui/web
       dockerfile: Dockerfile
     ports:
-      - "${GOCLAW_UI_PORT:-3000}:80"
+      - "${BASE365_UI_PORT:-3000}:80"
     networks:
       - default
-      - goclaw-net
+      - base365-net
     depends_on:
-      - goclaw
+      - base365
     restart: unless-stopped
     stop_signal: SIGTERM

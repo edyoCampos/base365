@@ -9,9 +9,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // EvolutionHandler serves evolution metrics and suggestion endpoints.

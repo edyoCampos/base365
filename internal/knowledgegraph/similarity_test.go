@@ -261,28 +261,28 @@ func TestJaroWinkler_ThresholdBoundaries(t *testing.T) {
 	// dedupCandidateThreshold = 0.90
 	// dedupAutoMergeThreshold = 0.98
 	tests := []struct {
-		name        string
-		a           string
-		b           string
+		name          string
+		a             string
+		b             string
 		nearThreshold float64 // the threshold to be near
 	}{
 		{
-			name:           "names above 0.85 threshold",
-			a:              "Jonathan",
-			b:              "Jonathan",
-			nearThreshold:  0.85,
+			name:          "names above 0.85 threshold",
+			a:             "Jonathan",
+			b:             "Jonathan",
+			nearThreshold: 0.85,
 		},
 		{
-			name:           "similar names around 0.85",
-			a:              "Robert",
-			b:              "Rupert",
-			nearThreshold:  0.85,
+			name:          "similar names around 0.85",
+			a:             "Robert",
+			b:             "Rupert",
+			nearThreshold: 0.85,
 		},
 		{
-			name:           "identical near 0.98",
-			a:              "Company",
-			b:              "Company",
-			nearThreshold:  0.98,
+			name:          "identical near 0.98",
+			a:             "Company",
+			b:             "Company",
+			nearThreshold: 0.98,
 		},
 	}
 

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // compactionSummaryPrompt is the structured summarization instruction used by both

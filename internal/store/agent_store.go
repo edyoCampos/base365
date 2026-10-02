@@ -6,9 +6,9 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/providers"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
 )
 
 // sanitizeToolCallPrefix strips characters not in [a-z0-9_{}] from the prefix.

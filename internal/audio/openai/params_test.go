@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/openai"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/openai"
 )
 
 func TestSynthesize_AppliesParams_Speed(t *testing.T) {

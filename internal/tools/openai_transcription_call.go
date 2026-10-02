@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // isTranscriptionModel returns true for OpenAI models that require the

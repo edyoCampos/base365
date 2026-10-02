@@ -11,9 +11,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // testOAuthEncKey is a raw 32-byte key — crypto.DeriveKey accepts a raw
@@ -95,7 +95,7 @@ func newOAuthFlowTestChannel(t *testing.T, mcpSrv, oauthSrv *httptest.Server) (*
 
 	portalFS := newFakeStore()
 	portal := newTestPortal(t, oauthSrv, portalFS, bc.TenantID(), "p",
-		store.BitrixPortalState{PublicURL: "https://goclaw.example.com"})
+		store.BitrixPortalState{PublicURL: "https://base365.example.com"})
 	bc.startMu.Lock()
 	bc.portal = portal
 	bc.startMu.Unlock()
@@ -362,7 +362,7 @@ func TestRouterAppPage_NoStateFallsBackToPlaceholder(t *testing.T) {
 	if rec.Code != http.StatusOK {
 		t.Fatalf("status = %d, want 200", rec.Code)
 	}
-	if !strings.Contains(rec.Body.String(), "GoClaw") {
+	if !strings.Contains(rec.Body.String(), "Base365") {
 		t.Errorf("expected the original app-page placeholder body, got: %s", rec.Body.String())
 	}
 }

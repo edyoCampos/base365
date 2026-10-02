@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/channels"
 )
 
 // TestActivityIndicatorEnabled_Nil tests that nil config means enabled (default on).

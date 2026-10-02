@@ -8,12 +8,12 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/workstation"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/workstation"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // WorkstationsMethods handles workstations.* RPC methods over WebSocket.
@@ -21,8 +21,8 @@ import (
 type WorkstationsMethods struct {
 	wsStore       store.WorkstationStore
 	linkStore     store.AgentWorkstationLinkStore
-	permStore     store.WorkstationPermissionStore     // may be nil if Phase 6 not wired
-	activityStore store.WorkstationActivityStore       // may be nil if Phase 7 not wired
+	permStore     store.WorkstationPermissionStore // may be nil if Phase 6 not wired
+	activityStore store.WorkstationActivityStore   // may be nil if Phase 7 not wired
 }
 
 // NewWorkstationsMethods creates WorkstationsMethods with the given stores.
@@ -122,13 +122,13 @@ func (m *WorkstationsMethods) handleGet(ctx context.Context, client *gateway.Cli
 func (m *WorkstationsMethods) handleCreate(ctx context.Context, client *gateway.Client, req *protocol.RequestFrame) {
 	locale := store.LocaleFromContext(ctx)
 	var params struct {
-		WorkstationKey string                     `json:"workstationKey"`
-		Name           string                     `json:"name"`
-		BackendType    store.WorkstationBackend   `json:"backendType"`
-		Metadata       json.RawMessage            `json:"metadata"`
-		DefaultCWD     string                     `json:"defaultCwd"`
-		DefaultEnv     json.RawMessage            `json:"defaultEnv"`
-		CreatedBy      string                     `json:"createdBy"`
+		WorkstationKey string                   `json:"workstationKey"`
+		Name           string                   `json:"name"`
+		BackendType    store.WorkstationBackend `json:"backendType"`
+		Metadata       json.RawMessage          `json:"metadata"`
+		DefaultCWD     string                   `json:"defaultCwd"`
+		DefaultEnv     json.RawMessage          `json:"defaultEnv"`
+		CreatedBy      string                   `json:"createdBy"`
 	}
 	if req.Params != nil {
 		if err := json.Unmarshal(req.Params, &params); err != nil {

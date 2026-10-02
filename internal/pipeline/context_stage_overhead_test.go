@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // spyTokenCounter records all CountMessages invocations for assertion.

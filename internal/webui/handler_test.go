@@ -8,12 +8,12 @@ import (
 	"testing"
 	"testing/fstest"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 func TestHandlerInjectsBrandingMetadataIntoIndex(t *testing.T) {
 	fsys := fstest.MapFS{
-		"index.html": &fstest.MapFile{Data: []byte(`<!doctype html><html><head><title>GoClaw</title><meta name="description" content=""><meta property="og:title" content="GoClaw"><link rel="icon" href="/favicon.ico"><meta name="theme-color" content="#000000"></head><body><div id="root"></div></body></html>`)},
+		"index.html": &fstest.MapFile{Data: []byte(`<!doctype html><html><head><title>Base365</title><meta name="description" content=""><meta property="og:title" content="Base365"><link rel="icon" href="/favicon.ico"><meta name="theme-color" content="#000000"></head><body><div id="root"></div></body></html>`)},
 	}
 	cfg := config.Default()
 	cfg.Branding = config.BrandingConfig{
@@ -40,7 +40,7 @@ func TestHandlerInjectsBrandingMetadataIntoIndex(t *testing.T) {
 	body := rec.Body.String()
 	for _, want := range []string{
 		`<title>Acme Agents Console</title>`,
-		`<script id="goclaw-branding" type="application/json">`,
+		`<script id="base365-branding" type="application/json">`,
 		`"app_name":"Acme Agents"`,
 		`"logo_url":"/branding-assets/logo.png"`,
 		`<meta name="application-name" content="Acme Agents">`,
@@ -64,7 +64,7 @@ func TestHandlerInjectsBrandingMetadataIntoIndex(t *testing.T) {
 
 func TestHandlerKeepsHashedAssetsImmutable(t *testing.T) {
 	fsys := fstest.MapFS{
-		"index.html":           &fstest.MapFile{Data: []byte(`<!doctype html><title>GoClaw</title>`)},
+		"index.html":           &fstest.MapFile{Data: []byte(`<!doctype html><title>Base365</title>`)},
 		"assets/app-abc123.js": &fstest.MapFile{Data: []byte(`console.log("ok")`)},
 	}
 

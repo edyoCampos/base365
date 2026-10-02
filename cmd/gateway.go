@@ -14,57 +14,57 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/bgalert"
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/cache"
-	"github.com/nextlevelbuilder/goclaw/internal/channelmemory"
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/bitrix24"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/discord"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/facebook"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/feishu"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/pancake"
-	slackchannel "github.com/nextlevelbuilder/goclaw/internal/channels/slack"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/telegram"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/whatsapp"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/zalo"
-	zalopersonal "github.com/nextlevelbuilder/goclaw/internal/channels/zalo/personal"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/consolidation"
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway/methods"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
-	httpapi "github.com/nextlevelbuilder/goclaw/internal/http"
-	kg "github.com/nextlevelbuilder/goclaw/internal/knowledgegraph"
-	mcpbridge "github.com/nextlevelbuilder/goclaw/internal/mcp"
-	mcpoauth "github.com/nextlevelbuilder/goclaw/internal/mcp/oauth"
-	"github.com/nextlevelbuilder/goclaw/internal/media"
-	"github.com/nextlevelbuilder/goclaw/internal/orchestration"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/scheduler"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/systemmessages"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	usagecaps "github.com/nextlevelbuilder/goclaw/internal/usage/caps"
-	usagepricing "github.com/nextlevelbuilder/goclaw/internal/usage/pricing"
-	"github.com/nextlevelbuilder/goclaw/internal/vault"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/bgalert"
+	"github.com/edyoCampos/base365/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/cache"
+	"github.com/edyoCampos/base365/internal/channelmemory"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels/bitrix24"
+	"github.com/edyoCampos/base365/internal/channels/discord"
+	"github.com/edyoCampos/base365/internal/channels/facebook"
+	"github.com/edyoCampos/base365/internal/channels/feishu"
+	"github.com/edyoCampos/base365/internal/channels/pancake"
+	slackchannel "github.com/edyoCampos/base365/internal/channels/slack"
+	"github.com/edyoCampos/base365/internal/channels/telegram"
+	"github.com/edyoCampos/base365/internal/channels/whatsapp"
+	"github.com/edyoCampos/base365/internal/channels/zalo"
+	zalopersonal "github.com/edyoCampos/base365/internal/channels/zalo/personal"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/consolidation"
+	"github.com/edyoCampos/base365/internal/edition"
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/internal/gateway/methods"
+	"github.com/edyoCampos/base365/internal/hooks"
+	httpapi "github.com/edyoCampos/base365/internal/http"
+	kg "github.com/edyoCampos/base365/internal/knowledgegraph"
+	mcpbridge "github.com/edyoCampos/base365/internal/mcp"
+	mcpoauth "github.com/edyoCampos/base365/internal/mcp/oauth"
+	"github.com/edyoCampos/base365/internal/media"
+	"github.com/edyoCampos/base365/internal/orchestration"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/scheduler"
+	"github.com/edyoCampos/base365/internal/security"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/systemmessages"
+	"github.com/edyoCampos/base365/internal/tools"
+	usagecaps "github.com/edyoCampos/base365/internal/usage/caps"
+	usagepricing "github.com/edyoCampos/base365/internal/usage/pricing"
+	"github.com/edyoCampos/base365/internal/vault"
+	"github.com/edyoCampos/base365/pkg/protocol"
 
 	// Register workstation backend factories via init().
-	_ "github.com/nextlevelbuilder/goclaw/internal/workstation/backends"
+	_ "github.com/edyoCampos/base365/internal/workstation/backends"
 )
 
 func gatewayLogOutput() io.Writer {
-	logFile := strings.TrimSpace(os.Getenv("GOCLAW_LOG_FILE"))
+	logFile := strings.TrimSpace(os.Getenv("BASE365_LOG_FILE"))
 	if logFile == "" {
-		if st, err := os.Stat("/var/log/goclaw"); err == nil && st.IsDir() {
-			logFile = "/var/log/goclaw/goclaw.log"
+		if st, err := os.Stat("/var/log/base365"); err == nil && st.IsDir() {
+			logFile = "/var/log/base365/base365.log"
 		}
 	}
 	if logFile == "" {
@@ -72,7 +72,7 @@ func gatewayLogOutput() io.Writer {
 	}
 	f, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0o644)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "warning: cannot open GOCLAW_LOG_FILE=%q: %v\n", logFile, err)
+		fmt.Fprintf(os.Stderr, "warning: cannot open BASE365_LOG_FILE=%q: %v\n", logFile, err)
 		return os.Stdout
 	}
 	fmt.Fprintf(os.Stderr, "logging to %s\n", logFile)
@@ -202,8 +202,8 @@ func runGateway() {
 	if verbose {
 		logLevel = slog.LevelDebug
 	}
-	// Env override (docker/K8s friendly, default: info): GOCLAW_LOG_LEVEL=debug|info|warn|error
-	if lvl := os.Getenv("GOCLAW_LOG_LEVEL"); lvl != "" {
+	// Env override (docker/K8s friendly, default: info): BASE365_LOG_LEVEL=debug|info|warn|error
+	if lvl := os.Getenv("BASE365_LOG_LEVEL"); lvl != "" {
 		switch strings.ToLower(lvl) {
 		case "debug":
 			logLevel = slog.LevelDebug
@@ -214,7 +214,7 @@ func runGateway() {
 		case "error":
 			logLevel = slog.LevelError
 		default:
-			fmt.Fprintf(os.Stderr, "warning: unknown GOCLAW_LOG_LEVEL=%q, using info\n", lvl)
+			fmt.Fprintf(os.Stderr, "warning: unknown BASE365_LOG_LEVEL=%q, using info\n", lvl)
 		}
 	}
 	logOutput := gatewayLogOutput()
@@ -235,9 +235,9 @@ func runGateway() {
 		os.Exit(1)
 	}
 
-	// Edition override: explicit GOCLAW_EDITION takes precedence over auto-detection.
+	// Edition override: explicit BASE365_EDITION takes precedence over auto-detection.
 	// Auto-detection happens later in setupStoresAndTracing (sqlite → lite).
-	if edName := os.Getenv("GOCLAW_EDITION"); edName != "" {
+	if edName := os.Getenv("BASE365_EDITION"); edName != "" {
 		switch edName {
 		case "lite":
 			edition.SetCurrent(edition.Lite)
@@ -246,7 +246,7 @@ func runGateway() {
 			edition.SetCurrent(edition.Standard)
 			slog.Info("edition: standard (explicit)")
 		default:
-			slog.Warn("unknown GOCLAW_EDITION, using standard", "value", edName)
+			slog.Warn("unknown BASE365_EDITION, using standard", "value", edName)
 		}
 	}
 
@@ -915,7 +915,7 @@ func runGateway() {
 		// Bitrix24: factory needs the portal store + encKey injected so each
 		// Channel can resolve its portal on Start(). The encKey here mirrors
 		// the one used by pg.NewPGStores → NewPGBitrixPortalStore.
-		bitrixEncKey := os.Getenv("GOCLAW_ENCRYPTION_KEY")
+		bitrixEncKey := os.Getenv("BASE365_ENCRYPTION_KEY")
 		// Use the MCP-aware factory variant so channels that opt into
 		// lazy per-user credential provisioning (via mcp_server_id — or
 		// the legacy mcp_server_name + mcp_base_url pair — in their
@@ -952,10 +952,10 @@ func runGateway() {
 			if err := bitrix24.BootstrapPortals(context.Background(), pgStores.BitrixPortals, bitrixEncKey); err != nil {
 				// Surface the missing-table case loudly so an operator notices
 				// without having to grep logs — bitrix24 channels silently
-				// no-op until `goclaw migrate up` runs migration 000058.
+				// no-op until `base365 migrate up` runs migration 000058.
 				if strings.Contains(err.Error(), "bitrix_portals") &&
 					(strings.Contains(err.Error(), "does not exist") || strings.Contains(err.Error(), "no such table")) {
-					slog.Warn("bitrix24 bootstrap skipped — bitrix_portals table missing; run `goclaw migrate up` (migration 000068) to enable Bitrix24 channels",
+					slog.Warn("bitrix24 bootstrap skipped — bitrix_portals table missing; run `base365 migrate up` (migration 000068) to enable Bitrix24 channels",
 						"err", err)
 				} else {
 					slog.Warn("bitrix24 bootstrap failed", "err", err)
@@ -976,7 +976,7 @@ func runGateway() {
 	// Without this, deleting a disabled Bitrix24 channel would orphan the bot
 	// on the portal.
 	if pgStores.BitrixPortals != nil {
-		bitrixEncKey := os.Getenv("GOCLAW_ENCRYPTION_KEY")
+		bitrixEncKey := os.Getenv("BASE365_ENCRYPTION_KEY")
 		orphanCleaner := func(ctx context.Context, tenantID uuid.UUID, cfg []byte) error {
 			return bitrix24.DestroyOrphanBot(ctx, pgStores.BitrixPortals, bitrixEncKey, tenantID, cfg)
 		}

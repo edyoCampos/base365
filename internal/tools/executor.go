@@ -3,7 +3,7 @@ package tools
 import (
 	"context"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // ToolExecutor abstracts tool execution for dependency inversion.

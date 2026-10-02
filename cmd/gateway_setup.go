@@ -11,24 +11,24 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	mcpbridge "github.com/nextlevelbuilder/goclaw/internal/mcp"
-	"github.com/nextlevelbuilder/goclaw/internal/memory"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/sandbox"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	"github.com/nextlevelbuilder/goclaw/internal/tracing"
-	"github.com/nextlevelbuilder/goclaw/internal/tts"
-	"github.com/nextlevelbuilder/goclaw/pkg/browser"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/edition"
+	mcpbridge "github.com/edyoCampos/base365/internal/mcp"
+	"github.com/edyoCampos/base365/internal/memory"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/sandbox"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/tools"
+	"github.com/edyoCampos/base365/internal/tracing"
+	"github.com/edyoCampos/base365/internal/tts"
+	"github.com/edyoCampos/base365/pkg/browser"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // setupToolRegistry creates the tool registry and registers all tools.
@@ -208,23 +208,23 @@ func setupToolRegistry(
 	dataDir = cfg.ResolvedDataDir()
 	os.MkdirAll(dataDir, 0755)
 
-	// Block exec from accessing sensitive directories (data dir, .goclaw, config file).
+	// Block exec from accessing sensitive directories (data dir, .base365, config file).
 	// Prevents `cp /app/data/config.json workspace/` and similar exfiltration.
-	// Exception: .goclaw/skills-store/ is allowed (skills may contain executable scripts).
+	// Exception: .base365/skills-store/ is allowed (skills may contain executable scripts).
 	if execTool, ok := toolsReg.Get("exec"); ok {
 		if et, ok := execTool.(*tools.ExecTool); ok {
 			// Apply global shell deny-group toggles before any request can arrive.
 			// Per-agent overrides via store.WithShellDenyGroups still win per-key.
 			et.SetGlobalShellDenyGroups(cfg.Tools.ShellDenyGroups)
 			et.SetCommandKeywordAllowlist(cfg.Tools.CommandKeywordAllowlist)
-			et.DenyPaths(dataDir, ".goclaw/")
+			et.DenyPaths(dataDir, ".base365/")
 			// Allow skills execution: master-tenant skills-store + all tenant-scoped skills-store dirs.
 			et.AllowPathExemptions(
-				".goclaw/skills-store/",
+				".base365/skills-store/",
 				filepath.Join(dataDir, "skills-store")+"/",
 				filepath.Join(dataDir, "tenants")+"/",
 			)
-			// Allow the goclaw-managed Python venv interpreter to be invoked with its
+			// Allow the base365-managed Python venv interpreter to be invoked with its
 			// absolute path. venv/bin/python3 is a symlink to the real interpreter
 			// (e.g. linuxbrew cellar), and matchesAnyPathExemption resolves symlinks
 			// before comparing — so we must exempt the *resolved* target dir.
@@ -240,11 +240,11 @@ func setupToolRegistry(
 				filepath.Join(workspace, "memory.db-shm"),
 				filepath.Join(workspace, "config.json"),
 				filepath.Join(workspace, "delegate"),
-				filepath.Join(dataDir, "goclaw.db"),
-				filepath.Join(dataDir, "goclaw.db-wal"),
-				filepath.Join(dataDir, "goclaw.db-shm"),
+				filepath.Join(dataDir, "base365.db"),
+				filepath.Join(dataDir, "base365.db-wal"),
+				filepath.Join(dataDir, "base365.db-shm"),
 			)
-			if cfgPath := os.Getenv("GOCLAW_CONFIG"); cfgPath != "" {
+			if cfgPath := os.Getenv("BASE365_CONFIG"); cfgPath != "" {
 				et.DenyPaths(cfgPath)
 			}
 		}
@@ -257,14 +257,14 @@ func setupToolRegistry(
 	// deny paths add defense-in-depth.
 	internalDenyPaths := []string{
 		"config.json", "memory.db", "memory.db-wal", "memory.db-shm",
-		"goclaw.db", "goclaw.db-wal", "goclaw.db-shm",
+		"base365.db", "base365.db-wal", "base365.db-shm",
 		"memory/", ".media/", ".uploads/", "delegate/",
 	}
 	// read_file: allow .media/ access (uploaded documents accessed via AllowPaths
 	// for backward compat; new uploads go to per-user .uploads/ within workspace).
 	readFileDenyPaths := []string{
 		"config.json", "memory.db", "memory.db-wal", "memory.db-shm",
-		"goclaw.db", "goclaw.db-wal", "goclaw.db-shm",
+		"base365.db", "base365.db-wal", "base365.db-shm",
 		"memory/", "delegate/",
 	}
 	if rf, ok := toolsReg.Get("read_file"); ok {
@@ -565,14 +565,14 @@ func setupSkillsSystem(
 	var bundledSkillsDir string // resolved later; returned for HTTP handler fallback
 
 	// Skills loader + search tool
-	// Global skills live under ~/.goclaw/skills/ (user-managed), not data/skills/.
-	globalSkillsDir := os.Getenv("GOCLAW_SKILLS_DIR")
+	// Global skills live under ~/.base365/skills/ (user-managed), not data/skills/.
+	globalSkillsDir := os.Getenv("BASE365_SKILLS_DIR")
 	if globalSkillsDir == "" {
 		globalSkillsDir = filepath.Join(dataDir, "skills")
 	}
 	// Bundled skills: shipped with the Docker image at /app/bundled-skills/.
 	// Lowest priority — managed (skills-store) and user-uploaded skills override these.
-	builtinSkillsDir := os.Getenv("GOCLAW_BUILTIN_SKILLS_DIR")
+	builtinSkillsDir := os.Getenv("BASE365_BUILTIN_SKILLS_DIR")
 	if builtinSkillsDir == "" {
 		builtinSkillsDir = "/app/bundled-skills"
 	}
@@ -594,7 +594,7 @@ func setupSkillsSystem(
 			slog.Info("skills-store directory wired into loader", "dataDir", dataDir)
 
 			// Seed system/bundled skills into DB
-			bundledSkillsDir = os.Getenv("GOCLAW_BUNDLED_SKILLS_DIR")
+			bundledSkillsDir = os.Getenv("BASE365_BUNDLED_SKILLS_DIR")
 			if bundledSkillsDir == "" {
 				// Check common locations: Docker default, then local dev
 				for _, candidate := range []string{"bundled-skills", "/app/bundled-skills", "skills"} {
@@ -625,7 +625,7 @@ func setupSkillsSystem(
 			// Register on-disk managed skills (skills-store) that are missing from
 			// the database. A skill placed directly into the tenant's skills-store
 			// without a skills row is invisible to agents (skill visibility is
-			// DB-driven), which manifests as goclaw not detecting a skill the user
+			// DB-driven), which manifests as base365 not detecting a skill the user
 			// typed triggers for. Reconcile closes that gap idempotently.
 			if reconcileStore, ok := pgStores.Skills.(skills.ManagedSkillStore); ok {
 				reconciler := skills.NewReconciler(reconcileStore)

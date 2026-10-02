@@ -8,9 +8,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // errSentinelMiss is a sentinel error used to verify DB fallback in cache-miss
@@ -85,9 +85,9 @@ type cacheHitStubAgent struct {
 	uid uuid.UUID
 }
 
-func (s *cacheHitStubAgent) ID() string                                          { return s.id }
-func (s *cacheHitStubAgent) UUID() uuid.UUID                                     { return s.uid }
-func (s *cacheHitStubAgent) OtherConfig() json.RawMessage                        { return nil }
+func (s *cacheHitStubAgent) ID() string                   { return s.id }
+func (s *cacheHitStubAgent) UUID() uuid.UUID              { return s.uid }
+func (s *cacheHitStubAgent) OtherConfig() json.RawMessage { return nil }
 func (s *cacheHitStubAgent) Run(context.Context, agent.RunRequest) (*agent.RunResult, error) {
 	return nil, nil
 }

@@ -8,7 +8,7 @@ import (
 
 	tiktoken "github.com/pkoukk/tiktoken-go"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // tokenizerToEncoding maps internal TokenizerID to tiktoken encoding names.

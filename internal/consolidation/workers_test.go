@@ -9,12 +9,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/bgalert"
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/knowledgegraph"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bgalert"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/knowledgegraph"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // recallCall is a single RecordRecall invocation captured by the mock store

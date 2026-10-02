@@ -3,8 +3,8 @@ package agent
 import (
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // BridgePromptBuilder implements PromptBuilder by delegating to the existing

@@ -9,7 +9,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // chatScopedTaskStore serves ListDelegationsByChat and records what it was asked

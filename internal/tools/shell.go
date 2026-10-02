@@ -17,9 +17,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/sandbox"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/sandbox"
+	"github.com/edyoCampos/base365/internal/store"
 	"golang.org/x/text/unicode/norm"
 )
 
@@ -178,8 +178,8 @@ func (t *ExecTool) DenyPaths(paths ...string) {
 }
 
 // AllowPathExemptions adds path prefixes that exempt a command from deny pattern matches.
-// Each shell argument is checked individually — commands like "cat .goclaw/skills-store/tool.py"
-// are exempt because the argument ".goclaw/skills-store/tool.py" starts with the prefix.
+// Each shell argument is checked individually — commands like "cat .base365/skills-store/tool.py"
+// are exempt because the argument ".base365/skills-store/tool.py" starts with the prefix.
 func (t *ExecTool) AllowPathExemptions(prefixes ...string) {
 	t.denyExemptions = append(t.denyExemptions, prefixes...)
 }

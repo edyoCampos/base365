@@ -9,8 +9,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 type PGBrowserCookieStore struct {

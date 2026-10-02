@@ -6,8 +6,8 @@ import (
 	"log/slog"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // AnalysisInput bundles aggregated metrics for rule evaluation.

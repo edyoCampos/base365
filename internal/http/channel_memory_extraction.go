@@ -7,12 +7,12 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/edyoCampos/base365/internal/channelmemory"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/channelmemory"
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
 )
 
 func (h *ChannelInstancesHandler) handleMemoryExtractionStatus(w http.ResponseWriter, r *http.Request) {

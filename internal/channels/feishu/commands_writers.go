@@ -10,8 +10,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // writerCommandTimeout bounds the worst-case latency of a writer management

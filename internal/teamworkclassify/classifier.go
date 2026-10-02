@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	usagecaps "github.com/nextlevelbuilder/goclaw/internal/usage/caps"
+	"github.com/edyoCampos/base365/internal/providers"
+	usagecaps "github.com/edyoCampos/base365/internal/usage/caps"
 )
 
 type Decision string

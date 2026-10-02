@@ -131,9 +131,9 @@ func (c *LarkClient) UploadFile(ctx context.Context, data io.Reader, fileName, f
 // GetMessageResp holds the response from GET /open-apis/im/v1/messages/{message_id}.
 type GetMessageResp struct {
 	Items []struct {
-		MessageID   string `json:"message_id"`
-		MsgType     string `json:"msg_type"`
-		Body        struct {
+		MessageID string `json:"message_id"`
+		MsgType   string `json:"msg_type"`
+		Body      struct {
 			Content string `json:"content"`
 		} `json:"body"`
 		Sender struct {

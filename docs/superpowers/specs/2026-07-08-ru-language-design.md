@@ -1,4 +1,4 @@
-# Design: Russian language (`ru`) support for GoClaw
+# Design: Russian language (`ru`) support for Base365
 
 **Date:** 2026-07-08
 **Branch:** `feature/ru-lang`

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels"
 )
 
 type fakeTelegramManager struct {

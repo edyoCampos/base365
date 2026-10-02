@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/elevenlabs"
+	"github.com/edyoCampos/base365/internal/gateway/methods"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/elevenlabs"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway/methods"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // TestVoicesMethods_CacheHit verifies a warm cache entry is returned without

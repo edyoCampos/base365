@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">Dokumentasi</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">Mulai Cepat</a> •
+  <a href="https://edyocampos.github.io/base365">Dokumentasi</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">Mulai Cepat</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-**GoClaw** adalah gateway AI multi-agen yang menghubungkan LLM ke alat, saluran, dan data Anda — dideploy sebagai satu binary Go tanpa dependensi runtime. GoClaw mengorkestasi tim agen dan delegasi antar-agen ke lebih dari 20 penyedia LLM dengan isolasi multi-tenant penuh.
+**Base365** adalah gateway AI multi-agen yang menghubungkan LLM ke alat, saluran, dan data Anda — dideploy sebagai satu binary Go tanpa dependensi runtime. Base365 mengorkestasi tim agen dan delegasi antar-agen ke lebih dari 20 penyedia LLM dengan isolasi multi-tenant penuh.
 
 Merupakan port Go dari [OpenClaw](https://github.com/openclaw/openclaw) dengan keamanan yang ditingkatkan, PostgreSQL multi-tenant, dan observabilitas kelas produksi.
 
@@ -80,7 +80,7 @@ Merupakan port Go dari [OpenClaw](https://github.com/openclaw/openclaw) dengan k
 
 ## Ekosistem Claw
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | --------------- | --------------- | -------- | -------- | --------------------------------------- |
 | Bahasa          | TypeScript      | Rust     | Go       | **Go**                                  |
 | Ukuran binary   | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (dasar) / **~36 MB** (+ OTel) |
@@ -89,7 +89,7 @@ Merupakan port Go dari [OpenClaw](https://github.com/openclaw/openclaw) dengan k
 | Startup         | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | Target hardware | Mac Mini $599+  | edge $10 | edge $10 | **VPS $5+**                             |
 
-| Fitur                      | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **GoClaw**                     |
+| Fitur                      | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
 | -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
 | Multi-tenant (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
 | Integrasi MCP              | — (menggunakan ACP)                  | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
@@ -110,7 +110,7 @@ Merupakan port Go dari [OpenClaw](https://github.com/openclaw/openclaw) dengan k
 ## Arsitektur
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## Mulai Cepat
@@ -120,10 +120,10 @@ Merupakan port Go dari [OpenClaw](https://github.com/openclaw/openclaw) dengan k
 ### Dari Kode Sumber
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # Wizard pengaturan interaktif
-source .env.local && ./goclaw
+./base365 onboard        # Wizard pengaturan interaktif
+source .env.local && ./base365
 ```
 
 ### Dengan Docker
@@ -132,20 +132,20 @@ source .env.local && ./goclaw
 # Buat .env dengan rahasia yang di-generate otomatis
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# Tambahkan minimal satu GOCLAW_*_API_KEY ke .env, lalu:
+# Tambahkan minimal satu BASE365_*_API_KEY ke .env, lalu:
 make up
 
 # Dasbor Web di http://localhost:18790
 # Pemeriksaan kesehatan: curl http://localhost:18790/health
 ```
 
-Ketika variabel lingkungan `GOCLAW_*_API_KEY` diatur, gateway akan melakukan onboard otomatis tanpa prompt interaktif — mendeteksi penyedia, menjalankan migrasi, dan menyemai data default.
+Ketika variabel lingkungan `BASE365_*_API_KEY` diatur, gateway akan melakukan onboard otomatis tanpa prompt interaktif — mendeteksi penyedia, menjalankan migrasi, dan menyemai data default.
 
-> Untuk varian build (OTel, Tailscale, Redis), tag image Docker, dan overlay compose, lihat [Panduan Deployment](https://docs.goclaw.sh/#deploy-docker-compose).
+> Untuk varian build (OTel, Tailscale, Redis), tag image Docker, dan overlay compose, lihat [Panduan Deployment](https://edyocampos.github.io/base365/#deploy-docker-compose).
 
 ## Orkestrasi Multi-Agen
 
-GoClaw mendukung tim agen dan delegasi antar-agen — setiap agen berjalan dengan identitas, alat, penyedia LLM, dan file konteks miliknya sendiri.
+Base365 mendukung tim agen dan delegasi antar-agen — setiap agen berjalan dengan identitas, alat, penyedia LLM, dan file konteks miliknya sendiri.
 
 ### Delegasi Agen
 
@@ -170,7 +170,7 @@ Agen berkomunikasi melalui **tautan izin** eksplisit dengan kontrol arah (`outbo
 - **Kotak surat tim** — Pesan langsung antar-sesama dan siaran
 - **Alat**: `team_tasks` untuk manajemen tugas, `team_message` untuk kotak surat
 
-> Untuk detail delegasi, tautan izin, dan kontrol konkurensi, lihat [dokumentasi Tim Agen](https://docs.goclaw.sh/#teams-what-are-teams).
+> Untuk detail delegasi, tautan izin, dan kontrol konkurensi, lihat [dokumentasi Tim Agen](https://edyocampos.github.io/base365/#teams-what-are-teams).
 
 ## Alat Bawaan
 
@@ -214,19 +214,19 @@ Agen berkomunikasi melalui **tautan izin** eksplisit dengan kontrol arah (`outbo
 
 ## Dokumentasi
 
-Dokumentasi lengkap di **[docs.goclaw.sh](https://docs.goclaw.sh)** — atau jelajahi sumbernya di [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs)
+Dokumentasi lengkap di **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** — atau jelajahi sumbernya di [`base365-docs/`](https://edyocampos.github.io/base365)
 
 | Bagian | Topik |
 |---------|--------|
-| [Memulai](https://docs.goclaw.sh/#what-is-goclaw) | Instalasi, Mulai Cepat, Konfigurasi, Tur Dasbor Web |
-| [Konsep Inti](https://docs.goclaw.sh/#how-goclaw-works) | Loop Agen, Sesi, Alat, Memori, Multi-Tenancy |
-| [Agen](https://docs.goclaw.sh/#creating-agents) | Membuat Agen, File Konteks, Kepribadian, Berbagi & Akses |
-| [Penyedia](https://docs.goclaw.sh/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 lainnya |
-| [Saluran](https://docs.goclaw.sh/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
-| [Tim Agen](https://docs.goclaw.sh/#teams-what-are-teams) | Tim, Papan Tugas, Pesan, Delegasi & Handoff |
-| [Lanjutan](https://docs.goclaw.sh/#custom-tools) | Alat Kustom, MCP, Skill, Cron, Sandbox, Hook, RBAC |
-| [Deployment](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose, Database, Keamanan, Observabilitas, Tailscale |
-| [Referensi](https://docs.goclaw.sh/#cli-commands) | Perintah CLI, REST API, Protokol WebSocket, Variabel Lingkungan |
+| [Memulai](https://edyocampos.github.io/base365/#what-is-base365) | Instalasi, Mulai Cepat, Konfigurasi, Tur Dasbor Web |
+| [Konsep Inti](https://edyocampos.github.io/base365/#how-base365-works) | Loop Agen, Sesi, Alat, Memori, Multi-Tenancy |
+| [Agen](https://edyocampos.github.io/base365/#creating-agents) | Membuat Agen, File Konteks, Kepribadian, Berbagi & Akses |
+| [Penyedia](https://edyocampos.github.io/base365/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 lainnya |
+| [Saluran](https://edyocampos.github.io/base365/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
+| [Tim Agen](https://edyocampos.github.io/base365/#teams-what-are-teams) | Tim, Papan Tugas, Pesan, Delegasi & Handoff |
+| [Lanjutan](https://edyocampos.github.io/base365/#custom-tools) | Alat Kustom, MCP, Skill, Cron, Sandbox, Hook, RBAC |
+| [Deployment](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose, Database, Keamanan, Observabilitas, Tailscale |
+| [Referensi](https://edyocampos.github.io/base365/#cli-commands) | Perintah CLI, REST API, Protokol WebSocket, Variabel Lingkungan |
 
 ## Pengujian
 
@@ -241,7 +241,7 @@ Lihat [CHANGELOG.md](CHANGELOG.md) untuk status fitur terperinci termasuk apa ya
 
 ## Ucapan Terima Kasih
 
-GoClaw dibangun di atas proyek [OpenClaw](https://github.com/openclaw/openclaw) yang asli. Kami berterima kasih atas arsitektur dan visi yang menginspirasi port Go ini.
+Base365 dibangun di atas proyek [OpenClaw](https://github.com/openclaw/openclaw) yang asli. Kami berterima kasih atas arsitektur dan visi yang menginspirasi port Go ini.
 
 ## Lisensi
 

@@ -1,4 +1,4 @@
-// Package pancake implements the Pancake (pages.fm) channel for GoClaw.
+// Package pancake implements the Pancake (pages.fm) channel for Base365.
 // Pancake acts as a unified proxy for Facebook, Zalo OA, Instagram, TikTok, WhatsApp, Line.
 // A single Pancake API key gives access to all connected platforms — no per-platform OAuth needed.
 package pancake
@@ -6,7 +6,7 @@ package pancake
 import (
 	"encoding/json"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 // pancakeCreds holds encrypted credentials stored in channel_instances.credentials.

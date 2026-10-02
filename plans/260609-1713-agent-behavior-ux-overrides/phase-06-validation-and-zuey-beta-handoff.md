@@ -49,10 +49,10 @@ because `gh run watch` is noisy in this workflow family.
    `cd ui/desktop/frontend && pnpm build`.
 6. Update changelog/docs with the exact behavior contract and override order.
 7. Ship beta via PR to `dev`, then verify:
-   `gh run view <run-id> --repo digitopvn/goclaw --json status,conclusion,jobs`.
+   `gh run view <run-id> --repo edyoCampos/base365 --json status,conclusion,jobs`.
 8. Verify zuey after deploy:
-   `/opt/goclaw/current/goclaw version`, `systemctl is-active goclaw`,
-   local `/health`, and public `https://goclaw.zuey.me/health`.
+   `/opt/base365/current/base365 version`, `systemctl is-active base365`,
+   local `/health`, and public `https://base365.example.com/health`.
 9. Smoke-test a channel with Workspace default, Agent override, and Channel
    override to prove effective behavior.
 10. Smoke-test explicit sidecar provider/model by choosing a cheap provider and

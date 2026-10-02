@@ -3,8 +3,8 @@ package agent
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/pipeline"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/pipeline"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 func TestConvertRunResultMapsCalls(t *testing.T) {

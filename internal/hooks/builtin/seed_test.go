@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/hooks"
 )
 
 // fakeHookStore is an in-memory HookStore just rich enough to test seed
@@ -96,7 +96,7 @@ func (f *fakeHookStore) ResolveForEvent(context.Context, hooks.Event) ([]hooks.H
 	return nil, nil
 }
 
-func (f *fakeHookStore) WriteExecution(context.Context, hooks.HookExecution) error { return nil }
+func (f *fakeHookStore) WriteExecution(context.Context, hooks.HookExecution) error   { return nil }
 func (f *fakeHookStore) SetHookAgents(context.Context, uuid.UUID, []uuid.UUID) error { return nil }
 func (f *fakeHookStore) GetHookAgents(context.Context, uuid.UUID) ([]uuid.UUID, error) {
 	return nil, nil

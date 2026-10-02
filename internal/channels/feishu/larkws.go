@@ -39,13 +39,13 @@ type WSClient struct {
 	baseURL   string
 	handler   WSEventHandler
 
-	conn               *websocket.Conn
-	connMu             sync.Mutex
-	serviceID          int32
-	pingInterval       time.Duration
-	reconnectMax       int           // -1 = infinite
-	reconnectInterval  time.Duration // wait between retries
-	reconnectNonce     int           // max jitter seconds
+	conn              *websocket.Conn
+	connMu            sync.Mutex
+	serviceID         int32
+	pingInterval      time.Duration
+	reconnectMax      int           // -1 = infinite
+	reconnectInterval time.Duration // wait between retries
+	reconnectNonce    int           // max jitter seconds
 
 	stopCh  chan struct{}
 	stopped bool

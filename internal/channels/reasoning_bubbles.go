@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
+	"github.com/edyoCampos/base365/internal/bus"
 )
 
 const (

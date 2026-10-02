@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">Dokumentaatio</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">Pikaopas</a> •
+  <a href="https://edyocampos.github.io/base365">Dokumentaatio</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">Pikaopas</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-**GoClaw** on moniagentin AI-yhdyskäytävä, joka yhdistää LLM:t työkaluihisi, kanaviin ja tietoihin — käytetään yksittäisenä Go-binäärinä ilman ajonaikaisriippuvuuksia. Se orkestroi agenttiryhmiä ja agenttien välistä delegointia yli 20 LLM-tarjoajan kautta täydellä monivuokraajan eristyksellä.
+**Base365** on moniagentin AI-yhdyskäytävä, joka yhdistää LLM:t työkaluihisi, kanaviin ja tietoihin — käytetään yksittäisenä Go-binäärinä ilman ajonaikaisriippuvuuksia. Se orkestroi agenttiryhmiä ja agenttien välistä delegointia yli 20 LLM-tarjoajan kautta täydellä monivuokraajan eristyksellä.
 
 Go-portti [OpenClaw](https://github.com/openclaw/openclaw)-projektista, jossa on parannettu turvallisuus, monivuokraaja-PostgreSQL ja tuotantotason observoitavuus.
 
@@ -80,7 +80,7 @@ Go-portti [OpenClaw](https://github.com/openclaw/openclaw)-projektista, jossa on
 
 ## Claw-ekosysteemi
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | --------------- | --------------- | -------- | -------- | --------------------------------------- |
 | Kieli           | TypeScript      | Rust     | Go       | **Go**                                  |
 | Binäärikoko     | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (perus) / **~36 MB** (+ OTel) |
@@ -89,7 +89,7 @@ Go-portti [OpenClaw](https://github.com/openclaw/openclaw)-projektista, jossa on
 | Käynnistys      | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | Kohdealusta     | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
 
-| Ominaisuus                 | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **GoClaw**                     |
+| Ominaisuus                 | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
 | -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
 | Monivuokraaja (PostgreSQL) | —                                    | —                                            | —                                     | ✅                             |
 | MCP-integraatio            | — (käyttää ACP:ta)                   | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
@@ -110,7 +110,7 @@ Go-portti [OpenClaw](https://github.com/openclaw/openclaw)-projektista, jossa on
 ## Arkkitehtuuri
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## Pikaopas
@@ -120,10 +120,10 @@ Go-portti [OpenClaw](https://github.com/openclaw/openclaw)-projektista, jossa on
 ### Lähdekoodista
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # Interaktiivinen asennusohjaaja
-source .env.local && ./goclaw
+./base365 onboard        # Interaktiivinen asennusohjaaja
+source .env.local && ./base365
 ```
 
 ### Dockerilla
@@ -132,20 +132,20 @@ source .env.local && ./goclaw
 # Luo .env automaattisesti generoiduilla salaisuuksilla
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# Lisää vähintään yksi GOCLAW_*_API_KEY tiedostoon .env, sitten:
+# Lisää vähintään yksi BASE365_*_API_KEY tiedostoon .env, sitten:
 make up
 
 # Web-koontinäyttö osoitteessa http://localhost:18790
 # Terveystarkistus: curl http://localhost:18790/health
 ```
 
-Kun `GOCLAW_*_API_KEY`-ympäristömuuttujat on asetettu, yhdyskäytävä käynnistyy automaattisesti ilman interaktiivisia kehotteita — tunnistaa tarjoajan, ajaa migraatiot ja alustaa oletusdata.
+Kun `BASE365_*_API_KEY`-ympäristömuuttujat on asetettu, yhdyskäytävä käynnistyy automaattisesti ilman interaktiivisia kehotteita — tunnistaa tarjoajan, ajaa migraatiot ja alustaa oletusdata.
 
-> Rakennusvarianteista (OTel, Tailscale, Redis), Docker-kuvatageista ja compose-päällekkäisyyksistä, katso [Käyttöönotto-opas](https://docs.goclaw.sh/#deploy-docker-compose).
+> Rakennusvarianteista (OTel, Tailscale, Redis), Docker-kuvatageista ja compose-päällekkäisyyksistä, katso [Käyttöönotto-opas](https://edyocampos.github.io/base365/#deploy-docker-compose).
 
 ## Moniagentin orkestrointi
 
-GoClaw tukee agenttiryhmiä ja agenttien välistä delegointia — jokainen agentti toimii omalla identiteetillään, työkaluilla, LLM-tarjoajalla ja kontekstitiedostoilla.
+Base365 tukee agenttiryhmiä ja agenttien välistä delegointia — jokainen agentti toimii omalla identiteetillään, työkaluilla, LLM-tarjoajalla ja kontekstitiedostoilla.
 
 ### Agentin delegointi
 
@@ -170,7 +170,7 @@ Agentit kommunikoivat eksplisiittisten **käyttöoikeuslinkkien** kautta suuntak
 - **Tiimin postilaatikko** — Suora vertaisviestintä ja lähetykset
 - **Työkalut**: `team_tasks` tehtävähallintaan, `team_message` postilaatikolle
 
-> Delegoinnin yksityiskohdista, käyttöoikeuslinkeistä ja samanaikaisuuden hallinnasta, katso [Agenttiryhmien dokumentaatio](https://docs.goclaw.sh/#teams-what-are-teams).
+> Delegoinnin yksityiskohdista, käyttöoikeuslinkeistä ja samanaikaisuuden hallinnasta, katso [Agenttiryhmien dokumentaatio](https://edyocampos.github.io/base365/#teams-what-are-teams).
 
 ## Sisäänrakennetut työkalut
 
@@ -214,19 +214,19 @@ Agentit kommunikoivat eksplisiittisten **käyttöoikeuslinkkien** kautta suuntak
 
 ## Dokumentaatio
 
-Täydellinen dokumentaatio osoitteessa **[docs.goclaw.sh](https://docs.goclaw.sh)** — tai selaa lähdekoodia [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs)-kansiossa.
+Täydellinen dokumentaatio osoitteessa **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** — tai selaa lähdekoodia [`base365-docs/`](https://edyocampos.github.io/base365)-kansiossa.
 
 | Osio | Aiheet |
 |------|--------|
-| [Aloittaminen](https://docs.goclaw.sh/#what-is-goclaw) | Asennus, Pikaopas, Konfigurointi, Web-koontinäytön esittely |
-| [Peruskäsitteet](https://docs.goclaw.sh/#how-goclaw-works) | Agenttisilmukka, Sessiot, Työkalut, Muisti, Monivuokraajuus |
-| [Agentit](https://docs.goclaw.sh/#creating-agents) | Agenttien luominen, Kontekstitiedostot, Persoonallisuus, Jakaminen ja käyttöoikeudet |
-| [Tarjoajat](https://docs.goclaw.sh/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 muuta |
-| [Kanavat](https://docs.goclaw.sh/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
-| [Agenttiryhmät](https://docs.goclaw.sh/#teams-what-are-teams) | Tiimit, Tehtävätaulu, Viestintä, Delegointi ja luovutus |
-| [Edistyneet](https://docs.goclaw.sh/#custom-tools) | Mukautetut työkalut, MCP, Taidot, Cron, Hiekkalaatikko, Koukut, RBAC |
-| [Käyttöönotto](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose, Tietokanta, Turvallisuus, Observoitavuus, Tailscale |
-| [Viite](https://docs.goclaw.sh/#cli-commands) | CLI-komennot, REST API, WebSocket-protokolla, Ympäristömuuttujat |
+| [Aloittaminen](https://edyocampos.github.io/base365/#what-is-base365) | Asennus, Pikaopas, Konfigurointi, Web-koontinäytön esittely |
+| [Peruskäsitteet](https://edyocampos.github.io/base365/#how-base365-works) | Agenttisilmukka, Sessiot, Työkalut, Muisti, Monivuokraajuus |
+| [Agentit](https://edyocampos.github.io/base365/#creating-agents) | Agenttien luominen, Kontekstitiedostot, Persoonallisuus, Jakaminen ja käyttöoikeudet |
+| [Tarjoajat](https://edyocampos.github.io/base365/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 muuta |
+| [Kanavat](https://edyocampos.github.io/base365/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
+| [Agenttiryhmät](https://edyocampos.github.io/base365/#teams-what-are-teams) | Tiimit, Tehtävätaulu, Viestintä, Delegointi ja luovutus |
+| [Edistyneet](https://edyocampos.github.io/base365/#custom-tools) | Mukautetut työkalut, MCP, Taidot, Cron, Hiekkalaatikko, Koukut, RBAC |
+| [Käyttöönotto](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose, Tietokanta, Turvallisuus, Observoitavuus, Tailscale |
+| [Viite](https://edyocampos.github.io/base365/#cli-commands) | CLI-komennot, REST API, WebSocket-protokolla, Ympäristömuuttujat |
 
 ## Testaus
 
@@ -241,7 +241,7 @@ Katso [CHANGELOG.md](CHANGELOG.md) yksityiskohtainen ominaisuuksien tila, mukaan
 
 ## Tunnustukset
 
-GoClaw on rakennettu alkuperäisen [OpenClaw](https://github.com/openclaw/openclaw)-projektin pohjalta. Olemme kiitollisia arkkitehtuurista ja visiosta, joka inspiroi tätä Go-porttia.
+Base365 on rakennettu alkuperäisen [OpenClaw](https://github.com/openclaw/openclaw)-projektin pohjalta. Olemme kiitollisia arkkitehtuurista ja visiosta, joka inspiroi tätä Go-porttia.
 
 ## Lisenssi
 

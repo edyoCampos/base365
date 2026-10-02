@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // PGKGGraphStore implements store.KGGraphStore backed by PostgreSQL.

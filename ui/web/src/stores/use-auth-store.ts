@@ -86,8 +86,8 @@ export const useAuthStore = create<AuthState>()(
 
       logout: () => {
         // Remove tenant scope keys that are still managed outside persist
-        localStorage.removeItem("goclaw:tenant_id");
-        localStorage.removeItem("goclaw:tenant_hint");
+        localStorage.removeItem("base365:tenant_id");
+        localStorage.removeItem("base365:tenant_hint");
         clearSetupSkippedState();
         set({
           token: "", userId: "", senderID: "", connected: false, role: "", serverInfo: null,
@@ -98,7 +98,7 @@ export const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: "goclaw:auth", // localStorage key
+      name: "base365:auth", // localStorage key
       partialize: (state) => ({
         // Only persist credentials — not transient runtime state
         token: state.token,

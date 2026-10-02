@@ -9,11 +9,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func TestMain(m *testing.M) {
-	os.Setenv("GOCLAW_DISABLE_PERSONAL_SKILLS", "1")
+	os.Setenv("BASE365_DISABLE_PERSONAL_SKILLS", "1")
 	os.Exit(m.Run())
 }
 

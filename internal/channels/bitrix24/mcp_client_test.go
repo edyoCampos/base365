@@ -222,15 +222,15 @@ func TestIsGroupMessageType(t *testing.T) {
 		// "X" = entity-bound group chat (Tasks, Workgroups). Observed on
 		// real ONIMBOTMESSAGEADD payloads where CHAT_ENTITY_TYPE=TASKS_TASK
 		// and CHAT_USER_COUNT>1.
-		"X":       true,
-		"x":       true,
-		" X ":     true,
+		"X":   true,
+		"x":   true,
+		" X ": true,
 		// "B" = Bitrix workgroup / Collab (SONET_GROUP) chat. Observed on
 		// real ONIMBOTMESSAGEADD payloads where CHAT_TYPE=B and
 		// CHAT_ENTITY_TYPE=SONET_GROUP; multi-user with @mention gating.
-		"B":   true,
-		"b":   true,
-		" B ": true,
+		"B":       true,
+		"b":       true,
+		" B ":     true,
 		"unknown": false,
 	}
 	for input, want := range cases {

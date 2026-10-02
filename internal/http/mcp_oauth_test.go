@@ -11,12 +11,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/bus"
+	mcpoauth "github.com/edyoCampos/base365/internal/mcp/oauth"
+	"github.com/edyoCampos/base365/internal/security"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	mcpoauth "github.com/nextlevelbuilder/goclaw/internal/mcp/oauth"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
 )
 
 // hasMCPCacheInvalidate reports whether a CacheKindMCP cache-invalidate event was broadcast.
@@ -296,10 +296,10 @@ func TestDropboxOfflineAuthParam(t *testing.T) {
 }
 
 func TestCallbackURLPublicURL(t *testing.T) {
-	h := &MCPOAuthHandler{publicURL: "https://goclaw.example.com"}
+	h := &MCPOAuthHandler{publicURL: "https://base365.example.com"}
 	r := httptest.NewRequest(http.MethodGet, "/", nil)
 	got := h.callbackURL(r)
-	want := "https://goclaw.example.com/v1/mcp/oauth/callback"
+	want := "https://base365.example.com/v1/mcp/oauth/callback"
 	if got != want {
 		t.Errorf("callbackURL = %q, want %q", got, want)
 	}
@@ -308,11 +308,11 @@ func TestCallbackURLPublicURL(t *testing.T) {
 func TestCallbackURLForwardedHost(t *testing.T) {
 	h := &MCPOAuthHandler{}
 	r := httptest.NewRequest(http.MethodGet, "/", nil)
-	r.Header.Set("X-Forwarded-Host", "goclaw.example.com")
+	r.Header.Set("X-Forwarded-Host", "base365.example.com")
 	r.Header.Set("X-Forwarded-Proto", "https")
 	got := h.callbackURL(r)
-	if !strings.HasPrefix(got, "https://goclaw.example.com") {
-		t.Errorf("callbackURL = %q, want https://goclaw.example.com prefix", got)
+	if !strings.HasPrefix(got, "https://base365.example.com") {
+		t.Errorf("callbackURL = %q, want https://base365.example.com prefix", got)
 	}
 }
 

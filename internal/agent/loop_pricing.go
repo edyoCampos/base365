@@ -7,10 +7,10 @@ import (
 	"log/slog"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tracing"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tracing"
 )
 
 func (l *Loop) calculateLLMCost(ctx context.Context, providerName, model string, usage *providers.Usage) float64 {

@@ -9,8 +9,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 func newMemoryStore(db *sql.DB) *pg.PGMemoryStore {

@@ -1,6 +1,6 @@
 package edge
 
-import "github.com/nextlevelbuilder/goclaw/internal/audio"
+import "github.com/edyoCampos/base365/internal/audio"
 
 // edgeDefaultVoices lists a representative set of Edge TTS voices.
 // Full list is available via `edge-tts --list-voices`; these cover common locales.

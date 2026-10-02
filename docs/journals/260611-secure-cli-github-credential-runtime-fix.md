@@ -3,7 +3,7 @@
 ## Summary
 
 Fixed GitHub-related SecureCLI auth diagnostics for `git` and `gh` runtime
-commands linked to digitopvn/goclaw#138 and digitopvn/goclaw#151.
+commands linked to edyoCampos/base365#138 and edyoCampos/base365#151.
 
 ## Root Cause
 

@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
+	"github.com/edyoCampos/base365/internal/bus"
 )
 
 func capturePancakeSlog(t *testing.T) (*bytes.Buffer, func()) {

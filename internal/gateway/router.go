@@ -8,15 +8,15 @@ import (
 	"slices"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/cache"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/edition"
+	httpapi "github.com/edyoCampos/base365/internal/http"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/cache"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	httpapi "github.com/nextlevelbuilder/goclaw/internal/http"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
 )
 
 // MethodHandler processes a single RPC method request.
@@ -318,7 +318,7 @@ func (r *MethodRouter) handleConnect(ctx context.Context, client *Client, req *p
 				"pairing_code": code,
 				"sender_id":    client.id,
 				"server": map[string]any{
-					"name":    "goclaw",
+					"name":    "base365",
 					"version": r.server.version,
 				},
 			}))
@@ -380,7 +380,7 @@ func (r *MethodRouter) sendConnectResponse(ctx context.Context, client *Client, 
 		"is_master_scope": store.IsMasterScope(scopedCtx),
 		"edition":         edition.Current().Name,
 		"server": map[string]any{
-			"name":    "goclaw",
+			"name":    "base365",
 			"version": r.server.version,
 		},
 	}

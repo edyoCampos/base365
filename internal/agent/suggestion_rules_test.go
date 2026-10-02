@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 func TestLowRetrievalUsageRule(t *testing.T) {

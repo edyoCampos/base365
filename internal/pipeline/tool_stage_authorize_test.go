@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // makeAuthorizeGate builds a PipelineDeps.AuthorizeToolCall callback backed by
@@ -181,7 +181,7 @@ func TestToolStage_AllBlocked_CallsCheckExitConditions(t *testing.T) {
 		return false, "blocked: " + tc.Name
 	}
 	deps := &PipelineDeps{
-		Config: PipelineConfig{MaxToolCalls: 1},
+		Config:            PipelineConfig{MaxToolCalls: 1},
 		AuthorizeToolCall: denyAll,
 		ExecuteToolCall: func(_ context.Context, state *RunState, tc providers.ToolCall) ([]providers.Message, error) {
 			return nil, nil

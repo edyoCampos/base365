@@ -46,16 +46,16 @@ func TestVoiceMetadataRouting(t *testing.T) {
 	// This documents the expected behavior - actual bot calls require integration tests.
 
 	tests := []struct {
-		name          string
-		contentType   string
-		audioAsVoice  string
-		expectVoice   bool
+		name         string
+		contentType  string
+		audioAsVoice string
+		expectVoice  bool
 	}{
 		{"OGG with voice flag", "audio/ogg", "true", true},
 		{"MP3 with voice flag", "audio/mpeg", "true", true},
 		{"OGG without voice flag", "audio/ogg", "", false},
 		{"OGG with false flag", "audio/ogg", "false", false},
-		{"WAV with voice flag", "audio/wav", "true", false}, // WAV not voice-compatible
+		{"WAV with voice flag", "audio/wav", "true", false},   // WAV not voice-compatible
 		{"Video with voice flag", "video/mp4", "true", false}, // not audio
 	}
 

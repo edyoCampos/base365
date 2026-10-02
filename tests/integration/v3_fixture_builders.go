@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/store"
+	pgstore "github.com/edyoCampos/base365/internal/store/pg"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	pgstore "github.com/nextlevelbuilder/goclaw/internal/store/pg"
 )
 
 // seedTwoTenants creates 2 independent tenants with agents for isolation testing.

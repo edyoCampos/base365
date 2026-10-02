@@ -9,8 +9,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // exportTeamSection exports team metadata, members, tasks, comments, events, links,
@@ -116,14 +116,14 @@ func (h *AgentsHandler) exportTeamSection(ctx context.Context, tw *tar.Writer, a
 	}
 
 	manifest.Sections["team"] = map[string]any{
-		"lead":        true,
-		"members":     len(members),
-		"tasks":       len(tasksExport.Tasks),
-		"comments":    len(comments),
-		"events":      len(events),
-		"links":       len(links),
-		"ws_files":    wsFileCount,
-		"ws_bytes":    wsTotalBytes,
+		"lead":     true,
+		"members":  len(members),
+		"tasks":    len(tasksExport.Tasks),
+		"comments": len(comments),
+		"events":   len(events),
+		"links":    len(links),
+		"ws_files": wsFileCount,
+		"ws_bytes": wsTotalBytes,
 	}
 	if progressFn != nil {
 		progressFn(ProgressEvent{

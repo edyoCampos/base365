@@ -13,8 +13,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // restHandler is a tiny dispatch map for the subset of REST methods
@@ -217,7 +217,7 @@ func TestRegisterBot_Path3_DuplicateCode_ResolvesViaList(t *testing.T) {
 	h := restHandler{
 		"imbot.register": func(w http.ResponseWriter, r *http.Request) {
 			// Simulate Bitrix rejecting our register call because the CODE
-			// already exists on the portal (another goclaw instance, or a
+			// already exists on the portal (another base365 instance, or a
 			// prior incarnation whose state was wiped).
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusBadRequest)
@@ -382,7 +382,7 @@ func TestEventHandlerURL_PrefersPortalCapture(t *testing.T) {
 }
 
 // TestEventHandlerURL_FallsBackToLegacyConfig verifies that when the portal
-// has NO captured URL (e.g. installed on a goclaw release predating Phase 01),
+// has NO captured URL (e.g. installed on a base365 release predating Phase 01),
 // eventHandlerURL falls back to config.public_url for backward compatibility.
 func TestEventHandlerURL_FallsBackToLegacyConfig(t *testing.T) {
 	srv := httptest.NewServer(restHandler{})

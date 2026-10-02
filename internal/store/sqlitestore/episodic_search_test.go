@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 func TestSQLiteEpisodicSearch_TimeFiltersAndExpiry(t *testing.T) {

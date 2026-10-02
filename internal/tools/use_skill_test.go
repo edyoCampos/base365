@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // newTestSkillLoader writes a single skill (name/SKILL.md) under a temp

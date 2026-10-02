@@ -11,14 +11,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/version"
+	"github.com/edyoCampos/base365/internal/version"
 )
 
 const (
-	githubRepo         = "nextlevelbuilder/goclaw"
-	liteTagPrefix      = "lite-v"
+	githubRepo          = "edyoCampos/base365"
+	liteTagPrefix       = "lite-v"
 	updateCheckInterval = 1 * time.Hour
-	maxResponseBody    = 2 << 20 // 2 MB
+	maxResponseBody     = 2 << 20 // 2 MB
 )
 
 // UpdateInfo holds the latest release information from GitHub.
@@ -93,7 +93,7 @@ func (uc *UpdateChecker) check() {
 		return
 	}
 	req.Header.Set("Accept", "application/vnd.github+json")
-	req.Header.Set("User-Agent", "goclaw/"+uc.currentVersion)
+	req.Header.Set("User-Agent", "base365/"+uc.currentVersion)
 
 	// ETag conditional request to reduce API rate limit usage.
 	if uc.etag != "" {

@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // ListEntitiesTemporal queries entities with temporal awareness.
@@ -112,4 +112,3 @@ func (s *PGKnowledgeGraphStore) SupersedeEntity(ctx context.Context, old *store.
 
 	return tx.Commit()
 }
-

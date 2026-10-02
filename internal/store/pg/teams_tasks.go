@@ -13,7 +13,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/lib/pq"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // taskLockDuration is how long a claimed task stays locked before stale recovery resets it.
@@ -219,7 +219,7 @@ func (s *PGTeamStore) ListTasks(ctx context.Context, teamID uuid.UUID, orderBy s
 		statusWhere = "AND t.status = 'in_review'"
 	case store.TeamTaskFilterCompleted:
 		statusWhere = "AND t.status IN ('completed','cancelled')"
-	// "", store.TeamTaskFilterAll ("all") → no filter (all statuses)
+		// "", store.TeamTaskFilterAll ("all") → no filter (all statuses)
 	}
 
 	if limit <= 0 {

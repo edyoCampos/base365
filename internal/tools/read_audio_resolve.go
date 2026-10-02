@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/mediabudget"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/mediabudget"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // resolveAudioFile finds the audio file path from context MediaRefs.

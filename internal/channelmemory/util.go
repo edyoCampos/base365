@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func (s *Service) itemFromExtracted(run *store.ChannelMemoryExtractionRun, extracted ExtractedItem) *store.ChannelMemoryExtractionItem {

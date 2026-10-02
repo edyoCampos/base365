@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 func TestReadImage_BothPathAndUrl_Error(t *testing.T) {

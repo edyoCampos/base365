@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // PGEvolutionSuggestionStore implements store.EvolutionSuggestionStore backed by PostgreSQL.
@@ -127,4 +127,3 @@ func (s *PGEvolutionSuggestionStore) GetSuggestion(ctx context.Context, id uuid.
 	}
 	return &sg, nil
 }
-

@@ -26,13 +26,13 @@ func TestBackupRun_FilesystemOnly(t *testing.T) {
 	outPath := filepath.Join(outDir, "backup.tar.gz")
 
 	opts := Options{
-		DataDir:       dataDir,
-		WorkspacePath: ws,
-		OutputPath:    outPath,
-		CreatedBy:     "test",
-		GoclawVersion: "test-1.0",
-		SchemaVersion: 42,
-		ExcludeDB:     true,
+		DataDir:        dataDir,
+		WorkspacePath:  ws,
+		OutputPath:     outPath,
+		CreatedBy:      "test",
+		Base365Version: "test-1.0",
+		SchemaVersion:  42,
+		ExcludeDB:      true,
 	}
 
 	manifest, err := Run(context.Background(), opts)
@@ -44,7 +44,7 @@ func TestBackupRun_FilesystemOnly(t *testing.T) {
 	if manifest.Version != 1 {
 		t.Errorf("manifest.Version: got %d", manifest.Version)
 	}
-	if manifest.Format != "goclaw-system-backup" {
+	if manifest.Format != "base365-system-backup" {
 		t.Errorf("manifest.Format: got %q", manifest.Format)
 	}
 	if manifest.CreatedBy != "test" {
@@ -91,7 +91,7 @@ func TestBackupRun_FilesystemOnly(t *testing.T) {
 			if err := json.Unmarshal(data, &m); err != nil {
 				t.Errorf("manifest.json parse error: %v", err)
 			}
-			if m.Format != "goclaw-system-backup" {
+			if m.Format != "base365-system-backup" {
 				t.Errorf("manifest in archive: wrong format %q", m.Format)
 			}
 		case strings.HasPrefix(hdr.Name, "workspace/"):
@@ -117,11 +117,11 @@ func TestBackupRun_ExcludeFiles(t *testing.T) {
 	outPath := filepath.Join(outDir, "backup.tar.gz")
 
 	opts := Options{
-		OutputPath:    outPath,
-		CreatedBy:     "test",
-		GoclawVersion: "1.0",
-		ExcludeDB:     true,
-		ExcludeFiles:  true,
+		OutputPath:     outPath,
+		CreatedBy:      "test",
+		Base365Version: "1.0",
+		ExcludeDB:      true,
+		ExcludeFiles:   true,
 	}
 
 	manifest, err := Run(context.Background(), opts)

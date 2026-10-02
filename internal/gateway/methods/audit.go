@@ -1,9 +1,9 @@
 package methods
 
 import (
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // emitAudit broadcasts an audit event via eventBus for async persistence.

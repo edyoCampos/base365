@@ -10,8 +10,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/cache"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/cache"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // ---- minimal AgentStore stub for interceptor tests ----

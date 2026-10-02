@@ -11,7 +11,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/hooks/budget"
+	"github.com/edyoCampos/base365/internal/hooks/budget"
 )
 
 // SqliteHookBudget implements budget.Dialect over SQLite.

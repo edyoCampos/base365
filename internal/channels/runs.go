@@ -3,7 +3,7 @@ package channels
 import (
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 // --- Run tracking for streaming/reaction event forwarding ---

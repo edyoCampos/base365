@@ -1,6 +1,6 @@
 # 04 - Gateway and Protocol
 
-The gateway is the central component of GoClaw, serving both WebSocket RPC (Protocol v3) and HTTP REST API on a single port. It handles authentication, role-based access control, rate limiting, and method dispatch for all client interactions.
+The gateway is the central component of Base365, serving both WebSocket RPC (Protocol v3) and HTTP REST API on a single port. It handles authentication, role-based access control, rate limiting, and method dispatch for all client interactions.
 
 ---
 
@@ -96,7 +96,7 @@ flowchart TD
 
 Token comparison uses `crypto/subtle.ConstantTimeCompare` to prevent timing attacks.
 
-The `user_id` in the connect parameters is required for per-user session scoping and context file routing. GoClaw uses the **Identity Propagation** pattern — it trusts the upstream service to provide accurate user identity. The `user_id` is opaque (VARCHAR 255); multi-tenant deployments use the compound format `tenant.{tenantId}.user.{userId}`. See [00-architecture-overview.md Section 5](./00-architecture-overview.md) for details.
+The `user_id` in the connect parameters is required for per-user session scoping and context file routing. Base365 uses the **Identity Propagation** pattern — it trusts the upstream service to provide accurate user identity. The `user_id` is opaque (VARCHAR 255); multi-tenant deployments use the compound format `tenant.{tenantId}.user.{userId}`. See [00-architecture-overview.md Section 5](./00-architecture-overview.md) for details.
 
 ### Three Roles
 
@@ -349,8 +349,8 @@ flowchart TD
 
 - `Authorization: Bearer <token>` -- timing-safe comparison via `crypto/subtle.ConstantTimeCompare`
 - No token configured: all requests allowed
-- `X-GoClaw-User-Id`: required for per-user scoping
-- `X-GoClaw-Agent-Id`: specify target agent for the request
+- `X-Base365-User-Id`: required for per-user scoping
+- `X-Base365-Agent-Id`: specify target agent for the request
 
 ### Endpoints
 
@@ -368,7 +368,7 @@ flowchart TD
     RESP -->|No| JSON["JSON response<br/>(OpenAI format)"]
 ```
 
-Agent resolution priority: `model` field with `goclaw:` or `agent:` prefix, then `X-GoClaw-Agent-Id` header, then `"default"`.
+Agent resolution priority: `model` field with `base365:` or `agent:` prefix, then `X-Base365-Agent-Id` header, then `"default"`.
 
 #### POST /v1/responses (OpenResponses Protocol)
 
@@ -384,7 +384,7 @@ Returns `{"status":"ok","protocol":3}`.
 
 #### CRUD Endpoints
 
-All CRUD endpoints require `Authorization: Bearer <token>` and `X-GoClaw-User-Id` header for per-user scoping.
+All CRUD endpoints require `Authorization: Bearer <token>` and `X-Base365-User-Id` header for per-user scoping.
 
 **Agents** (`/v1/agents`):
 

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // applyUserAllowedPaths must grant the filesystem tools access to paths outside

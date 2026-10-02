@@ -36,25 +36,25 @@ var deniedExact = map[string]struct{}{
 	"GIT_CONFIG_SYSTEM": {},
 	"SSH_AUTH_SOCK":     {},
 	// Finding #6: additional dangerous vars for shell injection / TLS bypass / exfil
-	"BASH_ENV":         {}, // sourced by non-interactive bash
-	"ENV":              {}, // sourced by sh (non-interactive)
-	"PROMPT_COMMAND":   {}, // executed before each shell prompt
-	"PERL5LIB":         {}, // Perl library path override
-	"RUBYOPT":          {}, // Ruby interpreter options
-	"HTTPS_PROXY":      {}, // HTTPS exfiltration channel
-	"HTTP_PROXY":       {}, // HTTP exfiltration channel
-	"NO_PROXY":         {}, // disables proxy bypass
-	"SSL_CERT_FILE":    {}, // TLS CA cert override — MitM
-	"SSL_CERT_DIR":     {}, // TLS CA cert dir override — MitM
-	"CURL_CA_BUNDLE":   {}, // curl TLS CA bundle override — MitM
-	"IFS":              {}, // Internal Field Separator — shell injection
+	"BASH_ENV":       {}, // sourced by non-interactive bash
+	"ENV":            {}, // sourced by sh (non-interactive)
+	"PROMPT_COMMAND": {}, // executed before each shell prompt
+	"PERL5LIB":       {}, // Perl library path override
+	"RUBYOPT":        {}, // Ruby interpreter options
+	"HTTPS_PROXY":    {}, // HTTPS exfiltration channel
+	"HTTP_PROXY":     {}, // HTTP exfiltration channel
+	"NO_PROXY":       {}, // disables proxy bypass
+	"SSL_CERT_FILE":  {}, // TLS CA cert override — MitM
+	"SSL_CERT_DIR":   {}, // TLS CA cert dir override — MitM
+	"CURL_CA_BUNDLE": {}, // curl TLS CA bundle override — MitM
+	"IFS":            {}, // Internal Field Separator — shell injection
 }
 
 // deniedPrefixes is the set of uppercase key prefixes that are rejected.
 // Keep in sync with ENV_DENYLIST_PREFIXES in ui/web/src/pages/cli-credentials/cli-credential-grant-env-section.tsx.
 var deniedPrefixes = []string{
 	"DYLD_",
-	"GOCLAW_",
+	"BASE365_",
 	"LD_",
 	"NPM_CONFIG_", // npm lifecycle overrides (rc-style, loads modules); case-insensitive match via ToUpper
 }

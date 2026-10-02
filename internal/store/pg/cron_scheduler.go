@@ -9,9 +9,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/cron"
-	"github.com/nextlevelbuilder/goclaw/internal/safego"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/cron"
+	"github.com/edyoCampos/base365/internal/safego"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func (s *PGCronStore) GetDueJobs(now time.Time) []store.CronJob {

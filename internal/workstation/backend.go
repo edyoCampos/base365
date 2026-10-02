@@ -9,7 +9,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // Backend represents a connected remote execution environment.
@@ -33,7 +33,7 @@ type ExecRequest struct {
 	Args       []string
 	Env        map[string]string
 	CWD        string
-	Persistent bool          // if true, route via tmux (Phase 4)
+	Persistent bool // if true, route via tmux (Phase 4)
 	Timeout    time.Duration
 }
 

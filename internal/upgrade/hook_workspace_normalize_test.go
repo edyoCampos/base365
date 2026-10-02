@@ -14,9 +14,9 @@ func TestIsStaleWorkspace(t *testing.T) {
 		{"docker era app workspace", "/app/workspace/clax", true},
 		{"docker era root", "/app/workspace", true},
 		{"docker era trailing slash", "/app/workspace/", true},
-		{"tilde literal", "~/.goclaw/x-workspace", true},
+		{"tilde literal", "~/.base365/x-workspace", true},
 		{"tilde only", "~", true},
-		{"absolute host path", "/var/lib/goclaw/workspace/clax", false},
+		{"absolute host path", "/var/lib/base365/workspace/clax", false},
 		{"current dot", ".", false},
 		{"empty", "", false},
 		{"whitespace", "   ", false},
@@ -33,14 +33,14 @@ func TestIsStaleWorkspace(t *testing.T) {
 }
 
 func TestResolveWorkspaceBase_EnvWins(t *testing.T) {
-	t.Setenv("GOCLAW_WORKSPACE", "/var/lib/goclaw/workspace")
-	if got := resolveWorkspaceBase(); got != "/var/lib/goclaw/workspace" {
-		t.Fatalf("resolveWorkspaceBase() = %q, want /var/lib/goclaw/workspace", got)
+	t.Setenv("BASE365_WORKSPACE", "/var/lib/base365/workspace")
+	if got := resolveWorkspaceBase(); got != "/var/lib/base365/workspace" {
+		t.Fatalf("resolveWorkspaceBase() = %q, want /var/lib/base365/workspace", got)
 	}
 }
 
 func TestResolveWorkspaceBase_EnvTilde(t *testing.T) {
-	t.Setenv("GOCLAW_WORKSPACE", "~/custom/ws")
+	t.Setenv("BASE365_WORKSPACE", "~/custom/ws")
 	home, _ := os.UserHomeDir()
 	want := home + "/custom/ws"
 	if got := resolveWorkspaceBase(); got != want {
@@ -49,15 +49,15 @@ func TestResolveWorkspaceBase_EnvTilde(t *testing.T) {
 }
 
 func TestResolveWorkspaceBase_StripsTrailingSlash(t *testing.T) {
-	t.Setenv("GOCLAW_WORKSPACE", "/var/lib/goclaw/workspace/")
-	if got := resolveWorkspaceBase(); got != "/var/lib/goclaw/workspace" {
+	t.Setenv("BASE365_WORKSPACE", "/var/lib/base365/workspace/")
+	if got := resolveWorkspaceBase(); got != "/var/lib/base365/workspace" {
 		t.Fatalf("resolveWorkspaceBase() = %q, want trimmed", got)
 	}
 }
 
 func TestResolveWorkspaceBase_FallbackOnMissingConfig(t *testing.T) {
-	t.Setenv("GOCLAW_WORKSPACE", "")
-	t.Setenv("GOCLAW_CONFIG", "/nonexistent/path/config.json")
+	t.Setenv("BASE365_WORKSPACE", "")
+	t.Setenv("BASE365_CONFIG", "/nonexistent/path/config.json")
 	// Should not return empty even if config file missing — falls back through
 	// config.Load's IsNotExist branch (which returns defaults) or to default.
 	if got := resolveWorkspaceBase(); got == "" {

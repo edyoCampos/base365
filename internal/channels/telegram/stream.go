@@ -13,8 +13,8 @@ import (
 	"github.com/mymmrac/telego"
 	tu "github.com/mymmrac/telego/telegoutil"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/channels"
 )
 
 const (
@@ -77,19 +77,19 @@ func shouldFallbackFromDraft(err error) bool {
 //	STREAMING   → Stop() → final flush → STOPPED
 //	STREAMING   → Clear() → deleteMessage (message transport only) → DELETED
 type DraftStream struct {
-	bot             *telego.Bot
-	chatID          int64
-	messageThreadID int           // forum topic thread ID (0 = no thread)
-	messageID       int           // 0 = not yet created (message transport only)
-	lastText        string        // last sent text (for dedup)
-	throttle        time.Duration // min delay between edits
-	lastEdit        time.Time
-	mu              sync.Mutex
-	stopped         bool
-	pending         string // pending text to send (buffered during throttle)
-	draftID         int    // sendMessageDraft draft_id (0 = message transport)
-	useDraft        bool   // true = draft transport, false = message transport
-	draftFailed     bool   // true = draft API rejected permanently, using message transport
+	bot               *telego.Bot
+	chatID            int64
+	messageThreadID   int           // forum topic thread ID (0 = no thread)
+	messageID         int           // 0 = not yet created (message transport only)
+	lastText          string        // last sent text (for dedup)
+	throttle          time.Duration // min delay between edits
+	lastEdit          time.Time
+	mu                sync.Mutex
+	stopped           bool
+	pending           string // pending text to send (buffered during throttle)
+	draftID           int    // sendMessageDraft draft_id (0 = message transport)
+	useDraft          bool   // true = draft transport, false = message transport
+	draftFailed       bool   // true = draft API rejected permanently, using message transport
 	sendMayHaveLanded bool   // true = initial sendMessage was attempted and may have landed (even if timed out)
 }
 

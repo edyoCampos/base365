@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // mockResolver is a test double that returns pre-configured resolutions.
@@ -127,10 +127,10 @@ func TestExtractGroupChatID(t *testing.T) {
 	}{
 		{"group:telegram:-100456", "-100456"},
 		{"group:discord:123", "123"},
-		{"guild:123:user:456", ""},  // not group: prefix
-		{"12345", ""},               // plain user ID
-		{"group:", ""},              // incomplete
-		{"group:channel", ""},       // missing third part
+		{"guild:123:user:456", ""}, // not group: prefix
+		{"12345", ""},              // plain user ID
+		{"group:", ""},             // incomplete
+		{"group:channel", ""},      // missing third part
 		{"group:tg:-100456", "-100456"},
 	}
 

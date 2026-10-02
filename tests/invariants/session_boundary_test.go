@@ -5,9 +5,9 @@ package invariants
 import (
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store/pg"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
 )
 
 // INVARIANT: Session A's message history MUST NOT leak to Session B.

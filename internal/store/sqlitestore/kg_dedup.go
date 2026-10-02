@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
+	kg "github.com/edyoCampos/base365/internal/knowledgegraph"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	kg "github.com/nextlevelbuilder/goclaw/internal/knowledgegraph"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 const (

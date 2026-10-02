@@ -8,7 +8,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func liveUsageWindow(q store.SnapshotQuery, now time.Time) (time.Time, time.Time, bool) {

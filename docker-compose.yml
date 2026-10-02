@@ -1,5 +1,5 @@
 # Base docker-compose — shared service definition.
-# Pre-built images: ghcr.io/nextlevelbuilder/goclaw (also on Docker Hub: digitop/goclaw)
+# Pre-built images: ghcr.io/edyocampos/base365 (also on Docker Hub: edyocampos/base365)
 #
 # The default `latest` image includes an embedded web dashboard (no separate nginx needed).
 # Web UI is served at the same port as the API (default: 18790).
@@ -23,38 +23,38 @@
 # With Claude CLI:    add -f docker-compose.claude-cli.yml
 
 services:
-  goclaw:
-    image: ghcr.io/nextlevelbuilder/goclaw:latest
+  base365:
+    image: ghcr.io/edyocampos/base365:latest
     build:
-      context: ${GOCLAW_DIR:-.}
+      context: ${BASE365_DIR:-.}
       dockerfile: Dockerfile
       args:
         ENABLE_OTEL: "${ENABLE_OTEL:-false}"
         ENABLE_EMBEDUI: "${ENABLE_EMBEDUI:-true}"  # set to false when using WITH_WEB_NGINX
         ENABLE_PYTHON: "${ENABLE_PYTHON:-true}"
         ENABLE_FULL_SKILLS: "${ENABLE_FULL_SKILLS:-false}"
-        VERSION: "${GOCLAW_VERSION:-dev}"
-    # Uncomment to test update UI: GOCLAW_VERSION=v1.0.0
+        VERSION: "${BASE365_VERSION:-dev}"
+    # Uncomment to test update UI: BASE365_VERSION=v1.0.0
     ports:
-      - "${GOCLAW_PORT:-18790}:18790"
+      - "${BASE365_PORT:-18790}:18790"
     env_file:
       - path: .env
         required: false
     environment:
-      - GOCLAW_HOST=0.0.0.0
-      - GOCLAW_PORT=18790
-      - GOCLAW_CONFIG=/app/data/config.json
-      - GOCLAW_GATEWAY_TOKEN=${GOCLAW_GATEWAY_TOKEN:?run ./prepare-env.sh or set GOCLAW_GATEWAY_TOKEN}
-      - GOCLAW_ENCRYPTION_KEY=${GOCLAW_ENCRYPTION_KEY:-}
-      - GOCLAW_SKILLS_DIR=/app/data/skills
+      - BASE365_HOST=0.0.0.0
+      - BASE365_PORT=18790
+      - BASE365_CONFIG=/app/data/config.json
+      - BASE365_GATEWAY_TOKEN=${BASE365_GATEWAY_TOKEN:?run ./prepare-env.sh or set BASE365_GATEWAY_TOKEN}
+      - BASE365_ENCRYPTION_KEY=${BASE365_ENCRYPTION_KEY:-}
+      - BASE365_SKILLS_DIR=/app/data/skills
       # Debug
-      - GOCLAW_TRACE_VERBOSE=${GOCLAW_TRACE_VERBOSE:-0}
+      - BASE365_TRACE_VERBOSE=${BASE365_TRACE_VERBOSE:-0}
       - BITRIX24_LOG_RAW_EVENT=${BITRIX24_LOG_RAW_EVENT:-0}
       - BITRIX24_FORCE_REREGISTER=${BITRIX24_FORCE_REREGISTER:-0}
       - BITRIX24_DEBUG_UNREDACTED_TOKEN=${BITRIX24_DEBUG_UNREDACTED_TOKEN:-0}
     volumes:
-      - goclaw-data:/app/data
-      - goclaw-workspace:/app/workspace
+      - base365-data:/app/data
+      - base365-workspace:/app/workspace
     extra_hosts:
       - "host.docker.internal:host-gateway"
     security_opt:
@@ -76,14 +76,14 @@ services:
           pids: 200
     networks:
       - default
-      - goclaw-net
+      - base365-net
     restart: unless-stopped
 
 volumes:
-  goclaw-data:
-  goclaw-workspace:
+  base365-data:
+  base365-workspace:
 
 networks:
-  goclaw-net:
-    name: goclaw-net
+  base365-net:
+    name: base365-net
     driver: bridge

@@ -9,10 +9,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/mcp"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/tokencount"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/mcp"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/tokencount"
 )
 
 // mcpPreviewAdapter wraps *mcp.Manager to satisfy agent.MCPPreviewLister.
@@ -60,11 +60,11 @@ type promptPreviewSection struct {
 
 // promptPreviewResponse is the API response for system prompt preview.
 type promptPreviewResponse struct {
-	Mode       string                      `json:"mode"`
-	Prompt     string                      `json:"prompt"`
-	TokenCount int                         `json:"token_count"`
-	Sections   []promptPreviewSection      `json:"sections"`
-	Tools      []providers.ToolDefinition  `json:"tools,omitempty"`
+	Mode       string                     `json:"mode"`
+	Prompt     string                     `json:"prompt"`
+	TokenCount int                        `json:"token_count"`
+	Sections   []promptPreviewSection     `json:"sections"`
+	Tools      []providers.ToolDefinition `json:"tools,omitempty"`
 }
 
 // handleSystemPromptPreview renders the actual system prompt for an agent in a given mode.

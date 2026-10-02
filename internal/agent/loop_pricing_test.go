@@ -6,11 +6,11 @@ import (
 	"math"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	usagecaps "github.com/edyoCampos/base365/internal/usage/caps"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	usagecaps "github.com/nextlevelbuilder/goclaw/internal/usage/caps"
 )
 
 func TestCalculateLLMCostUsesResolvedUsagePricingBeforeConfigFallback(t *testing.T) {

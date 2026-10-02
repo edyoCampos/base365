@@ -8,22 +8,22 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/cache"
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/bitrix24"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	"github.com/nextlevelbuilder/goclaw/internal/heartbeat"
-	"github.com/nextlevelbuilder/goclaw/internal/orchestration"
-	"github.com/nextlevelbuilder/goclaw/internal/sandbox"
-	"github.com/nextlevelbuilder/goclaw/internal/scheduler"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tasks"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	"github.com/nextlevelbuilder/goclaw/internal/webhooks"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/cache"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels/bitrix24"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/edition"
+	"github.com/edyoCampos/base365/internal/heartbeat"
+	"github.com/edyoCampos/base365/internal/orchestration"
+	"github.com/edyoCampos/base365/internal/sandbox"
+	"github.com/edyoCampos/base365/internal/scheduler"
+	"github.com/edyoCampos/base365/internal/security"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tasks"
+	"github.com/edyoCampos/base365/internal/tools"
+	"github.com/edyoCampos/base365/internal/webhooks"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // lifecycleDeps bundles the extra parameters needed by runLifecycle that are not in gatewayDeps.
@@ -243,7 +243,7 @@ func (d *gatewayDeps) runLifecycle(
 			},
 		)
 		// K6: decrypt raw secret for outbound HMAC signing using the same key as inbound verify.
-		ww.SetEncKey(os.Getenv("GOCLAW_ENCRYPTION_KEY"))
+		ww.SetEncKey(os.Getenv("BASE365_ENCRYPTION_KEY"))
 		var workerCtx context.Context
 		workerCtx, webhookWorkerCancel = context.WithCancel(ctx)
 		go ww.Run(workerCtx)
@@ -348,7 +348,7 @@ func (d *gatewayDeps) runLifecycle(
 		cancel()
 	}()
 
-	slog.Info("goclaw gateway starting",
+	slog.Info("base365 gateway starting",
 		"version", Version,
 		"protocol", protocol.ProtocolVersion,
 		"agents", d.agentRouter.List(),
@@ -390,17 +390,17 @@ func (d *gatewayDeps) runLifecycle(
 
 	// Phase 1: suggest localhost binding when Tailscale is active
 	if d.cfg.Tailscale.Hostname != "" && d.cfg.Gateway.Host == "0.0.0.0" {
-		slog.Info("Tailscale enabled. Consider setting GOCLAW_HOST=127.0.0.1 for localhost-only + Tailscale access")
+		slog.Info("Tailscale enabled. Consider setting BASE365_HOST=127.0.0.1 for localhost-only + Tailscale access")
 	}
 
 	// Security warnings
-	if strings.Contains(d.cfg.Database.PostgresDSN, ":goclaw@") {
+	if strings.Contains(d.cfg.Database.PostgresDSN, ":base365@") {
 		slog.Warn("security.default_db_password: using default Postgres password — run ./prepare-env.sh to generate a strong one")
 	}
 	if len(d.cfg.Gateway.AllowedOrigins) > 0 {
 		slog.Info("cors: allowed_origins configured", "origins", d.cfg.Gateway.AllowedOrigins)
 	} else if !edition.Current().IsLimited() {
-		slog.Warn("security.cors_open: no allowed_origins configured — all WebSocket origins accepted. Set gateway.allowed_origins or GOCLAW_ALLOWED_ORIGINS for production")
+		slog.Warn("security.cors_open: no allowed_origins configured — all WebSocket origins accepted. Set gateway.allowed_origins or BASE365_ALLOWED_ORIGINS for production")
 	}
 	if allowed, rejected := security.OperatorAllowlistStatus(); len(allowed) > 0 || len(rejected) > 0 {
 		if len(allowed) > 0 {

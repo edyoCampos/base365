@@ -6,12 +6,12 @@ import (
 	"log/slog"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/bus"
+	orchestration "github.com/edyoCampos/base365/internal/childrun"
+	"github.com/edyoCampos/base365/internal/edition"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tracing"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	orchestration "github.com/nextlevelbuilder/goclaw/internal/childrun"
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tracing"
 )
 
 // SpawnReceipt identifies both the in-memory runtime task and its durable

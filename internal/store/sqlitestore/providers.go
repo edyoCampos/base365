@@ -11,8 +11,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 const providerSelectCols = `id, name, display_name, provider_type, api_base, api_key, enabled, settings, created_at, updated_at, tenant_id`
@@ -231,4 +231,3 @@ func (s *SQLiteProviderStore) convertAndDecryptProviders(rows []providerRow) []s
 	}
 	return result
 }
-

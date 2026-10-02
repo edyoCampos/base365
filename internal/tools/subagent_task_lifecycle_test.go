@@ -9,9 +9,9 @@ import (
 
 	"github.com/google/uuid"
 
-	orchestration "github.com/nextlevelbuilder/goclaw/internal/childrun"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	orchestration "github.com/edyoCampos/base365/internal/childrun"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 type taskLifecycleUpdate struct {

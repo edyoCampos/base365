@@ -55,7 +55,7 @@ func TestDetectFileType(t *testing.T) {
 		{"unknown.zip", "stream"},
 		{"noext", "stream"},
 		{"", "stream"},
-		{"UPPER.PDF", "pdf"},  // case-insensitive via ToLower on ext
+		{"UPPER.PDF", "pdf"}, // case-insensitive via ToLower on ext
 		{"Mixed.Opus", "opus"},
 	}
 	for _, tc := range cases {

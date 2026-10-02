@@ -12,8 +12,8 @@ dependencies: [1, 2, 3, 4]
 ## Context Links
 
 - Plan overview: `plans/260528-1804-archived-run-timeline/plan.md`
-- GitHub issue: `digitopvn/goclaw#76`
-- Related issue boundary: `digitopvn/goclaw#67`
+- GitHub issue: `edyoCampos/base365#76`
+- Related issue boundary: `edyoCampos/base365#67`
 
 ## Overview
 

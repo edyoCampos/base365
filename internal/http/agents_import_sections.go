@@ -7,9 +7,9 @@ import (
 	"log/slog"
 	"strings"
 
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // doMergeImport upserts sections of the archive into the target agent.

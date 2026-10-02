@@ -5,8 +5,8 @@ import (
 	"slices"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 const codexPoolRuntimeHealthSampleSize = 120

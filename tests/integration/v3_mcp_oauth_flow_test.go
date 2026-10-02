@@ -10,11 +10,11 @@ import (
 	"testing"
 	"time"
 
+	gohttp "github.com/edyoCampos/base365/internal/http"
+	mcpoauth "github.com/edyoCampos/base365/internal/mcp/oauth"
+	"github.com/edyoCampos/base365/internal/security"
+	pgstore "github.com/edyoCampos/base365/internal/store/pg"
 	"github.com/google/uuid"
-	gohttp "github.com/nextlevelbuilder/goclaw/internal/http"
-	mcpoauth "github.com/nextlevelbuilder/goclaw/internal/mcp/oauth"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
-	pgstore "github.com/nextlevelbuilder/goclaw/internal/store/pg"
 )
 
 // flowTestHandler builds a real MCPOAuthHandler wired to real PG stores,

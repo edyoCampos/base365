@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // SQLiteEvolutionSuggestionStore implements store.EvolutionSuggestionStore backed by SQLite.

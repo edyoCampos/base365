@@ -28,8 +28,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // recordingEpisodicStore extends mockEpisodicStore to capture the context
@@ -132,8 +132,8 @@ func TestPruneExpired_ContextCarriesNoTenant(t *testing.T) {
 	t.Helper()
 
 	rec := &recordingEpisodicStore{
-		mockEpisodicStore:  mockEpisodicStore{existsByID: make(map[string]bool)},
-		totalAvailable: 5,
+		mockEpisodicStore: mockEpisodicStore{existsByID: make(map[string]bool)},
+		totalAvailable:    5,
 	}
 
 	// Wire up a minimal Register() to trigger the pruning goroutine.
@@ -234,8 +234,8 @@ func TestPruneExpired_MockBehavior(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
 			rec := &recordingEpisodicStore{
-				mockEpisodicStore:  mockEpisodicStore{existsByID: make(map[string]bool)},
-				totalAvailable: tc.available,
+				mockEpisodicStore: mockEpisodicStore{existsByID: make(map[string]bool)},
+				totalAvailable:    tc.available,
 			}
 
 			n, err := rec.PruneExpired(context.Background())
@@ -260,8 +260,8 @@ func TestRegister_PruneGoroutineCallsPruneExpired(t *testing.T) {
 	t.Helper()
 
 	rec := &recordingEpisodicStore{
-		mockEpisodicStore:  mockEpisodicStore{existsByID: make(map[string]bool)},
-		totalAvailable: 3,
+		mockEpisodicStore: mockEpisodicStore{existsByID: make(map[string]bool)},
+		totalAvailable:    3,
 	}
 
 	// Simulate what the goroutine body in workers.go does.

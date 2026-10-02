@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
+	"github.com/edyoCampos/base365/internal/edition"
+	"github.com/edyoCampos/base365/internal/hooks"
 )
 
 // baseValidCommandHook returns a HookConfig that passes Validate on the Lite

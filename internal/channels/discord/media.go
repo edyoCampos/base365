@@ -13,7 +13,7 @@ import (
 
 	"github.com/bwmarrin/discordgo"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels/media"
+	"github.com/edyoCampos/base365/internal/channels/media"
 )
 
 const (

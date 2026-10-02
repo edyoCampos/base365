@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	runtimelogs "github.com/nextlevelbuilder/goclaw/internal/logs"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	runtimelogs "github.com/edyoCampos/base365/internal/logs"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 const (

@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels"
 )
 
 // Matching TS pi-embedded-helpers/errors.ts error classification.
@@ -75,9 +75,9 @@ func isContextOverflowError(lower string) bool {
 		"input is too long",         // DashScope
 		"token limit",
 		"too many tokens",
-		"请求输入过长",       // Chinese generic
-		"超出最大长度限制",     // Chinese Qwen
-		"上下文长度",        // Chinese context length
+		"请求输入过长",   // Chinese generic
+		"超出最大长度限制", // Chinese Qwen
+		"上下文长度",    // Chinese context length
 	) || (strings.Contains(lower, "context") &&
 		containsAny(lower, "overflow", "too large", "too long", "limit", "exceeded"))
 }

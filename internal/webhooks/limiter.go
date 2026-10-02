@@ -36,9 +36,9 @@ type tenantEntry struct {
 type CallbackLimiter struct {
 	capacity int64 // per-tenant cap
 
-	entries  sync.Map       // tenantID → *tenantEntry
+	entries  sync.Map // tenantID → *tenantEntry
 	lastUsed map[string]time.Time
-	mu       sync.RWMutex   // protects lastUsed only
+	mu       sync.RWMutex // protects lastUsed only
 
 	stopCh chan struct{}
 	once   sync.Once

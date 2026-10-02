@@ -1,4 +1,4 @@
--- GoClaw Multi-Tenant Schema
+-- Base365 Multi-Tenant Schema
 -- Requires: pgcrypto, pgvector extensions
 
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";

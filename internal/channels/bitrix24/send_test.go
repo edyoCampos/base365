@@ -7,7 +7,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
+	"github.com/edyoCampos/base365/internal/bus"
 )
 
 func TestChunkText_ShortStaysOneChunk(t *testing.T) {
@@ -235,10 +235,10 @@ func TestSend_EmptyContentIsNoOp(t *testing.T) {
 // (public, no replyId) so any caller missing the keys still works.
 func TestResolveSendOptions(t *testing.T) {
 	cases := []struct {
-		name            string
-		meta            map[string]string
-		wantVisibility  string
-		wantReplyToMID  int
+		name           string
+		meta           map[string]string
+		wantVisibility string
+		wantReplyToMID int
 	}{
 		{
 			name:           "empty metadata defaults to public",
@@ -345,10 +345,10 @@ func TestSend_BranchesOnVisibility(t *testing.T) {
 			},
 			wantPath: "/rest/imbot.v2.Chat.Message.send.json",
 			wantFormChecks: map[string]string{
-				"botId":            "1",
-				"dialogId":         "chat4878",
-				"fields[message]":  "hi from bot",
-				"fields[replyId]":  "297196",
+				"botId":           "1",
+				"dialogId":        "chat4878",
+				"fields[message]": "hi from bot",
+				"fields[replyId]": "297196",
 			},
 			notWantKeys: []string{
 				"SKIP_CONNECTOR",

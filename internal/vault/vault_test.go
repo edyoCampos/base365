@@ -321,9 +321,9 @@ func TestExtractWikilinks_EmptyTarget(t *testing.T) {
 // TestExtractWikilinks_Context verifies context window around link.
 func TestExtractWikilinks_Context(t *testing.T) {
 	tests := []struct {
-		name     string
-		content  string
-		checkFn  func(string) bool
+		name    string
+		content string
+		checkFn func(string) bool
 	}{
 		{
 			name:    "context at document start",
@@ -485,7 +485,7 @@ func hashRef(data []byte) string {
 // a continuation byte of the 3rd "ế" — an invalid UTF-8 start.
 func TestExtractWikilinks_MultibyteUTF8Context(t *testing.T) {
 	prefix := strings.Repeat("ế", 10) + "x" // 31 bytes
-	suffix := "x" + strings.Repeat("ệ", 10)  // 31 bytes
+	suffix := "x" + strings.Repeat("ệ", 10) // 31 bytes
 	content := prefix + " [[target]] " + suffix
 
 	matches := ExtractWikilinks(content)

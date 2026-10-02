@@ -27,10 +27,10 @@ type ForwardInfo struct {
 // ReplyInfo contains metadata about the message being replied to.
 // Ref: TS describeReplyTarget()
 type ReplyInfo struct {
-	Sender      string // sender name
-	Body        string // quoted message text
-	IsBotReply  bool   // true if replying to bot's own message
-	MessageID   int    // id of the replied-to message (edit target)
+	Sender     string // sender name
+	Body       string // quoted message text
+	IsBotReply bool   // true if replying to bot's own message
+	MessageID  int    // id of the replied-to message (edit target)
 }
 
 // LocationInfo contains geographic coordinates.

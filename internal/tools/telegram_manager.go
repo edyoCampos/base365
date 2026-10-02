@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels"
 )
 
 // TelegramManagerFunc executes a whitelisted Telegram management action on a
@@ -51,7 +51,7 @@ func (t *TelegramManagerTool) Parameters() map[string]any {
 			},
 			"channel": map[string]any{
 				"type":        "string",
-				"description": "GoClaw Telegram channel instance name. Defaults to current channel.",
+				"description": "Base365 Telegram channel instance name. Defaults to current channel.",
 			},
 			"chat_id": map[string]any{
 				"type":        "string",

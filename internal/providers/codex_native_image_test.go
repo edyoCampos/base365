@@ -356,8 +356,8 @@ func TestCodexGenerateImage_WithReferenceImage(t *testing.T) {
 	p.retryConfig.Attempts = 1
 
 	req := NativeImageRequest{
-		Model:        "gpt-image-2",
-		Prompt:       "A red circle",
+		Model:  "gpt-image-2",
+		Prompt: "A red circle",
 		RefImages: []RefImage{
 			{
 				URL: "https://example.com/ref.png",
@@ -432,8 +432,8 @@ func TestCodexGenerateImage_WithMultipleReferenceImages(t *testing.T) {
 	p.retryConfig.Attempts = 1
 
 	req := NativeImageRequest{
-		Model:        "gpt-image-2",
-		Prompt:       "A red circle",
+		Model:  "gpt-image-2",
+		Prompt: "A red circle",
 		RefImages: []RefImage{
 			{
 				URL: "https://example.com/ref1.png",

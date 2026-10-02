@@ -8,15 +8,15 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tts"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tts"
 )
 
 // stubProvider is a test TTS provider that captures the last opts it received.
 type stubProvider struct {
 	name      string
-	failUntil int   // fail the first N calls, succeed thereafter
+	failUntil int // fail the first N calls, succeed thereafter
 	calls     int
 	lastOpts  tts.Options
 	shouldErr bool // if true, always fail

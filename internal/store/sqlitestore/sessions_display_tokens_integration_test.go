@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // buildVietnameseFixtureMessages constructs n synthetic messages with Vietnamese UTF-8

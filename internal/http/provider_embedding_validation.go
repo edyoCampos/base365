@@ -3,7 +3,7 @@ package http
 import (
 	"fmt"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // Provider-level embedding settings are used by the memory system, whose
@@ -18,7 +18,7 @@ func validateProviderEmbeddingSettings(p *store.LLMProviderData) error {
 	}
 	if es.Dimensions > 0 && es.Dimensions != store.RequiredMemoryEmbeddingDimensions {
 		return fmt.Errorf(
-			"embedding.dimensions must be %d or omitted because GoClaw memory stores vector(%d)",
+			"embedding.dimensions must be %d or omitted because Base365 memory stores vector(%d)",
 			store.RequiredMemoryEmbeddingDimensions,
 			store.RequiredMemoryEmbeddingDimensions,
 		)

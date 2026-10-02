@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
 )
 
 func TestStoreTask_ClaimAndComplete(t *testing.T) {

@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func TestResolveSkillSlashCommandExactSlug(t *testing.T) {
@@ -120,7 +120,7 @@ func boolPtr(v bool) *bool {
 
 func newSlashTestLoader(t *testing.T) *skills.Loader {
 	t.Helper()
-	t.Setenv("GOCLAW_DISABLE_PERSONAL_SKILLS", "1")
+	t.Setenv("BASE365_DISABLE_PERSONAL_SKILLS", "1")
 	root := t.TempDir()
 	writeSkill(t, root, "frontend-design", "Frontend Design", "Create polished UI layouts.", "Use responsive components.")
 	writeSkill(t, root, "git-helper", "Git Helper", "Handle git workflows.", "Use clean commits.")
@@ -132,7 +132,7 @@ func newSlashTestLoader(t *testing.T) *skills.Loader {
 // deliberately left empty: skillsReachableBySlash only gates Source == "managed".
 func newManagedSlashTestLoader(t *testing.T) *skills.Loader {
 	t.Helper()
-	t.Setenv("GOCLAW_DISABLE_PERSONAL_SKILLS", "1")
+	t.Setenv("BASE365_DISABLE_PERSONAL_SKILLS", "1")
 	dataDir := t.TempDir()
 	storeDir := config.TenantSkillsStoreDir(dataDir, store.MasterTenantID, "")
 	// Managed layout is <store>/<slug>/<version>/SKILL.md.

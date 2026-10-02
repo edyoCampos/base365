@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // buildMergedSubagentAnnounce creates the announce message for one or more subagent results.

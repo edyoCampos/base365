@@ -6,7 +6,7 @@ import (
 	"context"
 	"hash/fnv"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // mockEmbedProvider returns deterministic vectors based on text content hash.

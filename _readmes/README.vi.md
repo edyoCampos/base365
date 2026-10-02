@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">Tài liệu</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">Bắt đầu nhanh</a> •
+  <a href="https://edyocampos.github.io/base365">Tài liệu</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">Bắt đầu nhanh</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-**GoClaw** là cổng AI đa agent, kết nối các LLM với công cụ, kênh giao tiếp và dữ liệu của bạn — triển khai dưới dạng một tệp nhị phân Go duy nhất, không phụ thuộc runtime. GoClaw điều phối nhóm agent và ủy quyền giữa các agent trên hơn 20 nhà cung cấp LLM với multi-tenant isolation hoàn chỉnh.
+**Base365** là cổng AI đa agent, kết nối các LLM với công cụ, kênh giao tiếp và dữ liệu của bạn — triển khai dưới dạng một tệp nhị phân Go duy nhất, không phụ thuộc runtime. Base365 điều phối nhóm agent và ủy quyền giữa các agent trên hơn 20 nhà cung cấp LLM với multi-tenant isolation hoàn chỉnh.
 
 Phiên bản Go của [OpenClaw](https://github.com/openclaw/openclaw) với bảo mật nâng cao, multi-tenant PostgreSQL, và observability cấp production.
 
@@ -58,7 +58,7 @@ Phiên bản Go của [OpenClaw](https://github.com/openclaw/openclaw) với b�
 
 ## Hệ Sinh Thái Claw
 
-|                          | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                          | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | ------------------------ | --------------- | -------- | -------- | --------------------------------------- |
 | Ngôn ngữ                 | TypeScript      | Rust     | Go       | **Go**                                  |
 | Kích thước tệp nhị phân  | 28 MB + Node.js | 3,4 MB   | ~8 MB    | **~25 MB** (cơ bản) / **~36 MB** (+ OTel) |
@@ -67,7 +67,7 @@ Phiên bản Go của [OpenClaw](https://github.com/openclaw/openclaw) với b�
 | Thời gian khởi động      | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | Phần cứng mục tiêu       | Mac Mini $599+  | $10 edge | $10 edge | **VPS $5+**                             |
 
-| Tính năng                            | OpenClaw                             | ZeroClaw                                     | PicoClaw                                    | **GoClaw**                     |
+| Tính năng                            | OpenClaw                             | ZeroClaw                                     | PicoClaw                                    | **Base365**                     |
 | ------------------------------------ | ------------------------------------ | -------------------------------------------- | ------------------------------------------- | ------------------------------ |
 | Multi-tenant (PostgreSQL)            | —                                    | —                                            | —                                           | ✅                             |
 | Tích hợp MCP                        | — (dùng ACP)                         | —                                            | —                                           | ✅ (stdio/SSE/streamable-http) |
@@ -88,7 +88,7 @@ Phiên bản Go của [OpenClaw](https://github.com/openclaw/openclaw) với b�
 ## Kiến Trúc
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## Bắt Đầu Nhanh
@@ -98,10 +98,10 @@ Phiên bản Go của [OpenClaw](https://github.com/openclaw/openclaw) với b�
 ### Từ mã nguồn
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # Trình hướng dẫn cài đặt tương tác
-source .env.local && ./goclaw
+./base365 onboard        # Trình hướng dẫn cài đặt tương tác
+source .env.local && ./base365
 ```
 
 ### Với Docker
@@ -110,20 +110,20 @@ source .env.local && ./goclaw
 # Tạo .env với các secret được sinh tự động
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# Thêm ít nhất một GOCLAW_*_API_KEY vào .env, sau đó:
+# Thêm ít nhất một BASE365_*_API_KEY vào .env, sau đó:
 make up
 
 # Web Dashboard tại http://localhost:18790
 # Kiểm tra trạng thái: curl http://localhost:18790/health
 ```
 
-Khi biến môi trường `GOCLAW_*_API_KEY` được đặt, gateway tự động thiết lập mà không cần tương tác — nhận diện nhà cung cấp, chạy database migration, và khởi tạo dữ liệu mặc định.
+Khi biến môi trường `BASE365_*_API_KEY` được đặt, gateway tự động thiết lập mà không cần tương tác — nhận diện nhà cung cấp, chạy database migration, và khởi tạo dữ liệu mặc định.
 
-> Để tìm hiểu về các biến thể build (OTel, Tailscale, Redis), Docker image tag, và compose overlay, xem [Hướng dẫn triển khai](https://docs.goclaw.sh/#deploy-docker-compose).
+> Để tìm hiểu về các biến thể build (OTel, Tailscale, Redis), Docker image tag, và compose overlay, xem [Hướng dẫn triển khai](https://edyocampos.github.io/base365/#deploy-docker-compose).
 
 ## Điều Phối Đa Agent
 
-GoClaw hỗ trợ nhóm agent và ủy quyền giữa các agent — mỗi agent chạy với danh tính, bộ công cụ, nhà cung cấp LLM, và tệp ngữ cảnh riêng.
+Base365 hỗ trợ nhóm agent và ủy quyền giữa các agent — mỗi agent chạy với danh tính, bộ công cụ, nhà cung cấp LLM, và tệp ngữ cảnh riêng.
 
 ### Ủy Quyền Giữa Các Agent
 
@@ -148,7 +148,7 @@ Các agent giao tiếp qua **permission link** với kiểm soát chiều (`outb
 - **Hộp thư nhóm** — Nhắn tin trực tiếp ngang hàng và thông báo chung
 - **Công cụ**: `team_tasks` để quản lý nhiệm vụ, `team_message` cho hộp thư
 
-> Chi tiết về ủy quyền, permission link, và kiểm soát đồng thời xem tại [tài liệu Nhóm Agent](https://docs.goclaw.sh/#teams-what-are-teams).
+> Chi tiết về ủy quyền, permission link, và kiểm soát đồng thời xem tại [tài liệu Nhóm Agent](https://edyocampos.github.io/base365/#teams-what-are-teams).
 
 ## Công Cụ Tích Hợp Sẵn
 
@@ -192,19 +192,19 @@ Các agent giao tiếp qua **permission link** với kiểm soát chiều (`outb
 
 ## Tài Liệu
 
-Tài liệu đầy đủ tại **[docs.goclaw.sh](https://docs.goclaw.sh)** — hoặc xem mã nguồn trong [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs)
+Tài liệu đầy đủ tại **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** — hoặc xem mã nguồn trong [`base365-docs/`](https://edyocampos.github.io/base365)
 
 | Mục | Chủ đề |
 |---------|--------|
-| [Bắt đầu](https://docs.goclaw.sh/#what-is-goclaw) | Cài đặt, Bắt đầu nhanh, Cấu hình, Tham quan Web Dashboard |
-| [Khái niệm cốt lõi](https://docs.goclaw.sh/#how-goclaw-works) | Agent Loop, Session, Công cụ, Bộ nhớ, Multi-Tenancy |
-| [Agent](https://docs.goclaw.sh/#creating-agents) | Tạo agent, Tệp ngữ cảnh, Tính cách, Chia sẻ và quyền truy cập |
-| [Nhà cung cấp](https://docs.goclaw.sh/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, và hơn 15 nhà cung cấp khác |
-| [Kênh](https://docs.goclaw.sh/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
-| [Nhóm Agent](https://docs.goclaw.sh/#teams-what-are-teams) | Nhóm, Bảng nhiệm vụ, Nhắn tin, Ủy quyền và chuyển giao |
-| [Nâng cao](https://docs.goclaw.sh/#custom-tools) | Công cụ tùy chỉnh, MCP, Skill, Cron, Sandbox, Hooks, RBAC |
-| [Triển khai](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose, Cơ sở dữ liệu, Bảo mật, Observability, Tailscale |
-| [Tham chiếu](https://docs.goclaw.sh/#cli-commands) | Lệnh CLI, REST API, WebSocket Protocol, Biến môi trường |
+| [Bắt đầu](https://edyocampos.github.io/base365/#what-is-base365) | Cài đặt, Bắt đầu nhanh, Cấu hình, Tham quan Web Dashboard |
+| [Khái niệm cốt lõi](https://edyocampos.github.io/base365/#how-base365-works) | Agent Loop, Session, Công cụ, Bộ nhớ, Multi-Tenancy |
+| [Agent](https://edyocampos.github.io/base365/#creating-agents) | Tạo agent, Tệp ngữ cảnh, Tính cách, Chia sẻ và quyền truy cập |
+| [Nhà cung cấp](https://edyocampos.github.io/base365/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, và hơn 15 nhà cung cấp khác |
+| [Kênh](https://edyocampos.github.io/base365/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
+| [Nhóm Agent](https://edyocampos.github.io/base365/#teams-what-are-teams) | Nhóm, Bảng nhiệm vụ, Nhắn tin, Ủy quyền và chuyển giao |
+| [Nâng cao](https://edyocampos.github.io/base365/#custom-tools) | Công cụ tùy chỉnh, MCP, Skill, Cron, Sandbox, Hooks, RBAC |
+| [Triển khai](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose, Cơ sở dữ liệu, Bảo mật, Observability, Tailscale |
+| [Tham chiếu](https://edyocampos.github.io/base365/#cli-commands) | Lệnh CLI, REST API, WebSocket Protocol, Biến môi trường |
 
 ## Kiểm Thử
 
@@ -219,7 +219,7 @@ Xem [CHANGELOG.md](CHANGELOG.md) để biết chi tiết trạng thái tính nă
 
 ## Lời Cảm Ơn
 
-GoClaw được xây dựng dựa trên dự án [OpenClaw](https://github.com/openclaw/openclaw) gốc. Chúng tôi trân trọng kiến trúc và tầm nhìn đã truyền cảm hứng cho phiên bản Go này.
+Base365 được xây dựng dựa trên dự án [OpenClaw](https://github.com/openclaw/openclaw) gốc. Chúng tôi trân trọng kiến trúc và tầm nhìn đã truyền cảm hứng cho phiên bản Go này.
 
 ## Giấy Phép
 

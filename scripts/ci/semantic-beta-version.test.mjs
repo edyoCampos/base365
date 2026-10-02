@@ -34,7 +34,7 @@ function tag(cwd, name) {
 }
 
 function createRepo() {
-  const cwd = mkdtempSync(join(tmpdir(), "goclaw-beta-version-"));
+  const cwd = mkdtempSync(join(tmpdir(), "base365-beta-version-"));
   mkdirSync(join(cwd, "scripts/ci"), { recursive: true });
   copyFileSync(scriptPath, join(cwd, "scripts/ci/semantic-beta-version.mjs"));
   git(cwd, "init", "-b", "main");

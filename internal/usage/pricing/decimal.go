@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 var ErrUnknownPricing = errors.New("usage pricing unknown")

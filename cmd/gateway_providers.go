@@ -13,11 +13,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/oauth"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/oauth"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // loopbackAddr normalizes a gateway address for local connections.
@@ -67,7 +67,7 @@ func registerProviders(registry *providers.Registry, cfg *config.Config, modelRe
 
 	if cfg.Providers.OpenRouter.APIKey != "" {
 		orProv := providers.NewOpenAIProvider("openrouter", cfg.Providers.OpenRouter.APIKey, "https://openrouter.ai/api/v1", "anthropic/claude-sonnet-4-5-20250929")
-		orProv.WithSiteInfo("https://goclaw.sh", "GoClaw")
+		orProv.WithSiteInfo("https://edyocampos.github.io/base365", "Base365")
 		registry.Register(orProv)
 		slog.Info("registered provider", "name", "openrouter")
 	}
@@ -308,7 +308,7 @@ func jsonToStringMap(data json.RawMessage) map[string]string {
 
 // registerProvidersFromDB loads providers from Postgres and registers them.
 // DB providers are registered after config providers, so they take precedence (overwrite).
-// gatewayAddr is used to inject GoClaw MCP bridge for Claude CLI providers.
+// gatewayAddr is used to inject Base365 MCP bridge for Claude CLI providers.
 // mcpStore is optional; when provided, per-agent MCP servers are injected into CLI config.
 // cfg provides fallback api_base values from config/env when DB providers have none set.
 func registerProvidersFromDB(registry *providers.Registry, provStore store.ProviderStore, secretStore store.ConfigSecretsStore, gatewayAddr, gatewayToken string, mcpStore store.MCPServerStore, cfg *config.Config, modelReg providers.ModelRegistry) {
@@ -476,7 +476,7 @@ func registerProvidersFromDB(registry *providers.Registry, provStore store.Provi
 			prov.WithProviderType(p.ProviderType)
 			prov.WithThinkingEnabled(store.ParseThinkingEnabled(p.Settings))
 			if p.ProviderType == store.ProviderOpenRouter {
-				prov.WithSiteInfo("https://goclaw.sh", "GoClaw")
+				prov.WithSiteInfo("https://edyocampos.github.io/base365", "Base365")
 			}
 			registry.RegisterForTenant(p.TenantID, prov)
 		}

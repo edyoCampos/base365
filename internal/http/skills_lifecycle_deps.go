@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
+	"github.com/edyoCampos/base365/internal/skills"
 )
 
 func lifecycleCheckSkillDeps(m *skills.SkillManifest) (bool, []string) {

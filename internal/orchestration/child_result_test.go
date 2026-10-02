@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	plpkg "github.com/nextlevelbuilder/goclaw/internal/pipeline"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/agent"
+	plpkg "github.com/edyoCampos/base365/internal/pipeline"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 func TestCaptureFromRunResult_Nil(t *testing.T) {

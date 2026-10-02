@@ -11,9 +11,9 @@ package telegram
 //   - thread metadata: isGroup, isForum, messageThreadID, dmThreadID
 //   - resolved cfg:    topicCfg (groupPolicy, systemPrompt, skills, tools, allowFrom, ...)
 //   - cleaned content: content (text + caption + lightweight tags + reply/forward/location
-//                       enrichment + stripBotMention applied). For an album flush, this
-//                       is members[0]'s content snapshot — Telegram puts captions on
-//                       the first album message only.
+//     enrichment + stripBotMention applied). For an album flush, this
+//     is members[0]'s content snapshot — Telegram puts captions on
+//     the first album message only.
 //
 // The carrier *telego.Message is NOT a field here; callers pass it alongside
 // (single: []{message}, album: members). Keeping the message out of the struct

@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">เอกสาร</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">เริ่มต้นอย่างรวดเร็ว</a> •
+  <a href="https://edyocampos.github.io/base365">เอกสาร</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">เริ่มต้นอย่างรวดเร็ว</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-**GoClaw** คือ AI gateway แบบ multi-agent ที่เชื่อมต่อ LLM เข้ากับเครื่องมือ ช่องทางสื่อสาร และข้อมูลของคุณ — ติดตั้งเป็น Go binary ไฟล์เดียวโดยไม่มี runtime dependency ใดๆ รองรับการประสานงาน agent teams และการส่งต่องานระหว่าง agent ผ่านผู้ให้บริการ LLM มากกว่า 20 รายพร้อมการแยกข้อมูลแบบ multi-tenant อย่างสมบูรณ์
+**Base365** คือ AI gateway แบบ multi-agent ที่เชื่อมต่อ LLM เข้ากับเครื่องมือ ช่องทางสื่อสาร และข้อมูลของคุณ — ติดตั้งเป็น Go binary ไฟล์เดียวโดยไม่มี runtime dependency ใดๆ รองรับการประสานงาน agent teams และการส่งต่องานระหว่าง agent ผ่านผู้ให้บริการ LLM มากกว่า 20 รายพร้อมการแยกข้อมูลแบบ multi-tenant อย่างสมบูรณ์
 
 เป็น Go port ของ [OpenClaw](https://github.com/openclaw/openclaw) ที่เสริมด้วยความปลอดภัยขั้นสูง, PostgreSQL แบบ multi-tenant และความสามารถด้าน observability ระดับ production
 
@@ -60,7 +60,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw Ecosystem
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | --------------- | --------------- | -------- | -------- | --------------------------------------- |
 | ภาษา            | TypeScript      | Rust     | Go       | **Go**                                  |
 | ขนาด binary     | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (base) / **~36 MB** (+ OTel) |
@@ -69,7 +69,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 | เวลาเริ่มทำงาน  | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | ฮาร์ดแวร์เป้าหมาย | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
 
-| ฟีเจอร์                    | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **GoClaw**                     |
+| ฟีเจอร์                    | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
 | -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
 | Multi-tenant (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
 | การรวม MCP                 | — (ใช้ ACP)                          | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
@@ -90,7 +90,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ## สถาปัตยกรรม
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## เริ่มต้นอย่างรวดเร็ว
@@ -100,10 +100,10 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ### จาก Source Code
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # ตัวช่วยตั้งค่าแบบ interactive
-source .env.local && ./goclaw
+./base365 onboard        # ตัวช่วยตั้งค่าแบบ interactive
+source .env.local && ./base365
 ```
 
 ### ด้วย Docker
@@ -112,20 +112,20 @@ source .env.local && ./goclaw
 # สร้างไฟล์ .env พร้อม secrets ที่สร้างอัตโนมัติ
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# เพิ่ม GOCLAW_*_API_KEY อย่างน้อยหนึ่งรายการใน .env จากนั้น:
+# เพิ่ม BASE365_*_API_KEY อย่างน้อยหนึ่งรายการใน .env จากนั้น:
 make up
 
 # Web Dashboard ที่ http://localhost:18790
 # ตรวจสอบสถานะ: curl http://localhost:18790/health
 ```
 
-เมื่อตั้งค่า environment variables `GOCLAW_*_API_KEY` แล้ว gateway จะทำการ onboard อัตโนมัติโดยไม่ต้องป้อนข้อมูลแบบ interactive — ตรวจจับผู้ให้บริการ รัน migrations และสร้างข้อมูลเริ่มต้น
+เมื่อตั้งค่า environment variables `BASE365_*_API_KEY` แล้ว gateway จะทำการ onboard อัตโนมัติโดยไม่ต้องป้อนข้อมูลแบบ interactive — ตรวจจับผู้ให้บริการ รัน migrations และสร้างข้อมูลเริ่มต้น
 
-> สำหรับ build variants (OTel, Tailscale, Redis), Docker image tags และ compose overlays ดูที่ [Deployment Guide](https://docs.goclaw.sh/#deploy-docker-compose)
+> สำหรับ build variants (OTel, Tailscale, Redis), Docker image tags และ compose overlays ดูที่ [Deployment Guide](https://edyocampos.github.io/base365/#deploy-docker-compose)
 
 ## การประสานงาน Multi-Agent
 
-GoClaw รองรับ agent teams และการส่งต่องานระหว่าง agent — แต่ละ agent ทำงานด้วย identity, เครื่องมือ, ผู้ให้บริการ LLM และไฟล์ context ของตัวเอง
+Base365 รองรับ agent teams และการส่งต่องานระหว่าง agent — แต่ละ agent ทำงานด้วย identity, เครื่องมือ, ผู้ให้บริการ LLM และไฟล์ context ของตัวเอง
 
 ### การส่งต่องานระหว่าง Agent
 
@@ -150,7 +150,7 @@ Agent สื่อสารผ่าน **permission links** แบบชัด�
 - **Team mailbox** — การส่งข้อความแบบ peer-to-peer และการ broadcast
 - **เครื่องมือ**: `team_tasks` สำหรับจัดการ task, `team_message` สำหรับ mailbox
 
-> สำหรับรายละเอียดการส่งต่องาน, permission links และการควบคุม concurrency ดูที่ [เอกสาร Agent Teams](https://docs.goclaw.sh/#teams-what-are-teams)
+> สำหรับรายละเอียดการส่งต่องาน, permission links และการควบคุม concurrency ดูที่ [เอกสาร Agent Teams](https://edyocampos.github.io/base365/#teams-what-are-teams)
 
 ## เครื่องมือ Built-in
 
@@ -194,19 +194,19 @@ Agent สื่อสารผ่าน **permission links** แบบชัด�
 
 ## เอกสาร
 
-เอกสารฉบับสมบูรณ์ที่ **[docs.goclaw.sh](https://docs.goclaw.sh)** — หรือดู source ที่ [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs)
+เอกสารฉบับสมบูรณ์ที่ **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** — หรือดู source ที่ [`base365-docs/`](https://edyocampos.github.io/base365)
 
 | หัวข้อ | เนื้อหา |
 |---------|--------|
-| [เริ่มต้นใช้งาน](https://docs.goclaw.sh/#what-is-goclaw) | การติดตั้ง, เริ่มต้นอย่างรวดเร็ว, การตั้งค่า, ทัวร์ Web Dashboard |
-| [แนวคิดหลัก](https://docs.goclaw.sh/#how-goclaw-works) | Agent Loop, Sessions, เครื่องมือ, Memory, Multi-Tenancy |
-| [Agents](https://docs.goclaw.sh/#creating-agents) | การสร้าง Agent, ไฟล์ Context, บุคลิกภาพ, การแชร์และการเข้าถึง |
-| [Providers](https://docs.goclaw.sh/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 เพิ่มเติม |
-| [ช่องทาง](https://docs.goclaw.sh/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
-| [Agent Teams](https://docs.goclaw.sh/#teams-what-are-teams) | Teams, Task Board, การส่งข้อความ, การส่งต่องานและ Handoff |
-| [ขั้นสูง](https://docs.goclaw.sh/#custom-tools) | เครื่องมือกำหนดเอง, MCP, Skills, Cron, Sandbox, Hooks, RBAC |
-| [การ Deploy](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose, ฐานข้อมูล, ความปลอดภัย, Observability, Tailscale |
-| [อ้างอิง](https://docs.goclaw.sh/#cli-commands) | คำสั่ง CLI, REST API, WebSocket Protocol, Environment Variables |
+| [เริ่มต้นใช้งาน](https://edyocampos.github.io/base365/#what-is-base365) | การติดตั้ง, เริ่มต้นอย่างรวดเร็ว, การตั้งค่า, ทัวร์ Web Dashboard |
+| [แนวคิดหลัก](https://edyocampos.github.io/base365/#how-base365-works) | Agent Loop, Sessions, เครื่องมือ, Memory, Multi-Tenancy |
+| [Agents](https://edyocampos.github.io/base365/#creating-agents) | การสร้าง Agent, ไฟล์ Context, บุคลิกภาพ, การแชร์และการเข้าถึง |
+| [Providers](https://edyocampos.github.io/base365/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 เพิ่มเติม |
+| [ช่องทาง](https://edyocampos.github.io/base365/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
+| [Agent Teams](https://edyocampos.github.io/base365/#teams-what-are-teams) | Teams, Task Board, การส่งข้อความ, การส่งต่องานและ Handoff |
+| [ขั้นสูง](https://edyocampos.github.io/base365/#custom-tools) | เครื่องมือกำหนดเอง, MCP, Skills, Cron, Sandbox, Hooks, RBAC |
+| [การ Deploy](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose, ฐานข้อมูล, ความปลอดภัย, Observability, Tailscale |
+| [อ้างอิง](https://edyocampos.github.io/base365/#cli-commands) | คำสั่ง CLI, REST API, WebSocket Protocol, Environment Variables |
 
 ## การทดสอบ
 
@@ -221,7 +221,7 @@ go test -v ./tests/integration/ -timeout 120s    # Integration tests (ต้อ�
 
 ## ขอบคุณ
 
-GoClaw สร้างขึ้นจากโครงการ [OpenClaw](https://github.com/openclaw/openclaw) ต้นฉบับ เราขอขอบคุณสถาปัตยกรรมและวิสัยทัศน์ที่เป็นแรงบันดาลใจในการ port มาเป็น Go
+Base365 สร้างขึ้นจากโครงการ [OpenClaw](https://github.com/openclaw/openclaw) ต้นฉบับ เราขอขอบคุณสถาปัตยกรรมและวิสัยทัศน์ที่เป็นแรงบันดาลใจในการ port มาเป็น Go
 
 ## สัญญาอนุญาต
 

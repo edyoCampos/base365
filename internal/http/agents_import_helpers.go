@@ -12,9 +12,9 @@ import (
 	"io"
 	"strings"
 
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
 )
 
 // readTarGzEntries decompresses a tar.gz and returns all entries as a map.

@@ -5,8 +5,8 @@ import (
 	"errors"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/providers"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
 )
 
 var (

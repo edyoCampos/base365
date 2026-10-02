@@ -6,11 +6,11 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/replycontext"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/typing"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/zalo/personal/protocol"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels/replycontext"
+	"github.com/edyoCampos/base365/internal/channels/typing"
+	"github.com/edyoCampos/base365/internal/channels/zalo/personal/protocol"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func (c *Channel) handleMessage(msg protocol.Message) {

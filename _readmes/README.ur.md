@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">دستاویزات</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">فوری آغاز</a> •
+  <a href="https://edyocampos.github.io/base365">دستاویزات</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">فوری آغاز</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-**GoClaw** ایک ملٹی-ایجنٹ AI گیٹ وے ہے جو LLMs کو آپ کے ٹولز، چینلز، اور ڈیٹا سے جوڑتا ہے — ایک واحد Go بائنری کے طور پر بغیر کسی رن ٹائم انحصار کے تعینات کیا جاتا ہے۔ یہ 20+ LLM فراہم کنندگان پر ایجنٹ ٹیموں اور انٹر-ایجنٹ ڈیلیگیشن کو مکمل ملٹی-ٹیننٹ آئسولیشن کے ساتھ ترتیب دیتا ہے۔
+**Base365** ایک ملٹی-ایجنٹ AI گیٹ وے ہے جو LLMs کو آپ کے ٹولز، چینلز، اور ڈیٹا سے جوڑتا ہے — ایک واحد Go بائنری کے طور پر بغیر کسی رن ٹائم انحصار کے تعینات کیا جاتا ہے۔ یہ 20+ LLM فراہم کنندگان پر ایجنٹ ٹیموں اور انٹر-ایجنٹ ڈیلیگیشن کو مکمل ملٹی-ٹیننٹ آئسولیشن کے ساتھ ترتیب دیتا ہے۔
 
 [OpenClaw](https://github.com/openclaw/openclaw) کا Go پورٹ جس میں بہتر سیکیورٹی، ملٹی-ٹیننٹ PostgreSQL، اور پروڈکشن گریڈ آبزرویبلٹی شامل ہے۔
 
@@ -80,7 +80,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw ایکو سسٹم
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | --------------- | --------------- | -------- | -------- | --------------------------------------- |
 | زبان            | TypeScript      | Rust     | Go       | **Go**                                  |
 | بائنری سائز     | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (بنیادی) / **~36 MB** (+ OTel) |
@@ -89,7 +89,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 | اسٹارٹ اپ       | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | ہدف ہارڈویئر    | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
 
-| فیچر                       | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **GoClaw**                     |
+| فیچر                       | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
 | -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
 | ملٹی-ٹیننٹ (PostgreSQL)    | —                                    | —                                            | —                                     | ✅                             |
 | MCP انٹیگریشن              | — (ACP استعمال کرتا ہے)              | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
@@ -110,7 +110,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ## آرکیٹیکچر
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## فوری آغاز
@@ -120,10 +120,10 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ### سورس سے
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # انٹرایکٹو سیٹ اپ وزرڈ
-source .env.local && ./goclaw
+./base365 onboard        # انٹرایکٹو سیٹ اپ وزرڈ
+source .env.local && ./base365
 ```
 
 ### Docker کے ساتھ
@@ -132,20 +132,20 @@ source .env.local && ./goclaw
 # خودکار تیار کردہ سیکریٹس کے ساتھ .env بنائیں
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# .env میں کم از کم ایک GOCLAW_*_API_KEY شامل کریں، پھر:
+# .env میں کم از کم ایک BASE365_*_API_KEY شامل کریں، پھر:
 make up
 
 # ویب ڈیش بورڈ http://localhost:18790 پر
 # ہیلتھ چیک: curl http://localhost:18790/health
 ```
 
-جب `GOCLAW_*_API_KEY` انوائرنمنٹ ویریبلز سیٹ ہوں، گیٹ وے انٹرایکٹو پرامپٹس کے بغیر خودکار آن بورڈ ہو جاتا ہے — فراہم کنندہ کا پتہ لگاتا ہے، مائیگریشنز چلاتا ہے، اور ڈیفالٹ ڈیٹا سیڈ کرتا ہے۔
+جب `BASE365_*_API_KEY` انوائرنمنٹ ویریبلز سیٹ ہوں، گیٹ وے انٹرایکٹو پرامپٹس کے بغیر خودکار آن بورڈ ہو جاتا ہے — فراہم کنندہ کا پتہ لگاتا ہے، مائیگریشنز چلاتا ہے، اور ڈیفالٹ ڈیٹا سیڈ کرتا ہے۔
 
-> بلڈ ویریئنٹس (OTel، Tailscale، Redis)، Docker امیج ٹیگز، اور compose اوورلیز کے لیے، [ڈیپلائمنٹ گائیڈ](https://docs.goclaw.sh/#deploy-docker-compose) دیکھیں۔
+> بلڈ ویریئنٹس (OTel، Tailscale، Redis)، Docker امیج ٹیگز، اور compose اوورلیز کے لیے، [ڈیپلائمنٹ گائیڈ](https://edyocampos.github.io/base365/#deploy-docker-compose) دیکھیں۔
 
 ## ملٹی-ایجنٹ آرکیسٹریشن
 
-GoClaw ایجنٹ ٹیموں اور انٹر-ایجنٹ ڈیلیگیشن کو سپورٹ کرتا ہے — ہر ایجنٹ اپنی شناخت، ٹولز، LLM فراہم کنندہ، اور کانٹیکسٹ فائلوں کے ساتھ چلتا ہے۔
+Base365 ایجنٹ ٹیموں اور انٹر-ایجنٹ ڈیلیگیشن کو سپورٹ کرتا ہے — ہر ایجنٹ اپنی شناخت، ٹولز، LLM فراہم کنندہ، اور کانٹیکسٹ فائلوں کے ساتھ چلتا ہے۔
 
 ### ایجنٹ ڈیلیگیشن
 
@@ -170,7 +170,7 @@ GoClaw ایجنٹ ٹیموں اور انٹر-ایجنٹ ڈیلیگیشن کو س
 - **ٹیم میل باکس** — براہ راست پیر-ٹو-پیر میسجنگ اور براڈکاسٹس
 - **ٹولز**: ٹاسک مینجمنٹ کے لیے `team_tasks`، میل باکس کے لیے `team_message`
 
-> ڈیلیگیشن کی تفصیلات، پرمیشن لنکس، اور کنکرنسی کنٹرول کے لیے، [ایجنٹ ٹیمز دستاویزات](https://docs.goclaw.sh/#teams-what-are-teams) دیکھیں۔
+> ڈیلیگیشن کی تفصیلات، پرمیشن لنکس، اور کنکرنسی کنٹرول کے لیے، [ایجنٹ ٹیمز دستاویزات](https://edyocampos.github.io/base365/#teams-what-are-teams) دیکھیں۔
 
 ## بلٹ-ان ٹولز
 
@@ -214,19 +214,19 @@ GoClaw ایجنٹ ٹیموں اور انٹر-ایجنٹ ڈیلیگیشن کو س
 
 ## دستاویزات
 
-مکمل دستاویزات **[docs.goclaw.sh](https://docs.goclaw.sh)** پر — یا [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs) میں سورس براؤز کریں۔
+مکمل دستاویزات **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** پر — یا [`base365-docs/`](https://edyocampos.github.io/base365) میں سورس براؤز کریں۔
 
 | سیکشن | موضوعات |
 |---------|--------|
-| [شروعات](https://docs.goclaw.sh/#what-is-goclaw) | انسٹالیشن، فوری آغاز، کنفیگریشن، ویب ڈیش بورڈ ٹور |
-| [بنیادی تصورات](https://docs.goclaw.sh/#how-goclaw-works) | ایجنٹ لوپ، سیشنز، ٹولز، میموری، ملٹی-ٹیننسی |
-| [ایجنٹس](https://docs.goclaw.sh/#creating-agents) | ایجنٹس بنانا، کانٹیکسٹ فائلیں، شخصیت، شیئرنگ اور رسائی |
-| [فراہم کنندگان](https://docs.goclaw.sh/#providers-overview) | Anthropic، OpenAI، OpenRouter، Gemini، DeepSeek، +15 مزید |
-| [چینلز](https://docs.goclaw.sh/#channels-overview) | Telegram، Discord، Slack، Feishu، Zalo، WhatsApp، WebSocket |
-| [ایجنٹ ٹیمیں](https://docs.goclaw.sh/#teams-what-are-teams) | ٹیمیں، ٹاسک بورڈ، میسجنگ، ڈیلیگیشن اور ہینڈ آف |
-| [ایڈوانسڈ](https://docs.goclaw.sh/#custom-tools) | کسٹم ٹولز، MCP، اسکلز، Cron، سینڈ باکس، ہکس، RBAC |
-| [ڈیپلائمنٹ](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose، ڈیٹا بیس، سیکیورٹی، آبزرویبلٹی، Tailscale |
-| [حوالہ](https://docs.goclaw.sh/#cli-commands) | CLI کمانڈز، REST API، WebSocket پروٹوکول، انوائرنمنٹ ویریبلز |
+| [شروعات](https://edyocampos.github.io/base365/#what-is-base365) | انسٹالیشن، فوری آغاز، کنفیگریشن، ویب ڈیش بورڈ ٹور |
+| [بنیادی تصورات](https://edyocampos.github.io/base365/#how-base365-works) | ایجنٹ لوپ، سیشنز، ٹولز، میموری، ملٹی-ٹیننسی |
+| [ایجنٹس](https://edyocampos.github.io/base365/#creating-agents) | ایجنٹس بنانا، کانٹیکسٹ فائلیں، شخصیت، شیئرنگ اور رسائی |
+| [فراہم کنندگان](https://edyocampos.github.io/base365/#providers-overview) | Anthropic، OpenAI، OpenRouter، Gemini، DeepSeek، +15 مزید |
+| [چینلز](https://edyocampos.github.io/base365/#channels-overview) | Telegram، Discord، Slack، Feishu، Zalo، WhatsApp، WebSocket |
+| [ایجنٹ ٹیمیں](https://edyocampos.github.io/base365/#teams-what-are-teams) | ٹیمیں، ٹاسک بورڈ، میسجنگ، ڈیلیگیشن اور ہینڈ آف |
+| [ایڈوانسڈ](https://edyocampos.github.io/base365/#custom-tools) | کسٹم ٹولز، MCP، اسکلز، Cron، سینڈ باکس، ہکس، RBAC |
+| [ڈیپلائمنٹ](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose، ڈیٹا بیس، سیکیورٹی، آبزرویبلٹی، Tailscale |
+| [حوالہ](https://edyocampos.github.io/base365/#cli-commands) | CLI کمانڈز، REST API، WebSocket پروٹوکول، انوائرنمنٹ ویریبلز |
 
 ## ٹیسٹنگ
 
@@ -241,7 +241,7 @@ go test -v ./tests/integration/ -timeout 120s    # انٹیگریشن ٹیسٹس
 
 ## اعترافات
 
-GoClaw اصل [OpenClaw](https://github.com/openclaw/openclaw) پروجیکٹ پر بنا ہے۔ ہم اس آرکیٹیکچر اور وژن کے شکر گزار ہیں جس نے اس Go پورٹ کو متاثر کیا۔
+Base365 اصل [OpenClaw](https://github.com/openclaw/openclaw) پروجیکٹ پر بنا ہے۔ ہم اس آرکیٹیکچر اور وژن کے شکر گزار ہیں جس نے اس Go پورٹ کو متاثر کیا۔
 
 ## لائسنس
 

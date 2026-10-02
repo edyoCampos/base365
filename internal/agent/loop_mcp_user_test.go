@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
+	mcpbridge "github.com/edyoCampos/base365/internal/mcp"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	mcpbridge "github.com/nextlevelbuilder/goclaw/internal/mcp"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // ---- mock helpers for getUserMCPTools OAuth tests ----

@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 type channelMetadataRefresher interface {

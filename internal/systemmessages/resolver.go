@@ -1,12 +1,12 @@
-// Package systemmessages renders configurable messages that GoClaw sends
+// Package systemmessages renders configurable messages that Base365 sends
 // directly, outside normal LLM output.
 package systemmessages
 
 import (
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
 )
 
 const (
@@ -17,7 +17,7 @@ const (
 	KeyPairingApproved              = "pairing.approved"
 )
 
-const defaultAppName = "GoClaw"
+const defaultAppName = "Base365"
 
 // Vars are {{name}} template variables used when rendering a system message.
 type Vars map[string]string
@@ -238,7 +238,7 @@ func (r *Resolver) withDefaults(vars Vars) Vars {
 		out["app_name"] = r.appName()
 	}
 	if strings.TrimSpace(out["approve_command"]) == "" && strings.TrimSpace(out["code"]) != "" {
-		out["approve_command"] = "goclaw pairing approve " + out["code"]
+		out["approve_command"] = "base365 pairing approve " + out["code"]
 	}
 	return out
 }

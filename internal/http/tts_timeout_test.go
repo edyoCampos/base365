@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio"
 )
 
 // sleepingTTSProvider is a test-only TTS provider that sleeps for a configurable
@@ -40,8 +40,8 @@ func (s *stubSystemConfigStore) Get(_ context.Context, key string) (string, erro
 	}
 	return "", nil
 }
-func (s *stubSystemConfigStore) Set(_ context.Context, _, _ string) error            { return nil }
-func (s *stubSystemConfigStore) Delete(_ context.Context, _ string) error            { return nil }
+func (s *stubSystemConfigStore) Set(_ context.Context, _, _ string) error { return nil }
+func (s *stubSystemConfigStore) Delete(_ context.Context, _ string) error { return nil }
 func (s *stubSystemConfigStore) List(_ context.Context) (map[string]string, error) {
 	return map[string]string{}, nil
 }

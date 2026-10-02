@@ -7,12 +7,12 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // --- Get ---
@@ -312,7 +312,7 @@ func (m *TeamsMethods) handleUpdate(ctx context.Context, client *gateway.Client,
 		EscalationActions     []string `json:"escalation_actions,omitempty"`
 		WorkspaceScope        string   `json:"workspace_scope,omitempty"`
 		WorkspaceQuotaMB      *int     `json:"workspace_quota_mb,omitempty"`
-		Notifications *struct {
+		Notifications         *struct {
 			Dispatched *bool  `json:"dispatched,omitempty"`
 			Progress   *bool  `json:"progress,omitempty"`
 			Failed     *bool  `json:"failed,omitempty"`

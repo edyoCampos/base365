@@ -6,8 +6,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // evolutionCronLockID is a PG advisory lock ID for preventing duplicate cron runs.

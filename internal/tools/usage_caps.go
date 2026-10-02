@@ -5,11 +5,11 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/edyoCampos/base365/internal/mediabudget"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	usagecaps "github.com/edyoCampos/base365/internal/usage/caps"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/mediabudget"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	usagecaps "github.com/nextlevelbuilder/goclaw/internal/usage/caps"
 )
 
 // budgetRefusalError marks a denial that came from the budget, not from a

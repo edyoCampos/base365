@@ -18,17 +18,17 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/oauth"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	usagecaps "github.com/nextlevelbuilder/goclaw/internal/usage/caps"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/oauth"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/security"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
+	usagecaps "github.com/edyoCampos/base365/internal/usage/caps"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // ProvidersHandler handles LLM provider CRUD endpoints.
@@ -449,20 +449,20 @@ var dnsResolverFn = net.LookupHost
 
 // allowPrivateProviderURLsFn reports whether the operator has opted in to
 // permitting private / loopback / link-local / internal-hostname provider base
-// URLs via GOCLAW_ALLOW_PRIVATE_PROVIDER_URLS. Evaluated once at first call so
+// URLs via BASE365_ALLOW_PRIVATE_PROVIDER_URLS. Evaluated once at first call so
 // tests can override the variable before that happens.
 var allowPrivateProviderURLsFn = sync.OnceValue(func() bool {
-	v := strings.ToLower(strings.TrimSpace(os.Getenv("GOCLAW_ALLOW_PRIVATE_PROVIDER_URLS")))
+	v := strings.ToLower(strings.TrimSpace(os.Getenv("BASE365_ALLOW_PRIVATE_PROVIDER_URLS")))
 	return v == "1" || v == "true" || v == "yes"
 })
 
 // ollamaAllowedHostsFn returns the operator-configured extra hosts permitted
-// for local provider types (ollama, acp) via GOCLAW_OLLAMA_ALLOWED_HOSTS
+// for local provider types (ollama, acp) via BASE365_OLLAMA_ALLOWED_HOSTS
 // (comma-separated hostnames/IPs, e.g. "192.168.3.31,ollama.lan"). These are
 // added on top of allowedLocalHosts, allowing LAN-hosted Ollama servers.
 // Evaluated once at first call so tests can override the variable before that happens.
 var ollamaAllowedHostsFn = sync.OnceValue(func() []string {
-	raw := os.Getenv("GOCLAW_OLLAMA_ALLOWED_HOSTS")
+	raw := os.Getenv("BASE365_OLLAMA_ALLOWED_HOSTS")
 	if raw == "" {
 		return nil
 	}
@@ -486,10 +486,10 @@ var ollamaAllowedHostsFn = sync.OnceValue(func() []string {
 //  3. Scheme check (http/https only) → enforced for URL-based types, including
 //     local URL types. Blocks file://, gopher://, dict://, etc.
 //  4. Local URL types (ollama, acp) → host must be in allowedLocalHosts, or in
-//     the operator-configured GOCLAW_OLLAMA_ALLOWED_HOSTS list (explicit
+//     the operator-configured BASE365_OLLAMA_ALLOWED_HOSTS list (explicit
 //     allowlist prevents reaching 169.254.169.254 or internal services via the
 //     local-type bypass, while still allowing LAN-hosted Ollama servers).
-//  5. Remote types → if GOCLAW_ALLOW_PRIVATE_PROVIDER_URLS is set, allow and log.
+//  5. Remote types → if BASE365_ALLOW_PRIVATE_PROVIDER_URLS is set, allow and log.
 //     Otherwise: resolve DNS hostname; reject if ANY resolved IP satisfies
 //     security.IsBlocked (covers loopback, link-local, private, multicast,
 //     unspecified — including 0.0.0.0 and :: that earlier hand-rolled checks missed).
@@ -531,7 +531,7 @@ func validateProviderURL(rawURL string, providerType string) error {
 			}
 		}
 		slog.Warn("security.provider_url.local_type_denied", "host", host, "provider_type", providerType)
-		return fmt.Errorf("provider type %q only allows localhost URLs (localhost, 127.0.0.1, ::1, host.docker.internal, or GOCLAW_OLLAMA_ALLOWED_HOSTS), got host %q", providerType, host)
+		return fmt.Errorf("provider type %q only allows localhost URLs (localhost, 127.0.0.1, ::1, host.docker.internal, or BASE365_OLLAMA_ALLOWED_HOSTS), got host %q", providerType, host)
 	}
 
 	// Operator opt-in to allow private-network provider URLs (e.g. LAN-hosted vLLM).

@@ -1,4 +1,4 @@
-module github.com/nextlevelbuilder/goclaw
+module github.com/edyoCampos/base365
 
 go 1.26.0
 

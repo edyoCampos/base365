@@ -2,7 +2,7 @@
 // Channels connect external platforms (Telegram, Discord, Slack, etc.) to the agent runtime
 // via the message bus.
 //
-// Adapted from PicoClaw's pkg/channels with GoClaw-specific additions:
+// Adapted from PicoClaw's pkg/channels with Base365-specific additions:
 // - DM/Group policies (pairing, allowlist, open, disabled)
 // - Mention gating for group chats
 // - Rich MsgContext metadata
@@ -19,10 +19,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/systemmessages"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/systemmessages"
 )
 
 // PolicyResult is returned by BaseChannel policy checks.

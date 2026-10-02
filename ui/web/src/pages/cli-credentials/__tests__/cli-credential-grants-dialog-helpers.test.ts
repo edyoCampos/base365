@@ -54,7 +54,7 @@ describe("cli credential grant env helpers", () => {
     const state = envStateFromGrant({
       env_set: true,
       env: {
-        PUBLIC_BASE_URL: { kind: "value", value: "https://goclaw.sh", masked: false },
+        PUBLIC_BASE_URL: { kind: "value", value: "https://edyocampos.github.io/base365", masked: false },
         TOKEN: { kind: "sensitive", value: null, masked: true },
       },
     } as unknown as CLIAgentGrant);
@@ -62,7 +62,7 @@ describe("cli credential grant env helpers", () => {
     expect(state).toEqual({
       overrideEnabled: true,
       entries: [
-        { key: "PUBLIC_BASE_URL", value: "https://goclaw.sh", kind: "value", masked: false },
+        { key: "PUBLIC_BASE_URL", value: "https://edyocampos.github.io/base365", kind: "value", masked: false },
         { key: "TOKEN", value: "", kind: "sensitive", masked: true },
       ],
     });

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // TestBuildMergedAnnounceContent_SingleSuccess tests single completed task announcement.

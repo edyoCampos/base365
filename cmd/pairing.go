@@ -9,7 +9,7 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/spf13/cobra"
 
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 func pairingCmd() *cobra.Command {

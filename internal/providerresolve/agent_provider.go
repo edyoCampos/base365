@@ -3,8 +3,8 @@ package providerresolve
 import (
 	"fmt"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // ResolveConfiguredProvider resolves the provider an agent should actually use.

@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/zalo/personal/protocol"
-	"github.com/nextlevelbuilder/goclaw/internal/systemmessages"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels/zalo/personal/protocol"
+	"github.com/edyoCampos/base365/internal/systemmessages"
 )
 
 const pairingDebounce = 60 * time.Second

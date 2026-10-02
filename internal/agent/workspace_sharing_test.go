@@ -3,7 +3,7 @@ package agent
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func TestShouldShareWorkspace_NilConfig(t *testing.T) {

@@ -10,12 +10,12 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/audio"
+	geminiPkg "github.com/edyoCampos/base365/internal/audio/gemini"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	geminiPkg "github.com/nextlevelbuilder/goclaw/internal/audio/gemini"
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 const ttsTestToken = "tts-test-token"
@@ -304,7 +304,7 @@ func TestResolveTenantProvider_Gemini(t *testing.T) {
 	setupTestToken(t, "")
 
 	sc := &validationSystemConfigStore{data: map[string]string{
-		"tts.provider":    "gemini",
+		"tts.provider":     "gemini",
 		"tts.gemini.voice": "Kore",
 		"tts.gemini.model": "gemini-3.1-flash-tts-preview",
 	}}

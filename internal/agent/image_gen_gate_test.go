@@ -12,8 +12,8 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // imageCapableProvider is a stub provider that also implements CapabilitiesAware

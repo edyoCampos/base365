@@ -10,7 +10,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 type fakeSecureCLIStore struct {
@@ -70,7 +70,7 @@ func TestSecureCLIGetSanitizesMixedEnv(t *testing.T) {
 		binary: &store.SecureCLIBinary{
 			BaseModel:    store.BaseModel{ID: id},
 			BinaryName:   "gh",
-			EncryptedEnv: []byte(`{"TOKEN":"secret-token","PUBLIC_BASE_URL":{"kind":"value","value":"https://goclaw.sh"}}`),
+			EncryptedEnv: []byte(`{"TOKEN":"secret-token","PUBLIC_BASE_URL":{"kind":"value","value":"https://edyocampos.github.io/base365"}}`),
 		},
 	}, nil)
 	req := httptest.NewRequest(http.MethodGet, "/v1/cli-credentials/"+id.String(), nil)
@@ -94,7 +94,7 @@ func TestSecureCLIGetSanitizesMixedEnv(t *testing.T) {
 	if !got.Env["TOKEN"].Masked || got.Env["TOKEN"].Value != nil {
 		t.Fatalf("TOKEN not masked: %#v", got.Env["TOKEN"])
 	}
-	if got.Env["PUBLIC_BASE_URL"].Value == nil || *got.Env["PUBLIC_BASE_URL"].Value != "https://goclaw.sh" {
+	if got.Env["PUBLIC_BASE_URL"].Value == nil || *got.Env["PUBLIC_BASE_URL"].Value != "https://edyocampos.github.io/base365" {
 		t.Fatalf("value env not returned: %#v", got.Env["PUBLIC_BASE_URL"])
 	}
 }

@@ -13,17 +13,17 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // AgentsHandler handles agent CRUD and sharing endpoints.
@@ -48,8 +48,8 @@ type AgentsHandler struct {
 	secureCLI                 store.SecureCLIStore
 	secureCLIGrants           store.SecureCLIAgentGrantStore
 	secureCLIAgentCreds       store.SecureCLIAgentCredentialStore
-	defaultWorkspace          string // default workspace path template (e.g. "~/.goclaw/workspace")
-	dataDir                   string // resolved data directory (e.g. "~/.goclaw/data") — for team workspace export
+	defaultWorkspace          string // default workspace path template (e.g. "~/.base365/workspace")
+	dataDir                   string // resolved data directory (e.g. "~/.base365/data") — for team workspace export
 	gatewayAddr               string
 	msgBus                    *bus.MessageBus   // for cache invalidation events (nil = no events)
 	summoner                  *AgentSummoner    // LLM-based agent setup (nil = disabled)
@@ -58,7 +58,7 @@ type AgentsHandler struct {
 }
 
 // NewAgentsHandler creates a handler for agent management endpoints.
-// isOwner is a function that checks if a user ID is in GOCLAW_OWNER_IDS (nil = disabled).
+// isOwner is a function that checks if a user ID is in BASE365_OWNER_IDS (nil = disabled).
 func NewAgentsHandler(agents store.AgentStore, providers store.ProviderStore, providerReg *providers.Registry, db *sql.DB, tracing store.TracingStore, defaultWorkspace string, msgBus *bus.MessageBus, summoner *AgentSummoner, isOwner func(string) bool) *AgentsHandler {
 	return &AgentsHandler{
 		agents:           agents,

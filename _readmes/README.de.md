@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">Dokumentation</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">Schnellstart</a> •
+  <a href="https://edyocampos.github.io/base365">Dokumentation</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">Schnellstart</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-**GoClaw** ist ein Multi-Agenten-KI-Gateway, das LLMs mit Ihren Tools, Kanälen und Daten verbindet — als einzelne Go-Binary ohne Laufzeitabhängigkeiten bereitgestellt. Es orchestriert Agenten-Teams und agenten-übergreifende Delegation über 20+ LLM-Anbieter mit vollständiger Mandantenisolierung.
+**Base365** ist ein Multi-Agenten-KI-Gateway, das LLMs mit Ihren Tools, Kanälen und Daten verbindet — als einzelne Go-Binary ohne Laufzeitabhängigkeiten bereitgestellt. Es orchestriert Agenten-Teams und agenten-übergreifende Delegation über 20+ LLM-Anbieter mit vollständiger Mandantenisolierung.
 
 Ein Go-Port von [OpenClaw](https://github.com/openclaw/openclaw) mit verbesserter Sicherheit, mandantenfähigem PostgreSQL und produktionsreifer Beobachtbarkeit.
 
@@ -58,7 +58,7 @@ Ein Go-Port von [OpenClaw](https://github.com/openclaw/openclaw) mit verbesserte
 
 ## Das Claw-Ökosystem
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | --------------- | --------------- | -------- | -------- | --------------------------------------- |
 | Sprache         | TypeScript      | Rust     | Go       | **Go**                                  |
 | Binary-Größe    | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (Basis) / **~36 MB** (+ OTel) |
@@ -67,7 +67,7 @@ Ein Go-Port von [OpenClaw](https://github.com/openclaw/openclaw) mit verbesserte
 | Startzeit       | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | Zielhardware    | $599+ Mac Mini  | $10 Edge | $10 Edge | **$5 VPS+**                             |
 
-| Funktion                   | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **GoClaw**                     |
+| Funktion                   | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
 | -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
 | Mandantenfähig (PostgreSQL)| —                                    | —                                            | —                                     | ✅                             |
 | MCP-Integration            | — (verwendet ACP)                    | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
@@ -88,7 +88,7 @@ Ein Go-Port von [OpenClaw](https://github.com/openclaw/openclaw) mit verbesserte
 ## Architektur
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## Schnellstart
@@ -98,10 +98,10 @@ Ein Go-Port von [OpenClaw](https://github.com/openclaw/openclaw) mit verbesserte
 ### Aus dem Quellcode
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # Interaktiver Einrichtungsassistent
-source .env.local && ./goclaw
+./base365 onboard        # Interaktiver Einrichtungsassistent
+source .env.local && ./base365
 ```
 
 ### Mit Docker
@@ -110,20 +110,20 @@ source .env.local && ./goclaw
 # .env mit automatisch generierten Geheimnissen erstellen
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# Mindestens einen GOCLAW_*_API_KEY in .env hinzufügen, dann:
+# Mindestens einen BASE365_*_API_KEY in .env hinzufügen, dann:
 make up
 
 # Web-Dashboard unter http://localhost:18790
 # Health-Check: curl http://localhost:18790/health
 ```
 
-Wenn `GOCLAW_*_API_KEY`-Umgebungsvariablen gesetzt sind, führt das Gateway das Onboarding automatisch ohne interaktive Eingaben durch — erkennt den Anbieter, führt Migrationen aus und befüllt Standarddaten.
+Wenn `BASE365_*_API_KEY`-Umgebungsvariablen gesetzt sind, führt das Gateway das Onboarding automatisch ohne interaktive Eingaben durch — erkennt den Anbieter, führt Migrationen aus und befüllt Standarddaten.
 
-> Für Build-Varianten (OTel, Tailscale, Redis), Docker-Image-Tags und Compose-Overlays, siehe den [Deployment-Leitfaden](https://docs.goclaw.sh/#deploy-docker-compose).
+> Für Build-Varianten (OTel, Tailscale, Redis), Docker-Image-Tags und Compose-Overlays, siehe den [Deployment-Leitfaden](https://edyocampos.github.io/base365/#deploy-docker-compose).
 
 ## Multi-Agenten-Orchestrierung
 
-GoClaw unterstützt Agenten-Teams und agenten-übergreifende Delegation — jeder Agent läuft mit seiner eigenen Identität, Tools, LLM-Anbieter und Kontextdateien.
+Base365 unterstützt Agenten-Teams und agenten-übergreifende Delegation — jeder Agent läuft mit seiner eigenen Identität, Tools, LLM-Anbieter und Kontextdateien.
 
 ### Agenten-Delegation
 
@@ -148,7 +148,7 @@ Agenten kommunizieren über explizite **Berechtigungslinks** mit Richtungssteuer
 - **Team-Postfach** — Direkte Peer-to-Peer-Nachrichten und Broadcasts
 - **Tools**: `team_tasks` für Aufgabenverwaltung, `team_message` für das Postfach
 
-> Für Details zu Delegation, Berechtigungslinks und Nebenläufigkeitskontrolle, siehe die [Agenten-Teams-Dokumentation](https://docs.goclaw.sh/#teams-what-are-teams).
+> Für Details zu Delegation, Berechtigungslinks und Nebenläufigkeitskontrolle, siehe die [Agenten-Teams-Dokumentation](https://edyocampos.github.io/base365/#teams-what-are-teams).
 
 ## Integrierte Tools
 
@@ -192,19 +192,19 @@ Agenten kommunizieren über explizite **Berechtigungslinks** mit Richtungssteuer
 
 ## Dokumentation
 
-Vollständige Dokumentation unter **[docs.goclaw.sh](https://docs.goclaw.sh)** — oder den Quellcode unter [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs) durchsuchen.
+Vollständige Dokumentation unter **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** — oder den Quellcode unter [`base365-docs/`](https://edyocampos.github.io/base365) durchsuchen.
 
 | Abschnitt | Themen |
 |-----------|--------|
-| [Erste Schritte](https://docs.goclaw.sh/#what-is-goclaw) | Installation, Schnellstart, Konfiguration, Web-Dashboard-Tour |
-| [Grundkonzepte](https://docs.goclaw.sh/#how-goclaw-works) | Agenten-Loop, Sitzungen, Tools, Gedächtnis, Mandantenfähigkeit |
-| [Agenten](https://docs.goclaw.sh/#creating-agents) | Agenten erstellen, Kontextdateien, Persönlichkeit, Teilen & Zugriff |
-| [Anbieter](https://docs.goclaw.sh/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 weitere |
-| [Kanäle](https://docs.goclaw.sh/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
-| [Agenten-Teams](https://docs.goclaw.sh/#teams-what-are-teams) | Teams, Aufgaben-Board, Messaging, Delegation & Übergabe |
-| [Erweitert](https://docs.goclaw.sh/#custom-tools) | Benutzerdefinierte Tools, MCP, Skills, Cron, Sandbox, Hooks, RBAC |
-| [Deployment](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose, Datenbank, Sicherheit, Beobachtbarkeit, Tailscale |
-| [Referenz](https://docs.goclaw.sh/#cli-commands) | CLI-Befehle, REST-API, WebSocket-Protokoll, Umgebungsvariablen |
+| [Erste Schritte](https://edyocampos.github.io/base365/#what-is-base365) | Installation, Schnellstart, Konfiguration, Web-Dashboard-Tour |
+| [Grundkonzepte](https://edyocampos.github.io/base365/#how-base365-works) | Agenten-Loop, Sitzungen, Tools, Gedächtnis, Mandantenfähigkeit |
+| [Agenten](https://edyocampos.github.io/base365/#creating-agents) | Agenten erstellen, Kontextdateien, Persönlichkeit, Teilen & Zugriff |
+| [Anbieter](https://edyocampos.github.io/base365/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 weitere |
+| [Kanäle](https://edyocampos.github.io/base365/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
+| [Agenten-Teams](https://edyocampos.github.io/base365/#teams-what-are-teams) | Teams, Aufgaben-Board, Messaging, Delegation & Übergabe |
+| [Erweitert](https://edyocampos.github.io/base365/#custom-tools) | Benutzerdefinierte Tools, MCP, Skills, Cron, Sandbox, Hooks, RBAC |
+| [Deployment](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose, Datenbank, Sicherheit, Beobachtbarkeit, Tailscale |
+| [Referenz](https://edyocampos.github.io/base365/#cli-commands) | CLI-Befehle, REST-API, WebSocket-Protokoll, Umgebungsvariablen |
 
 ## Testen
 
@@ -219,7 +219,7 @@ Siehe [CHANGELOG.md](CHANGELOG.md) für detaillierten Funktionsstatus, einschlie
 
 ## Danksagungen
 
-GoClaw basiert auf dem ursprünglichen [OpenClaw](https://github.com/openclaw/openclaw)-Projekt. Wir sind dankbar für die Architektur und Vision, die diesen Go-Port inspiriert hat.
+Base365 basiert auf dem ursprünglichen [OpenClaw](https://github.com/openclaw/openclaw)-Projekt. Wir sind dankbar für die Architektur und Vision, die diesen Go-Port inspiriert hat.
 
 ## Lizenz
 

@@ -3,12 +3,12 @@ package personal
 import (
 	"context"
 	"fmt"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels/typing"
+	"github.com/edyoCampos/base365/internal/channels/zalo"
+	"github.com/edyoCampos/base365/internal/channels/zalo/personal/protocol"
 	"log/slog"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/typing"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/zalo"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/zalo/personal/protocol"
 )
 
 const maxTextLength = 2000

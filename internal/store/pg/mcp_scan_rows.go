@@ -3,8 +3,8 @@ package pg
 import (
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // mcpAccessRequestRow is an sqlx scan struct for mcp_access_requests SELECT queries.

@@ -4,9 +4,9 @@ import (
 	"context"
 	"log/slog"
 
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // ResolveBackgroundProvider resolves the LLM provider for background workers.

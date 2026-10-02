@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/providers"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
 )
 
 // stubGuardProvider records whether Chat was invoked and returns a canned reply.

@@ -9,10 +9,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/pipeline"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/pipeline"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // ctxCapturingExecutor is a stubExecutor variant that captures the context
@@ -29,10 +29,10 @@ func (e *ctxCapturingExecutor) ExecuteWithContext(ctx context.Context, _ string,
 	return &tools.Result{ForLLM: "ok", IsError: false}
 }
 func (e *ctxCapturingExecutor) TryActivateDeferred(string) bool          { return false }
-func (e *ctxCapturingExecutor) ProviderDefs() []providers.ToolDefinition  { return nil }
-func (e *ctxCapturingExecutor) Get(string) (tools.Tool, bool)              { return nil, false }
-func (e *ctxCapturingExecutor) List() []string                             { return nil }
-func (e *ctxCapturingExecutor) Aliases() map[string]string                 { return nil }
+func (e *ctxCapturingExecutor) ProviderDefs() []providers.ToolDefinition { return nil }
+func (e *ctxCapturingExecutor) Get(string) (tools.Tool, bool)            { return nil, false }
+func (e *ctxCapturingExecutor) List() []string                           { return nil }
+func (e *ctxCapturingExecutor) Aliases() map[string]string               { return nil }
 
 func (e *ctxCapturingExecutor) lastCtx() context.Context {
 	e.mu.Lock()

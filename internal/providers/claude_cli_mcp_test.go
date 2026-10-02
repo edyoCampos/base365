@@ -197,7 +197,7 @@ func TestBridgeContextFromOptsCarriesDelegationArtifactContext(t *testing.T) {
 }
 
 func TestWriteMCPConfigSignsDelegationArtifactHeaders(t *testing.T) {
-	t.Setenv("GOCLAW_DATA_DIR", t.TempDir())
+	t.Setenv("BASE365_DATA_DIR", t.TempDir())
 	const (
 		token      = "gateway-token"
 		sessionKey = "session-key"
@@ -222,7 +222,7 @@ func TestWriteMCPConfigSignsDelegationArtifactHeaders(t *testing.T) {
 	if err := json.Unmarshal(raw, &cfg); err != nil {
 		t.Fatal(err)
 	}
-	headers := cfg.MCPServers["goclaw-bridge"].Headers
+	headers := cfg.MCPServers["base365-bridge"].Headers
 	if headers["X-Delegation-ID"] != bc.DelegationID ||
 		headers["X-Delegation-Inputs"] != bc.DelegationInputs {
 		t.Fatalf("delegation headers = %#v", headers)

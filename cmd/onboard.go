@@ -8,7 +8,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 func onboardCmd() *cobra.Command {
@@ -23,7 +23,7 @@ func onboardCmd() *cobra.Command {
 
 func runOnboard() {
 	fmt.Println("╔══════════════════════════════════════════════╗")
-	fmt.Println("║        GoClaw — Quick Setup                 ║")
+	fmt.Println("║        Base365 — Quick Setup                 ║")
 	fmt.Println("╚══════════════════════════════════════════════╝")
 	fmt.Println()
 
@@ -38,7 +38,7 @@ func runOnboard() {
 	}
 
 	// ── Step 1: Postgres connection ──
-	postgresDSN := os.Getenv("GOCLAW_POSTGRES_DSN")
+	postgresDSN := os.Getenv("BASE365_POSTGRES_DSN")
 	if postgresDSN == "" {
 		postgresDSN = cfg.Database.PostgresDSN
 	}
@@ -62,13 +62,13 @@ func runOnboard() {
 	if err := testPostgresConnection(postgresDSN); err != nil {
 		fmt.Println("FAILED")
 		fmt.Printf("  Error: %v\n", err)
-		fmt.Println("  Please check your DSN and try again: ./goclaw onboard")
+		fmt.Println("  Please check your DSN and try again: ./base365 onboard")
 		return
 	}
 	fmt.Println("OK")
 
 	// ── Step 3: Generate keys ──
-	gatewayToken := os.Getenv("GOCLAW_GATEWAY_TOKEN")
+	gatewayToken := os.Getenv("BASE365_GATEWAY_TOKEN")
 	if gatewayToken == "" {
 		gatewayToken = cfg.Gateway.Token
 	}
@@ -78,24 +78,24 @@ func runOnboard() {
 		generatedToken = true
 	}
 
-	encryptionKey := os.Getenv("GOCLAW_ENCRYPTION_KEY")
+	encryptionKey := os.Getenv("BASE365_ENCRYPTION_KEY")
 	generatedEncKey := false
 	if encryptionKey == "" {
 		encryptionKey = onboardGenerateToken(32)
 		generatedEncKey = true
 	}
-	os.Setenv("GOCLAW_ENCRYPTION_KEY", encryptionKey)
+	os.Setenv("BASE365_ENCRYPTION_KEY", encryptionKey)
 
 	// ── Step 4: Migrations ──
 	fmt.Print("  Running migrations... ")
 	m, err := newMigrator(postgresDSN)
 	if err != nil {
 		fmt.Printf("FAILED: %v\n", err)
-		fmt.Println("  You can run it manually later: ./goclaw migrate up")
+		fmt.Println("  You can run it manually later: ./base365 migrate up")
 	} else {
 		if err := m.Up(); err != nil && err.Error() != "no change" {
 			fmt.Printf("FAILED: %v\n", err)
-			fmt.Println("  You can run it manually later: ./goclaw migrate up")
+			fmt.Println("  You can run it manually later: ./base365 migrate up")
 		} else {
 			v, _, _ := m.Version()
 			fmt.Printf("OK (version: %d)\n", v)
@@ -119,7 +119,7 @@ func runOnboard() {
 		cfg.Gateway.Port = 18790
 	}
 	cfg.Database.PostgresDSN = "" // secrets go in .env.local, not config
-	cfg.Gateway.Token = ""       // secrets go in .env.local, not config
+	cfg.Gateway.Token = ""        // secrets go in .env.local, not config
 
 	if err := config.Save(cfgPath, cfg); err != nil {
 		fmt.Printf("  Error saving config: %v\n", err)
@@ -157,16 +157,16 @@ func runOnboard() {
 	fmt.Println("── Files ──")
 	fmt.Println()
 	fmt.Printf("  Config:    %s  (gateway host/port, no secrets)\n", cfgPath)
-	fmt.Printf("  Secrets:   %s  (GOCLAW_POSTGRES_DSN, GOCLAW_GATEWAY_TOKEN, GOCLAW_ENCRYPTION_KEY)\n", envPath)
+	fmt.Printf("  Secrets:   %s  (BASE365_POSTGRES_DSN, BASE365_GATEWAY_TOKEN, BASE365_ENCRYPTION_KEY)\n", envPath)
 	fmt.Println()
 
 	fmt.Println("── Next Steps ──")
 	fmt.Println()
 	fmt.Println("  1. Start the gateway:")
-	fmt.Printf("     source %s && ./goclaw\n", envPath)
+	fmt.Printf("     source %s && ./base365\n", envPath)
 	fmt.Println()
 	fmt.Println("  2. Run the configuration wizard:")
-	fmt.Println("     goclaw setup")
+	fmt.Println("     base365 setup")
 	fmt.Println()
 	fmt.Println("  3. Or open the dashboard:")
 	fmt.Printf("     http://localhost:%s\n", port)

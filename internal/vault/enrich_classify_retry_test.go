@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // ============================================================================
@@ -182,4 +182,3 @@ func TestCallClassifyWithRetry_RetriesAndBackoffs(t *testing.T) {
 		t.Errorf("Timeouts should escalate: %v", enrichRetryTimeouts)
 	}
 }
-

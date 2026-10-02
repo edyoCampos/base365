@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">ドキュメント</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">クイックスタート</a> •
+  <a href="https://edyocampos.github.io/base365">ドキュメント</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">クイックスタート</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-**GoClaw** は、LLM をあなたのツール、チャンネル、データに接続するマルチエージェント AI ゲートウェイです。ランタイム依存ゼロの単一 Go バイナリとしてデプロイでき、20以上の LLM プロバイダにまたがるエージェントチームとエージェント間デリゲーションを、完全なマルチテナント分離のもとでオーケストレーションします。
+**Base365** は、LLM をあなたのツール、チャンネル、データに接続するマルチエージェント AI ゲートウェイです。ランタイム依存ゼロの単一 Go バイナリとしてデプロイでき、20以上の LLM プロバイダにまたがるエージェントチームとエージェント間デリゲーションを、完全なマルチテナント分離のもとでオーケストレーションします。
 
 セキュリティ強化、マルチテナント PostgreSQL、本番グレードのオブザーバビリティを備えた [OpenClaw](https://github.com/openclaw/openclaw) の Go 移植版です。
 
@@ -58,7 +58,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw エコシステム
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | --------------- | --------------- | -------- | -------- | --------------------------------------- |
 | 言語            | TypeScript      | Rust     | Go       | **Go**                                  |
 | バイナリサイズ  | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (base) / **~36 MB** (+ OTel) |
@@ -67,7 +67,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 | 起動時間        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | 対象ハードウェア| $599+ Mac Mini  | $10 エッジ| $10 エッジ| **$5 VPS+**                            |
 
-| 機能                              | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **GoClaw**                     |
+| 機能                              | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
 | --------------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
 | マルチテナント（PostgreSQL）       | —                                    | —                                            | —                                     | ✅                             |
 | MCP 統合                          | — (uses ACP)                         | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
@@ -88,7 +88,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ## アーキテクチャ
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## クイックスタート
@@ -98,10 +98,10 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ### ソースから
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # Interactive setup wizard
-source .env.local && ./goclaw
+./base365 onboard        # Interactive setup wizard
+source .env.local && ./base365
 ```
 
 ### Docker を使用する場合
@@ -110,20 +110,20 @@ source .env.local && ./goclaw
 # Generate .env with auto-generated secrets
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# Add at least one GOCLAW_*_API_KEY to .env, then:
+# Add at least one BASE365_*_API_KEY to .env, then:
 make up
 
 # Web Dashboard at http://localhost:18790
 # Health check: curl http://localhost:18790/health
 ```
 
-`GOCLAW_*_API_KEY` 環境変数が設定されている場合、ゲートウェイはインタラクティブなプロンプトなしで自動オンボーディングを行います — プロバイダを検出し、マイグレーションを実行し、デフォルトデータをシードします。
+`BASE365_*_API_KEY` 環境変数が設定されている場合、ゲートウェイはインタラクティブなプロンプトなしで自動オンボーディングを行います — プロバイダを検出し、マイグレーションを実行し、デフォルトデータをシードします。
 
-> ビルドバリアント（OTel、Tailscale、Redis）、Docker イメージタグ、compose オーバーレイについては、[デプロイメントガイド](https://docs.goclaw.sh/#deploy-docker-compose)を参照してください。
+> ビルドバリアント（OTel、Tailscale、Redis）、Docker イメージタグ、compose オーバーレイについては、[デプロイメントガイド](https://edyocampos.github.io/base365/#deploy-docker-compose)を参照してください。
 
 ## マルチエージェントオーケストレーション
 
-GoClaw はエージェントチームとエージェント間デリゲーションをサポートしており、各エージェントは独自のアイデンティティ、ツール、LLM プロバイダ、コンテキストファイルで動作します。
+Base365 はエージェントチームとエージェント間デリゲーションをサポートしており、各エージェントは独自のアイデンティティ、ツール、LLM プロバイダ、コンテキストファイルで動作します。
 
 ### エージェントデリゲーション
 
@@ -148,7 +148,7 @@ GoClaw はエージェントチームとエージェント間デリゲーショ�
 - **チームメールボックス** — ピアツーピアの直接メッセージとブロードキャスト
 - **ツール**: タスク管理用の `team_tasks`、メールボックス用の `team_message`
 
-> デリゲーションの詳細、パーミッションリンク、並列実行制御については、[エージェントチームのドキュメント](https://docs.goclaw.sh/#teams-what-are-teams)を参照してください。
+> デリゲーションの詳細、パーミッションリンク、並列実行制御については、[エージェントチームのドキュメント](https://edyocampos.github.io/base365/#teams-what-are-teams)を参照してください。
 
 ## 組み込みツール
 
@@ -192,19 +192,19 @@ GoClaw はエージェントチームとエージェント間デリゲーショ�
 
 ## ドキュメント
 
-完全なドキュメントは **[docs.goclaw.sh](https://docs.goclaw.sh)** で確認できます。またはソースを [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs) で参照してください。
+完全なドキュメントは **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** で確認できます。またはソースを [`base365-docs/`](https://edyocampos.github.io/base365) で参照してください。
 
 | セクション | トピック |
 |------------|----------|
-| [はじめに](https://docs.goclaw.sh/#what-is-goclaw) | インストール、クイックスタート、設定、Web ダッシュボードツアー |
-| [コアコンセプト](https://docs.goclaw.sh/#how-goclaw-works) | エージェントループ、セッション、ツール、メモリ、マルチテナンシー |
-| [エージェント](https://docs.goclaw.sh/#creating-agents) | エージェントの作成、コンテキストファイル、パーソナリティ、共有とアクセス |
-| [プロバイダ](https://docs.goclaw.sh/#providers-overview) | Anthropic、OpenAI、OpenRouter、Gemini、DeepSeek、その他 15 以上 |
-| [チャンネル](https://docs.goclaw.sh/#channels-overview) | Telegram、Discord、Slack、Feishu、Zalo、WhatsApp、WebSocket |
-| [エージェントチーム](https://docs.goclaw.sh/#teams-what-are-teams) | チーム、タスクボード、メッセージング、デリゲーションとハンドオフ |
-| [上級](https://docs.goclaw.sh/#custom-tools) | カスタムツール、MCP、スキル、Cron、サンドボックス、フック、RBAC |
-| [デプロイメント](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose、データベース、セキュリティ、オブザーバビリティ、Tailscale |
-| [リファレンス](https://docs.goclaw.sh/#cli-commands) | CLI コマンド、REST API、WebSocket プロトコル、環境変数 |
+| [はじめに](https://edyocampos.github.io/base365/#what-is-base365) | インストール、クイックスタート、設定、Web ダッシュボードツアー |
+| [コアコンセプト](https://edyocampos.github.io/base365/#how-base365-works) | エージェントループ、セッション、ツール、メモリ、マルチテナンシー |
+| [エージェント](https://edyocampos.github.io/base365/#creating-agents) | エージェントの作成、コンテキストファイル、パーソナリティ、共有とアクセス |
+| [プロバイダ](https://edyocampos.github.io/base365/#providers-overview) | Anthropic、OpenAI、OpenRouter、Gemini、DeepSeek、その他 15 以上 |
+| [チャンネル](https://edyocampos.github.io/base365/#channels-overview) | Telegram、Discord、Slack、Feishu、Zalo、WhatsApp、WebSocket |
+| [エージェントチーム](https://edyocampos.github.io/base365/#teams-what-are-teams) | チーム、タスクボード、メッセージング、デリゲーションとハンドオフ |
+| [上級](https://edyocampos.github.io/base365/#custom-tools) | カスタムツール、MCP、スキル、Cron、サンドボックス、フック、RBAC |
+| [デプロイメント](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose、データベース、セキュリティ、オブザーバビリティ、Tailscale |
+| [リファレンス](https://edyocampos.github.io/base365/#cli-commands) | CLI コマンド、REST API、WebSocket プロトコル、環境変数 |
 
 ## テスト
 
@@ -219,7 +219,7 @@ go test -v ./tests/integration/ -timeout 120s    # Integration tests (requires r
 
 ## 謝辞
 
-GoClaw はオリジナルの [OpenClaw](https://github.com/openclaw/openclaw) プロジェクトをベースに構築されています。この Go 移植版を着想させたアーキテクチャとビジョンに感謝します。
+Base365 はオリジナルの [OpenClaw](https://github.com/openclaw/openclaw) プロジェクトをベースに構築されています。この Go 移植版を着想させたアーキテクチャとビジョンに感謝します。
 
 ## ライセンス
 

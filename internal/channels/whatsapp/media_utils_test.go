@@ -41,9 +41,9 @@ func TestMimeToExt(t *testing.T) {
 
 func TestClassifyDownloadError(t *testing.T) {
 	tests := []struct {
-		name    string
-		errMsg  string
-		want    string
+		name   string
+		errMsg string
+		want   string
 	}{
 		{"timeout", "connection timeout exceeded", "timeout"},
 		{"deadline exceeded", "context deadline exceeded", "timeout"},

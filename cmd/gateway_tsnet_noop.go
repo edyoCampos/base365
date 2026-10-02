@@ -6,7 +6,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 // initTailscale is a no-op when built without the "tsnet" tag.

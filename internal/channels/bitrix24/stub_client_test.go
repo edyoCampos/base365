@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // captureRT is a RoundTripper that records requests and returns canned JSON responses.
@@ -15,9 +15,9 @@ import (
 // making it ideal for unit tests that need to verify request parameters without
 // running a real server or setting up complex Portal bindings.
 type captureRT struct {
-	reqs   []url.Values        // parsed form bodies, in order
-	paths  []string            // r.URL.Path in order
-	result string              // JSON to return as the response body; default: {"result":{"fileId":1}}
+	reqs   []url.Values // parsed form bodies, in order
+	paths  []string     // r.URL.Path in order
+	result string       // JSON to return as the response body; default: {"result":{"fileId":1}}
 	status int
 }
 

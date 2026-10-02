@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // sqliteAppendTeamFilter appends the team_id clause to a vault query.

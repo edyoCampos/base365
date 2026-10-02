@@ -8,12 +8,12 @@ import (
 	"os"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/backup"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/backup"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // BackupS3Handler handles S3 integration endpoints for backup/restore.
@@ -262,7 +262,7 @@ func (h *BackupS3Handler) handleBackupAndUpload(w http.ResponseWriter, r *http.R
 		return
 	}
 
-	tmpFile, err := os.CreateTemp("", "goclaw-backup-*.tar.gz")
+	tmpFile, err := os.CreateTemp("", "base365-backup-*.tar.gz")
 	if err != nil {
 		sendSSE(w, flusher, "error", ProgressEvent{Phase: "init", Status: "error", Detail: "failed to create temp file"})
 		return
@@ -272,14 +272,14 @@ func (h *BackupS3Handler) handleBackupAndUpload(w http.ResponseWriter, r *http.R
 	defer os.Remove(tmpPath)
 
 	opts := backup.Options{
-		DSN:           h.dsn,
-		DataDir:       h.cfg.ResolvedDataDir(),
-		WorkspacePath: h.cfg.WorkspacePath(),
-		OutputPath:    tmpPath,
-		CreatedBy:     userID,
-		GoclawVersion: h.version,
-		ExcludeDB:     req.ExcludeDB,
-		ExcludeFiles:  req.ExcludeFiles,
+		DSN:            h.dsn,
+		DataDir:        h.cfg.ResolvedDataDir(),
+		WorkspacePath:  h.cfg.WorkspacePath(),
+		OutputPath:     tmpPath,
+		CreatedBy:      userID,
+		Base365Version: h.version,
+		ExcludeDB:      req.ExcludeDB,
+		ExcludeFiles:   req.ExcludeFiles,
 		ProgressFn: func(phase, detail string) {
 			sendSSE(w, flusher, "progress", ProgressEvent{Phase: phase, Status: "running", Detail: detail})
 		},

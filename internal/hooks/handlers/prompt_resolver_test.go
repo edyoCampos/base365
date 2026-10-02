@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/hooks/handlers"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/hooks/handlers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 func TestRegistryResolver_ExplicitProviderIsAuthoritative(t *testing.T) {

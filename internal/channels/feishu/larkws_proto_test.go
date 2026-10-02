@@ -103,9 +103,9 @@ func TestUnmarshalFrame_MalformedInput(t *testing.T) {
 		data []byte
 	}{
 		{"empty", []byte{}},
-		{"truncated varint", []byte{0x80, 0x80}},        // incomplete multi-byte varint
-		{"bad wire type", []byte{0x0f}},                  // field 1, wire type 7 (unsupported)
-		{"length prefix no data", []byte{0x12, 0x05}},   // field 2 wire 2, length=5 but no data
+		{"truncated varint", []byte{0x80, 0x80}},      // incomplete multi-byte varint
+		{"bad wire type", []byte{0x0f}},               // field 1, wire type 7 (unsupported)
+		{"length prefix no data", []byte{0x12, 0x05}}, // field 2 wire 2, length=5 but no data
 	}
 
 	for _, tc := range cases {

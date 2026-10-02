@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // SQLiteVaultGraphStore implements store.VaultGraphStore backed by SQLite.
@@ -174,4 +174,3 @@ func sqliteAppendGraphTeamFilter(q string, args []any, tableAlias string, teamID
 	}
 	return q, args
 }
-

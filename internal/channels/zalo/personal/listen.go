@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels/zalo/personal/protocol"
+	"github.com/edyoCampos/base365/internal/channels/zalo/personal/protocol"
 )
 
 const (

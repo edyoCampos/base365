@@ -6,7 +6,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
+	"github.com/edyoCampos/base365/internal/skills"
 )
 
 type parsedSkillSlashCommand struct {

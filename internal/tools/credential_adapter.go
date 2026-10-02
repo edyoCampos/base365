@@ -8,7 +8,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // CredentialAdapter transforms a user credential into the shape a specific CLI

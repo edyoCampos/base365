@@ -51,7 +51,7 @@ func npmOutputHasWorkspaceProtocolError(out string) bool {
 }
 
 func installNpmPackageWithWorkspaceRewrite(ctx context.Context, target string) ([]byte, error) {
-	tmpDir, err := os.MkdirTemp("", "goclaw-npm-workspace-*")
+	tmpDir, err := os.MkdirTemp("", "base365-npm-workspace-*")
 	if err != nil {
 		return nil, fmt.Errorf("npm workspace fallback temp dir: %w", err)
 	}

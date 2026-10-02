@@ -3,8 +3,8 @@ package openai_test
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/openai"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/openai"
 )
 
 // TestDefaults_PreserveLegacyBody verifies that populating opts.Params with

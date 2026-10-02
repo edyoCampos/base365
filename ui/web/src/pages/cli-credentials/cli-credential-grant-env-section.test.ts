@@ -10,7 +10,7 @@ describe("grant env denylist mirror", () => {
 
   it("declares the product env prefix", () => {
     expect(match).not.toBeNull();
-    expect(match![1]).toContain('"GOCLAW_"');
+    expect(match![1]).toContain('"BASE365_"');
   });
 
   it("keeps the other denied prefixes", () => {

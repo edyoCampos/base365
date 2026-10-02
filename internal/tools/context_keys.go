@@ -9,10 +9,10 @@ import (
 
 	"github.com/google/uuid"
 
-	orchestration "github.com/nextlevelbuilder/goclaw/internal/childrun"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/sandbox"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	orchestration "github.com/edyoCampos/base365/internal/childrun"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/sandbox"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // Tool execution context keys.

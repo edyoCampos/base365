@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/tts"
+	"github.com/edyoCampos/base365/internal/tts"
 )
 
 func makeTTSManager(providers ...string) *tts.Manager {

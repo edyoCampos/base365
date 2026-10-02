@@ -15,11 +15,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // TeamExportManifest describes the contents of a team export archive.
@@ -101,7 +101,7 @@ func (h *AgentsHandler) handleTeamExport(w http.ResponseWriter, r *http.Request)
 			return
 		}
 
-		tmpFile, err := os.CreateTemp("", "goclaw-team-export-*.tar.gz")
+		tmpFile, err := os.CreateTemp("", "base365-team-export-*.tar.gz")
 		if err != nil {
 			sendSSE(w, flusher, "error", ProgressEvent{Phase: "init", Status: "error", Detail: "failed to create temp file"})
 			return
@@ -142,7 +142,7 @@ func (h *AgentsHandler) writeTeamExportArchive(ctx context.Context, w io.Writer,
 
 	manifest := &TeamExportManifest{
 		Version:    1,
-		Format:     "goclaw-team-export",
+		Format:     "base365-team-export",
 		ExportedAt: time.Now().UTC().Format(time.RFC3339),
 		ExportedBy: store.UserIDFromContext(ctx),
 		TeamName:   teamMeta.Name,

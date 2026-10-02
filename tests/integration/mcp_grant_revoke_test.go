@@ -9,13 +9,13 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/google/uuid"
 	mcpclient "github.com/mark3labs/mcp-go/client"
 	mcpgo "github.com/mark3labs/mcp-go/mcp"
-	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/mcp"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/mcp"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // TestBridgeTool_Execute_RevokeAgentGrant_ReturnsError: TDD-red for Phase 02.
@@ -172,4 +172,3 @@ func grantUserAccess(t *testing.T, db *sql.DB, tenantID, serverID uuid.UUID, use
 func containsGrantRevoked(s string) bool {
 	return len(s) > 0 && (strings.Contains(s, "grant revoked") || strings.Contains(s, "grant denied"))
 }
-

@@ -9,10 +9,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks/builtin"
-	hookhandlers "github.com/nextlevelbuilder/goclaw/internal/hooks/handlers"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/hooks"
+	"github.com/edyoCampos/base365/internal/hooks/builtin"
+	hookhandlers "github.com/edyoCampos/base365/internal/hooks/handlers"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // Phase 08 — C bucket: source-tier capability gate + FireResult propagation.

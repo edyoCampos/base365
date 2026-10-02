@@ -10,12 +10,12 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // --- agents.create ---
@@ -94,7 +94,7 @@ func (m *AgentsMethods) handleCreate(ctx context.Context, client *gateway.Client
 			return
 		}
 
-		// Resolve owner: use first provided ID so external provisioning tools (e.g. goclaw-wizards)
+		// Resolve owner: use first provided ID so external provisioning tools (e.g. base365-wizards)
 		// can set a real user as owner at creation time. Falls back to "system" for backward compat.
 		ownerID := "system"
 		if len(params.OwnerIDs) > 0 && params.OwnerIDs[0] != "" {
@@ -128,24 +128,24 @@ func (m *AgentsMethods) handleCreate(ctx context.Context, client *gateway.Client
 		}
 
 		agentData := &store.AgentData{
-			AgentKey:         agentID,
-			DisplayName:      params.Name,
-			OwnerID:          ownerID,
-			TenantID:         tenantID,
-			AgentType:        agentType,
-			Provider:         provider,
-			Model:            model,
-			Workspace:        ws,
-			ContextWindow:     params.ContextWindow,
-			MaxToolIterations: params.MaxToolIterations,
-			BudgetMonthlyCents: params.BudgetCents,
-			Status:           store.AgentStatusActive,
-			ToolsConfig:      params.ToolsConfig,
-			SubagentsConfig:  params.SubagentsConfig,
-			SandboxConfig:    params.SandboxConfig,
-			MemoryConfig:     params.MemoryConfig,
-			CompactionConfig: params.CompactionConfig,
-			ContextPruning:   params.ContextPruning,
+			AgentKey:            agentID,
+			DisplayName:         params.Name,
+			OwnerID:             ownerID,
+			TenantID:            tenantID,
+			AgentType:           agentType,
+			Provider:            provider,
+			Model:               model,
+			Workspace:           ws,
+			ContextWindow:       params.ContextWindow,
+			MaxToolIterations:   params.MaxToolIterations,
+			BudgetMonthlyCents:  params.BudgetCents,
+			Status:              store.AgentStatusActive,
+			ToolsConfig:         params.ToolsConfig,
+			SubagentsConfig:     params.SubagentsConfig,
+			SandboxConfig:       params.SandboxConfig,
+			MemoryConfig:        params.MemoryConfig,
+			CompactionConfig:    params.CompactionConfig,
+			ContextPruning:      params.ContextPruning,
 			OtherConfig:         params.OtherConfig,
 			Emoji:               params.Emoji,
 			AgentDescription:    params.AgentDescription,

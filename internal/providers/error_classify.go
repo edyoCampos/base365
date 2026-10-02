@@ -172,8 +172,8 @@ func isContextOverflow(lower string) bool {
 		"exceed_context_size",       // Ollama native /api/chat 400
 		// llama.cpp / OpenAI-compat local servers return:
 		//   "request (N tokens) exceeds the available context size (M tokens)"
-		"context size",              // llama.cpp native /v1/chat/completions 400
-		"请求输入过长",                    // Chinese generic
+		"context size", // llama.cpp native /v1/chat/completions 400
+		"请求输入过长",       // Chinese generic
 	)
 }
 

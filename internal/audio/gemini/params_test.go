@@ -3,8 +3,8 @@ package gemini_test
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/gemini"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/gemini"
 )
 
 // TestSynthesize_Params_Temperature verifies temperature lands in generationConfig.

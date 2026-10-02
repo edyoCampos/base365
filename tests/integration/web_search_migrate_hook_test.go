@@ -9,9 +9,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/upgrade"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/upgrade"
 )
 
 // TestWebSearchMigrateHook_ConfigJSON5Path tests migration of inline keys
@@ -38,15 +38,15 @@ func TestWebSearchMigrateHook_ConfigJSON5Path(t *testing.T) {
 	}
 
 	// Set environment variables for the hook
-	oldConfigPath := os.Getenv("GOCLAW_CONFIG")
-	oldEncKey := os.Getenv("GOCLAW_ENCRYPTION_KEY")
+	oldConfigPath := os.Getenv("BASE365_CONFIG")
+	oldEncKey := os.Getenv("BASE365_ENCRYPTION_KEY")
 	defer func() {
-		os.Setenv("GOCLAW_CONFIG", oldConfigPath)
-		os.Setenv("GOCLAW_ENCRYPTION_KEY", oldEncKey)
+		os.Setenv("BASE365_CONFIG", oldConfigPath)
+		os.Setenv("BASE365_ENCRYPTION_KEY", oldEncKey)
 	}()
 
-	os.Setenv("GOCLAW_CONFIG", configPath)
-	os.Setenv("GOCLAW_ENCRYPTION_KEY", testEncryptionKey)
+	os.Setenv("BASE365_CONFIG", configPath)
+	os.Setenv("BASE365_ENCRYPTION_KEY", testEncryptionKey)
 
 	resetWebSearchMigrateHook(t, db)
 
@@ -145,9 +145,9 @@ func TestWebSearchMigrateHook_SettingsBlobLegacy(t *testing.T) {
 	})
 
 	// Set encryption key for the hook
-	oldEncKey := os.Getenv("GOCLAW_ENCRYPTION_KEY")
-	defer os.Setenv("GOCLAW_ENCRYPTION_KEY", oldEncKey)
-	os.Setenv("GOCLAW_ENCRYPTION_KEY", testEncryptionKey)
+	oldEncKey := os.Getenv("BASE365_ENCRYPTION_KEY")
+	defer os.Setenv("BASE365_ENCRYPTION_KEY", oldEncKey)
+	os.Setenv("BASE365_ENCRYPTION_KEY", testEncryptionKey)
 
 	resetWebSearchMigrateHook(t, db)
 
@@ -260,9 +260,9 @@ func TestWebSearchMigrateHook_ExistingSecretNoOverwrite(t *testing.T) {
 	}
 
 	// Set encryption key for the hook
-	oldEncKey := os.Getenv("GOCLAW_ENCRYPTION_KEY")
-	defer os.Setenv("GOCLAW_ENCRYPTION_KEY", oldEncKey)
-	os.Setenv("GOCLAW_ENCRYPTION_KEY", testEncryptionKey)
+	oldEncKey := os.Getenv("BASE365_ENCRYPTION_KEY")
+	defer os.Setenv("BASE365_ENCRYPTION_KEY", oldEncKey)
+	os.Setenv("BASE365_ENCRYPTION_KEY", testEncryptionKey)
 
 	resetWebSearchMigrateHook(t, db)
 

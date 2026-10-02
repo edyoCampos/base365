@@ -398,7 +398,7 @@ func localFile(p Payload, ready func() bool) (path string, cleanup func(), err e
 // Sizing the file to the payload's true size with Truncate, and writing the
 // head and tail at their correct offsets, restores the correct answer.
 func materialize(p Payload) (path string, cleanup func(), err error) {
-	dir, err := os.MkdirTemp("", "goclaw-mediabudget-*")
+	dir, err := os.MkdirTemp("", "base365-mediabudget-*")
 	if err != nil {
 		return "", nil, err
 	}

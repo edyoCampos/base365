@@ -190,4 +190,3 @@ func TestParseClassifyResponse_ZeroIdx(t *testing.T) {
 		t.Errorf("Zero idx should be filtered")
 	}
 }
-

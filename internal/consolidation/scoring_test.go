@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // floatEq checks two floats are equal within epsilon for the scoring assertions.

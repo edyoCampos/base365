@@ -16,10 +16,10 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers/providertest"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/providers/providertest"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // poolImageSSE returns a minimal SSE body that parseNativeImageSSE accepts.

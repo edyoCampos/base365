@@ -12,9 +12,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	orchestration "github.com/nextlevelbuilder/goclaw/internal/childrun"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/bus"
+	orchestration "github.com/edyoCampos/base365/internal/childrun"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func TestSpawnAsyncReturnsDurableCompletionAndGetSurvivesManagerStateLoss(t *testing.T) {

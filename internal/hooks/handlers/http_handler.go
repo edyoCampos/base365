@@ -9,9 +9,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/hooks"
+	"github.com/edyoCampos/base365/internal/security"
 )
 
 // HTTPHandler posts event data to an HTTP endpoint and interprets the JSON
@@ -31,10 +31,10 @@ type HTTPHandler struct {
 
 // httpResponse is the expected JSON body from a webhook endpoint.
 type httpResponse struct {
-	Decision         *string        `json:"decision"`
-	AdditionalCtx    string         `json:"additionalContext"`
-	UpdatedInput     map[string]any `json:"updatedInput"`
-	Continue         *bool          `json:"continue"`
+	Decision      *string        `json:"decision"`
+	AdditionalCtx string         `json:"additionalContext"`
+	UpdatedInput  map[string]any `json:"updatedInput"`
+	Continue      *bool          `json:"continue"`
 }
 
 // Execute implements hooks.Handler.

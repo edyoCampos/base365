@@ -1,6 +1,6 @@
 package openai
 
-import "github.com/nextlevelbuilder/goclaw/internal/audio"
+import "github.com/edyoCampos/base365/internal/audio"
 
 // openAIModels is the static allowlist of supported OpenAI TTS models.
 var openAIModels = []string{
@@ -38,14 +38,14 @@ var (
 // Defaults MUST match the hardcoded values in tts.go (characterization fixture).
 var openAIParams = []audio.ParamSchema{
 	{
-		Key:              "speed",
-		Type:             audio.ParamTypeRange,
-		Label:            "Speed",
-		Description:      "Speech speed multiplier (0.25 = slowest, 4.0 = fastest).",
-		Default:          1.0,
-		Min:              &speedMin,
-		Max:              &speedMax,
-		Step:             &speedStep,
+		Key:                "speed",
+		Type:               audio.ParamTypeRange,
+		Label:              "Speed",
+		Description:        "Speech speed multiplier (0.25 = slowest, 4.0 = fastest).",
+		Default:            1.0,
+		Min:                &speedMin,
+		Max:                &speedMax,
+		Step:               &speedStep,
 		AgentOverridableAs: "speed",
 	},
 	{

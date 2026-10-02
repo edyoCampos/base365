@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/security"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // mockOAuthStore is a minimal in-memory implementation of store.MCPOAuthTokenStore.

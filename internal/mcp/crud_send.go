@@ -6,14 +6,14 @@ import (
 	mcpgo "github.com/mark3labs/mcp-go/mcp"
 	mcpserver "github.com/mark3labs/mcp-go/server"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
+	"github.com/edyoCampos/base365/internal/bus"
 )
 
-// registerSendCRUDTool registers goclaw_send, backed by the same
+// registerSendCRUDTool registers base365_send, backed by the same
 // bus.MessageBus outbound publish path used by the gateway's own "send" WS
 // RPC method (internal/gateway/methods/send.go).
 func registerSendCRUDTool(srv *mcpserver.MCPServer, msgBus *bus.MessageBus) {
-	srv.AddTool(mcpgo.NewTool("goclaw_send",
+	srv.AddTool(mcpgo.NewTool("base365_send",
 		mcpgo.WithDescription("Route an outbound message to a channel."),
 		mcpgo.WithString("channel", mcpgo.Required(), mcpgo.Description("Channel instance name.")),
 		mcpgo.WithString("to", mcpgo.Required(), mcpgo.Description("Destination chat/peer ID on that channel.")),

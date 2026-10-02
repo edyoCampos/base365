@@ -11,12 +11,12 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // HeartbeatMethods handles heartbeat.get/set/toggle/test/logs/checklist RPC methods.
@@ -100,16 +100,16 @@ func (m *HeartbeatMethods) handleGet(ctx context.Context, client *gateway.Client
 func (m *HeartbeatMethods) handleSet(ctx context.Context, client *gateway.Client, req *protocol.RequestFrame) {
 	locale := store.LocaleFromContext(ctx)
 	var params struct {
-		AgentID         string  `json:"agentId"`
-		Enabled         *bool   `json:"enabled"`
-		IntervalSec     *int    `json:"intervalSec"`
-		Prompt          *string `json:"prompt"`
-		ProviderName    *string `json:"providerName"`
-		Model           *string `json:"model"`
-		IsolatedSession *bool   `json:"isolatedSession"`
-		LightContext    *bool   `json:"lightContext"`
-		AckMaxChars     *int    `json:"ackMaxChars"`
-		MaxRetries      *int    `json:"maxRetries"`
+		AgentID          string  `json:"agentId"`
+		Enabled          *bool   `json:"enabled"`
+		IntervalSec      *int    `json:"intervalSec"`
+		Prompt           *string `json:"prompt"`
+		ProviderName     *string `json:"providerName"`
+		Model            *string `json:"model"`
+		IsolatedSession  *bool   `json:"isolatedSession"`
+		LightContext     *bool   `json:"lightContext"`
+		AckMaxChars      *int    `json:"ackMaxChars"`
+		MaxRetries       *int    `json:"maxRetries"`
 		ActiveHoursStart *string `json:"activeHoursStart"`
 		ActiveHoursEnd   *string `json:"activeHoursEnd"`
 		Timezone         *string `json:"timezone"`
@@ -423,8 +423,8 @@ func (m *HeartbeatMethods) handleChecklistSet(ctx context.Context, client *gatew
 	}
 
 	client.SendResponse(protocol.NewOKResponse(req.ID, map[string]any{
-		"ok":      true,
-		"length":  len([]rune(params.Content)),
+		"ok":     true,
+		"length": len([]rune(params.Content)),
 	}))
 	emitAudit(m.eventBus, client, "heartbeat.checklist.set", "heartbeat", params.AgentID)
 }

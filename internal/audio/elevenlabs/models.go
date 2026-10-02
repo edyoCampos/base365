@@ -3,7 +3,7 @@ package elevenlabs
 import (
 	"errors"
 
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
+	"github.com/edyoCampos/base365/internal/i18n"
 )
 
 // AllowedElevenLabsModels is the allowlist of ElevenLabs TTS model IDs the

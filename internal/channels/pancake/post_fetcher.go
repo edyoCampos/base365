@@ -22,7 +22,7 @@ type postCacheEntry struct {
 type PostFetcher struct {
 	apiClient *APIClient
 	cacheTTL  time.Duration
-	cache     sync.Map           // postID(string) -> *postCacheEntry
+	cache     sync.Map // postID(string) -> *postCacheEntry
 	sfGroup   singleflight.Group
 	stopCtx   context.Context // channel-lifetime context — used inside singleflight to avoid per-request cancellation
 }

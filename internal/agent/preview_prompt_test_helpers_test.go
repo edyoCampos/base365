@@ -3,14 +3,14 @@ package agent
 import (
 	"context"
 	"fmt"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
+	"github.com/edyoCampos/base365/internal/skills"
 	"sort"
 	"strings"
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // mockToolLister implements the widened ToolLister interface for testing.

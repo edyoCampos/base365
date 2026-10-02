@@ -9,10 +9,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tracing"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tracing"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // ============================================================
@@ -165,15 +165,15 @@ func (m *TeamToolManager) dispatchTaskToAgent(ctx context.Context, task *store.T
 	}
 
 	meta := map[string]string{
-		MetaOriginChannel:   originChannel,
-		MetaOriginPeerKind:  originPeerKind,
-		MetaOriginChatID:    originChatID,
-		MetaOriginUserID:    originUserID,
-		MetaFromAgent:       fromAgent,
-		MetaToAgent:         ag.AgentKey,
-		MetaToAgentDisplay:  ag.DisplayName,
-		MetaTeamTaskID:      task.ID.String(),
-		MetaTeamID:          teamID.String(),
+		MetaOriginChannel:  originChannel,
+		MetaOriginPeerKind: originPeerKind,
+		MetaOriginChatID:   originChatID,
+		MetaOriginUserID:   originUserID,
+		MetaFromAgent:      fromAgent,
+		MetaToAgent:        ag.AgentKey,
+		MetaToAgentDisplay: ag.DisplayName,
+		MetaTeamTaskID:     task.ID.String(),
+		MetaTeamID:         teamID.String(),
 	}
 	if originSenderID != "" {
 		meta[MetaOriginSenderID] = originSenderID

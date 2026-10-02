@@ -9,23 +9,23 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/edyoCampos/base365/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/hooks"
+	mcpbridge "github.com/edyoCampos/base365/internal/mcp"
+	"github.com/edyoCampos/base365/internal/media"
+	"github.com/edyoCampos/base365/internal/memory"
+	"github.com/edyoCampos/base365/internal/providerresolve"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/sandbox"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
+	"github.com/edyoCampos/base365/internal/tracing"
+	usagecaps "github.com/edyoCampos/base365/internal/usage/caps"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
-	mcpbridge "github.com/nextlevelbuilder/goclaw/internal/mcp"
-	"github.com/nextlevelbuilder/goclaw/internal/media"
-	"github.com/nextlevelbuilder/goclaw/internal/memory"
-	"github.com/nextlevelbuilder/goclaw/internal/providerresolve"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/sandbox"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	"github.com/nextlevelbuilder/goclaw/internal/tracing"
-	usagecaps "github.com/nextlevelbuilder/goclaw/internal/usage/caps"
 )
 
 // ResolverDeps holds shared dependencies for the agent resolver.
@@ -126,7 +126,7 @@ type ResolverDeps struct {
 	// System config store for tenant-scoped settings (allowed_paths, etc.)
 	SystemConfigs store.SystemConfigStore
 
-	// Global workspace root (GOCLAW_WORKSPACE)
+	// Global workspace root (BASE365_WORKSPACE)
 	Workspace string
 
 	// TTS auto mode from config: "off", "always", "inbound", "tagged"

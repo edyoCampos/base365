@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
 	"github.com/lib/pq"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // tenantFromCtx extracts tenant_id from context, returns uuid.Nil if not set.

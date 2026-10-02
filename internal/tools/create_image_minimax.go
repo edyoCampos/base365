@@ -11,7 +11,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // minimaxImageAspectRatio returns the aspect_ratio string for MiniMax image_generation.

@@ -16,8 +16,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // maxHistoryKeys is the max number of distinct groups/topics tracked in RAM.

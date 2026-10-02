@@ -3,9 +3,9 @@ package vault
 import (
 	"sync"
 
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/pkg/protocol"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
 )
 
 // EnrichProgress tracks enrichment pipeline progress and broadcasts via WS events.

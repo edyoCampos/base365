@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // TestRouter_AbortRun_NotFound verifies that aborting a non-existent run

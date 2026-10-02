@@ -6,17 +6,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/i18n"
 )
 
 // stubSTTProvider is a minimal in-process STTProvider for unit tests.
 type stubSTTProvider struct {
-	name    string
-	result  *audio.TranscriptResult
-	err     error
-	delay   time.Duration // simulate slow provider
-	called  int
+	name   string
+	result *audio.TranscriptResult
+	err    error
+	delay  time.Duration // simulate slow provider
+	called int
 }
 
 func (s *stubSTTProvider) Name() string { return s.name }

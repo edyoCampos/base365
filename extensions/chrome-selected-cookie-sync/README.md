@@ -1,6 +1,6 @@
-# GoClaw Selected Cookie Sync Extension
+# Base365 Selected Cookie Sync Extension
 
-Chrome MV3 extension for explicit selected-cookie sync into GoClaw browser sessions.
+Chrome MV3 extension for explicit selected-cookie sync into Base365 browser sessions.
 
 Security model:
 - No automatic background sync.

@@ -1,4 +1,4 @@
-# Contributing to GoClaw
+# Contributing to Base365
 
 ## Branch Strategy
 

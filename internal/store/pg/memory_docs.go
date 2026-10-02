@@ -10,15 +10,15 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/memory"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/memory"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // PGMemoryStore implements store.MemoryStore backed by Postgres.
 type PGMemoryStore struct {
 	db       *sql.DB
 	provider store.EmbeddingProvider
-	mu       sync.RWMutex   // protects cfg from concurrent read/write
+	mu       sync.RWMutex // protects cfg from concurrent read/write
 	cfg      PGMemoryConfig
 }
 

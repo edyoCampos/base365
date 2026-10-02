@@ -115,13 +115,13 @@ func TestValidateNpmPackageName(t *testing.T) {
 
 	reject := []string{
 		"",
-		"TypeScript",          // uppercase (npm forbids)
-		"typescript@latest",   // @ version suffix on bare name
-		"pkg@@",               // double @
-		"@scope/PKG",          // uppercase in scoped path
-		"@Scope/name",         // uppercase scope
-		"pkg space",           // space
-		"@/name",              // empty scope
+		"TypeScript",        // uppercase (npm forbids)
+		"typescript@latest", // @ version suffix on bare name
+		"pkg@@",             // double @
+		"@scope/PKG",        // uppercase in scoped path
+		"@Scope/name",       // uppercase scope
+		"pkg space",         // space
+		"@/name",            // empty scope
 	}
 	for _, name := range reject {
 		if err := ValidateNpmPackageName(name); err == nil {
@@ -132,53 +132,53 @@ func TestValidateNpmPackageName(t *testing.T) {
 
 func TestClassifyPipStderr(t *testing.T) {
 	cases := []struct {
-		name        string
-		stderr      string
+		name         string
+		stderr       string
 		wantSentinel error
 	}{
 		{
-			name:        "externally managed environment",
-			stderr:      "error: externally-managed-environment\nsome extra text",
+			name:         "externally managed environment",
+			stderr:       "error: externally-managed-environment\nsome extra text",
 			wantSentinel: ErrUpdatePipExternallyManaged,
 		},
 		{
-			name:        "EXTERNALLY-MANAGED upper",
-			stderr:      "This environment is EXTERNALLY-MANAGED",
+			name:         "EXTERNALLY-MANAGED upper",
+			stderr:       "This environment is EXTERNALLY-MANAGED",
 			wantSentinel: ErrUpdatePipExternallyManaged,
 		},
 		{
-			name:        "permission denied",
-			stderr:      "ERROR: Could not install packages: Permission denied",
+			name:         "permission denied",
+			stderr:       "ERROR: Could not install packages: Permission denied",
 			wantSentinel: ErrUpdatePipPermission,
 		},
 		{
-			name:        "no matching distribution",
-			stderr:      "ERROR: No matching distribution found for nonexistent-pkg==99.0",
+			name:         "no matching distribution",
+			stderr:       "ERROR: No matching distribution found for nonexistent-pkg==99.0",
 			wantSentinel: ErrUpdatePipNotFound,
 		},
 		{
-			name:        "could not find a version",
-			stderr:      "ERROR: Could not find a version that satisfies the requirement",
+			name:         "could not find a version",
+			stderr:       "ERROR: Could not find a version that satisfies the requirement",
 			wantSentinel: ErrUpdatePipNotFound,
 		},
 		{
-			name:        "network read timeout",
-			stderr:      "Read timed out. (read timeout=15)",
+			name:         "network read timeout",
+			stderr:       "Read timed out. (read timeout=15)",
 			wantSentinel: ErrUpdatePipNetwork,
 		},
 		{
-			name:        "dependency conflict",
-			stderr:      "ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.",
+			name:         "dependency conflict",
+			stderr:       "ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.",
 			wantSentinel: ErrUpdatePipConflict,
 		},
 		{
-			name:        "shallow backtracking",
-			stderr:      "Shallow backtracking detected: could not find a matching version",
+			name:         "shallow backtracking",
+			stderr:       "Shallow backtracking detected: could not find a matching version",
 			wantSentinel: ErrUpdatePipConflict,
 		},
 		{
-			name:        "unclassified returns nil sentinel",
-			stderr:      "some random pip error output",
+			name:         "unclassified returns nil sentinel",
+			stderr:       "some random pip error output",
 			wantSentinel: nil,
 		},
 	}
@@ -198,48 +198,48 @@ func TestClassifyPipStderr(t *testing.T) {
 
 func TestClassifyNpmStderr(t *testing.T) {
 	cases := []struct {
-		name        string
-		stderr      string
+		name         string
+		stderr       string
 		wantSentinel error
 	}{
 		{
-			name:        "EACCES permission",
-			stderr:      "npm ERR! code EACCES\nnpm ERR! path /usr/local/lib",
+			name:         "EACCES permission",
+			stderr:       "npm ERR! code EACCES\nnpm ERR! path /usr/local/lib",
 			wantSentinel: ErrUpdateNpmPermission,
 		},
 		{
-			name:        "ERESOLVE conflict",
-			stderr:      "npm ERR! code ERESOLVE\nnpm ERR! ERESOLVE unable to resolve dependency tree",
+			name:         "ERESOLVE conflict",
+			stderr:       "npm ERR! code ERESOLVE\nnpm ERR! ERESOLVE unable to resolve dependency tree",
 			wantSentinel: ErrUpdateNpmConflict,
 		},
 		{
-			name:        "ETIMEDOUT network",
-			stderr:      "npm ERR! code ETIMEDOUT\nnpm ERR! errno ETIMEDOUT",
+			name:         "ETIMEDOUT network",
+			stderr:       "npm ERR! code ETIMEDOUT\nnpm ERR! errno ETIMEDOUT",
 			wantSentinel: ErrUpdateNpmNetwork,
 		},
 		{
-			name:        "ENOTFOUND network",
-			stderr:      "npm ERR! code ENOTFOUND\nnpm ERR! errno ENOTFOUND registry.npmjs.org",
+			name:         "ENOTFOUND network",
+			stderr:       "npm ERR! code ENOTFOUND\nnpm ERR! errno ENOTFOUND registry.npmjs.org",
 			wantSentinel: ErrUpdateNpmNetwork,
 		},
 		{
-			name:        "ETARGET version missing",
-			stderr:      "npm ERR! code ETARGET\nnpm ERR! notarget No matching version found for typescript@99.0.0",
+			name:         "ETARGET version missing",
+			stderr:       "npm ERR! code ETARGET\nnpm ERR! notarget No matching version found for typescript@99.0.0",
 			wantSentinel: ErrUpdateNpmTargetMissing,
 		},
 		{
-			name:        "E404 not found",
-			stderr:      "npm ERR! code E404\nnpm ERR! 404 Not Found",
+			name:         "E404 not found",
+			stderr:       "npm ERR! code E404\nnpm ERR! 404 Not Found",
 			wantSentinel: ErrUpdateNpmNotFound,
 		},
 		{
-			name:        "not in this registry",
-			stderr:      "npm ERR! my-private-pkg is not in this registry",
+			name:         "not in this registry",
+			stderr:       "npm ERR! my-private-pkg is not in this registry",
 			wantSentinel: ErrUpdateNpmNotFound,
 		},
 		{
-			name:        "unclassified returns nil sentinel",
-			stderr:      "npm ERR! some random error",
+			name:         "unclassified returns nil sentinel",
+			stderr:       "npm ERR! some random error",
 			wantSentinel: nil,
 		},
 	}
@@ -280,16 +280,16 @@ func TestValidateApkPackageName(t *testing.T) {
 
 	reject := []string{
 		"",
-		"CURL",           // uppercase
-		"curl;rm -rf /",  // shell metachar
-		"curl@edge",      // @ not valid for apk
-		"../evil",        // path traversal
-		"-dash-start",    // leading hyphen
-		"pkg space",      // space
-		"@scope/pkg",     // npm-style scoped pkg
-		"pkg|other",      // pipe
-		"pkg>1.0",        // gt
-		"Uppercase",      // uppercase in middle
+		"CURL",          // uppercase
+		"curl;rm -rf /", // shell metachar
+		"curl@edge",     // @ not valid for apk
+		"../evil",       // path traversal
+		"-dash-start",   // leading hyphen
+		"pkg space",     // space
+		"@scope/pkg",    // npm-style scoped pkg
+		"pkg|other",     // pipe
+		"pkg>1.0",       // gt
+		"Uppercase",     // uppercase in middle
 	}
 	for _, name := range reject {
 		if err := ValidateApkPackageName(name); err == nil {

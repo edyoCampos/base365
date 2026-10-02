@@ -7,17 +7,17 @@ import (
 
 	"github.com/redis/go-redis/v9"
 
-	"github.com/nextlevelbuilder/goclaw/internal/cache"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/cache"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // initRedisClient creates a Redis client when built with -tags redis.
-// Returns nil (typed as any) if GOCLAW_REDIS_DSN is empty or connection fails.
+// Returns nil (typed as any) if BASE365_REDIS_DSN is empty or connection fails.
 func initRedisClient(cfg *config.Config) any {
 	dsn := cfg.Database.RedisDSN
 	if dsn == "" {
-		slog.Debug("Redis available but not configured (set GOCLAW_REDIS_DSN)")
+		slog.Debug("Redis available but not configured (set BASE365_REDIS_DSN)")
 		return nil
 	}
 	client, err := cache.NewRedisClient(dsn)

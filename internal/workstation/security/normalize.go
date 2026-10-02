@@ -65,4 +65,3 @@ func containsDangerousBytes(s string) bool {
 		strings.ContainsRune(s, '\r') ||
 		strings.ContainsRune(s, '\n')
 }
-

@@ -1,6 +1,6 @@
 package orchestration
 
-import "github.com/nextlevelbuilder/goclaw/internal/childrun"
+import "github.com/edyoCampos/base365/internal/childrun"
 
 var (
 	ErrChildRunBusy                = childrun.ErrChildRunBusy

@@ -2,7 +2,7 @@
 
 ## Issue
 
-`digitopvn/goclaw#68` reports P0 cross-tenant workspace exposure through Docker sandbox global workspace mounts. Upstream `nextlevelbuilder/goclaw#1163` is still open and describes the same mount-layer gap.
+`edyoCampos/base365#68` reports P0 cross-tenant workspace exposure through Docker sandbox global workspace mounts. Upstream `edyoCampos/base365#1163` is still open and describes the same mount-layer gap.
 
 ## Verified Code Evidence
 

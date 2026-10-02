@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // handleExportPreview returns lightweight counts per exportable section.
@@ -139,7 +139,7 @@ func (h *AgentsHandler) handleExportSSE(w http.ResponseWriter, r *http.Request, 
 		return
 	}
 
-	tmpFile, err := os.CreateTemp("", "goclaw-export-*.tar.gz")
+	tmpFile, err := os.CreateTemp("", "base365-export-*.tar.gz")
 	if err != nil {
 		sendSSE(w, flusher, "error", ProgressEvent{Phase: "init", Status: "error", Detail: "failed to create temp file"})
 		return

@@ -28,11 +28,11 @@ var testSkipDownloadValidation bool
 
 // allowedDownloadHosts is the SSRF allowlist for asset downloads.
 var allowedDownloadHosts = map[string]bool{
-	"github.com":                        true,
-	"api.github.com":                    true,
-	"objects.githubusercontent.com":     true,
+	"github.com":                           true,
+	"api.github.com":                       true,
+	"objects.githubusercontent.com":        true,
 	"release-assets.githubusercontent.com": true,
-	"codeload.github.com":               true,
+	"codeload.github.com":                  true,
 }
 
 // validateDownloadURL ensures the URL is HTTPS and the host is allowlisted.
@@ -104,7 +104,7 @@ func (c *GitHubClient) DownloadAsset(ctx context.Context, assetURL string, maxBy
 			resp.StatusCode, strings.TrimSpace(string(body)))
 	}
 
-	tmp, err := os.CreateTemp("", "goclaw-gh-asset-*.bin")
+	tmp, err := os.CreateTemp("", "base365-gh-asset-*.bin")
 	if err != nil {
 		return "", "", err
 	}

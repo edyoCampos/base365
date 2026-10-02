@@ -53,7 +53,7 @@ func init() {
 		// HTTP API
 		MsgInvalidAuth:           "잘못된 인증",
 		MsgMsgsRequired:          "messages가 필요합니다",
-		MsgUserIDHeader:          "X-GoClaw-User-Id 헤더가 필요합니다",
+		MsgUserIDHeader:          "X-Base365-User-Id 헤더가 필요합니다",
 		MsgFileTooLarge:          "파일이 너무 크거나 잘못된 멀티파트 양식입니다",
 		MsgMissingFileField:      "'file' 필드가 누락되었습니다",
 		MsgInvalidFilename:       "잘못된 파일명",
@@ -81,12 +81,12 @@ func init() {
 		MsgNotImplemented: "%s은(는) 아직 구현되지 않았습니다",
 
 		// Agent links
-		MsgLinksNotConfigured:   "에이전트 링크가 설정되지 않았습니다",
-		MsgInvalidDirection:     "방향은 outbound, inbound, 또는 bidirectional이어야 합니다",
-		MsgSourceTargetSame:     "소스와 대상은 서로 다른 에이전트여야 합니다",
-		MsgCannotDelegateOpen:   "오픈 에이전트에게는 위임할 수 없습니다 — 사전 정의된 에이전트만 위임 대상이 될 수 있습니다",
-		MsgNoUpdatesProvided:    "업데이트가 제공되지 않았습니다",
-		MsgInvalidLinkStatus:    "상태는 active 또는 disabled여야 합니다",
+		MsgLinksNotConfigured: "에이전트 링크가 설정되지 않았습니다",
+		MsgInvalidDirection:   "방향은 outbound, inbound, 또는 bidirectional이어야 합니다",
+		MsgSourceTargetSame:   "소스와 대상은 서로 다른 에이전트여야 합니다",
+		MsgCannotDelegateOpen: "오픈 에이전트에게는 위임할 수 없습니다 — 사전 정의된 에이전트만 위임 대상이 될 수 있습니다",
+		MsgNoUpdatesProvided:  "업데이트가 제공되지 않았습니다",
+		MsgInvalidLinkStatus:  "상태는 active 또는 disabled여야 합니다",
 
 		// Teams
 		MsgTeamsNotConfigured:   "팀이 설정되지 않았습니다",

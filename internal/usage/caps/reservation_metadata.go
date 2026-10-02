@@ -3,9 +3,9 @@ package caps
 import (
 	"encoding/json"
 
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/usage/pricing"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/usage/pricing"
 )
 
 const TraceMetadataKey = "usage_caps"

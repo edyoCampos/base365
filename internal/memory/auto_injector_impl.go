@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // pgAutoInjector implements AutoInjector backed by EpisodicStore + FTS search.

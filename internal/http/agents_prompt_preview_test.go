@@ -7,9 +7,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/mcp"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/mcp"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // mockMCPStoreForAdapter is a minimal store.MCPServerStore fake exercising
@@ -24,7 +24,9 @@ type mockMCPStoreForAdapter struct {
 func (m *mockMCPStoreForAdapter) ListAccessible(_ context.Context, _ uuid.UUID, _ string) ([]store.MCPAccessInfo, error) {
 	return m.accessible, nil
 }
-func (m *mockMCPStoreForAdapter) CreateServer(context.Context, *store.MCPServerData) error { return nil }
+func (m *mockMCPStoreForAdapter) CreateServer(context.Context, *store.MCPServerData) error {
+	return nil
+}
 func (m *mockMCPStoreForAdapter) GetServer(context.Context, uuid.UUID) (*store.MCPServerData, error) {
 	return nil, nil
 }

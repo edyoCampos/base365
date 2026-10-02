@@ -10,9 +10,9 @@ import (
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/sessions"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/sessions"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 func runClientMode(cfg *config.Config, addr, agentName, message, sessionKey string) {
@@ -45,7 +45,7 @@ func runClientMode(cfg *config.Config, addr, agentName, message, sessionKey stri
 	}
 
 	// Interactive REPL
-	fmt.Fprintf(os.Stderr, "\nGoClaw Interactive Chat (agent: %s, model: %s)\n", agentName, agentCfg.Model)
+	fmt.Fprintf(os.Stderr, "\nBase365 Interactive Chat (agent: %s, model: %s)\n", agentName, agentCfg.Model)
 	fmt.Fprintf(os.Stderr, "Session: %s\n", sessionKey)
 	fmt.Fprintf(os.Stderr, "Type \"exit\" to quit, \"/new\" for new session\n\n")
 
@@ -85,8 +85,10 @@ func runClientMode(cfg *config.Config, addr, agentName, message, sessionKey stri
 // wsConnect sends the connect RPC and waits for auth response.
 func wsConnect(conn *websocket.Conn, token string) error {
 	params := map[string]string{}
-	userId := os.Getenv("GOCLAW_USER_ID")
-	if userId == "" { userId = "system" }
+	userId := os.Getenv("BASE365_USER_ID")
+	if userId == "" {
+		userId = "system"
+	}
 	params["user_id"] = userId
 	if token != "" {
 		params["token"] = token

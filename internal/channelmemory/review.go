@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 func (s *Service) Approve(ctx context.Context, itemID uuid.UUID, approver string) (*store.ChannelMemoryExtractionItem, error) {

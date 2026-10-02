@@ -210,11 +210,11 @@ func TestApply_SerializesSameKey_Apk(t *testing.T) {
 	exec := &fakeExecutor{source: "apk"}
 	// Override via a custom executor that records ordering.
 	customExec := &serializingExecutor{
-		source:   "apk",
-		unblock:  unblock,
-		released: released,
-		order:    &order,
-		orderMu:  &orderMu,
+		source:    "apk",
+		unblock:   unblock,
+		released:  released,
+		order:     &order,
+		orderMu:   &orderMu,
 		firstDone: &firstDone,
 	}
 	reg.RegisterExecutor(customExec)

@@ -13,9 +13,9 @@ import (
 
 	"github.com/google/uuid"
 
-	httphandler "github.com/nextlevelbuilder/goclaw/internal/http"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	httphandler "github.com/edyoCampos/base365/internal/http"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // buildRevealCtxRequest constructs a reveal request with owner-role context so
@@ -86,7 +86,7 @@ func TestRevealRateLimit_PerCallerBuckets(t *testing.T) {
 }
 
 // TestRevealRateLimit_ContextUserIDNotHeader verifies that the rate limit key
-// comes from the context-injected UserID (authenticated), not the X-GoClaw-User-Id header.
+// comes from the context-injected UserID (authenticated), not the X-Base365-User-Id header.
 func TestRevealRateLimit_ContextUserIDNotHeader(t *testing.T) {
 	t.Parallel()
 
@@ -116,7 +116,7 @@ func TestRevealRateLimit_ContextUserIDNotHeader(t *testing.T) {
 		req.SetPathValue("id", binaryID.String())
 		req.SetPathValue("grantId", g.ID.String())
 		if headerUser != "" {
-			req.Header.Set("X-GoClaw-User-Id", headerUser)
+			req.Header.Set("X-Base365-User-Id", headerUser)
 		}
 		ctx := store.WithTenantID(req.Context(), tenantID)
 		if contextUser != "" {
@@ -131,8 +131,8 @@ func TestRevealRateLimit_ContextUserIDNotHeader(t *testing.T) {
 	}
 
 	// Exhaust user A's bucket.
-	_ = makeReq(realUserA, "")                 // call 1 — within limit
-	code2 := makeReq(realUserA, "")            // call 2 — over limit
+	_ = makeReq(realUserA, "")      // call 1 — within limit
+	code2 := makeReq(realUserA, "") // call 2 — over limit
 	if code2 != http.StatusTooManyRequests {
 		t.Errorf("real user A call 2: want 429, got %d", code2)
 	}

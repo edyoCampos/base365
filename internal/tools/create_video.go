@@ -9,9 +9,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	mediapkg "github.com/nextlevelbuilder/goclaw/internal/channels/media"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/bus"
+	mediapkg "github.com/edyoCampos/base365/internal/channels/media"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // videoGenProviderPriority is the default order for video generation providers.
@@ -231,4 +231,3 @@ func (t *CreateVideoTool) callProvider(ctx context.Context, cp credentialProvide
 		return t.callChatVideoGen(ctx, cp.APIKey(), cp.APIBase(), model, prompt, duration, aspectRatio, params)
 	}
 }
-

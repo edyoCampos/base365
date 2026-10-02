@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">Belgelendirme</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">Hızlı Başlangıç</a> •
+  <a href="https://edyocampos.github.io/base365">Belgelendirme</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">Hızlı Başlangıç</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-**GoClaw**, LLM'leri araçlarınıza, kanallarınıza ve verilerinize bağlayan çok ajanlı bir yapay zeka ağ geçididir — sıfır çalışma zamanı bağımlılığıyla tek bir Go ikili dosyası olarak dağıtılır. 20'den fazla LLM sağlayıcısında tam çok kiracılı izolasyonla ajan ekiplerini ve ajanlar arası devri yönetir.
+**Base365**, LLM'leri araçlarınıza, kanallarınıza ve verilerinize bağlayan çok ajanlı bir yapay zeka ağ geçididir — sıfır çalışma zamanı bağımlılığıyla tek bir Go ikili dosyası olarak dağıtılır. 20'den fazla LLM sağlayıcısında tam çok kiracılı izolasyonla ajan ekiplerini ve ajanlar arası devri yönetir.
 
 [OpenClaw](https://github.com/openclaw/openclaw) projesinin, geliştirilmiş güvenlik, çok kiracılı PostgreSQL ve üretim düzeyinde gözlemlenebilirlik ile yazılmış bir Go portudur.
 
@@ -80,7 +80,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Claw Ekosistemi
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | --------------- | --------------- | -------- | -------- | --------------------------------------- |
 | Dil             | TypeScript      | Rust     | Go       | **Go**                                  |
 | İkili dosya boyutu | 28 MB + Node.js | 3.4 MB | ~8 MB    | **~25 MB** (temel) / **~36 MB** (+ OTel) |
@@ -89,7 +89,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 | Başlatma        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | Hedef donanım   | $599+ Mac Mini  | $10 uç   | $10 uç   | **$5 VPS+**                             |
 
-| Özellik                    | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **GoClaw**                     |
+| Özellik                    | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
 | -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
 | Çok kiracılı (PostgreSQL)  | —                                    | —                                            | —                                     | ✅                             |
 | MCP entegrasyonu           | — (ACP kullanır)                     | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
@@ -110,7 +110,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ## Mimari
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## Hızlı Başlangıç
@@ -120,10 +120,10 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ### Kaynaktan
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # Etkileşimli kurulum sihirbazı
-source .env.local && ./goclaw
+./base365 onboard        # Etkileşimli kurulum sihirbazı
+source .env.local && ./base365
 ```
 
 ### Docker ile
@@ -132,20 +132,20 @@ source .env.local && ./goclaw
 # Otomatik oluşturulan gizli bilgilerle .env oluştur
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# .env dosyasına en az bir GOCLAW_*_API_KEY ekleyin, ardından:
+# .env dosyasına en az bir BASE365_*_API_KEY ekleyin, ardından:
 make up
 
 # Web Panosu: http://localhost:18790
 # Sağlık kontrolü: curl http://localhost:18790/health
 ```
 
-`GOCLAW_*_API_KEY` ortam değişkenleri ayarlandığında, ağ geçidi etkileşimli istem olmadan otomatik olarak katılır — sağlayıcıyı algılar, migrasyonları çalıştırır ve varsayılan verileri yerleştirir.
+`BASE365_*_API_KEY` ortam değişkenleri ayarlandığında, ağ geçidi etkileşimli istem olmadan otomatik olarak katılır — sağlayıcıyı algılar, migrasyonları çalıştırır ve varsayılan verileri yerleştirir.
 
-> Derleme varyantları (OTel, Tailscale, Redis), Docker imaj etiketleri ve compose katmanları için [Dağıtım Kılavuzu](https://docs.goclaw.sh/#deploy-docker-compose) sayfasına bakın.
+> Derleme varyantları (OTel, Tailscale, Redis), Docker imaj etiketleri ve compose katmanları için [Dağıtım Kılavuzu](https://edyocampos.github.io/base365/#deploy-docker-compose) sayfasına bakın.
 
 ## Çok Ajanlı Orkestrasyon
 
-GoClaw, ajan ekiplerini ve ajanlar arası devri destekler — her ajan kendi kimliği, araçları, LLM sağlayıcısı ve bağlam dosyalarıyla çalışır.
+Base365, ajan ekiplerini ve ajanlar arası devri destekler — her ajan kendi kimliği, araçları, LLM sağlayıcısı ve bağlam dosyalarıyla çalışır.
 
 ### Ajan Devri
 
@@ -170,7 +170,7 @@ Ajanlar, yön kontrolü (`outbound`, `inbound`, `bidirectional`) ve hem bağlant
 - **Ekip posta kutusu** — Doğrudan eşler arası mesajlaşma ve yayınlar
 - **Araçlar**: Görev yönetimi için `team_tasks`, posta kutusu için `team_message`
 
-> Devir ayrıntıları, izin bağlantıları ve eşzamanlılık kontrolü için [Ajan Ekipleri belgelerine](https://docs.goclaw.sh/#teams-what-are-teams) bakın.
+> Devir ayrıntıları, izin bağlantıları ve eşzamanlılık kontrolü için [Ajan Ekipleri belgelerine](https://edyocampos.github.io/base365/#teams-what-are-teams) bakın.
 
 ## Yerleşik Araçlar
 
@@ -214,19 +214,19 @@ Ajanlar, yön kontrolü (`outbound`, `inbound`, `bidirectional`) ve hem bağlant
 
 ## Belgelendirme
 
-Tam belgelendirme **[docs.goclaw.sh](https://docs.goclaw.sh)** adresinde — veya kaynağa [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs) üzerinden göz atın.
+Tam belgelendirme **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** adresinde — veya kaynağa [`base365-docs/`](https://edyocampos.github.io/base365) üzerinden göz atın.
 
 | Bölüm | Konular |
 |---------|--------|
-| [Başlarken](https://docs.goclaw.sh/#what-is-goclaw) | Kurulum, Hızlı Başlangıç, Yapılandırma, Web Panosu Turu |
-| [Temel Kavramlar](https://docs.goclaw.sh/#how-goclaw-works) | Ajan Döngüsü, Oturumlar, Araçlar, Bellek, Çok Kiracılılık |
-| [Ajanlar](https://docs.goclaw.sh/#creating-agents) | Ajan Oluşturma, Bağlam Dosyaları, Kişilik, Paylaşım ve Erişim |
-| [Sağlayıcılar](https://docs.goclaw.sh/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 daha |
-| [Kanallar](https://docs.goclaw.sh/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
-| [Ajan Ekipleri](https://docs.goclaw.sh/#teams-what-are-teams) | Ekipler, Görev Panosu, Mesajlaşma, Devir ve Teslim |
-| [Gelişmiş](https://docs.goclaw.sh/#custom-tools) | Özel Araçlar, MCP, Yetenekler, Cron, Kum Havuzu, Hook'lar, RBAC |
-| [Dağıtım](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose, Veritabanı, Güvenlik, Gözlemlenebilirlik, Tailscale |
-| [Referans](https://docs.goclaw.sh/#cli-commands) | CLI Komutları, REST API, WebSocket Protokolü, Ortam Değişkenleri |
+| [Başlarken](https://edyocampos.github.io/base365/#what-is-base365) | Kurulum, Hızlı Başlangıç, Yapılandırma, Web Panosu Turu |
+| [Temel Kavramlar](https://edyocampos.github.io/base365/#how-base365-works) | Ajan Döngüsü, Oturumlar, Araçlar, Bellek, Çok Kiracılılık |
+| [Ajanlar](https://edyocampos.github.io/base365/#creating-agents) | Ajan Oluşturma, Bağlam Dosyaları, Kişilik, Paylaşım ve Erişim |
+| [Sağlayıcılar](https://edyocampos.github.io/base365/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 daha |
+| [Kanallar](https://edyocampos.github.io/base365/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
+| [Ajan Ekipleri](https://edyocampos.github.io/base365/#teams-what-are-teams) | Ekipler, Görev Panosu, Mesajlaşma, Devir ve Teslim |
+| [Gelişmiş](https://edyocampos.github.io/base365/#custom-tools) | Özel Araçlar, MCP, Yetenekler, Cron, Kum Havuzu, Hook'lar, RBAC |
+| [Dağıtım](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose, Veritabanı, Güvenlik, Gözlemlenebilirlik, Tailscale |
+| [Referans](https://edyocampos.github.io/base365/#cli-commands) | CLI Komutları, REST API, WebSocket Protokolü, Ortam Değişkenleri |
 
 ## Test
 
@@ -241,7 +241,7 @@ go test -v ./tests/integration/ -timeout 120s    # Entegrasyon testleri (çalı�
 
 ## Teşekkürler
 
-GoClaw, orijinal [OpenClaw](https://github.com/openclaw/openclaw) projesi üzerine inşa edilmiştir. Bu Go portuna ilham veren mimari ve vizyona minnettarız.
+Base365, orijinal [OpenClaw](https://github.com/openclaw/openclaw) projesi üzerine inşa edilmiştir. Bu Go portuna ilham veren mimari ve vizyona minnettarız.
 
 ## Lisans
 

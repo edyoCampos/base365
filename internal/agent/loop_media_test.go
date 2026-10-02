@@ -7,7 +7,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // writeTempFile drops a zero-byte file at workspace/relPath, creating dirs.

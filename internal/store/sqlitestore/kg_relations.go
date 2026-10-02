@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 func (s *SQLiteKnowledgeGraphStore) UpsertRelation(ctx context.Context, relation *store.Relation) error {

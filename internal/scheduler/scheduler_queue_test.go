@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
+	"github.com/edyoCampos/base365/internal/agent"
 )
 
 // mockRunFn creates a run function that completes after a delay.

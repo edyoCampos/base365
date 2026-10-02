@@ -4,9 +4,9 @@ import (
 	"context"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 type skillSlashCommandKind int
@@ -115,7 +115,7 @@ func resolveSkillSlashCommand(ctx context.Context, loader *skills.Loader, allowL
 //
 // The allow list comes from SkillAccessStore.ListAccessible, which queries the `skills`
 // table only (internal/store/pg/skills_grants.go:410). Filesystem-tier skills — the
-// workspace, .agents and ~/.agents/~/.goclaw directories of the five-tier loader — have
+// workspace, .agents and ~/.agents/~/.base365 directories of the five-tier loader — have
 // no row there, so filtering every skill against the list would make those four tiers
 // unreachable by slash while `skill_search` still finds them
 // (internal/tools/skill_search.go:81 calls ListSkills unfiltered). Gating only the

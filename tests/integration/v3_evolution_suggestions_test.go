@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
 )
 
 func TestV3EvolutionSuggestions_CRUD(t *testing.T) {
@@ -100,7 +100,7 @@ func TestV3EvolutionSuggestions_TenantIsolation(t *testing.T) {
 	sg := store.EvolutionSuggestion{
 		ID: uuid.New(), TenantID: tenantA, AgentID: agentA,
 		SuggestionType: store.SuggestToolOrder,
-		Suggestion: "test", Rationale: "test", Status: "pending",
+		Suggestion:     "test", Rationale: "test", Status: "pending",
 	}
 	ss.CreateSuggestion(ctxA, sg)
 

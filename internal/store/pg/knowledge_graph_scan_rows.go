@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/lib/pq"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // entityRow is an sqlx scan struct for kg_entities SELECT queries.

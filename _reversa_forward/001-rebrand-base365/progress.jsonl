@@ -14,3 +14,16 @@
 {"ts": "2026-10-02T12:43:25Z", "action": "T014", "status": "done", "files": ["ui/web/src/pages/cli-credentials/cli-credential-grant-env-section.test.ts"]}
 {"ts": "2026-10-02T12:43:25Z", "action": "T015", "status": "done", "files": ["internal/crypto/apikey_test.go"]}
 {"ts": "2026-10-02T12:45:25Z", "action": "T016", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/baseline-tests.md"]}
+{"ts": "2026-10-02T12:45:56Z", "action": "T017", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/dry-run.md"]}
+{"ts": "2026-10-02T12:45:56Z", "action": "T018", "status": "done", "files": ["scripts/rebrand/rules.txt"]}
+{"ts": "2026-10-02T12:46:02Z", "action": "T019", "status": "done", "files": ["scripts/rebrand/apply.py"]}
+{"ts": "2026-10-02T12:46:02Z", "action": "T020", "status": "done", "files": ["compose.d", "_statics", "skills", "plan", "scripts/zuey", "ui/web/public", "ui/desktop/frontend/public"]}
+{"ts": "2026-10-02T12:46:38Z", "action": "T021", "status": "done", "files": ["**/*.go"]}
+{"ts": "2026-10-02T12:46:41Z", "action": "T022", "status": "done", "files": ["**/*.go"]}
+{"ts": "2026-10-02T12:46:49Z", "action": "T023", "status": "done", "files": ["**/*.go"]}
+{"ts": "2026-10-02T12:46:53Z", "action": "T024", "status": "done", "files": ["**/*.go"]}
+{"ts": "2026-10-02T12:47:37Z", "action": "T025", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md"]}
+{"ts": "2026-10-02T12:47:37Z", "action": "T026", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md"]}
+{"ts": "2026-10-02T12:47:37Z", "action": "T027", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md"]}
+{"ts": "2026-10-02T12:47:37Z", "action": "T028", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md"]}
+{"ts": "2026-10-02T12:47:37Z", "action": "T029", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md"]}

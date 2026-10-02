@@ -6,12 +6,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 // resolveGatewayBaseURL reads host/port from config and returns http://host:port.
 func resolveGatewayBaseURL() string {
-	if base := firstNonEmpty(gatewayServerOverride, os.Getenv("GOCLAW_SERVER"), os.Getenv("GOCLAW_GATEWAY_URL")); base != "" {
+	if base := firstNonEmpty(gatewayServerOverride, os.Getenv("BASE365_SERVER"), os.Getenv("BASE365_GATEWAY_URL")); base != "" {
 		return normalizeGatewayBaseURL(base)
 	}
 
@@ -31,12 +31,12 @@ func resolveGatewayBaseURL() string {
 }
 
 // resolveGatewayToken returns the gateway auth token.
-// Priority: --token flag -> GOCLAW_GATEWAY_TOKEN env -> config file token.
+// Priority: --token flag -> BASE365_GATEWAY_TOKEN env -> config file token.
 func resolveGatewayToken() string {
 	if t := strings.TrimSpace(gatewayTokenOverride); t != "" {
 		return t
 	}
-	if t := os.Getenv("GOCLAW_GATEWAY_TOKEN"); t != "" {
+	if t := os.Getenv("BASE365_GATEWAY_TOKEN"); t != "" {
 		return t
 	}
 	cfg, _ := config.Load(resolveConfigPath())

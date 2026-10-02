@@ -9,11 +9,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/workstation"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/workstation"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // WorkstationsHandler handles HTTP CRUD for workstations.
@@ -22,8 +22,8 @@ type WorkstationsHandler struct {
 	wsStore       store.WorkstationStore
 	linkStore     store.AgentWorkstationLinkStore
 	tenantStore   store.TenantStore
-	permStore     store.WorkstationPermissionStore     // Phase 6; may be nil
-	activityStore store.WorkstationActivityStore       // Phase 7; may be nil
+	permStore     store.WorkstationPermissionStore // Phase 6; may be nil
+	activityStore store.WorkstationActivityStore   // Phase 7; may be nil
 }
 
 // NewWorkstationsHandler creates a WorkstationsHandler.

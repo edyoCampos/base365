@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // TestPruneStage_Compaction_PreservesPending is the regression guard for the

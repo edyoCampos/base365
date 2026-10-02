@@ -3,9 +3,9 @@ package consolidation
 import (
 	"context"
 
+	"github.com/edyoCampos/base365/internal/knowledgegraph"
+	"github.com/edyoCampos/base365/internal/providers"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/knowledgegraph"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
 )
 
 // testRegistry creates a Registry with the given provider registered under MasterTenantID.

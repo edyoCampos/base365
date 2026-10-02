@@ -20,10 +20,10 @@ var ErrUnknownUpdateSource = errors.New("skills: unknown update source")
 // checker owns only its local maps until return (red-team fix C2: never mutate
 // shared cache concurrently across goroutines).
 type UpdateCheckResult struct {
-	Source   string
-	Updates  []UpdateInfo
-	ETags    map[string]string // subset to merge into UpdateCache.GitHubETags
-	Err      error             // per-source error; non-fatal for other checkers
+	Source  string
+	Updates []UpdateInfo
+	ETags   map[string]string // subset to merge into UpdateCache.GitHubETags
+	Err     error             // per-source error; non-fatal for other checkers
 	// Available signals whether the source is actionable on this host.
 	// false (zero-value) means exec.LookPath / edition gate rejected the source,
 	// or the checker was never run. The HTTP availability map surfaces this so

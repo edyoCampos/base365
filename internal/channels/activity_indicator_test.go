@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/bus"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
 )
 
 // fakeActivityIndicatorChannel is a minimal test implementation of ActivityIndicatorChannel.

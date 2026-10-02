@@ -15,7 +15,7 @@ func TestValidateLauncherArgsAllowsPlainNonLauncherCommand(t *testing.T) {
 }
 
 func TestIsBlockedEnvKey_ProductPrefix(t *testing.T) {
-	if !isBlockedEnvKey("GOCLAW_X") {
+	if !isBlockedEnvKey("BASE365_X") {
 		t.Fatal("product-prefixed env key must be blocked")
 	}
 	if isBlockedEnvKey("MY_APP_TOKEN") {

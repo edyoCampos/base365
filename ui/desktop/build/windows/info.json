@@ -5,10 +5,10 @@
   "info": {
     "0409": {
       "ProductVersion": "0.1.0.0",
-      "CompanyName": "GoClaw",
-      "FileDescription": "GoClaw Lite Desktop — AI Agent Gateway",
-      "LegalCopyright": "Copyright (c) 2025-2026 GoClaw",
-      "ProductName": "GoClaw Lite",
+      "CompanyName": "Base365",
+      "FileDescription": "Base365 Lite Desktop — AI Agent Gateway",
+      "LegalCopyright": "Copyright (c) 2025-2026 Base365",
+      "ProductName": "Base365 Lite",
       "Comments": "Local AI agent desktop app powered by SQLite"
     }
   }

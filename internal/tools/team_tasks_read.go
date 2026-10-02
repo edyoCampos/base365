@@ -10,11 +10,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
-const listPageSize    = 30
-const searchPageSize  = 5
+const listPageSize = 30
+const searchPageSize = 5
 
 // blockerSummary is a compact view of a blocker task for blocked_by resolution.
 type blockerSummary struct {

@@ -7,8 +7,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
+	"github.com/edyoCampos/base365/internal/edition"
+	"github.com/edyoCampos/base365/internal/hooks"
 )
 
 // migStore is a minimal HookStore backing the command-autodisable unit tests.
@@ -60,7 +60,7 @@ func (m *migStore) Delete(context.Context, uuid.UUID) error { return nil }
 func (m *migStore) ResolveForEvent(context.Context, hooks.Event) ([]hooks.HookConfig, error) {
 	return nil, nil
 }
-func (m *migStore) WriteExecution(context.Context, hooks.HookExecution) error { return nil }
+func (m *migStore) WriteExecution(context.Context, hooks.HookExecution) error   { return nil }
 func (m *migStore) SetHookAgents(context.Context, uuid.UUID, []uuid.UUID) error { return nil }
 func (m *migStore) GetHookAgents(context.Context, uuid.UUID) ([]uuid.UUID, error) {
 	return nil, nil

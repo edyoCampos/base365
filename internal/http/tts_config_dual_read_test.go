@@ -8,8 +8,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // ttsConfigDualReadCtx returns a context with a non-nil tenant ID for config handler tests.
@@ -65,9 +65,9 @@ func newDualReadMux(sc store.SystemConfigStore, cs store.ConfigSecretsStore) *ht
 // TestTTSConfig_DualRead_LegacyOnly verifies that legacy flat keys are returned in GET.
 func TestTTSConfig_DualRead_LegacyOnly(t *testing.T) {
 	sc := &validationSystemConfigStore{data: map[string]string{
-		"tts.provider":         "openai",
-		"tts.openai.voice":     "alloy",
-		"tts.openai.model":     "gpt-4o-mini-tts",
+		"tts.provider":     "openai",
+		"tts.openai.voice": "alloy",
+		"tts.openai.model": "gpt-4o-mini-tts",
 	}}
 	cs := &validationSecretsStore{data: map[string]string{}}
 	mux := newDualReadMux(sc, cs)
@@ -94,7 +94,7 @@ func TestTTSConfig_DualRead_LegacyOnly(t *testing.T) {
 // TestTTSConfig_DualRead_BlobOnly verifies that a stored params blob is returned.
 func TestTTSConfig_DualRead_BlobOnly(t *testing.T) {
 	sc := &validationSystemConfigStore{data: map[string]string{
-		"tts.provider":        "elevenlabs",
+		"tts.provider":          "elevenlabs",
 		"tts.elevenlabs.params": `{"voice_settings":{"stability":0.8}}`,
 	}}
 	cs := &validationSecretsStore{data: map[string]string{}}
@@ -153,10 +153,10 @@ func TestTTSConfig_DualWrite_SavesBoth(t *testing.T) {
 	body := map[string]any{
 		"provider": "openai",
 		"openai": map[string]any{
-			"voice":     "nova",
-			"model":     "gpt-4o-mini-tts",
-			"api_key":   "sk-test",
-			"params":    map[string]any{"speed": 1.2, "response_format": "opus"},
+			"voice":   "nova",
+			"model":   "gpt-4o-mini-tts",
+			"api_key": "sk-test",
+			"params":  map[string]any{"speed": 1.2, "response_format": "opus"},
 		},
 	}
 	rr := configPOST(mux, body, t)
@@ -195,9 +195,9 @@ func TestTTSConfig_DualWrite_DisjointUnion(t *testing.T) {
 	body := map[string]any{
 		"provider": "elevenlabs",
 		"elevenlabs": map[string]any{
-			"voice_id":  "Rachel",
-			"model_id":  "eleven_multilingual_v2",
-			"api_key":   "xi-key",
+			"voice_id": "Rachel",
+			"model_id": "eleven_multilingual_v2",
+			"api_key":  "xi-key",
 			"params": map[string]any{
 				"voice_settings": map[string]any{"stability": 0.6},
 				"seed":           42,

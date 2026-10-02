@@ -7,8 +7,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/audio/minimax"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/minimax"
 )
 
 func TestListVoices_RequestShape(t *testing.T) {
@@ -178,4 +178,3 @@ func TestListVoices_5xxFallback_ReturnsStaleCacheWhenPresent(t *testing.T) {
 		t.Errorf("second call (cached): expected 2 voices, got %d", len(voices2))
 	}
 }
-

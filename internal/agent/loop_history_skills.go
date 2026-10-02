@@ -3,7 +3,7 @@ package agent
 import (
 	"context"
 
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
+	"github.com/edyoCampos/base365/internal/skills"
 )
 
 // Hybrid skill thresholds: when skill count and total token estimate are below

@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/hooks"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tracing"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tracing"
 )
 
 const (
@@ -70,7 +70,7 @@ func (s *ToolStage) Execute(ctx context.Context, state *RunState) error {
 	// Sequential fallback: ExecuteToolCall handles both I/O and state mutation.
 	// Non-tool messages (warnings, nudges) are deferred until all tool results
 	// are emitted to maintain correct tool_result grouping for OpenAI-compatible
-	// providers. See https://github.com/nextlevelbuilder/goclaw/issues/1177
+	// providers. See https://github.com/edyoCampos/base365/issues/1177
 	cumulativeWaitMs := 0
 	var deferredNonTool []providers.Message
 	for _, tc := range toolCalls {

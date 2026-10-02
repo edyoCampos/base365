@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/elevenlabs"
-	httpapi "github.com/nextlevelbuilder/goclaw/internal/http"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/elevenlabs"
+	httpapi "github.com/edyoCampos/base365/internal/http"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // mockVoiceListProvider is a simple test double for audio.VoiceListProvider.

@@ -8,9 +8,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 func testExecToolFromGatewaySetup(t *testing.T, workspace, dataDir string) *tools.ExecTool {
@@ -69,7 +69,7 @@ func TestSetupToolRegistryExecWorkspacePaths(t *testing.T) {
 	if err := os.Symlink(protectedPath, symlinkPath); err != nil {
 		t.Fatalf("Symlink() error = %v", err)
 	}
-	legacyWorkspace := filepath.Join(dataDir, ".goclaw", "goclaw-workspace", "ws", "system")
+	legacyWorkspace := filepath.Join(dataDir, ".base365", "base365-workspace", "ws", "system")
 	legacyUploadPath := filepath.Join(legacyWorkspace, "uploads", "Quarterly Report.png")
 	legacyCopyTarget := filepath.Join(t.TempDir(), "partner.png")
 	if err := os.MkdirAll(filepath.Dir(legacyUploadPath), 0755); err != nil {
@@ -97,7 +97,7 @@ func TestSetupToolRegistryExecWorkspacePaths(t *testing.T) {
 			command: "printf '%s' --input=\"" + teamFilePath + "\"",
 		},
 		{
-			name:     "legacy_dotgoclaw_uploads_layout_allowed",
+			name:     "legacy_dotbase365_uploads_layout_allowed",
 			ctx:      tools.WithToolWorkspace(context.Background(), legacyWorkspace),
 			command:  "cp \"" + legacyUploadPath + "\" \"" + legacyCopyTarget + "\"",
 			wantPath: legacyCopyTarget,
@@ -115,9 +115,9 @@ func TestSetupToolRegistryExecWorkspacePaths(t *testing.T) {
 			wantDenied: true,
 		},
 		{
-			name:       "workspace_local_dotgoclaw_denied",
+			name:       "workspace_local_dotbase365_denied",
 			ctx:        tools.WithToolWorkspace(context.Background(), workspace),
-			command:    "printf '%s' " + filepath.Join(workspace, ".goclaw", "secrets.json"),
+			command:    "printf '%s' " + filepath.Join(workspace, ".base365", "secrets.json"),
 			wantDenied: true,
 		},
 	}

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/bootstrap"
 )
 
 // BuildDeliveryPersonaBrief extracts only compact style cues suitable for

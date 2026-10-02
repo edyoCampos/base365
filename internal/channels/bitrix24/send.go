@@ -10,7 +10,7 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
+	"github.com/edyoCampos/base365/internal/bus"
 )
 
 // sendOptions captures per-message routing context extracted from
@@ -34,7 +34,7 @@ type sendOptions struct {
 // 2 seconds; we only retry once per chunk to avoid queueing storms.
 const rateLimitRetryDelay = 2 * time.Second
 
-// Send implements channels.Channel by delivering a goclaw OutboundMessage to
+// Send implements channels.Channel by delivering a base365 OutboundMessage to
 // the Bitrix24 portal as one or more imbot.message.add calls.
 //
 // Contract:

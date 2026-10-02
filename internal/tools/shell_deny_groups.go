@@ -40,7 +40,7 @@ var DenyGroupRegistry = map[string]*DenyGroup{
 			regexp.MustCompile(`\bdd\s+if=`),
 			regexp.MustCompile(`>\s*/dev/sd[a-z]\b`),
 			regexp.MustCompile(`\b(shutdown|reboot|poweroff|halt)\b`),
-			regexp.MustCompile(`\b(init|telinit)\s+[06]\b`),          // SysV shutdown/reboot
+			regexp.MustCompile(`\b(init|telinit)\s+[06]\b`),           // SysV shutdown/reboot
 			regexp.MustCompile(`\bsystemctl\s+(suspend|hibernate)\b`), // power management
 			regexp.MustCompile(`:\(\)\s*\{.*\};\s*:`),                 // fork bomb
 		},
@@ -50,15 +50,15 @@ var DenyGroupRegistry = map[string]*DenyGroup{
 		Description: "Data Exfiltration",
 		Default:     true,
 		Patterns: []*regexp.Regexp{
-			regexp.MustCompile(`\bcurl\b.*\|\s*(ba)?sh\b`),                                              // curl | sh
+			regexp.MustCompile(`\bcurl\b.*\|\s*(ba)?sh\b`),                                                          // curl | sh
 			regexp.MustCompile(`\bcurl\b.*(-d\b|-F\b|--data|--upload|--form|-T\b|(-X|--request)\s*P(UT|OST|ATCH))`), // curl POST/PUT
-			regexp.MustCompile(`\bwget\b.*-O\s*-\s*\|\s*(ba)?sh\b`),                                              // wget | sh
-			regexp.MustCompile(`\bwget\b.*(--post-(data|file)|--method=P(UT|OST|ATCH)|--body-data)`),             // wget POST
-			regexp.MustCompile(`\b(nslookup|dig|host)\b`),                                                        // DNS exfiltration
-			regexp.MustCompile(`/dev/tcp/`),                                                                       // bash tcp redirect
-			regexp.MustCompile(`\b(curl|wget)\b.*\blocalhost\b`),                                                  // curl/wget to localhost
-			regexp.MustCompile(`\b(curl|wget)\b.*\b127\.0\.0\.1\b`),                                              // curl/wget to 127.0.0.1
-			regexp.MustCompile(`\b(curl|wget)\b.*\b0\.0\.0\.0\b`),                                                // curl/wget to 0.0.0.0
+			regexp.MustCompile(`\bwget\b.*-O\s*-\s*\|\s*(ba)?sh\b`),                                                 // wget | sh
+			regexp.MustCompile(`\bwget\b.*(--post-(data|file)|--method=P(UT|OST|ATCH)|--body-data)`),                // wget POST
+			regexp.MustCompile(`\b(nslookup|dig|host)\b`),                                                           // DNS exfiltration
+			regexp.MustCompile(`/dev/tcp/`),                                                                         // bash tcp redirect
+			regexp.MustCompile(`\b(curl|wget)\b.*\blocalhost\b`),                                                    // curl/wget to localhost
+			regexp.MustCompile(`\b(curl|wget)\b.*\b127\.0\.0\.1\b`),                                                 // curl/wget to 127.0.0.1
+			regexp.MustCompile(`\b(curl|wget)\b.*\b0\.0\.0\.0\b`),                                                   // curl/wget to 0.0.0.0
 		},
 	},
 	"reverse_shell": {
@@ -230,10 +230,10 @@ var DenyGroupRegistry = map[string]*DenyGroup{
 			regexp.MustCompile(`/proc/[^/]+/environ`),
 			regexp.MustCompile(`/proc/self/environ`),
 			regexp.MustCompile(`(?i)\bstrings\b.*/proc/`),
-			regexp.MustCompile(`(?i)\becho\b.*\$\{?GOCLAW_(GATEWAY_TOKEN|ENCRYPTION_KEY|POSTGRES_DSN)`),
-			regexp.MustCompile(`(?i)\bprintf\b.*\$\{?GOCLAW_(GATEWAY_TOKEN|ENCRYPTION_KEY|POSTGRES_DSN)`),
-			regexp.MustCompile(`\bpython[23]?\b.*os\.(environ|getenv).*GOCLAW_`),
-			regexp.MustCompile(`\bnode\b.*-e.*process\.env\.GOCLAW_`),
+			regexp.MustCompile(`(?i)\becho\b.*\$\{?BASE365_(GATEWAY_TOKEN|ENCRYPTION_KEY|POSTGRES_DSN)`),
+			regexp.MustCompile(`(?i)\bprintf\b.*\$\{?BASE365_(GATEWAY_TOKEN|ENCRYPTION_KEY|POSTGRES_DSN)`),
+			regexp.MustCompile(`\bpython[23]?\b.*os\.(environ|getenv).*BASE365_`),
+			regexp.MustCompile(`\bnode\b.*-e.*process\.env\.BASE365_`),
 		},
 	},
 }

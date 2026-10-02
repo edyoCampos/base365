@@ -9,13 +9,13 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/sessions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/sessions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 // resolveAgentRoute determines which agent should handle a message
@@ -193,7 +193,7 @@ func mediaToMarkdown(media []agent.MediaResult, cfg *config.Config) string {
 	var parts []string
 	for _, mr := range media {
 		cleanPath := filepath.Clean(mr.Path)
-		// Strip leading "/" so URL path is /v1/files/app/.goclaw/...
+		// Strip leading "/" so URL path is /v1/files/app/.base365/...
 		urlPath := strings.TrimPrefix(cleanPath, "/")
 		if urlPath == "" {
 			continue

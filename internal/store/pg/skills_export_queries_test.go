@@ -5,8 +5,8 @@ import (
 	"slices"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 func TestExportSkillsSelectionIncludesExplicitSystemAndTenantCustom(t *testing.T) {

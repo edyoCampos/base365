@@ -11,10 +11,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
 )
 
 // SystemSkillStore is the minimal interface needed by the seeder.
@@ -190,7 +190,7 @@ func (s *Seeder) restoreCustomSkillMetadata(ctx context.Context, id uuid.UUID, p
 	}
 	quarantineDir := filepath.Join(
 		filepath.Dir(p.FilePath),
-		".goclaw-bundled-"+filepath.Base(p.FilePath)+"-"+(*p.FileHash)[:12],
+		".base365-bundled-"+filepath.Base(p.FilePath)+"-"+(*p.FileHash)[:12],
 	)
 	overwrittenDir := p.FilePath
 	alreadyQuarantined := false

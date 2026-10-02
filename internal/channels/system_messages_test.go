@@ -3,9 +3,9 @@ package channels
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/systemmessages"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/systemmessages"
 )
 
 func TestBaseChannelRendersConfiguredSystemMessage(t *testing.T) {
@@ -52,8 +52,8 @@ func TestBaseChannelSystemMessageUsesConfiguredDefaultLocale(t *testing.T) {
 
 func TestBaseChannelSystemMessageFallsBackWithoutResolver(t *testing.T) {
 	base := NewBaseChannel("telegram-main", nil, nil)
-	got := base.SystemMessage(i18n.LocaleEN, systemmessages.KeyPairingApproved, systemmessages.Vars{"app_name": "GoClaw"})
-	want := "✅ GoClaw access approved. Send a message to start chatting."
+	got := base.SystemMessage(i18n.LocaleEN, systemmessages.KeyPairingApproved, systemmessages.Vars{"app_name": "Base365"})
+	want := "✅ Base365 access approved. Send a message to start chatting."
 	if got != want {
 		t.Fatalf("SystemMessage fallback = %q, want %q", got, want)
 	}

@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/bgalert"
+	"github.com/edyoCampos/base365/internal/eventbus"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bgalert"
-	"github.com/nextlevelbuilder/goclaw/internal/eventbus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // semanticWorker handles episodic.created events → extracts KG facts from summaries.

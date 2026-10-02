@@ -21,8 +21,8 @@ How skills access Python, Node.js, and system tools inside Docker containers and
 │  └─────────────────┘  └──────────────────────────────┘  │
 │                                                         │
 │  Volumes (read-write):                                  │
-│    /app/data      ← goclaw-data volume                  │
-│    /app/workspace ← goclaw-workspace volume             │
+│    /app/data      ← base365-data volume                  │
+│    /app/workspace ← base365-workspace volume             │
 │                                                         │
 │  tmpfs (noexec):                                        │
 │    /tmp           ← 256MB, no executables               │
@@ -38,7 +38,7 @@ rules apply to any scripts or package dependencies that skill uses.
 
 ## 2. Pre-installed Packages (Option A)
 
-Pre-installed runtimes depend on the Docker image variant you deploy. The Packages page and `/v1/packages/runtimes` report what exists inside the active GoClaw container, not what exists on the host machine.
+Pre-installed runtimes depend on the Docker image variant you deploy. The Packages page and `/v1/packages/runtimes` report what exists inside the active Base365 container, not what exists on the host machine.
 
 ### Runtime Variant Matrix
 
@@ -111,7 +111,7 @@ PATH=/app/data/.runtime/npm-global/bin:/app/data/.runtime/pip/bin:$PATH
 When the gateway runs directly on Ubuntu/Debian instead of inside the Alpine Docker image:
 
 1. `pip:<name>` still runs `pip3 install --break-system-packages <name>`.
-2. `npm:<name>` runs `npm install -g <name>` with a GoClaw-owned prefix at `{runtimeDir}/npm-global` instead of `/usr/lib/node_modules`.
+2. `npm:<name>` runs `npm install -g <name>` with a Base365-owned prefix at `{runtimeDir}/npm-global` instead of `/usr/lib/node_modules`.
 3. Bare system package names use `sudo -n apt-get install -y --no-install-recommends <name>`.
 4. Compatibility aliases: `pip3` installs `python3-pip`; `github-cli` installs `gh`.
 5. Installed apt packages are recorded in `{runtimeDir}/system-packages.json` so the System Packages table can show the user-facing name (`github-cli`) while checking the real apt package (`gh`).
@@ -120,8 +120,8 @@ When the gateway runs directly on Ubuntu/Debian instead of inside the Alpine Doc
 Default `{runtimeDir}` resolution:
 
 1. `RUNTIME_DIR`, when set.
-2. `GOCLAW_DATA_DIR/.runtime`, when `GOCLAW_DATA_DIR` is set.
-3. `/var/lib/goclaw/data/.runtime` on bare-metal Linux.
+2. `BASE365_DATA_DIR/.runtime`, when `BASE365_DATA_DIR` is set.
+3. `/var/lib/base365/data/.runtime` on bare-metal Linux.
 4. `/app/data/.runtime` in Docker-style runtime.
 
 ### Agent Guidance
@@ -147,20 +147,20 @@ To install additional packages: pip3 install <pkg> or npm install -g <pkg>
 | `cap_drop: ALL` | No privilege escalation |
 | `no-new-privileges` | Prevents setuid/setgid |
 | Exec deny patterns | Blocks `curl \| sh`, reverse shells, crypto miners, etc. (see `shell.go`) |
-| `.goclaw/` denied | Exec tool blocks access to `.goclaw/` except `.goclaw/skills-store/` |
+| `.base365/` denied | Exec tool blocks access to `.base365/` except `.base365/skills-store/` |
 
 ### What Agents CAN Do
 
 - Run Python/Node scripts via exec tool
 - Install packages via `pip3 install` / `npm install -g`
 - Access files in `/app/workspace/`, including `.uploads/` for current user uploads and `.media/` for legacy media refs
-- Read skill files from `.goclaw/skills-store/`
+- Read skill files from `.base365/skills-store/`
 
 ### What Agents CANNOT Do
 
 - Write to system paths (rootfs is read-only)
 - Execute binaries from `/tmp` (noexec)
-- Access `.goclaw/` except skills-store
+- Access `.base365/` except skills-store
 - Run denied shell patterns (network tools, reverse shells, etc.)
 
 ---
@@ -206,7 +206,7 @@ Skills shipped with the Docker image at `/app/bundled-skills/`. Lowest priority 
 | `pptx` | Read, create, edit presentations |
 | `skill-creator` | Create new skills |
 | `workspace-organizing` | Organize shared workspaces and generated files |
-| `goclaw` | Operate and debug GoClaw gateway CLI/runtime administration |
+| `base365` | Operate and debug Base365 gateway CLI/runtime administration |
 
 ### How It Works
 
@@ -305,7 +305,7 @@ exclude_deps:    # filter false positives from auto-scan; ignored when deps: is 
 | Prefix | Effect | Example |
 |--------|--------|---------|
 | `pip:` | Python pip install | `pip:psycopg2-binary`, `pip:requests>=2.31` |
-| `npm:` | Global npm install under GoClaw runtime prefix | `npm:typescript`, `npm:@aiagentwiki/cli` |
+| `npm:` | Global npm install under Base365 runtime prefix | `npm:typescript`, `npm:@aiagentwiki/cli` |
 | `github:` | GitHub Releases installer (admin) | `github:cli/cli@v2.40.0` |
 | `system:` | apk package via pkg-helper | `system:ffmpeg` |
 | (bare) | Treated as system binary | `pandoc` |

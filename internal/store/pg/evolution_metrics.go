@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // PGEvolutionMetricsStore implements store.EvolutionMetricsStore backed by PostgreSQL.

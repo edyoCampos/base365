@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 	"golang.org/x/crypto/ssh"
 )
 

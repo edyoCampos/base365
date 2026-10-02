@@ -10,9 +10,9 @@ import (
 
 	"github.com/google/uuid"
 
-	httppkg "github.com/nextlevelbuilder/goclaw/internal/http"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	httppkg "github.com/edyoCampos/base365/internal/http"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // TestIssue1034_Bug1_VerifyEmptyBody — after phase 03, empty body triggers
@@ -244,7 +244,7 @@ func TestIssue1034_Bug2_DeleteProviderCrossTenantIsolation(t *testing.T) {
 }
 
 // TestIssue1034_Bug3_DoctorDisplayNameEmpty — after phase 05 doctor uses
-// COALESCE(NULLIF(display_name, ''), name) so empty-string display_name
+// COALESCE(NULLIF(display_name, ”), name) so empty-string display_name
 // falls back to the canonical name.
 func TestIssue1034_Bug3_DoctorDisplayNameEmpty(t *testing.T) {
 	db := testDB(t)

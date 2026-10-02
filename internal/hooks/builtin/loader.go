@@ -26,8 +26,8 @@ import (
 var fs embed.FS
 
 // BuiltinNamespace is the stable UUIDv5 namespace for all builtin hook IDs.
-// Precomputed via uuid.NewSHA1(uuid.NameSpaceDNS, []byte("goclaw.hooks.builtin"))
-// so every GoClaw build produces the same hash and the seeded rows persist
+// Precomputed via uuid.NewSHA1(uuid.NameSpaceDNS, []byte("base365.hooks.builtin"))
+// so every Base365 build produces the same hash and the seeded rows persist
 // across restarts / migrations.
 var BuiltinNamespace = uuid.MustParse("082ab084-a25f-52b4-a4a4-eb8a816bd9a8")
 
@@ -75,9 +75,9 @@ type catalog struct {
 // Populated once at Load(); read concurrently afterwards under regMu.
 var (
 	regMu       sync.RWMutex
-	specs       []Spec               // ordered list for deterministic seeding
-	eventIDSpec map[uuid.UUID]*Spec  // per-event UUID → owning Spec
-	sourceCache map[string][]byte    // source_file → file bytes
+	specs       []Spec              // ordered list for deterministic seeding
+	eventIDSpec map[uuid.UUID]*Spec // per-event UUID → owning Spec
+	sourceCache map[string][]byte   // source_file → file bytes
 )
 
 // Load parses builtins.yaml and caches the registry in memory. Call once at

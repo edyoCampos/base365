@@ -1,6 +1,6 @@
 package cmd
 
-import "github.com/nextlevelbuilder/goclaw/internal/agent"
+import "github.com/edyoCampos/base365/internal/agent"
 
 // normalizeAgentOutboundContent keeps silent text out of user-facing messages
 // while allowing attached media to continue through channel delivery.

@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
 	"github.com/lib/pq"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // PGEpisodicStore implements store.EpisodicStore backed by PostgreSQL.

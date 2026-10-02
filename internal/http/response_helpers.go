@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // ErrorResponse is the standard HTTP error envelope.

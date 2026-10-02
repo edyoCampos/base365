@@ -13,16 +13,16 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bootstrap"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/pipeline"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	usagecaps "github.com/nextlevelbuilder/goclaw/internal/usage/caps"
-	"github.com/nextlevelbuilder/goclaw/internal/workspace"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/bootstrap"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/pipeline"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
+	usagecaps "github.com/edyoCampos/base365/internal/usage/caps"
+	"github.com/edyoCampos/base365/internal/workspace"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // pipelineCallbacks creates all callback closures that capture *Loop.
@@ -874,5 +874,5 @@ func defaultPromptCacheKey(tenantID, agentID uuid.UUID, providerName, sessionKey
 		providerName,
 		sessionKey,
 	}, "\x00")))
-	return "goclaw/" + hex.EncodeToString(h[:16])
+	return "base365/" + hex.EncodeToString(h[:16])
 }

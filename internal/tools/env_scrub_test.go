@@ -19,7 +19,7 @@ func TestScrubCredentialEnv_StripsStatic(t *testing.T) {
 	in := []string{
 		"HOME=/root",
 		"GH_TOKEN=secret-abc",
-		"GOCLAW_GATEWAY_TOKEN=goclaw-secret",
+		"BASE365_GATEWAY_TOKEN=base365-secret",
 		"PATH=/usr/bin",
 		"AWS_SECRET_ACCESS_KEY=topsecret",
 		"RAPIDAPI_KEY=rapid-secret",
@@ -35,8 +35,8 @@ func TestScrubCredentialEnv_StripsStatic(t *testing.T) {
 	if envContains(out, "RAPIDAPI_KEY") {
 		t.Fatalf("RAPIDAPI_KEY must be scrubbed, got: %v", out)
 	}
-	if envContains(out, "GOCLAW_GATEWAY_TOKEN") {
-		t.Fatalf("GOCLAW_GATEWAY_TOKEN must be scrubbed, got: %v", out)
+	if envContains(out, "BASE365_GATEWAY_TOKEN") {
+		t.Fatalf("BASE365_GATEWAY_TOKEN must be scrubbed, got: %v", out)
 	}
 	if !envContains(out, "HOME") || !envContains(out, "PATH") {
 		t.Fatalf("essential vars must be preserved, got: %v", out)
@@ -122,8 +122,8 @@ func TestExtractJSONTopKeys_Malformed(t *testing.T) {
 }
 
 func TestScrubCredentialEnv_StripsProductGatewayToken(t *testing.T) {
-	out := scrubCredentialEnv([]string{"HOME=/root", "GOCLAW_GATEWAY_TOKEN=s3cret", "PATH=/usr/bin"}, nil)
-	if envContains(out, "GOCLAW_GATEWAY_TOKEN") {
+	out := scrubCredentialEnv([]string{"HOME=/root", "BASE365_GATEWAY_TOKEN=s3cret", "PATH=/usr/bin"}, nil)
+	if envContains(out, "BASE365_GATEWAY_TOKEN") {
 		t.Fatalf("product gateway token must not reach child processes: %v", out)
 	}
 	if !envContains(out, "PATH") || !envContains(out, "HOME") {

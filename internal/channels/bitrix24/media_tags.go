@@ -3,8 +3,8 @@ package bitrix24
 import (
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/media"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/channels/media"
 )
 
 // mediaFilesToInfos converts the Bitrix24 channel's bus.MediaFile slice into

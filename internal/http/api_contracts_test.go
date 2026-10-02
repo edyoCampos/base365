@@ -7,11 +7,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
 )
 
 func TestMemoryHandler_ResolvesAgentKeyBeforeStore(t *testing.T) {
@@ -26,7 +26,7 @@ func TestMemoryHandler_ResolvesAgentKeyBeforeStore(t *testing.T) {
 	mux := http.NewServeMux()
 	h.RegisterRoutes(mux)
 
-	req := httptest.NewRequest(http.MethodGet, "/v1/agents/goclaw/memory/documents", nil)
+	req := httptest.NewRequest(http.MethodGet, "/v1/agents/base365/memory/documents", nil)
 	rec := httptest.NewRecorder()
 	mux.ServeHTTP(rec, req)
 
@@ -66,14 +66,14 @@ func TestSessionsHandler_AdminAPIContextCanListWithoutUserHeader(t *testing.T) {
 	setupTestNoAuthFallback(t, true)
 	sessions := &recordingSessionStore{
 		result: store.SessionListRichResult{
-			Sessions: []store.SessionInfoRich{{SessionInfo: store.SessionInfo{Key: "agent:goclaw:ws:abc"}}},
+			Sessions: []store.SessionInfoRich{{SessionInfo: store.SessionInfo{Key: "agent:base365:ws:abc"}}},
 			Total:    1,
 		},
 	}
 	mux := http.NewServeMux()
 	NewSessionsHandler(sessions, nil).RegisterRoutes(mux)
 
-	req := httptest.NewRequest(http.MethodGet, "/v1/sessions?limit=3&offset=1&agentId=goclaw", nil)
+	req := httptest.NewRequest(http.MethodGet, "/v1/sessions?limit=3&offset=1&agentId=base365", nil)
 	rec := httptest.NewRecorder()
 	mux.ServeHTTP(rec, req)
 
@@ -83,7 +83,7 @@ func TestSessionsHandler_AdminAPIContextCanListWithoutUserHeader(t *testing.T) {
 	if sessions.opts.UserID != "" {
 		t.Fatalf("UserID filter = %q, want empty for admin context", sessions.opts.UserID)
 	}
-	if sessions.opts.AgentID != "goclaw" || sessions.opts.Limit != 3 || sessions.opts.Offset != 1 {
+	if sessions.opts.AgentID != "base365" || sessions.opts.Limit != 3 || sessions.opts.Offset != 1 {
 		t.Fatalf("opts = %+v", sessions.opts)
 	}
 }
@@ -133,7 +133,7 @@ type memoryAgentResolver struct {
 }
 
 func (r *memoryAgentResolver) GetByKey(context.Context, string) (*store.AgentData, error) {
-	return &store.AgentData{BaseModel: store.BaseModel{ID: r.id}, AgentKey: "goclaw"}, nil
+	return &store.AgentData{BaseModel: store.BaseModel{ID: r.id}, AgentKey: "base365"}, nil
 }
 
 type recordingMemoryStore struct {

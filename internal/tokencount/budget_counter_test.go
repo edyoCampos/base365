@@ -3,7 +3,7 @@ package tokencount
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // TestCountMessages_ChargesFlatUnitPerStructuredMedia pins the flat media unit

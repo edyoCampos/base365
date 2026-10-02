@@ -7,7 +7,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/backup"
+	"github.com/edyoCampos/base365/internal/backup"
 )
 
 // TestBackup_ExportAllRegistryTables_NoSQLError is an end-to-end regression for

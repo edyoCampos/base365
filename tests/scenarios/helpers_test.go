@@ -14,7 +14,7 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 var (
@@ -51,10 +51,10 @@ func getTestServer(t *testing.T) (wsURL string, token string) {
 
 // scenarioClient wraps a WebSocket connection for scenario testing.
 type scenarioClient struct {
-	conn      *websocket.Conn
-	nextID    int
+	conn       *websocket.Conn
+	nextID     int
 	sessionKey string
-	t         *testing.T
+	t          *testing.T
 }
 
 // connect creates a new scenario client with fresh session.

@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // SQLiteEvolutionMetricsStore implements store.EvolutionMetricsStore backed by SQLite.

@@ -16,16 +16,16 @@ services:
       - COLLECTOR_OTLP_ENABLED=true
     restart: unless-stopped
 
-  goclaw:
+  base365:
     build:
       args:
         ENABLE_OTEL: "true"
     environment:
-      - GOCLAW_TELEMETRY_ENABLED=true
-      - GOCLAW_TELEMETRY_ENDPOINT=jaeger:4317
-      - GOCLAW_TELEMETRY_PROTOCOL=grpc
-      - GOCLAW_TELEMETRY_INSECURE=true
-      - GOCLAW_TELEMETRY_SERVICE_NAME=goclaw-gateway
+      - BASE365_TELEMETRY_ENABLED=true
+      - BASE365_TELEMETRY_ENDPOINT=jaeger:4317
+      - BASE365_TELEMETRY_PROTOCOL=grpc
+      - BASE365_TELEMETRY_INSECURE=true
+      - BASE365_TELEMETRY_SERVICE_NAME=base365-gateway
     depends_on:
       jaeger:
         condition: service_started

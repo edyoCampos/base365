@@ -48,7 +48,7 @@ func TestBundledSkills_ExpectedCoreSkillSlugs(t *testing.T) {
 	bundled := "../../skills"
 	expected := map[string]bool{
 		"docx":                 false,
-		"goclaw":               false,
+		"base365":              false,
 		"pdf":                  false,
 		"pptx":                 false,
 		"skill-creator":        false,
@@ -91,26 +91,26 @@ func TestBundledSkills_ExpectedCoreSkillSlugs(t *testing.T) {
 	}
 
 	loader := NewLoader("", "", bundled)
-	var foundGoclaw bool
+	var foundBase365 bool
 	for _, info := range loader.ListSkills(context.Background()) {
-		if info.Slug == "goclaw" {
-			foundGoclaw = true
+		if info.Slug == "base365" {
+			foundBase365 = true
 			if info.Source != "builtin" {
-				t.Errorf("goclaw source = %q, want builtin", info.Source)
+				t.Errorf("base365 source = %q, want builtin", info.Source)
 			}
 			if info.Description == "" {
-				t.Error("goclaw description is empty in loader metadata")
+				t.Error("base365 description is empty in loader metadata")
 			}
 		}
 	}
-	if !foundGoclaw {
-		t.Fatal("goclaw was not discoverable by the bundled skills loader")
+	if !foundBase365 {
+		t.Fatal("base365 was not discoverable by the bundled skills loader")
 	}
-	content, ok := loader.LoadSkill(context.Background(), "goclaw")
+	content, ok := loader.LoadSkill(context.Background(), "base365")
 	if !ok {
-		t.Fatal("goclaw was not loadable by the bundled skills loader")
+		t.Fatal("base365 was not loadable by the bundled skills loader")
 	}
-	if !strings.Contains(content, "GoClaw Gateway CLI Administration") {
-		t.Error("goclaw loaded content does not include the expected guide heading")
+	if !strings.Contains(content, "Base365 Gateway CLI Administration") {
+		t.Error("base365 loaded content does not include the expected guide heading")
 	}
 }

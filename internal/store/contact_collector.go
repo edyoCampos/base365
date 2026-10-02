@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/cache"
+	"github.com/edyoCampos/base365/internal/cache"
 )
 
 const contactSeenTTL = 30 * time.Minute

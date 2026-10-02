@@ -111,8 +111,8 @@ func (c *GitHubUpdateChecker) checkEntry(ctx context.Context, entry GitHubPackag
 		return nil, etags, fmt.Errorf("invalid manifest entry repo: %q", entry.Repo)
 	}
 
-	latestKey := entry.Repo                  // "owner/repo"
-	listKey := entry.Repo + ":list"          // distinct keyspace (H4)
+	latestKey := entry.Repo         // "owner/repo"
+	listKey := entry.Repo + ":list" // distinct keyspace (H4)
 
 	// Always query /releases/latest (stable).
 	latest, newETag, notMod, err := c.Installer.Client.CondGetRelease(ctx, owner, repo, "", known[latestKey])

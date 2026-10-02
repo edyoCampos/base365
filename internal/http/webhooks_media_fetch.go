@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/security"
+	"github.com/edyoCampos/base365/internal/security"
 )
 
 const (
@@ -22,14 +22,14 @@ const (
 // allowedMediaMIMETypes is the set of Content-Type values accepted for media attachments.
 // Must be lowercase prefix-matched against the probed value.
 var allowedMediaMIMETypes = map[string]bool{
-	"image/jpeg":       true,
-	"image/png":        true,
-	"image/gif":        true,
-	"image/webp":       true,
-	"video/mp4":        true,
-	"audio/mpeg":       true,
-	"audio/ogg":        true,
-	"application/pdf":  true,
+	"image/jpeg":      true,
+	"image/png":       true,
+	"image/gif":       true,
+	"image/webp":      true,
+	"video/mp4":       true,
+	"audio/mpeg":      true,
+	"audio/ogg":       true,
+	"application/pdf": true,
 }
 
 // mediaProbeResult is returned by probeMediaURL on success.

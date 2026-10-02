@@ -31,7 +31,7 @@ func writeTarGz(t *testing.T, entries map[string]string) string {
 	tw.Close()
 	gz.Close()
 
-	f, err := os.CreateTemp("", "goclaw-test-*.tar.gz")
+	f, err := os.CreateTemp("", "base365-test-*.tar.gz")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -57,7 +57,7 @@ func writeZip(t *testing.T, entries map[string]string) string {
 	}
 	zw.Close()
 
-	f, err := os.CreateTemp("", "goclaw-test-*.zip")
+	f, err := os.CreateTemp("", "base365-test-*.zip")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -71,8 +71,8 @@ func writeZip(t *testing.T, entries map[string]string) string {
 
 func TestExtractTarGz_HappyPath(t *testing.T) {
 	path := writeTarGz(t, map[string]string{
-		"lazygit":  "ELF\x7fhello",
-		"LICENSE":  "MIT",
+		"lazygit":   "ELF\x7fhello",
+		"LICENSE":   "MIT",
 		"README.md": "readme",
 	})
 	files, err := ExtractArchive(path, 10*1024*1024)
@@ -102,8 +102,8 @@ func TestExtractTarGz_HappyPath(t *testing.T) {
 
 func TestExtractZip_HappyPath(t *testing.T) {
 	path := writeZip(t, map[string]string{
-		"rg":      "binary-content",
-		"doc.md":  "doc",
+		"rg":     "binary-content",
+		"doc.md": "doc",
 	})
 	files, err := ExtractArchive(path, 1024*1024)
 	if err != nil {
@@ -188,12 +188,12 @@ func TestExtractZip_ZipBomb(t *testing.T) {
 
 func TestValidateELF_NonELFRejected(t *testing.T) {
 	vectors := map[string][]byte{
-		"PDF":        []byte("%PDF-1.4\n"),
-		"shell":      []byte("#!/bin/bash\necho hi\n"),
-		"PE":         []byte("MZ\x90\x00"),
-		"machO":      {0xcf, 0xfa, 0xed, 0xfe, 0x07, 0x00, 0x00, 0x01},
-		"truncated":  {0x7f, 0x45, 0x4c},
-		"empty":      {},
+		"PDF":       []byte("%PDF-1.4\n"),
+		"shell":     []byte("#!/bin/bash\necho hi\n"),
+		"PE":        []byte("MZ\x90\x00"),
+		"machO":     {0xcf, 0xfa, 0xed, 0xfe, 0x07, 0x00, 0x00, 0x01},
+		"truncated": {0x7f, 0x45, 0x4c},
+		"empty":     {},
 	}
 	for name, v := range vectors {
 		if err := validateELF(v); err == nil {
@@ -254,7 +254,7 @@ var _ = io.EOF
 func TestExtractArchiveAs_RawELFUsesFallbackName(t *testing.T) {
 	// Write a tiny "ELF" (magic bytes only — format parsing is done by
 	// validateELF in callers, extractRaw just copies bytes).
-	tmp, err := os.CreateTemp("", "goclaw-gh-asset-*.bin")
+	tmp, err := os.CreateTemp("", "base365-gh-asset-*.bin")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -267,7 +267,7 @@ func TestExtractArchiveAs_RawELFUsesFallbackName(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.HasPrefix(filepath.Base(files[0].Name), "goclaw-gh-asset-") {
+	if !strings.HasPrefix(filepath.Base(files[0].Name), "base365-gh-asset-") {
 		t.Errorf("expected temp basename leakage when no fallback, got %q", files[0].Name)
 	}
 

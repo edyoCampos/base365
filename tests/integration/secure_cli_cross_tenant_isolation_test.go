@@ -16,7 +16,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // TestSecureCLICrossTenant_ListDoesNotExposeForeignData verifies that

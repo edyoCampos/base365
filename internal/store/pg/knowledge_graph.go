@@ -9,8 +9,8 @@ import (
 	"slices"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // PGKnowledgeGraphStore implements store.KnowledgeGraphStore backed by Postgres.

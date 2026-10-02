@@ -11,7 +11,7 @@ import (
 
 const reactionDebounceInterval = 700 * time.Millisecond
 
-// statusEmoji maps GoClaw agent status to Slack emoji names (without colons).
+// statusEmoji maps Base365 agent status to Slack emoji names (without colons).
 var statusEmoji = map[string]string{
 	"thinking": "thinking_face",
 	"tool":     "hammer_and_wrench",

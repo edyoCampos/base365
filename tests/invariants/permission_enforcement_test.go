@@ -5,10 +5,10 @@ package invariants
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // INVARIANT: Admin-only operations MUST reject Operator role.

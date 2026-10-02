@@ -64,7 +64,7 @@ func (p *CodexProvider) buildNativeImageRequestBody(model string, req NativeImag
 		"output_format": req.OutputFormat,
 		"size":          SizeFromAspect(req.AspectRatio),
 	}
-	
+
 	contentParts := []map[string]any{}
 
 	for _, img := range req.RefImages {

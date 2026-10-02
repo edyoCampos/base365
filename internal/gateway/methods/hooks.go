@@ -9,13 +9,13 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/edition"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/internal/hooks"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // HookMethods handles hooks.* RPC methods: list/create/update/delete/toggle/test/history.
@@ -36,13 +36,13 @@ type HookTestRunner interface {
 
 // HookTestResult is the dry-run output surfaced to the Test panel UI.
 type HookTestResult struct {
-	Decision   hooks.Decision `json:"decision"`
-	Reason     string         `json:"reason,omitempty"`
-	DurationMS int            `json:"durationMs"`
-	Stdout     string         `json:"stdout,omitempty"`
-	Stderr     string         `json:"stderr,omitempty"`
-	StatusCode int            `json:"statusCode,omitempty"`
-	Error      string         `json:"error,omitempty"`
+	Decision     hooks.Decision `json:"decision"`
+	Reason       string         `json:"reason,omitempty"`
+	DurationMS   int            `json:"durationMs"`
+	Stdout       string         `json:"stdout,omitempty"`
+	Stderr       string         `json:"stderr,omitempty"`
+	StatusCode   int            `json:"statusCode,omitempty"`
+	Error        string         `json:"error,omitempty"`
 	UpdatedInput map[string]any `json:"updatedInput,omitempty"`
 }
 

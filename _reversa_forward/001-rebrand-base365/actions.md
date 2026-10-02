@@ -55,19 +55,19 @@ Aplicação das regras, renomeio de caminhos, `gofmt`, builds e correção de fi
 
 | ID | Descrição | Dependências | Paralelismo | Arquivo alvo | Confidência | Status |
 |----|-----------|--------------|-------------|--------------|-------------|--------|
-| T017 | Rodar o motor em `--dry-run` e gerar o relatório de substituições por regra e por categoria. | T009, T016, T003, T008 | - | `_reversa_forward/001-rebrand-base365/reports/dry-run.md` | 🟢 | `[ ]` |
-| T018 | Revisar amostras do relatório por categoria (módulo, URLs, segurança, cabeçalhos, contratos, genérica) e ajustar as regras onde a troca estiver errada. | T017 | - | `scripts/rebrand/rules.txt` | 🟢 | `[ ]` |
-| T019 | Aplicar as regras de conteúdo em todo o repositório (sem renomear caminhos ainda). | T018 | - | `scripts/rebrand/apply.sh` (repositório inteiro) | 🟡 | `[ ]` |
-| T020 | Renomear os 10 caminhos de fonte com "goclaw" no nome (`compose.d/00-goclaw.yml`, `_statics/goclaw*`, `plan/goclaw-mcp-integration.md`, `skills/goclaw`, `scripts/zuey/goclaw-*.sh`, `ui/web/public/goclaw-icon.svg`, `ui/desktop/frontend/public/goclaw-icon.svg`) e corrigir as referências a eles. O `dist/` é tratado em a ação T076 (build). | T019 | - | `scripts/rebrand/apply.sh` (renomeios) | 🟡 | `[ ]` |
-| T021 | Rodar `gofmt -w .` e `go fix ./...` (reordena imports e realinha comentários). | T020 | - | `**/*.go` | 🟢 | `[ ]` |
-| T022 | Compilar com `go build ./...` e corrigir erros de compilação decorrentes da troca. | T021 | `[//]` | `**/*.go` | 🟢 | `[ ]` |
-| T023 | Compilar com `go build -tags sqliteonly ./...` e corrigir erros de compilação decorrentes da troca. | T022 | - | `**/*.go` | 🟢 | `[ ]` |
-| T024 | Rodar `go vet ./...` e corrigir os apontamentos. | T022, T023 | - | `**/*.go` | 🟢 | `[ ]` |
-| T025 | Rodar `go test ./...` e listar falhas novas em comparação com `reports/baseline-tests.md`. | T024 | - | `_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md` | 🟢 | `[ ]` |
-| T026 | Corrigir fixtures de teste quebrados em `internal/http`, `internal/gateway` e `internal/channels` (assinatura HMAC, snapshots, URLs). Corrige o fixture, nunca a regra. | T025 | `[//]` | `internal/http/*_test.go`, `internal/gateway/*_test.go`, `internal/channels/**/*_test.go` | 🟡 | `[ ]` |
-| T027 | Corrigir fixtures quebrados em `internal/agent`, `internal/bootstrap` e `internal/tokencount` (limites de tamanho de prompt, contagem de tokens). | T025 | `[//]` | `internal/agent/*_test.go`, `internal/bootstrap/*_test.go`, `internal/tokencount/*_test.go` | 🟡 | `[ ]` |
-| T028 | Corrigir fixtures quebrados nos demais pacotes listados em `reports/post-rename-tests.md`. | T026, T027 | - | `internal/**/*_test.go`, `cmd/*_test.go`, `tests/**` | 🟡 | `[ ]` |
-| T029 | Rodar de novo `go test ./...` e confirmar zero falhas novas em relação à baseline. | T026, T027, T028 | - | `_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md` | 🟢 | `[ ]` |
+| T017 | Rodar o motor em `--dry-run` e gerar o relatório de substituições por regra e por categoria. | T009, T016, T003, T008 | - | `_reversa_forward/001-rebrand-base365/reports/dry-run.md` | 🟢 | `[X]` |
+| T018 | Revisar amostras do relatório por categoria (módulo, URLs, segurança, cabeçalhos, contratos, genérica) e ajustar as regras onde a troca estiver errada. | T017 | - | `scripts/rebrand/rules.txt` | 🟢 | `[X]` |
+| T019 | Aplicar as regras de conteúdo em todo o repositório (sem renomear caminhos ainda). | T018 | - | `scripts/rebrand/apply.sh` (repositório inteiro) | 🟡 | `[X]` |
+| T020 | Renomear os 10 caminhos de fonte com "goclaw" no nome (`compose.d/00-goclaw.yml`, `_statics/goclaw*`, `plan/goclaw-mcp-integration.md`, `skills/goclaw`, `scripts/zuey/goclaw-*.sh`, `ui/web/public/goclaw-icon.svg`, `ui/desktop/frontend/public/goclaw-icon.svg`) e corrigir as referências a eles. O `dist/` é tratado em a ação T076 (build). | T019 | - | `scripts/rebrand/apply.sh` (renomeios) | 🟡 | `[X]` |
+| T021 | Rodar `gofmt -w .` e `go fix ./...` (reordena imports e realinha comentários). | T020 | - | `**/*.go` | 🟢 | `[X]` |
+| T022 | Compilar com `go build ./...` e corrigir erros de compilação decorrentes da troca. | T021 | `[//]` | `**/*.go` | 🟢 | `[X]` |
+| T023 | Compilar com `go build -tags sqliteonly ./...` e corrigir erros de compilação decorrentes da troca. | T022 | - | `**/*.go` | 🟢 | `[X]` |
+| T024 | Rodar `go vet ./...` e corrigir os apontamentos. | T022, T023 | - | `**/*.go` | 🟢 | `[X]` |
+| T025 | Rodar `go test ./...` e listar falhas novas em comparação com `reports/baseline-tests.md`. | T024 | - | `_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md` | 🟢 | `[X]` |
+| T026 | Corrigir fixtures de teste quebrados em `internal/http`, `internal/gateway` e `internal/channels` (assinatura HMAC, snapshots, URLs). Corrige o fixture, nunca a regra. | T025 | `[//]` | `internal/http/*_test.go`, `internal/gateway/*_test.go`, `internal/channels/**/*_test.go` | 🟡 | `[X]` |
+| T027 | Corrigir fixtures quebrados em `internal/agent`, `internal/bootstrap` e `internal/tokencount` (limites de tamanho de prompt, contagem de tokens). | T025 | `[//]` | `internal/agent/*_test.go`, `internal/bootstrap/*_test.go`, `internal/tokencount/*_test.go` | 🟡 | `[X]` |
+| T028 | Corrigir fixtures quebrados nos demais pacotes listados em `reports/post-rename-tests.md`. | T026, T027 | - | `internal/**/*_test.go`, `cmd/*_test.go`, `tests/**` | 🟡 | `[X]` |
+| T029 | Rodar de novo `go test ./...` e confirmar zero falhas novas em relação à baseline. | T026, T027, T028 | - | `_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md` | 🟢 | `[X]` |
 
 ## Fase 4, Integração
 

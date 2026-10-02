@@ -7,9 +7,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // testPostgresConnection verifies connectivity to Postgres with a 5s timeout.
@@ -43,7 +43,7 @@ var defaultPlaceholderProviders = []store.LLMProviderData{
 func seedOnboardPlaceholders(dsn string) error {
 	storeCfg := store.StoreConfig{
 		PostgresDSN:   dsn,
-		EncryptionKey: os.Getenv("GOCLAW_ENCRYPTION_KEY"),
+		EncryptionKey: os.Getenv("BASE365_ENCRYPTION_KEY"),
 	}
 	stores, err := pg.NewPGStores(storeCfg)
 	if err != nil {

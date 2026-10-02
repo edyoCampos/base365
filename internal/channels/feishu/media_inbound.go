@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels/media"
+	"github.com/edyoCampos/base365/internal/channels/media"
 )
 
 // mediaMaxBytes returns the configured per-file size limit in bytes.

@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/skills"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
 )
 
 // ---- Event name constants ----
@@ -330,7 +330,7 @@ func (h *PackagesHandler) handleApplyAllUpdates(w http.ResponseWriter, r *http.R
 
 	// Resolve which entries to apply.
 	type target struct {
-		spec        string // "github:name" for output
+		spec         string // "github:name" for output
 		source, name string
 		entry        skills.UpdateInfo
 	}
@@ -531,4 +531,3 @@ func lockKeyForSource(source, name string, meta map[string]any) string {
 		return name
 	}
 }
-

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
+	"github.com/edyoCampos/base365/internal/hooks"
 )
 
 // DispatcherTestRunner is a HookTestRunner that invokes a registered handler

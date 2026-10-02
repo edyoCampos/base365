@@ -22,7 +22,7 @@ type postCacheEntry struct {
 type PostFetcher struct {
 	graphClient *GraphClient
 	cacheTTL    time.Duration
-	cache       sync.Map          // postID(string) → *postCacheEntry
+	cache       sync.Map           // postID(string) → *postCacheEntry
 	sfGroup     singleflight.Group // coalesces concurrent fetches for the same postID
 }
 

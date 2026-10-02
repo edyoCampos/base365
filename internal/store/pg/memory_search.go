@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // Search performs hybrid search (FTS + vector) over memory_chunks.
@@ -273,4 +273,3 @@ func hybridMerge(fts, vec []scoredChunk, textWeight, vectorWeight float64, curre
 
 	return results
 }
-

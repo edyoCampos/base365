@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/bus"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
 )
 
 func TestPermissionCache_TenantRole(t *testing.T) {

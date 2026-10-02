@@ -14,10 +14,10 @@ import (
 
 	"github.com/mymmrac/telego"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/channels"
-	"github.com/nextlevelbuilder/goclaw/internal/channels/media"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/channels"
+	"github.com/edyoCampos/base365/internal/channels/media"
+	"github.com/edyoCampos/base365/internal/tools"
 )
 
 const (
@@ -296,7 +296,7 @@ func (c *Channel) downloadMedia(ctx context.Context, fileID string, maxBytes int
 		ext = ".bin"
 	}
 
-	tmpFile, err := os.CreateTemp("", "goclaw_media_*"+ext)
+	tmpFile, err := os.CreateTemp("", "base365_media_*"+ext)
 	if err != nil {
 		return "", fmt.Errorf("create temp file: %w", err)
 	}
@@ -341,7 +341,7 @@ func copyLocalFile(srcPath string, maxBytes int64) (string, error) {
 		ext = ".bin"
 	}
 
-	tmpFile, err := os.CreateTemp("", "goclaw_media_*"+ext)
+	tmpFile, err := os.CreateTemp("", "base365_media_*"+ext)
 	if err != nil {
 		return "", fmt.Errorf("create temp file: %w", err)
 	}

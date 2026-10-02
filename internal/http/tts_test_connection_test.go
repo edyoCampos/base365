@@ -7,11 +7,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/audio"
+	geminiPkg "github.com/edyoCampos/base365/internal/audio/gemini"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	geminiPkg "github.com/nextlevelbuilder/goclaw/internal/audio/gemini"
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // TestTestConnection_MissingProvider verifies 400 when provider field is missing.

@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // ManagedSkillStore is the minimal interface needed by the reconciler.

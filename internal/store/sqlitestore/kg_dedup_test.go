@@ -5,8 +5,8 @@ package sqlitestore
 import (
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 func TestSQLiteKGScanDuplicatesCountsOnlyInsertedCandidates(t *testing.T) {

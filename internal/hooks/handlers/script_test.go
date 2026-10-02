@@ -8,7 +8,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
+	"github.com/edyoCampos/base365/internal/hooks"
 )
 
 // newTestHandler constructs a handler with small caps tuned for unit tests.

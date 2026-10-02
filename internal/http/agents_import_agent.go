@@ -8,9 +8,9 @@ import (
 	"log/slog"
 	"net/http"
 
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // doImportNewAgent creates a new agent from the archive, returning import summary.

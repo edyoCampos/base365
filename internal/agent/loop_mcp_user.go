@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
+	mcpbridge "github.com/edyoCampos/base365/internal/mcp"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/tools"
 	"github.com/google/uuid"
-	mcpbridge "github.com/nextlevelbuilder/goclaw/internal/mcp"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
 )
 
 func isUnauthorized401(err error) bool {

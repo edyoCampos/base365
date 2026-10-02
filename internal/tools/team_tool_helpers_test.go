@@ -3,7 +3,7 @@ package tools
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func TestReviewOutboundMessage_UsesLocalKey(t *testing.T) {

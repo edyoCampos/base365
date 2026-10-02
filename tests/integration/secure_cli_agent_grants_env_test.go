@@ -12,9 +12,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/internal/store/pg"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/internal/store/pg"
 )
 
 // TestGrantEnv_SetAndReveal verifies that UpdateGrantEnv stores encrypted env
@@ -100,7 +100,7 @@ func TestGrantEnv_DenylistRejection(t *testing.T) {
 		{"PATH", true},
 		{"LD_PRELOAD", true},
 		{"DYLD_INSERT_LIBRARIES", true},
-		{"GOCLAW_SECRET", true},
+		{"BASE365_SECRET", true},
 		{"MY_TOKEN", false},
 		{"AWS_ACCESS_KEY_ID", false},
 		{"NODE_OPTIONS", true},
@@ -193,11 +193,11 @@ func TestGrantEnv_ListReflectsPresence(t *testing.T) {
 // produces deterministic error output when multiple denied keys are present.
 func TestGrantEnv_DeterministicValidationOrder(t *testing.T) {
 	envVars := map[string]string{
-		"PATH":    "/bin",
-		"HOME":    "/root",
-		"MY_KEY":  "ok",
-		"USER":    "root",
-		"SHELL":   "/bin/bash",
+		"PATH":   "/bin",
+		"HOME":   "/root",
+		"MY_KEY": "ok",
+		"USER":   "root",
+		"SHELL":  "/bin/bash",
 	}
 
 	rejected1, _ := crypto.ValidateGrantEnvVars(envVars)

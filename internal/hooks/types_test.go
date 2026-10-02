@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
+	"github.com/edyoCampos/base365/internal/hooks"
 )
 
 // TestHookEventJSONRoundTrip verifies all 7 HookEvent constants have stable string values.
@@ -103,13 +103,13 @@ func TestDecisionIsBlock(t *testing.T) {
 // TestHookEventIsBlocking verifies IsBlocking returns true for the 3 blocking events.
 func TestHookEventIsBlocking(t *testing.T) {
 	blocking := map[hooks.HookEvent]bool{
-		hooks.EventSessionStart:      false,
-		hooks.EventUserPromptSubmit:  true,
-		hooks.EventPreToolUse:        true,
-		hooks.EventPostToolUse:       false,
-		hooks.EventStop:              false,
-		hooks.EventSubagentStart:     true,
-		hooks.EventSubagentStop:      false,
+		hooks.EventSessionStart:     false,
+		hooks.EventUserPromptSubmit: true,
+		hooks.EventPreToolUse:       true,
+		hooks.EventPostToolUse:      false,
+		hooks.EventStop:             false,
+		hooks.EventSubagentStart:    true,
+		hooks.EventSubagentStop:     false,
 	}
 	for event, want := range blocking {
 		got := event.IsBlocking()

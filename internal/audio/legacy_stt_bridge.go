@@ -9,8 +9,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels/media"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/channels/media"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 // bridgedChannels tracks channels already registered per manager for idempotency.

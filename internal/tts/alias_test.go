@@ -17,32 +17,32 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/edge"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/elevenlabs"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/minimax"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/openai"
-	"github.com/nextlevelbuilder/goclaw/internal/tts"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/edge"
+	"github.com/edyoCampos/base365/internal/audio/elevenlabs"
+	"github.com/edyoCampos/base365/internal/audio/minimax"
+	"github.com/edyoCampos/base365/internal/audio/openai"
+	"github.com/edyoCampos/base365/internal/tts"
 )
 
 // --- Types (15) — alias identity checks (both sides must be exact same type) ---
 
 var (
-	_ *audio.Manager             = (*tts.Manager)(nil)
-	_ audio.TTSProvider          = (tts.Provider)(nil)
-	_ *audio.TTSOptions          = (*tts.Options)(nil)
-	_ *audio.SynthResult         = (*tts.SynthResult)(nil)
-	_ audio.AutoMode             = tts.AutoMode("")
-	_ audio.Mode                 = tts.Mode("")
-	_ *audio.ManagerConfig       = (*tts.ManagerConfig)(nil)
-	_ *edge.Config               = (*tts.EdgeConfig)(nil)
-	_ *edge.Provider             = (*tts.EdgeProvider)(nil)
-	_ *elevenlabs.Config         = (*tts.ElevenLabsConfig)(nil)
-	_ *elevenlabs.TTSProvider    = (*tts.ElevenLabsProvider)(nil)
-	_ *minimax.Config            = (*tts.MiniMaxConfig)(nil)
-	_ *minimax.Provider          = (*tts.MiniMaxProvider)(nil)
-	_ *openai.Config             = (*tts.OpenAIConfig)(nil)
-	_ *openai.Provider           = (*tts.OpenAIProvider)(nil)
+	_ *audio.Manager          = (*tts.Manager)(nil)
+	_ audio.TTSProvider       = (tts.Provider)(nil)
+	_ *audio.TTSOptions       = (*tts.Options)(nil)
+	_ *audio.SynthResult      = (*tts.SynthResult)(nil)
+	_ audio.AutoMode          = tts.AutoMode("")
+	_ audio.Mode              = tts.Mode("")
+	_ *audio.ManagerConfig    = (*tts.ManagerConfig)(nil)
+	_ *edge.Config            = (*tts.EdgeConfig)(nil)
+	_ *edge.Provider          = (*tts.EdgeProvider)(nil)
+	_ *elevenlabs.Config      = (*tts.ElevenLabsConfig)(nil)
+	_ *elevenlabs.TTSProvider = (*tts.ElevenLabsProvider)(nil)
+	_ *minimax.Config         = (*tts.MiniMaxConfig)(nil)
+	_ *minimax.Provider       = (*tts.MiniMaxProvider)(nil)
+	_ *openai.Config          = (*tts.OpenAIConfig)(nil)
+	_ *openai.Provider        = (*tts.OpenAIProvider)(nil)
 )
 
 // --- Constants (6) ---

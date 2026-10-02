@@ -83,13 +83,13 @@ func truncateRuneSafe(content string, limit int) string {
 
 // Compiled regexes for markdown stripping — package-level for efficiency.
 var (
-	reBold           = regexp.MustCompile(`(?:\*\*|__)(.+?)(?:\*\*|__)`)
-	reDoubleBold     = regexp.MustCompile(`\*\*(.+?)\*\*`)
+	reBold            = regexp.MustCompile(`(?:\*\*|__)(.+?)(?:\*\*|__)`)
+	reDoubleBold      = regexp.MustCompile(`\*\*(.+?)\*\*`)
 	reDoubleUnderline = regexp.MustCompile(`__(.+?)__`)
-	reItalic         = regexp.MustCompile(`(?:\*|_)(.+?)(?:\*|_)`)
-	reCodeBlock      = regexp.MustCompile("(?s)```(?:[a-z]*)?\n?(.+?)```")
-	reInlineCode     = regexp.MustCompile("`(.+?)`")
-	reHeader         = regexp.MustCompile(`(?m)^#{1,6}\s+(.+)$`)
-	reLink           = regexp.MustCompile(`\[([^\]]+)\]\([^)]+\)`)
-	reImage          = regexp.MustCompile(`!\[[^\]]*\]\([^)]+\)`)
+	reItalic          = regexp.MustCompile(`(?:\*|_)(.+?)(?:\*|_)`)
+	reCodeBlock       = regexp.MustCompile("(?s)```(?:[a-z]*)?\n?(.+?)```")
+	reInlineCode      = regexp.MustCompile("`(.+?)`")
+	reHeader          = regexp.MustCompile(`(?m)^#{1,6}\s+(.+)$`)
+	reLink            = regexp.MustCompile(`\[([^\]]+)\]\([^)]+\)`)
+	reImage           = regexp.MustCompile(`!\[[^\]]*\]\([^)]+\)`)
 )

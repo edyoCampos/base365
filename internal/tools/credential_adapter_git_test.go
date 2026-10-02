@@ -15,7 +15,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 func gitAdapterInstance(t *testing.T) CredentialAdapter {

@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/nextlevelbuilder/goclaw/internal/backup"
-	"github.com/nextlevelbuilder/goclaw/internal/config"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/backup"
+	"github.com/edyoCampos/base365/internal/config"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // handleRestore accepts a multipart tar.gz upload and restores a tenant via SSE.
@@ -21,6 +21,7 @@ import (
 //     tenant_id is rejected for mode=new — the new tenant's UUID is generated
 //     server-side; the archived tenant metadata (name/status/settings) is used
 //     and bound to the provided slug.
+//
 // Only system owners may restore (cross-tenant operation).
 func (h *TenantBackupHandler) handleRestore(w http.ResponseWriter, r *http.Request) {
 	userID := store.UserIDFromContext(r.Context())
@@ -60,7 +61,7 @@ func (h *TenantBackupHandler) handleRestore(w http.ResponseWriter, r *http.Reque
 	}
 	defer file.Close()
 
-	tmp, err := os.CreateTemp("", "goclaw-tenant-restore-*.tar.gz")
+	tmp, err := os.CreateTemp("", "base365-tenant-restore-*.tar.gz")
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, protocol.ErrInternal,
 			i18n.T(locale, i18n.MsgInternalError))

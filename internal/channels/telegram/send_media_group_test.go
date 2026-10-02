@@ -3,7 +3,7 @@ package telegram
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
+	"github.com/edyoCampos/base365/internal/bus"
 )
 
 func TestChunkTelegramMediaItems_GroupsCompatibleRuns(t *testing.T) {

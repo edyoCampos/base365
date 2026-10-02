@@ -3,7 +3,7 @@ package gateway
 import (
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
+	"github.com/edyoCampos/base365/internal/permissions"
 )
 
 // NewTestClient returns a minimally-wired Client for unit tests in other

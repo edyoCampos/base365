@@ -12,10 +12,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/skills"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/skills"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // ---- test doubles ----
@@ -435,23 +435,23 @@ func TestResolveUpdateSpec(t *testing.T) {
 	}{
 		// pip: valid names
 		{"pip:requests", "pip", "requests", true},
-		{"pip:Django", "pip", "Django", true},    // pip allows uppercase
+		{"pip:Django", "pip", "Django", true}, // pip allows uppercase
 		{"pip:my-package", "pip", "my-package", true},
 		// npm: valid names
 		{"npm:typescript", "npm", "typescript", true},
 		{"npm:@angular/core", "npm", "@angular/core", true},
 		// apk: valid names
 		{"apk:ripgrep", "apk", "ripgrep", true},
-		{"apk:node.js", "apk", "node.js", true},    // dot allowed
+		{"apk:node.js", "apk", "node.js", true},     // dot allowed
 		{"apk:py3-numpy", "apk", "py3-numpy", true}, // hyphen allowed
 		{"apk:libstdc++", "apk", "libstdc++", true}, // plus allowed
 		// apk: invalid names
-		{"apk:", "", "", false},                        // empty name
-		{"apk:BAD;rm -rf /", "", "", false},            // semicolon rejected
-		{"apk:/etc/passwd", "", "", false},             // slash rejected
-		{"apk:UPPER", "", "", false},                   // uppercase rejected
-		{"apk:@npm-style", "", "", false},              // at-sign rejected
-		{"APK:ripgrep", "", "", false},                 // case-sensitive prefix
+		{"apk:", "", "", false},             // empty name
+		{"apk:BAD;rm -rf /", "", "", false}, // semicolon rejected
+		{"apk:/etc/passwd", "", "", false},  // slash rejected
+		{"apk:UPPER", "", "", false},        // uppercase rejected
+		{"apk:@npm-style", "", "", false},   // at-sign rejected
+		{"APK:ripgrep", "", "", false},      // case-sensitive prefix
 		// pip: invalid names — @version suffix must be rejected
 		{"pip:typescript@latest", "", "", false},
 		{"pip:bad;name", "", "", false},

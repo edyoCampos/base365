@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
+	"github.com/edyoCampos/base365/internal/providers"
 )
 
 // fakeBudgetErr satisfies the contextBudgetExceededError interface that

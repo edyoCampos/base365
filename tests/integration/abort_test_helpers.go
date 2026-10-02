@@ -10,9 +10,9 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 var errSimulatedFailure = errors.New("simulated database failure")

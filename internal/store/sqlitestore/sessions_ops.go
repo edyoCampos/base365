@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/providers"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
 )
 
 func (s *SQLiteSessionStore) Save(ctx context.Context, key string) error {

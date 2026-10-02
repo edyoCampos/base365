@@ -10,11 +10,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/pipeline"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/tools"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/pipeline"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/tools"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 type finalThinkingStreamProvider struct{}
@@ -224,8 +224,8 @@ func TestPromptCacheOptionsHelpers(t *testing.T) {
 	if key1 == key3 {
 		t.Fatal("defaultPromptCacheKey should vary by session")
 	}
-	if !strings.HasPrefix(key1, "goclaw/") {
-		t.Fatalf("defaultPromptCacheKey = %q, want goclaw/ prefix", key1)
+	if !strings.HasPrefix(key1, "base365/") {
+		t.Fatalf("defaultPromptCacheKey = %q, want base365/ prefix", key1)
 	}
 
 	opts := map[string]any{}

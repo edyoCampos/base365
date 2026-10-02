@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 const teamCacheTTL = 5 * time.Minute
@@ -48,8 +48,8 @@ func NewTeamToolManager(teamStore store.TeamStore, agentStore store.AgentStore, 
 // (WorkspaceInterceptor, PostTurnProcessor, etc.).
 // ============================================================
 
-func (m *TeamToolManager) Store() store.TeamStore                { return m.teamStore }
-func (m *TeamToolManager) DataDir() string                       { return m.dataDir }
+func (m *TeamToolManager) Store() store.TeamStore { return m.teamStore }
+func (m *TeamToolManager) DataDir() string        { return m.dataDir }
 func (m *TeamToolManager) TryPublishInbound(msg bus.InboundMessage) bool {
 	if m.msgBus == nil {
 		return false

@@ -13,13 +13,13 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/channels/bitrix24"
-	"github.com/nextlevelbuilder/goclaw/internal/gateway"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/permissions"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/internal/channels/bitrix24"
+	"github.com/edyoCampos/base365/internal/gateway"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/permissions"
+	"github.com/edyoCampos/base365/internal/security"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // BitrixPortalsMethods exposes self-service portal management over WS RPC.
@@ -28,7 +28,7 @@ import (
 // tenant member, create/delete require RoleAdmin.
 //
 // gatewayPublicURL is a late-bound provider returning the gateway's externally
-// reachable base URL (e.g. "https://goclaw.tamgiac.com"). Used to build the
+// reachable base URL (e.g. "https://base365.example.com"). Used to build the
 // install URL we hand back to the UI. The HTTP middleware updates this on
 // every authenticated request so the value tracks ingress changes without
 // requiring static config — see SetGatewayPublicURLSnapshot.
@@ -393,7 +393,7 @@ func (m *BitrixPortalsMethods) buildInstallURL(tid uuid.UUID, name string) (stri
 	}
 	base := strings.TrimRight(strings.TrimSpace(m.gatewayPublicURL()), "/")
 	if base == "" {
-		return "", errors.New("gateway public URL unknown — open the UI via your public goclaw URL first, then retry")
+		return "", errors.New("gateway public URL unknown — open the UI via your public base365 URL first, then retry")
 	}
 	return base + "/bitrix24/install?state=" + tid.String() + ":" + name, nil
 }

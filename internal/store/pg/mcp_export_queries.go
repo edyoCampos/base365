@@ -13,17 +13,17 @@ import (
 // MCPServerExport holds portable MCP server metadata.
 // Sensitive fields (api_key, env, headers) are intentionally excluded.
 type MCPServerExport struct {
-	Name        string          `json:"name"`
-	DisplayName string          `json:"display_name,omitempty"`
-	Transport   string          `json:"transport"`
-	Command     string          `json:"command,omitempty"`
-	Args        json.RawMessage `json:"args,omitempty"`
-	URL         string          `json:"url,omitempty"`
-	ToolPrefix  string          `json:"tool_prefix,omitempty"`
-	TimeoutSec     int             `json:"timeout_sec"`
-	Settings       json.RawMessage `json:"settings,omitempty"`
-	Enabled        bool            `json:"enabled"`
-	RequireUserCredentials bool `json:"require_user_credentials,omitempty"`
+	Name                   string          `json:"name"`
+	DisplayName            string          `json:"display_name,omitempty"`
+	Transport              string          `json:"transport"`
+	Command                string          `json:"command,omitempty"`
+	Args                   json.RawMessage `json:"args,omitempty"`
+	URL                    string          `json:"url,omitempty"`
+	ToolPrefix             string          `json:"tool_prefix,omitempty"`
+	TimeoutSec             int             `json:"timeout_sec"`
+	Settings               json.RawMessage `json:"settings,omitempty"`
+	Enabled                bool            `json:"enabled"`
+	RequireUserCredentials bool            `json:"require_user_credentials,omitempty"`
 }
 
 // MCPGrantWithKey references an MCP agent grant by server_name and agent_key (portable).

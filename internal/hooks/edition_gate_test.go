@@ -3,8 +3,8 @@ package hooks_test
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/edition"
-	"github.com/nextlevelbuilder/goclaw/internal/hooks"
+	"github.com/edyoCampos/base365/internal/edition"
+	"github.com/edyoCampos/base365/internal/hooks"
 )
 
 // TestEditionGate covers the full matrix (handlerType × scope × edition).

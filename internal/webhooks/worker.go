@@ -23,11 +23,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
-	"github.com/nextlevelbuilder/goclaw/internal/crypto"
-	"github.com/nextlevelbuilder/goclaw/internal/providers"
-	"github.com/nextlevelbuilder/goclaw/internal/security"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/agent"
+	"github.com/edyoCampos/base365/internal/crypto"
+	"github.com/edyoCampos/base365/internal/providers"
+	"github.com/edyoCampos/base365/internal/security"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 const (
@@ -174,7 +174,7 @@ type WebhookWorker struct {
 	limiter  *CallbackLimiter
 	cfg      WorkerConfig
 	// encKey is the AES-256-GCM key used to decrypt webhook.encrypted_secret at HMAC sign time.
-	// Sourced from GOCLAW_ENCRYPTION_KEY env var. Empty string disables outbound HMAC signing.
+	// Sourced from BASE365_ENCRYPTION_KEY env var. Empty string disables outbound HMAC signing.
 	encKey string
 
 	// inFlight tracks active delivery goroutines for graceful drain.
@@ -499,7 +499,7 @@ func (w *WebhookWorker) execute(ctx context.Context, call *store.WebhookCallData
 		return
 	}
 	httpReq.Header.Set("Content-Type", "application/json")
-	httpReq.Header.Set("User-Agent", "goclaw-webhook/1")
+	httpReq.Header.Set("User-Agent", "base365-webhook/1")
 	httpReq.Header.Set("X-Webhook-Delivery-Id", call.DeliveryID.String())
 	if sigHeader != "" {
 		httpReq.Header.Set("X-Webhook-Signature", sigHeader)

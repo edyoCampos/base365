@@ -14,16 +14,16 @@ import (
 
 // Options configures a system backup run.
 type Options struct {
-	DSN           string
-	DataDir       string
-	WorkspacePath string
-	OutputPath    string // destination .tar.gz file path
-	CreatedBy     string // user ID or "cli"
-	GoclawVersion string
-	SchemaVersion int
-	ExcludeDB     bool
-	ExcludeFiles  bool
-	ProgressFn    func(phase string, detail string)
+	DSN            string
+	DataDir        string
+	WorkspacePath  string
+	OutputPath     string // destination .tar.gz file path
+	CreatedBy      string // user ID or "cli"
+	Base365Version string
+	SchemaVersion  int
+	ExcludeDB      bool
+	ExcludeFiles   bool
+	ProgressFn     func(phase string, detail string)
 }
 
 // Run creates a full system backup archive at opts.OutputPath.
@@ -50,13 +50,13 @@ func Run(ctx context.Context, opts Options) (*BackupManifest, error) {
 	tw := tar.NewWriter(gw)
 
 	manifest := &BackupManifest{
-		Version:       1,
-		Format:        "goclaw-system-backup",
-		CreatedAt:     time.Now().UTC().Format(time.RFC3339),
-		CreatedBy:     opts.CreatedBy,
-		GoclawVersion: opts.GoclawVersion,
-		SchemaVersion: opts.SchemaVersion,
-		DatabaseDSN:   SanitizeDSN(opts.DSN),
+		Version:        1,
+		Format:         "base365-system-backup",
+		CreatedAt:      time.Now().UTC().Format(time.RFC3339),
+		CreatedBy:      opts.CreatedBy,
+		Base365Version: opts.Base365Version,
+		SchemaVersion:  opts.SchemaVersion,
+		DatabaseDSN:    SanitizeDSN(opts.DSN),
 		Paths: PathsInfo{
 			DataDir:   opts.DataDir,
 			Workspace: opts.WorkspacePath,

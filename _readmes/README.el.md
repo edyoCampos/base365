@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="../_statics/goclaw.png" alt="GoClaw" />
+  <img src="../_statics/base365.png" alt="Base365" />
 </p>
 
-<h1 align="center">GoClaw</h1>
+<h1 align="center">Base365</h1>
 
 <p align="center"><strong>Enterprise AI Agent Platform</strong></p>
 
@@ -12,8 +12,8 @@ Single binary. Production-tested. Agents that orchestrate for you.
 </p>
 
 <p align="center">
-  <a href="https://docs.goclaw.sh">Τεκμηρίωση</a> •
-  <a href="https://docs.goclaw.sh/#quick-start">Γρήγορη Εκκίνηση</a> •
+  <a href="https://edyocampos.github.io/base365">Τεκμηρίωση</a> •
+  <a href="https://edyocampos.github.io/base365/#quick-start">Γρήγορη Εκκίνηση</a> •
   <a href="https://x.com/nlb_io">Twitter / X</a>
 </p>
 
@@ -28,7 +28,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License: MIT" />
 </p>
 
-Το **GoClaw** είναι μια πύλη AI πολλαπλών πρακτόρων που συνδέει τα LLM με τα εργαλεία, τα κανάλια και τα δεδομένα σας — αναπτύσσεται ως ένα μονό δυαδικό αρχείο Go χωρίς εξαρτήσεις χρόνου εκτέλεσης. Ενορχηστρώνει ομάδες πρακτόρων και ανάθεση μεταξύ πρακτόρων σε 20+ παρόχους LLM με πλήρη απομόνωση πολλαπλών μισθωτών.
+Το **Base365** είναι μια πύλη AI πολλαπλών πρακτόρων που συνδέει τα LLM με τα εργαλεία, τα κανάλια και τα δεδομένα σας — αναπτύσσεται ως ένα μονό δυαδικό αρχείο Go χωρίς εξαρτήσεις χρόνου εκτέλεσης. Ενορχηστρώνει ομάδες πρακτόρων και ανάθεση μεταξύ πρακτόρων σε 20+ παρόχους LLM με πλήρη απομόνωση πολλαπλών μισθωτών.
 
 Μια μεταφορά σε Go του [OpenClaw](https://github.com/openclaw/openclaw) με ενισχυμένη ασφάλεια, PostgreSQL πολλαπλών μισθωτών και παρατηρησιμότητα παραγωγικού επιπέδου.
 
@@ -80,7 +80,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 
 ## Οικοσύστημα Claw
 
-|                 | OpenClaw        | ZeroClaw | PicoClaw | **GoClaw**                              |
+|                 | OpenClaw        | ZeroClaw | PicoClaw | **Base365**                              |
 | --------------- | --------------- | -------- | -------- | --------------------------------------- |
 | Γλώσσα          | TypeScript      | Rust     | Go       | **Go**                                  |
 | Μέγεθος δυαδικού | 28 MB + Node.js | 3.4 MB   | ~8 MB    | **~25 MB** (βάση) / **~36 MB** (+ OTel) |
@@ -89,7 +89,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 | Εκκίνηση        | > 5 s           | < 10 ms  | < 1 s    | **< 1 s**                               |
 | Στοχευόμενο υλικό | $599+ Mac Mini  | $10 edge | $10 edge | **$5 VPS+**                             |
 
-| Χαρακτηριστικό             | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **GoClaw**                     |
+| Χαρακτηριστικό             | OpenClaw                             | ZeroClaw                                     | PicoClaw                              | **Base365**                     |
 | -------------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------------- | ------------------------------ |
 | Πολλαπλοί μισθωτές (PostgreSQL) | —                               | —                                            | —                                     | ✅                             |
 | Ενσωμάτωση MCP             | — (χρησιμοποιεί ACP)                 | —                                            | —                                     | ✅ (stdio/SSE/streamable-http) |
@@ -110,7 +110,7 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ## Αρχιτεκτονική
 
 <p align="center">
-  <img src="../_statics/architecture.jpg" alt="GoClaw Architecture" width="800" />
+  <img src="../_statics/architecture.jpg" alt="Base365 Architecture" width="800" />
 </p>
 
 ## Γρήγορη Εκκίνηση
@@ -120,10 +120,10 @@ Single binary. Production-tested. Agents that orchestrate for you.
 ### Από Πηγαίο Κώδικα
 
 ```bash
-git clone https://github.com/nextlevelbuilder/goclaw.git && cd goclaw
+git clone https://github.com/edyoCampos/base365.git && cd base365
 make build
-./goclaw onboard        # Interactive setup wizard
-source .env.local && ./goclaw
+./base365 onboard        # Interactive setup wizard
+source .env.local && ./base365
 ```
 
 ### Με Docker
@@ -132,20 +132,20 @@ source .env.local && ./goclaw
 # Generate .env with auto-generated secrets
 chmod +x prepare-env.sh && ./prepare-env.sh
 
-# Add at least one GOCLAW_*_API_KEY to .env, then:
+# Add at least one BASE365_*_API_KEY to .env, then:
 make up
 
 # Web Dashboard at http://localhost:18790
 # Health check: curl http://localhost:18790/health
 ```
 
-Όταν ορίζονται μεταβλητές περιβάλλοντος `GOCLAW_*_API_KEY`, η πύλη ενσωματώνεται αυτόματα χωρίς διαδραστικές ερωτήσεις — ανιχνεύει τον πάροχο, εκτελεί μεταναστεύσεις, και εισάγει προεπιλεγμένα δεδομένα.
+Όταν ορίζονται μεταβλητές περιβάλλοντος `BASE365_*_API_KEY`, η πύλη ενσωματώνεται αυτόματα χωρίς διαδραστικές ερωτήσεις — ανιχνεύει τον πάροχο, εκτελεί μεταναστεύσεις, και εισάγει προεπιλεγμένα δεδομένα.
 
-> Για παραλλαγές κατασκευής (OTel, Tailscale, Redis), ετικέτες Docker image, και επικαλύψεις compose, δείτε τον [Οδηγό Ανάπτυξης](https://docs.goclaw.sh/#deploy-docker-compose).
+> Για παραλλαγές κατασκευής (OTel, Tailscale, Redis), ετικέτες Docker image, και επικαλύψεις compose, δείτε τον [Οδηγό Ανάπτυξης](https://edyocampos.github.io/base365/#deploy-docker-compose).
 
 ## Ενορχήστρωση Πολλαπλών Πρακτόρων
 
-Το GoClaw υποστηρίζει ομάδες πρακτόρων και ανάθεση μεταξύ πρακτόρων — κάθε πράκτορας εκτελείται με τη δική του ταυτότητα, εργαλεία, πάροχο LLM, και αρχεία περιβάλλοντος.
+Το Base365 υποστηρίζει ομάδες πρακτόρων και ανάθεση μεταξύ πρακτόρων — κάθε πράκτορας εκτελείται με τη δική του ταυτότητα, εργαλεία, πάροχο LLM, και αρχεία περιβάλλοντος.
 
 ### Ανάθεση Πράκτορα
 
@@ -170,7 +170,7 @@ make up
 - **Ταχυδρομείο ομάδας** — Άμεση ανταλλαγή μηνυμάτων μεταξύ ομότιμων και εκπομπές
 - **Εργαλεία**: `team_tasks` για διαχείριση εργασιών, `team_message` για ταχυδρομείο
 
-> Για λεπτομέρειες ανάθεσης, συνδέσμους αδειών, και έλεγχο ταυτόχρονης εκτέλεσης, δείτε την [τεκμηρίωση Ομάδων Πρακτόρων](https://docs.goclaw.sh/#teams-what-are-teams).
+> Για λεπτομέρειες ανάθεσης, συνδέσμους αδειών, και έλεγχο ταυτόχρονης εκτέλεσης, δείτε την [τεκμηρίωση Ομάδων Πρακτόρων](https://edyocampos.github.io/base365/#teams-what-are-teams).
 
 ## Ενσωματωμένα Εργαλεία
 
@@ -214,19 +214,19 @@ make up
 
 ## Τεκμηρίωση
 
-Πλήρης τεκμηρίωση στο **[docs.goclaw.sh](https://docs.goclaw.sh)** — ή περιηγηθείτε στην πηγή στο [`goclaw-docs/`](https://github.com/nextlevelbuilder/goclaw-docs)
+Πλήρης τεκμηρίωση στο **[edyocampos.github.io/base365](https://edyocampos.github.io/base365)** — ή περιηγηθείτε στην πηγή στο [`base365-docs/`](https://edyocampos.github.io/base365)
 
 | Ενότητα | Θέματα |
 |---------|--------|
-| [Ξεκινώντας](https://docs.goclaw.sh/#what-is-goclaw) | Εγκατάσταση, Γρήγορη Εκκίνηση, Διαμόρφωση, Περιήγηση Web Dashboard |
-| [Βασικές Έννοιες](https://docs.goclaw.sh/#how-goclaw-works) | Βρόχος Πράκτορα, Συνεδρίες, Εργαλεία, Μνήμη, Πολλαπλή Ενοικίαση |
-| [Πράκτορες](https://docs.goclaw.sh/#creating-agents) | Δημιουργία Πρακτόρων, Αρχεία Περιβάλλοντος, Προσωπικότητα, Κοινοποίηση & Πρόσβαση |
-| [Πάροχοι](https://docs.goclaw.sh/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 ακόμα |
-| [Κανάλια](https://docs.goclaw.sh/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
-| [Ομάδες Πρακτόρων](https://docs.goclaw.sh/#teams-what-are-teams) | Ομάδες, Πίνακας Εργασιών, Ανταλλαγή Μηνυμάτων, Ανάθεση & Παράδοση |
-| [Προχωρημένα](https://docs.goclaw.sh/#custom-tools) | Προσαρμοσμένα Εργαλεία, MCP, Δεξιότητες, Cron, Sandbox, Hooks, RBAC |
-| [Ανάπτυξη](https://docs.goclaw.sh/#deploy-docker-compose) | Docker Compose, Βάση Δεδομένων, Ασφάλεια, Παρατηρησιμότητα, Tailscale |
-| [Αναφορά](https://docs.goclaw.sh/#cli-commands) | Εντολές CLI, REST API, WebSocket Protocol, Μεταβλητές Περιβάλλοντος |
+| [Ξεκινώντας](https://edyocampos.github.io/base365/#what-is-base365) | Εγκατάσταση, Γρήγορη Εκκίνηση, Διαμόρφωση, Περιήγηση Web Dashboard |
+| [Βασικές Έννοιες](https://edyocampos.github.io/base365/#how-base365-works) | Βρόχος Πράκτορα, Συνεδρίες, Εργαλεία, Μνήμη, Πολλαπλή Ενοικίαση |
+| [Πράκτορες](https://edyocampos.github.io/base365/#creating-agents) | Δημιουργία Πρακτόρων, Αρχεία Περιβάλλοντος, Προσωπικότητα, Κοινοποίηση & Πρόσβαση |
+| [Πάροχοι](https://edyocampos.github.io/base365/#providers-overview) | Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, +15 ακόμα |
+| [Κανάλια](https://edyocampos.github.io/base365/#channels-overview) | Telegram, Discord, Slack, Feishu, Zalo, WhatsApp, WebSocket |
+| [Ομάδες Πρακτόρων](https://edyocampos.github.io/base365/#teams-what-are-teams) | Ομάδες, Πίνακας Εργασιών, Ανταλλαγή Μηνυμάτων, Ανάθεση & Παράδοση |
+| [Προχωρημένα](https://edyocampos.github.io/base365/#custom-tools) | Προσαρμοσμένα Εργαλεία, MCP, Δεξιότητες, Cron, Sandbox, Hooks, RBAC |
+| [Ανάπτυξη](https://edyocampos.github.io/base365/#deploy-docker-compose) | Docker Compose, Βάση Δεδομένων, Ασφάλεια, Παρατηρησιμότητα, Tailscale |
+| [Αναφορά](https://edyocampos.github.io/base365/#cli-commands) | Εντολές CLI, REST API, WebSocket Protocol, Μεταβλητές Περιβάλλοντος |
 
 ## Δοκιμές
 
@@ -241,7 +241,7 @@ go test -v ./tests/integration/ -timeout 120s    # Integration tests (requires r
 
 ## Αναγνωρίσεις
 
-Το GoClaw κατασκευάστηκε πάνω στο αρχικό έργο [OpenClaw](https://github.com/openclaw/openclaw). Είμαστε ευγνώμονες για την αρχιτεκτονική και το όραμα που ενέπνευσε αυτή τη μεταφορά σε Go.
+Το Base365 κατασκευάστηκε πάνω στο αρχικό έργο [OpenClaw](https://github.com/openclaw/openclaw). Είμαστε ευγνώμονες για την αρχιτεκτονική και το όραμα που ενέπνευσε αυτή τη μεταφορά σε Go.
 
 ## Άδεια Χρήσης
 

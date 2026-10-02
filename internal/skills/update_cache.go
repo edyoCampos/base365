@@ -26,10 +26,10 @@ var ErrUpdateCacheCorrupt = errors.New("skills: update cache file corrupt")
 //	assetSHA256    string  — empty if publisher ships no checksum file
 //	assetSizeBytes int64
 type UpdateInfo struct {
-	Source         string         `json:"source"`                // "github" (Phase 1)
-	Name           string         `json:"name"`                  // matches GitHubPackageEntry.Name
-	CurrentVersion string         `json:"currentVersion"`        // manifest.Tag at check time
-	LatestVersion  string         `json:"latestVersion"`         // candidate.tag_name
+	Source         string         `json:"source"`         // "github" (Phase 1)
+	Name           string         `json:"name"`           // matches GitHubPackageEntry.Name
+	CurrentVersion string         `json:"currentVersion"` // manifest.Tag at check time
+	LatestVersion  string         `json:"latestVersion"`  // candidate.tag_name
 	CheckedAt      time.Time      `json:"checkedAt"`
 	Meta           map[string]any `json:"meta,omitempty"`
 }

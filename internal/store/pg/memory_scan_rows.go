@@ -3,8 +3,8 @@ package pg
 import (
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/lib/pq"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // documentInfoRow is an sqlx scan struct for memory_documents SELECT queries.

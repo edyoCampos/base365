@@ -118,7 +118,7 @@ func addProvider() {
 				msg = "verification failed"
 			}
 			fmt.Printf("FAILED (%s)\n", msg)
-			fmt.Println("  You can update the API key later with 'goclaw providers update'.")
+			fmt.Println("  You can update the API key later with 'base365 providers update'.")
 		}
 	}
 	fmt.Println()

@@ -3,7 +3,7 @@ package telegram
 import (
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/internal/config"
+	"github.com/edyoCampos/base365/internal/config"
 )
 
 //go:fix inline

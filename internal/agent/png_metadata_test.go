@@ -32,9 +32,9 @@ func TestEmbedPNGPrompt_RoundTrip(t *testing.T) {
 		t.Errorf("Description = %q, want %q", got, wantPrompt)
 	}
 
-	// "Software" chunk must carry "goclaw".
-	if sw := texts["Software"]; sw != "goclaw" {
-		t.Errorf("Software = %q, want %q", sw, "goclaw")
+	// "Software" chunk must carry "base365".
+	if sw := texts["Software"]; sw != "base365" {
+		t.Errorf("Software = %q, want %q", sw, "base365")
 	}
 }
 

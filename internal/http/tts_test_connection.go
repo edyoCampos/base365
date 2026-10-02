@@ -11,14 +11,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/audio"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/edge"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/elevenlabs"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/gemini"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/minimax"
-	"github.com/nextlevelbuilder/goclaw/internal/audio/openai"
-	"github.com/nextlevelbuilder/goclaw/internal/i18n"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
+	"github.com/edyoCampos/base365/internal/audio"
+	"github.com/edyoCampos/base365/internal/audio/edge"
+	"github.com/edyoCampos/base365/internal/audio/elevenlabs"
+	"github.com/edyoCampos/base365/internal/audio/gemini"
+	"github.com/edyoCampos/base365/internal/audio/minimax"
+	"github.com/edyoCampos/base365/internal/audio/openai"
+	"github.com/edyoCampos/base365/internal/i18n"
+	"github.com/edyoCampos/base365/internal/store"
 )
 
 // testConnectionRequest is the JSON body for POST /v1/tts/test-connection.

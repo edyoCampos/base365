@@ -5,13 +5,13 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"strings"
 	"log/slog"
 	"sort"
+	"strings"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // appendTeamFilter appends the team_id clause to a vault query.
@@ -842,4 +842,3 @@ func extractFolderNames(prefix string, deepPaths []string) []string {
 	sort.Strings(folders)
 	return folders
 }
-

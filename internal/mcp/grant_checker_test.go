@@ -5,10 +5,10 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/bus"
+	"github.com/edyoCampos/base365/internal/store"
+	"github.com/edyoCampos/base365/pkg/protocol"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/bus"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
 )
 
 // mockMCPStore implements store.MCPServerStore for testing.
@@ -39,7 +39,7 @@ func (m *mockMCPStore) ListServers(ctx context.Context) ([]store.MCPServerData, 
 func (m *mockMCPStore) UpdateServer(ctx context.Context, id uuid.UUID, updates map[string]any) error {
 	return nil
 }
-func (m *mockMCPStore) DeleteServer(ctx context.Context, id uuid.UUID) error           { return nil }
+func (m *mockMCPStore) DeleteServer(ctx context.Context, id uuid.UUID) error { return nil }
 func (m *mockMCPStore) CacheToolDescriptions(ctx context.Context, serverID uuid.UUID, toolDescriptions map[string]store.CachedToolInfo) error {
 	if m.cachedToolInfo == nil {
 		m.cachedToolInfo = make(map[uuid.UUID]map[string]store.CachedToolInfo)

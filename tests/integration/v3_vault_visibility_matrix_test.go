@@ -8,8 +8,8 @@ import (
 	"sort"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // seedAgentInTenant inserts an agent into an existing tenant for same-tenant multi-agent tests.
@@ -148,10 +148,10 @@ func TestStoreVault_VisibilityMatrix(t *testing.T) {
 	}
 
 	type matrixCase struct {
-		name        string
-		getPaths    func() []string
-		wantAll     []string // all must appear
-		wantNone    []string // none must appear
+		name     string
+		getPaths func() []string
+		wantAll  []string // all must appear
+		wantNone []string // none must appear
 	}
 
 	cases := []matrixCase{

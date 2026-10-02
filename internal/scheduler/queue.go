@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/nextlevelbuilder/goclaw/internal/agent"
+	"github.com/edyoCampos/base365/internal/agent"
 )
 
 // QueueMode determines how incoming messages are handled when an agent
@@ -83,11 +83,11 @@ type activeRunEntry struct {
 // SessionQueue manages agent runs for a single session key.
 // Supports configurable concurrency: 1 (serial) or N (concurrent).
 type SessionQueue struct {
-	key      string
-	config   QueueConfig
-	runFn    RunFunc
+	key     string
+	config  QueueConfig
+	runFn   RunFunc
 	laneMgr *LaneManager
-	lane     string
+	lane    string
 
 	mu              sync.Mutex
 	queue           []*PendingRequest

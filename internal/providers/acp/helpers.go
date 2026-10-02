@@ -10,24 +10,24 @@ import (
 // contextKey is the unexported type for context values set by this package.
 type contextKey string
 
-const goclawSessionCtxKey contextKey = "goclaw_session"
+const base365SessionCtxKey contextKey = "base365_session"
 
-// WithGoclawSession attaches the goclaw conversation session key to ctx so
-// that ACP-level logs can correlate the ACP session ID with the goclaw session.
-func WithGoclawSession(ctx context.Context, key string) context.Context {
-	return context.WithValue(ctx, goclawSessionCtxKey, key)
+// WithBase365Session attaches the base365 conversation session key to ctx so
+// that ACP-level logs can correlate the ACP session ID with the base365 session.
+func WithBase365Session(ctx context.Context, key string) context.Context {
+	return context.WithValue(ctx, base365SessionCtxKey, key)
 }
 
-// goclawSessionFromCtx extracts the goclaw session key injected by WithGoclawSession.
+// base365SessionFromCtx extracts the base365 session key injected by WithBase365Session.
 // Returns "" if not set.
-func goclawSessionFromCtx(ctx context.Context) string {
-	v, _ := ctx.Value(goclawSessionCtxKey).(string)
+func base365SessionFromCtx(ctx context.Context) string {
+	v, _ := ctx.Value(base365SessionCtxKey).(string)
 	return v
 }
 
 // sensitiveEnvPrefixes lists env var prefixes stripped from ACP subprocesses.
 var sensitiveEnvPrefixes = []string{
-	"GOCLAW", "CLAUDE", "ANTHROPIC", "OPENAI",
+	"BASE365", "CLAUDE", "ANTHROPIC", "OPENAI",
 	"DATABASE", "POSTGRES", "MYSQL", "REDIS", "MONGO",
 	"AWS_", "AZURE_", "GOOGLE_", "GCP_",
 	"GITHUB_", "GH_", "GITLAB_", "BITBUCKET_",
@@ -50,7 +50,7 @@ var sensitiveEnvExact = map[string]bool{
 	"DB_DSN": true, "PGPASSWORD": true, "PGUSER": true, "PGHOST": true,
 	"NPM_TOKEN": true, "NPM_CONFIG_TOKEN": true,
 	"HOMEBREW_GITHUB_API_TOKEN": true,
-	"CODECOV_TOKEN": true, "COVERALLS_REPO_TOKEN": true,
+	"CODECOV_TOKEN":             true, "COVERALLS_REPO_TOKEN": true,
 	"SENTRY_DSN": true, "SENTRY_AUTH_TOKEN": true,
 	"SECRET_KEY": true, "JWT_SECRET": true,
 }

@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // SQLiteKnowledgeGraphStore implements store.KnowledgeGraphStore for SQLite.
@@ -363,4 +363,3 @@ func scanEntityTemporalRows(rows *sql.Rows) ([]store.Entity, error) {
 	}
 	return result, rows.Err()
 }
-

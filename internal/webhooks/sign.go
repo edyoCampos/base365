@@ -5,7 +5,8 @@
 // Signature format: X-Webhook-Signature: t=<unix_seconds>,v1=<hex_hmac_sha256>
 // Signed payload:   "<unix_seconds>.<request_body>"
 // Key:              []byte(rawSecret) — the plaintext secret string (AES-decrypted
-//                   from webhooks.encrypted_secret) as raw UTF-8 bytes.
+//
+//	from webhooks.encrypted_secret) as raw UTF-8 bytes.
 package webhooks
 
 import (

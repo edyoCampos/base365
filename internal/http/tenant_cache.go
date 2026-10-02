@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/edyoCampos/base365/internal/store"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/store"
 )
 
 // tenantCacheEntry holds a cached tenant lookup result.
@@ -19,11 +19,11 @@ type tenantCacheEntry struct {
 // tenantCache is a TTL cache for tenant lookups by UUID and slug.
 // Invalidated via bus CacheKindTenants events.
 type tenantCache struct {
-	mu      sync.RWMutex
-	byID    map[uuid.UUID]*tenantCacheEntry
-	bySlug  map[string]*tenantCacheEntry
-	ttl     time.Duration
-	store   store.TenantStore
+	mu     sync.RWMutex
+	byID   map[uuid.UUID]*tenantCacheEntry
+	bySlug map[string]*tenantCacheEntry
+	ttl    time.Duration
+	store  store.TenantStore
 }
 
 func newTenantCache(s store.TenantStore, ttl time.Duration) *tenantCache {

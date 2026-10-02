@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/nextlevelbuilder/goclaw/pkg/protocol"
+	"github.com/edyoCampos/base365/pkg/protocol"
 )
 
 // --- Role hierarchy ---

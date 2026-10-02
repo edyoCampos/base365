@@ -5,8 +5,8 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/edyoCampos/base365/internal/cache"
 	"github.com/google/uuid"
-	"github.com/nextlevelbuilder/goclaw/internal/cache"
 )
 
 // mockContactStore records every UpsertContact call for assertion.
