@@ -13,3 +13,12 @@ func TestValidateLauncherArgsAllowsPlainNonLauncherCommand(t *testing.T) {
 		t.Fatalf("expected git args to be allowed, got %q", reason)
 	}
 }
+
+func TestIsBlockedEnvKey_ProductPrefix(t *testing.T) {
+	if !isBlockedEnvKey("GOCLAW_X") {
+		t.Fatal("product-prefixed env key must be blocked")
+	}
+	if isBlockedEnvKey("MY_APP_TOKEN") {
+		t.Fatal("unrelated env key must not be blocked")
+	}
+}

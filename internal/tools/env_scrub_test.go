@@ -120,3 +120,13 @@ func TestExtractJSONTopKeys_Malformed(t *testing.T) {
 		t.Fatalf("expected nil on malformed input, got %v", keys)
 	}
 }
+
+func TestScrubCredentialEnv_StripsProductGatewayToken(t *testing.T) {
+	out := scrubCredentialEnv([]string{"HOME=/root", "GOCLAW_GATEWAY_TOKEN=s3cret", "PATH=/usr/bin"}, nil)
+	if envContains(out, "GOCLAW_GATEWAY_TOKEN") {
+		t.Fatalf("product gateway token must not reach child processes: %v", out)
+	}
+	if !envContains(out, "PATH") || !envContains(out, "HOME") {
+		t.Fatalf("unrelated vars must be kept: %v", out)
+	}
+}

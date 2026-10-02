@@ -2,7 +2,7 @@ VERSION ?= $(shell git describe --tags --abbrev=0 --match "v[0-9]*" 2>/dev/null 
 LDFLAGS  = -s -w -X github.com/nextlevelbuilder/goclaw/cmd.Version=$(VERSION)
 BINARY   = goclaw
 
-.PHONY: build build-full build-tui run clean version up up-build down logs reset test vet check-web dev migrate setup ci desktop-dev desktop-build desktop-dmg test-hooks test-hooks-unit test-hooks-e2e test-hooks-chaos test-hooks-rbac test-hooks-tracing
+.PHONY: check-brand build build-full build-tui run clean version up up-build down logs reset test vet check-web dev migrate setup ci desktop-dev desktop-build desktop-dmg test-hooks test-hooks-unit test-hooks-e2e test-hooks-chaos test-hooks-rbac test-hooks-tracing
 
 # Build backend only (API-only, no embedded web UI)
 build:
@@ -164,3 +164,7 @@ desktop-dmg: desktop-build
 		-ov -format UDZO "goclaw-lite-$(VERSION)-darwin-$$(uname -m | sed 's/x86_64/amd64/').dmg"
 	rm -rf /tmp/goclaw-dmg-staging
 	@echo "DMG created: goclaw-lite-$(VERSION)-darwin-$$(uname -m | sed 's/x86_64/amd64/').dmg"
+
+# Brand check: fails when the old product name appears outside scripts/brand-exceptions.txt
+check-brand:
+	@scripts/check-brand.sh

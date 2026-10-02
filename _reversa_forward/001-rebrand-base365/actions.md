@@ -25,15 +25,15 @@ Rede de segurança (baseline, checagem de marca) e motor de substituição.
 
 | ID | Descrição | Dependências | Paralelismo | Arquivo alvo | Confidência | Status |
 |----|-----------|--------------|-------------|--------------|-------------|--------|
-| T001 | Criar baseline versionado do projeto (`git init` e commit inicial; se o usuário preferir, `tar` fora do projeto). Pedir confirmação antes de executar. | - | - | `/home/edyo/Projects/base365/` (raiz) | 🟢 | `[ ]` |
-| T002 | Registrar as contagens iniciais (conteúdo por grafia, nomes, `GOCLAW_*` distintas, `nextlevelbuilder`, `digitop`, `tamgiac`, `zuey`, `orange-`, `amber-`) em `reports/baseline-counts.md`. | T001 | - | `_reversa_forward/001-rebrand-base365/reports/baseline-counts.md` | 🟢 | `[ ]` |
-| T003 | Arquivar a lista completa de nomes `goclaw_*` das ferramentas MCP (`grep -rhoE '"goclaw_[a-z_]+"'`) e a contagem, antes da troca. | T001 | `[//]` | `_reversa_forward/001-rebrand-base365/reports/mcp-tools-before.txt` | 🟡 | `[ ]` |
-| T004 | Criar a lista de exceções da checagem com as justificativas: `_reversa_sdd/`, `_reversa_forward/`, `_reversa_docs/`, `.reversa/`, `.claude/`, `.agents/`, o próprio arquivo e o script. | T001 | `[//]` | `scripts/brand-exceptions.txt` | 🟢 | `[ ]` |
-| T005 | Criar o arquivo de regras ordenadas do motor: (1) módulo, (2) URLs externas e imagens (mapeamento T-08), (3) prefixos de segurança, (4) cabeçalhos, (5) prefixos de contrato (`goclaw_`, `goclaw:`), (6) quatro grafias genéricas. | T001 | `[//]` | `scripts/rebrand/rules.txt` | 🟢 | `[ ]` |
-| T006 | Criar `scripts/check-brand.sh`: varre conteúdo e nomes sem diferenciar maiúsculas, respeita a lista de exceções, imprime arquivo e linha e sai com código diferente de zero se achar algo. | T004 | - | `scripts/check-brand.sh` | 🟢 | `[ ]` |
-| T007 | Adicionar o alvo `make check-brand` ao Makefile. | T006 | - | `Makefile` | 🟢 | `[ ]` |
-| T008 | Rodar `make check-brand` e registrar o estado vermelho inicial, com a contagem, em `reports/baseline-counts.md`. | T007, T002 | - | `_reversa_forward/001-rebrand-base365/reports/baseline-counts.md` | 🟢 | `[ ]` |
-| T009 | Criar `scripts/rebrand/apply.sh`: aplica as regras em ordem, renomeia caminhos, respeita exceções, tem `--dry-run` com relatório de substituições por regra e é idempotente. | T004, T005 | - | `scripts/rebrand/apply.sh` | 🟢 | `[ ]` |
+| T001 | Criar baseline versionado do projeto (`git init` e commit inicial; se o usuário preferir, `tar` fora do projeto). Pedir confirmação antes de executar. | - | - | `/home/edyo/Projects/base365/` (raiz) | 🟢 | `[X]` |
+| T002 | Registrar as contagens iniciais (conteúdo por grafia, nomes, `GOCLAW_*` distintas, `nextlevelbuilder`, `digitop`, `tamgiac`, `zuey`, `orange-`, `amber-`) em `reports/baseline-counts.md`. | T001 | - | `_reversa_forward/001-rebrand-base365/reports/baseline-counts.md` | 🟢 | `[X]` |
+| T003 | Arquivar a lista completa de nomes `goclaw_*` das ferramentas MCP (`grep -rhoE '"goclaw_[a-z_]+"'`) e a contagem, antes da troca. | T001 | `[//]` | `_reversa_forward/001-rebrand-base365/reports/mcp-tools-before.txt` | 🟡 | `[X]` |
+| T004 | Criar a lista de exceções da checagem com as justificativas: `_reversa_sdd/`, `_reversa_forward/`, `_reversa_docs/`, `.reversa/`, `.claude/`, `.agents/`, o próprio arquivo e o script. | T001 | `[//]` | `scripts/brand-exceptions.txt` | 🟢 | `[X]` |
+| T005 | Criar o arquivo de regras ordenadas do motor: (1) módulo, (2) URLs externas e imagens (mapeamento T-08), (3) prefixos de segurança, (4) cabeçalhos, (5) prefixos de contrato (`goclaw_`, `goclaw:`), (6) quatro grafias genéricas. | T001 | `[//]` | `scripts/rebrand/rules.txt` | 🟢 | `[X]` |
+| T006 | Criar `scripts/check-brand.sh`: varre conteúdo e nomes sem diferenciar maiúsculas, respeita a lista de exceções, imprime arquivo e linha e sai com código diferente de zero se achar algo. | T004 | - | `scripts/check-brand.sh` | 🟢 | `[X]` |
+| T007 | Adicionar o alvo `make check-brand` ao Makefile. | T006 | - | `Makefile` | 🟢 | `[X]` |
+| T008 | Rodar `make check-brand` e registrar o estado vermelho inicial, com a contagem, em `reports/baseline-counts.md`. | T007, T002 | - | `_reversa_forward/001-rebrand-base365/reports/baseline-counts.md` | 🟢 | `[X]` |
+| T009 | Criar `scripts/rebrand/apply.sh`: aplica as regras em ordem, renomeia caminhos, respeita exceções, tem `--dry-run` com relatório de substituições por regra e é idempotente. | T004, T005 | - | `scripts/rebrand/apply.sh` | 🟢 | `[X]` |
 
 ## Fase 2, Testes
 
@@ -41,13 +41,13 @@ Testes de caracterização escritos **antes** da troca, com o prefixo antigo. O 
 
 | ID | Descrição | Dependências | Paralelismo | Arquivo alvo | Confidência | Status |
 |----|-----------|--------------|-------------|--------------|-------------|--------|
-| T010 | Escrever teste de caracterização do denylist de credenciais de CLI com o prefixo **antigo** (`GOCLAW_X` e `GOCLAW_GATEWAY_TOKEN` rejeitados). O motor o converte para `BASE365_` e ele deve continuar verde. | T001 | `[//]` | `internal/crypto/env_denylist_test.go` | 🟢 | `[ ]` |
-| T011 | Escrever teste de caracterização da allowlist da workstation (variável `GOCLAW_X` rejeitada, `internal/workstation/security/allowlist.go:189-190`). | T001 | `[//]` | `internal/workstation/security/allowlist_test.go` | 🟢 | `[ ]` |
-| T012 | Escrever teste de caracterização da remoção de credenciais do ambiente de processo filho (`GOCLAW_GATEWAY_TOKEN` não chega ao filho, `internal/tools/env_scrub.go:23`). | T001 | `[//]` | `internal/tools/env_scrub_test.go` | 🟢 | `[ ]` |
-| T013 | Estender o teste dos padrões de comando bloqueados com os 4 regex de `GOCLAW_` (`echo`, `printf`, `python os.environ`, `node process.env`, `internal/tools/shell_deny_groups.go:233-236`). | T001 | `[//]` | `internal/tools/shell_deny_test.go` | 🟢 | `[ ]` |
-| T014 | Escrever teste do espelho web `ENV_DENYLIST_PREFIXES` (`GOCLAW_` rejeitado), usando o framework de teste já presente em `ui/web`. | T001 | `[//]` | `ui/web/src/pages/cli-credentials/cli-credential-grant-env-section.test.ts` | 🟡 | `[ ]` |
-| T015 | Escrever teste do formato da chave de API (`goclaw_<32hex>`, `internal/crypto/apikey.go:10`, `:12`). O motor o converte para `base365_`. | T001 | `[//]` | `internal/crypto/apikey_test.go` | 🟢 | `[ ]` |
-| T016 | Rodar a baseline completa **antes** da troca (`go build` PG e `-tags sqliteonly`, `go vet`, `go test ./...`, `pnpm build` de web e desktop) e registrar falhas pré-existentes em `reports/baseline-tests.md`. | T010, T011, T012, T013, T014, T015 | - | `_reversa_forward/001-rebrand-base365/reports/baseline-tests.md` | 🟢 | `[ ]` |
+| T010 | Escrever teste de caracterização do denylist de credenciais de CLI com o prefixo **antigo** (`GOCLAW_X` e `GOCLAW_GATEWAY_TOKEN` rejeitados). O motor o converte para `BASE365_` e ele deve continuar verde. | T001 | `[//]` | `internal/crypto/env_denylist_test.go` | 🟢 | `[X]` |
+| T011 | Escrever teste de caracterização da allowlist da workstation (variável `GOCLAW_X` rejeitada, `internal/workstation/security/allowlist.go:189-190`). | T001 | `[//]` | `internal/workstation/security/allowlist_test.go` | 🟢 | `[X]` |
+| T012 | Escrever teste de caracterização da remoção de credenciais do ambiente de processo filho (`GOCLAW_GATEWAY_TOKEN` não chega ao filho, `internal/tools/env_scrub.go:23`). | T001 | `[//]` | `internal/tools/env_scrub_test.go` | 🟢 | `[X]` |
+| T013 | Estender o teste dos padrões de comando bloqueados com os 4 regex de `GOCLAW_` (`echo`, `printf`, `python os.environ`, `node process.env`, `internal/tools/shell_deny_groups.go:233-236`). | T001 | `[//]` | `internal/tools/shell_deny_test.go` | 🟢 | `[X]` |
+| T014 | Escrever teste do espelho web `ENV_DENYLIST_PREFIXES` (`GOCLAW_` rejeitado), usando o framework de teste já presente em `ui/web`. | T001 | `[//]` | `ui/web/src/pages/cli-credentials/cli-credential-grant-env-section.test.ts` | 🟡 | `[X]` |
+| T015 | Escrever teste do formato da chave de API (`goclaw_<32hex>`, `internal/crypto/apikey.go:10`, `:12`). O motor o converte para `base365_`. | T001 | `[//]` | `internal/crypto/apikey_test.go` | 🟢 | `[X]` |
+| T016 | Rodar a baseline completa **antes** da troca (`go build` PG e `-tags sqliteonly`, `go vet`, `go test ./...`, `pnpm build` de web e desktop) e registrar falhas pré-existentes em `reports/baseline-tests.md`. | T010, T011, T012, T013, T014, T015 | - | `_reversa_forward/001-rebrand-base365/reports/baseline-tests.md` | 🟢 | `[X]` |
 
 ## Fase 3, Núcleo
 

@@ -673,3 +673,29 @@ func TestLimitedBuffer(t *testing.T) {
 		}
 	})
 }
+
+func TestProductSecretExfiltrationDeny(t *testing.T) {
+	var patterns []*regexp.Regexp
+	for _, g := range DenyGroupRegistry {
+		patterns = append(patterns, g.Patterns...)
+	}
+	deny := []string{
+		`echo $GOCLAW_ENCRYPTION_KEY`,
+		`echo ${GOCLAW_GATEWAY_TOKEN}`,
+		`printf "%s" $GOCLAW_POSTGRES_DSN`,
+		`python3 -c "import os; print(os.environ['GOCLAW_ENCRYPTION_KEY'])"`,
+		`node -e "console.log(process.env.GOCLAW_GATEWAY_TOKEN)"`,
+	}
+	for _, cmd := range deny {
+		matched := false
+		for _, p := range patterns {
+			if p.MatchString(cmd) {
+				matched = true
+				break
+			}
+		}
+		if !matched {
+			t.Errorf("expected deny for %q", cmd)
+		}
+	}
+}

@@ -1,0 +1,17 @@
+# Exceções da checagem de marca (scripts/check-brand.sh).
+# Formato: um caminho por linha, relativo à raiz. Termina com "/" = pasta inteira.
+# Linhas começando com "#" e texto após "  #" são comentários. Toda exceção precisa de justificativa.
+
+.git/                              # metadados do git
+node_modules/                      # dependências de terceiros
+_reversa_sdd/                      # saída da extração do Reversa (análise do legado, fora do produto)
+_reversa_forward/                  # artefatos do ciclo forward do Reversa (descrevem o rebrand e citam o nome antigo)
+_reversa_docs/                     # mini-site gerado pelo Reversa
+.reversa/                          # configuração e templates do Reversa
+.claude/                           # skills e configuração do Claude Code (ferramenta, fora do produto)
+.agents/                           # skills de agentes (ferramenta, fora do produto)
+scripts/brand-exceptions.txt       # este arquivo
+scripts/check-brand.sh             # contém o padrão buscado
+scripts/check-brand.test.sh        # teste da checagem, contém o padrão buscado
+scripts/rebrand/                   # motor de substituição, contém as regras com o nome antigo (arquivado na T077)
+ui/web/dist/                       # saída de build ignorada pelo git (regenerada em cada build)
