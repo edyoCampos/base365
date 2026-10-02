@@ -1,0 +1,120 @@
+{
+  "generated_at": "2026-09-22T00:00:00Z",
+  "project_root": "/home/edyo/Projects/base365",
+  "languages": [
+    { "name": "Go", "extensions": [".go"], "file_count": 2519 },
+    { "name": "TypeScript (TSX)", "extensions": [".tsx"], "file_count": 682 },
+    { "name": "Markdown", "extensions": [".md"], "file_count": 580 },
+    { "name": "TypeScript", "extensions": [".ts"], "file_count": 415 },
+    { "name": "JSON", "extensions": [".json"], "file_count": 316 },
+    { "name": "SQL", "extensions": [".sql"], "file_count": 196 },
+    { "name": "YAML", "extensions": [".yaml", ".yml"], "file_count": 171 },
+    { "name": "Python", "extensions": [".py"], "file_count": 46 },
+    { "name": "XSD", "extensions": [".xsd"], "file_count": 39 },
+    { "name": "Shell", "extensions": [".sh"], "file_count": 9 }
+  ],
+  "primary_language": "Go",
+  "frameworks": [
+    { "name": "Cobra", "version": "v1.10.2", "source": "go.mod" },
+    { "name": "gorilla/websocket", "version": "v1.5.4-0.20250319132907-e064f32e3674", "source": "go.mod" },
+    { "name": "pgx/v5", "version": "v5.6.0", "source": "go.mod" },
+    { "name": "modernc.org/sqlite", "version": "v1.47.0", "source": "go.mod" },
+    { "name": "golang-migrate/migrate/v4", "version": "v4.19.1", "source": "go.mod" },
+    { "name": "go-rod/rod", "version": "v0.116.2", "source": "go.mod" },
+    { "name": "telego", "version": "v1.6.0", "source": "go.mod" },
+    { "name": "whatsmeow", "version": "v0.0.0-20260622185415-5f04eac6dbbb", "source": "go.mod" },
+    { "name": "discordgo", "version": "v0.29.0", "source": "go.mod" },
+    { "name": "slack-go/slack", "version": "v0.19.0", "source": "go.mod" },
+    { "name": "Wails v2", "version": "v2.12.0", "source": "go.mod" },
+    { "name": "OpenTelemetry (Go SDK)", "version": "v1.40.0", "source": "go.mod" },
+    { "name": "tailscale.com", "version": "v1.94.2", "source": "go.mod" },
+    { "name": "mark3labs/mcp-go", "version": "v0.44.0", "source": "go.mod" },
+    { "name": "React", "version": "^19.2.4", "source": "ui/web/package.json" },
+    { "name": "React Router", "version": "^7.13.2", "source": "ui/web/package.json" },
+    { "name": "Vite", "version": "^8.0.8", "source": "ui/web/package.json" },
+    { "name": "Tailwind CSS", "version": "^4.2.2", "source": "ui/web/package.json" },
+    { "name": "Radix UI", "version": "^1.4.3", "source": "ui/web/package.json" },
+    { "name": "Zustand", "version": "^5.0.12", "source": "ui/web/package.json" },
+    { "name": "Vitest", "version": "^4.1.4", "source": "ui/web/package.json" },
+    { "name": "Framer Motion", "version": "^12.38.0", "source": "ui/desktop/frontend/package.json" }
+  ],
+  "package_manager": "go modules (backend) + pnpm@10.30.1 (ui/web, ui/desktop/frontend)",
+  "entry_points": [
+    { "path": "main.go", "type": "app_entry" },
+    { "path": "cmd/root.go", "type": "cli_root" },
+    { "path": "cmd/gateway.go", "type": "server_entry" },
+    { "path": "ui/desktop/main.go", "type": "desktop_entry" },
+    { "path": "ui/desktop/app.go", "type": "desktop_bindings" },
+    { "path": "ui/web/src", "type": "web_entry" }
+  ],
+  "config_files": [
+    "go.mod",
+    "go.sum",
+    "ui/web/package.json",
+    "ui/web/pnpm-lock.yaml",
+    "ui/web/.npmrc",
+    "ui/desktop/frontend/package.json",
+    "ui/desktop/frontend/pnpm-lock.yaml",
+    "Makefile",
+    "docker-compose.yml"
+  ],
+  "ci_cd": [],
+  "ci_cd_note": "CLAUDE.md documenta 5 workflows GitHub Actions (ci.yaml, dev-beta-release.yaml, release.yaml, release-beta.yaml, release-desktop.yaml), mas este checkout local não possui .git nem pasta .github/ — não foi possível ler os YAML diretamente. Marcado como LACUNA.",
+  "docker": {
+    "dockerfile": "Dockerfile",
+    "compose": "docker-compose.yml",
+    "compose_overlays": [
+      "docker-compose.browser.yml",
+      "docker-compose.claude-cli.yml",
+      "docker-compose.cloudflared.yml",
+      "docker-compose.forkdev.yml",
+      "docker-compose.lightpanda.yml",
+      "docker-compose.otel.yml",
+      "docker-compose.postgres.yml",
+      "docker-compose.redis.yml",
+      "docker-compose.sandbox.yml",
+      "docker-compose.selfservice.yml",
+      "docker-compose.tailscale.yml",
+      "docker-compose.upgrade.yml"
+    ],
+    "compose_modular": ["compose.d/00-goclaw.yml", "compose.options/"],
+    "sandbox_dockerfile": "Dockerfile.sandbox"
+  },
+  "database_hints": [
+    { "path": "migrations/", "type": "golang_migrate_pg_migrations", "count": 97 },
+    { "path": "internal/store/sqlitestore/schema.sql", "type": "sqlite_schema" },
+    { "path": "internal/store/sqlitestore/schema.go", "type": "sqlite_incremental_migrations" },
+    { "path": "migrations/audit_fk_integrity.sql", "type": "audit_script" }
+  ],
+  "test_framework": "Go testing + testify (backend); Vitest + Testing Library (web/desktop)",
+  "test_file_count": 1060,
+  "modules": [
+    "agent", "audio", "backup", "bgalert", "bootstrap", "bus", "cache",
+    "channelmemory", "channels", "childrun", "config", "consolidation",
+    "cron", "cronexec", "crypto", "edition", "eventbus", "gateway",
+    "heartbeat", "hooks", "http", "i18n", "knowledgegraph", "logs", "mcp",
+    "media", "mediabudget", "memory", "oauth", "orchestration",
+    "permissions", "pipeline", "providerresolve", "providers", "safego",
+    "sandbox", "scheduler", "security", "sessions", "skills", "store",
+    "systemmessages", "tasks", "teamworkclassify", "testutil",
+    "tokencount", "tools", "tracing", "tts", "updater", "upgrade",
+    "usage", "vault", "version", "webhooks", "webui", "workspace",
+    "workstation"
+  ],
+  "total_files": 5050,
+  "organization_suggestion": {
+    "granularity": "module",
+    "rationale": "internal/ é organizado em ~58 pastas top-level nomeadas por domínio de negócio/técnico (agent, channels, providers, memory, vault, tools, etc.), cada uma com fronteira clara de responsabilidade — sinal dominante de organização modular.",
+    "signals": [
+      {
+        "type": "top_level_domain_folders",
+        "evidence": [
+          "internal/agent/", "internal/channels/", "internal/providers/",
+          "internal/memory/", "internal/vault/", "internal/tools/",
+          "internal/gateway/", "internal/store/"
+        ]
+      }
+    ],
+    "features": []
+  }
+}

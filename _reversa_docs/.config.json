@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-28T15:41:18Z",
+  "reversa": {
+    "version": "1.3.3"
+  },
+  "projectName": "base365",
+  "interview": {
+    "readerProfile": "auditor",
+    "depth": "full",
+    "visualStyle": "sober"
+  },
+  "seed": {
+    "hash": "sha256:908fa4757f47e8524af64eea10a58778c6a03d9ead4f9a06d21a6e15888dc596",
+    "source": "project_name",
+    "explicitOverride": null
+  },
+  "knowledgeSources": {
+    "soul": false,
+    "chronicle": false,
+    "topology": true,
+    "sddSpecs": [
+      "agent", "bootstrap", "channels", "config", "consolidation", "cron", "crypto",
+      "edition", "eventbus", "gateway", "hooks", "http", "i18n", "knowledgegraph",
+      "mcp", "memory", "oauth", "orchestration", "permissions", "pipeline",
+      "providerresolve", "sandbox", "scheduler", "security", "sessions", "skills",
+      "store", "suporte", "tasks", "tokencount", "tools", "tracing", "tts",
+      "updater", "upgrade", "usage", "vault", "webhooks", "webui", "workspace"
+    ],
+    "sourceCode": true
+  },
+  "pagesPlanned": [],
+  "pagesOmitted": []
+}

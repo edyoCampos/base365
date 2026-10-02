@@ -1,0 +1,10 @@
+{
+  "schema-version": 1,
+  "feature-dir": "_reversa_forward/001-rebrand-base365",
+  "feature-id": "001",
+  "short-name": "rebrand-base365",
+  "started-at": "2026-10-01T23:09:07-03:00",
+  "current-stage": "requirements",
+  "stages-completed": [],
+  "paused-features": []
+}
