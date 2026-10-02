@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Base365 Brand — OKLCH values from web dashboard */
+  /* Base365 brand tokens (docs: Base365 logo e ícone.pdf, tokens de cor V1, seção Desktop) */
 
   /* Dark mode defaults (primary build) */
-  --color-surface-primary: oklch(0.15 0.02 45);
-  --color-surface-secondary: oklch(0.20 0.02 45);
-  --color-surface-tertiary: oklch(0.25 0.02 45);
-  --color-text-primary: oklch(0.94 0.01 80);
-  --color-text-secondary: oklch(0.78 0.015 50);
-  --color-text-muted: oklch(0.65 0.015 50);
-  --color-accent: oklch(0.68 0.18 38);
-  --color-accent-hover: oklch(0.72 0.18 38);
-  --color-border: oklch(0.30 0.02 45);
-  --color-user-bubble: oklch(0.50 0.17 38);
-  --color-agent-bubble: oklch(0.20 0.02 45);
-  --color-success: oklch(0.45 0.15 145);
-  --color-warning: oklch(0.65 0.15 75);
-  --color-error: oklch(0.65 0.23 25);
-  --color-idle: oklch(0.52 0.02 50);
+  --color-surface-primary: #15111f;
+  --color-surface-secondary: #1f1a2e;
+  --color-surface-tertiary: #2a2440;
+  --color-text-primary: #f4f2f7;
+  --color-text-secondary: #c9c3dc;
+  --color-text-muted: #9690ab;
+  --color-accent: #a487f2;
+  --color-accent-hover: #b8a0f6;
+  --color-accent-foreground: #1f1a2e;
+  --color-border: #322b47;
+  --color-user-bubble: #33295a;
+  --color-agent-bubble: #262038;
+  --color-success: #3ecf8e;
+  --color-warning: #f5b740;
+  --color-error: #ef6b73;
+  --color-idle: #8a84a0;
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -32,47 +33,51 @@
 
 /* Light mode */
 :root:not(.dark) {
-  --color-surface-primary: oklch(0.97 0.005 80);
-  --color-surface-secondary: oklch(1 0 0);
-  --color-surface-tertiary: oklch(0.94 0.01 80);
-  --color-text-primary: oklch(0.17 0.02 55);
-  --color-text-secondary: oklch(0.35 0.02 50);
-  --color-text-muted: oklch(0.45 0.02 50);
-  --color-accent: oklch(0.62 0.19 38);
-  --color-accent-hover: oklch(0.58 0.19 38);
-  --color-border: oklch(0.90 0.01 70);
-  --color-user-bubble: oklch(0.40 0.14 38);
-  --color-agent-bubble: oklch(0.94 0.01 80);
-  --color-success: oklch(0.55 0.2 145);
-  --color-warning: oklch(0.77 0.16 75);
-  --color-error: oklch(0.577 0.245 27.325);
+  --color-surface-primary: #f4f2f7;
+  --color-surface-secondary: #ffffff;
+  --color-surface-tertiary: #ebe7f3;
+  --color-text-primary: #1f1a2e;
+  --color-text-secondary: #4a4560;
+  --color-text-muted: #5d5873;
+  --color-accent: #7c4fe0;
+  --color-accent-hover: #6a3dd0;
+  --color-accent-foreground: #ffffff;
+  --color-border: #ddd8e8;
+  --color-user-bubble: #e9e2fb;
+  --color-agent-bubble: #ffffff;
+  --color-success: #157a4a;
+  --color-warning: #a5620a;
+  --color-error: #c62a3a;
+  --color-idle: #6f6a86;
 }
 
 .dark {
   color-scheme: dark;
-  --color-surface-primary: oklch(0.15 0.02 45);
-  --color-surface-secondary: oklch(0.20 0.02 45);
-  --color-surface-tertiary: oklch(0.25 0.02 45);
-  --color-text-primary: oklch(0.94 0.01 80);
-  --color-text-secondary: oklch(0.78 0.015 50);
-  --color-text-muted: oklch(0.65 0.015 50);
-  --color-accent: oklch(0.68 0.18 38);
-  --color-accent-hover: oklch(0.72 0.18 38);
-  --color-border: oklch(0.30 0.02 45);
-  --color-user-bubble: oklch(0.50 0.17 38);
-  --color-agent-bubble: oklch(0.20 0.02 45);
-  --color-success: oklch(0.45 0.15 145);
-  --color-warning: oklch(0.65 0.15 75);
-  --color-error: oklch(0.65 0.23 25);
+  --color-surface-primary: #15111f;
+  --color-surface-secondary: #1f1a2e;
+  --color-surface-tertiary: #2a2440;
+  --color-text-primary: #f4f2f7;
+  --color-text-secondary: #c9c3dc;
+  --color-text-muted: #9690ab;
+  --color-accent: #a487f2;
+  --color-accent-hover: #b8a0f6;
+  --color-accent-foreground: #1f1a2e;
+  --color-border: #322b47;
+  --color-user-bubble: #33295a;
+  --color-agent-bubble: #262038;
+  --color-success: #3ecf8e;
+  --color-warning: #f5b740;
+  --color-error: #ef6b73;
+  --color-idle: #8a84a0;
 }
 
 /* Floating panel design system */
 .canvas-dots {
-  background-image: radial-gradient(circle, oklch(0.22 0.01 45) 0.5px, transparent 0.5px);
+  background-image: radial-gradient(circle, #241f33 0.5px, transparent 0.5px);
   background-size: 36px 36px;
 }
 :root:not(.dark) .canvas-dots {
-  background-image: radial-gradient(circle, oklch(0.90 0.005 70) 0.5px, transparent 0.5px);
+  background-image: radial-gradient(circle, #ddd8e8 0.5px, transparent 0.5px);
 }
 .floating-panel {
   background: var(--color-surface-secondary);
@@ -129,7 +134,7 @@ button:disabled {
 /* Selection */
 ::selection {
   background: var(--color-accent);
-  color: white;
+  color: var(--color-accent-foreground);
 }
 
 /* Wails drag region for frameless window */

@@ -99,9 +99,9 @@ Segurança, contratos externos, extrator, banco, desktop, ativos e cores.
 | T051 | Copiar o símbolo oficial para `ui/desktop/frontend/public/` e atualizar as referências. | T029 | `[//]` | `ui/desktop/frontend/public/` | 🟢 | `[X]` |
 | T052 | Substituir `_statics/base365-logo.svg`, `_statics/base365-icon.svg` e `_statics/base365.png` pelos ativos oficiais (logo horizontal e símbolo). | T020 | `[//]` | `_statics/` | 🟢 | `[X]` |
 | T053 | Gerar `appicon.png`, `icon.ico` e `iconfile.icns` do desktop a partir de `icone-app-1024.png` com Pillow. | T029 | `[//]` | `ui/desktop/build/appicon.png`, `ui/desktop/build/windows/icon.ico`, `ui/desktop/build/darwin/iconfile.icns` | 🟡 | `[X]` |
-| T054 | Aplicar os tokens de cor do PDF (V1) no tema claro e escuro da web, mais os badges de status. | T029 | `[//]` | `ui/web/src/index.css` | 🟢 | `[ ]` |
-| T055 | Aplicar os tokens de cor do PDF (V1) no tema claro e escuro do desktop (abre no escuro por padrão). | T029 | `[//]` | `ui/desktop/frontend/src/index.css` | 🟢 | `[ ]` |
-| T056 | Listar todas as ocorrências de `orange-*` e `amber-*` e classificar cada uma como aviso ou decoração pela regra do PDF, em `docs/rebrand-amber-review.md`. | T054, T055 | - | `docs/rebrand-amber-review.md` | 🟡 | `[ ]` |
+| T054 | Aplicar os tokens de cor do PDF (V1) no tema claro e escuro da web, mais os badges de status. | T029 | `[//]` | `ui/web/src/index.css` | 🟢 | `[X]` |
+| T055 | Aplicar os tokens de cor do PDF (V1) no tema claro e escuro do desktop (abre no escuro por padrão). | T029 | `[//]` | `ui/desktop/frontend/src/index.css` | 🟢 | `[X]` |
+| T056 | Listar todas as ocorrências de `orange-*` e `amber-*` e classificar cada uma como aviso ou decoração pela regra do PDF, em `docs/rebrand-amber-review.md`. | T054, T055 | - | `docs/rebrand-amber-review.md` | 🟡 | `[X]` |
 | T057 | Converter as classes `orange-*` da web para os tokens da paleta. | T056 | `[//]` | `ui/web/src/**` | 🟡 | `[ ]` |
 | T058 | Converter as classes `orange-*` do desktop para os tokens da paleta. | T056 | `[//]` | `ui/desktop/frontend/src/**` | 🟡 | `[ ]` |
 | T059 | Converter as classes `amber-*` decorativas de `ui/web/src/components/**` conforme a tabela (aviso fica no token `warning`). | T057 | - | `ui/web/src/components/**` | 🟡 | `[ ]` |
