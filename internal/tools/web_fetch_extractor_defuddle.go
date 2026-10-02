@@ -10,13 +10,13 @@ import (
 )
 
 const (
-	defuddleBaseURL = "https://fetch.base365.example.com/"
 	defuddleTimeout = 10 * time.Second
 	defuddleMaxBody = 1 << 20 // 1MB
 )
 
-// DefuddleExtractor calls the fetch.base365.example.com Cloudflare Worker to extract
-// clean markdown via Defuddle. The CF Worker handles HTTP fetch + content extraction.
+// DefuddleExtractor calls an operator-provided extraction service (for example a Cloudflare
+// Worker running Defuddle) to extract clean markdown. There is no built-in endpoint: the
+// extractor only runs when base_url is configured (see parseExtractorChainSettings).
 type DefuddleExtractor struct {
 	baseURL string
 	client  *http.Client
@@ -25,9 +25,6 @@ type DefuddleExtractor struct {
 // NewDefuddleExtractorFromEntry creates a DefuddleExtractor from chain settings.
 func NewDefuddleExtractorFromEntry(entry ExtractorEntry) *DefuddleExtractor {
 	baseURL := entry.BaseURL
-	if baseURL == "" {
-		baseURL = defuddleBaseURL
-	}
 	// Ensure trailing slash for URL construction.
 	if !strings.HasSuffix(baseURL, "/") {
 		baseURL += "/"
@@ -57,7 +54,7 @@ func newDefuddleExtractor(baseURL string, timeout time.Duration) *DefuddleExtrac
 
 func (d *DefuddleExtractor) Name() string { return "defuddle" }
 
-// Extract sends a GET request to fetch.base365.example.com/<domain>/<path> (no scheme)
+// Extract sends a GET request to <base_url>/<domain>/<path> (no scheme)
 // and returns the plain markdown response.
 func (d *DefuddleExtractor) Extract(ctx context.Context, rawURL string) (string, error) {
 	// Strip scheme: https://example.com/path → example.com/path

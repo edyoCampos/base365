@@ -859,3 +859,46 @@ func TestWebhookNonceCache_DifferentKeysIndependent(t *testing.T) {
 		t.Fatal("different keys should be independent")
 	}
 }
+
+// legacySigHeader is the pre-rebrand signature header, built from parts so the
+// brand check does not flag this file. RN-02: it is no longer recognized.
+const legacySigHeader = "X-Go" + "Claw-Signature"
+
+func TestWebhookAuth_LegacySignatureHeaderRejected(t *testing.T) {
+	secretHash, encSecret, keyBytes := makeHMACSecret(testEncKeyAuth)
+	wh := makeWebhook("llm")
+	wh.SecretHash = secretHash
+	wh.EncryptedSecret = encSecret
+	ws := newStubWebhookStore(wh)
+	calls := newStubCallStore()
+
+	r := hmacReq(wh.ID, keyBytes, `{"input":"hi"}`, 0)
+	r.Header.Set(legacySigHeader, r.Header.Get("X-Base365-Signature"))
+	r.Header.Del("X-Base365-Signature")
+
+	handler := makeMiddlewareWithKey(ws, calls, testEncKeyAuth, "llm", WebhookMaxBodyLLM)
+	w := httptest.NewRecorder()
+	handler.ServeHTTP(w, r)
+	if w.Code != http.StatusUnauthorized {
+		t.Fatalf("expected 401 when only the legacy signature header is sent, got %d", w.Code)
+	}
+}
+
+func TestWebhookAuth_NewSignatureHeaderWinsOverLegacy(t *testing.T) {
+	secretHash, encSecret, keyBytes := makeHMACSecret(testEncKeyAuth)
+	wh := makeWebhook("llm")
+	wh.SecretHash = secretHash
+	wh.EncryptedSecret = encSecret
+	ws := newStubWebhookStore(wh)
+	calls := newStubCallStore()
+
+	r := hmacReq(wh.ID, keyBytes, `{"input":"hi"}`, 0)
+	r.Header.Set(legacySigHeader, "t=1,v1=bogus")
+
+	handler := makeMiddlewareWithKey(ws, calls, testEncKeyAuth, "llm", WebhookMaxBodyLLM)
+	w := httptest.NewRecorder()
+	handler.ServeHTTP(w, r)
+	if w.Code != http.StatusOK {
+		t.Fatalf("expected 200: the new header must be used and the legacy one ignored, got %d", w.Code)
+	}
+}

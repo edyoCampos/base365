@@ -108,7 +108,7 @@ type ExtractorEntry struct {
 	Enabled    bool   `json:"enabled"`
 	Timeout    int    `json:"timeout,omitempty"`     // seconds, 0 = use extractor default
 	MaxRetries int    `json:"max_retries,omitempty"` // default 1 (no retry)
-	BaseURL    string `json:"base_url,omitempty"`    // for defuddle: CF Worker URL
+	BaseURL    string `json:"base_url,omitempty"`    // for defuddle: extraction service URL (required, no default)
 }
 
 // extractorChainSettings is the JSON schema for web_fetch builtin_tools.settings.
@@ -148,6 +148,12 @@ func parseExtractorChainSettings(raw []byte, tool *WebFetchTool) *ExtractorChain
 		}
 		switch entry.Name {
 		case "defuddle":
+			// No built-in endpoint: an enabled defuddle entry without base_url is skipped so
+			// no URL is ever sent to a service the operator did not configure.
+			if strings.TrimSpace(entry.BaseURL) == "" {
+				slog.Warn("web_fetch: defuddle extractor enabled without base_url, skipping")
+				continue
+			}
 			extractors = append(extractors, NewDefuddleExtractorFromEntry(entry))
 		case "html-to-markdown":
 			extractors = append(extractors, &InProcessExtractor{tool: tool})

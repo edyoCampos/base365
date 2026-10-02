@@ -54,7 +54,8 @@ function parseInitialEntries(settings: Record<string, unknown>): ExtractorEntry[
     return {
       id: uniqueId(),
       name,
-      enabled: Boolean(e.enabled ?? true),
+      // the external extractor is opt-in; the in-process one is on by default
+      enabled: Boolean(e.enabled ?? name !== "defuddle"),
       timeout: Number(e.timeout ?? 0),
       base_url: String(e.base_url ?? ""),
     };
@@ -154,7 +155,7 @@ function SortableExtractorCard({ entry, index, onUpdate }: SortableCardProps) {
               <Input
                 value={entry.base_url}
                 onChange={(e) => onUpdate(entry.id, { base_url: e.target.value })}
-                placeholder="https://fetch.base365.example.com/"
+                placeholder="https://your-extractor.example.com/"
                 className="h-7 text-base md:text-sm"
               />
             </div>

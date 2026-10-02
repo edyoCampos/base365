@@ -81,11 +81,11 @@ func TestConfig_DefaultServiceName(t *testing.T) {
 		Endpoint: "localhost:4317",
 		Insecure: true,
 	}
-	if cfg.ServiceName == "" {
-		// New should default to "base365-gateway"
-		// We can't easily test this without a running OTLP server,
-		// but we verify the config struct accepts empty service name
+	// Empty service name falls back to the product default (RF-15).
+	if DefaultServiceName != "base365-gateway" {
+		t.Fatalf("DefaultServiceName = %q, want base365-gateway", DefaultServiceName)
 	}
+	_ = cfg
 }
 
 func TestConfig_Protocols(t *testing.T) {

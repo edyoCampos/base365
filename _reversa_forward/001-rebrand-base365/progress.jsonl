@@ -27,3 +27,27 @@
 {"ts": "2026-10-02T12:47:37Z", "action": "T027", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md"]}
 {"ts": "2026-10-02T12:47:37Z", "action": "T028", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md"]}
 {"ts": "2026-10-02T12:47:37Z", "action": "T029", "status": "done", "files": ["_reversa_forward/001-rebrand-base365/reports/post-rename-tests.md"]}
+{"ts": "2026-10-02T12:56:38Z", "action": "T030", "status": "done", "files": ["internal/crypto/env_denylist_test.go", "internal/workstation/security/allowlist_test.go"]}
+{"ts": "2026-10-02T12:56:38Z", "action": "T031", "status": "done", "files": ["internal/tools/env_scrub_test.go", "internal/tools/shell_deny_test.go"]}
+{"ts": "2026-10-02T12:56:38Z", "action": "T032", "status": "done", "files": ["ui/web/src/pages/cli-credentials/cli-credential-grant-env-section.test.ts"]}
+{"ts": "2026-10-02T12:56:38Z", "action": "T033", "status": "done", "files": ["internal/crypto/apikey_test.go"]}
+{"ts": "2026-10-02T12:56:38Z", "action": "T034", "status": "done", "files": ["internal/http/webhooks_auth_test.go"]}
+{"ts": "2026-10-02T12:56:38Z", "action": "T035", "status": "done", "files": ["internal/http/auth_helpers_test.go"]}
+{"ts": "2026-10-02T12:56:38Z", "action": "T036", "status": "done", "files": ["internal/mcp/tools_brand_test.go"]}
+{"ts": "2026-10-02T12:56:55Z", "action": "T037", "status": "done", "files": ["cmd/gateway_builtin_tools.go"]}
+{"ts": "2026-10-02T12:56:55Z", "action": "T038", "status": "done", "files": ["internal/tools/web_fetch_extractor_defuddle.go", "internal/tools/web_fetch_extractor.go"]}
+{"ts": "2026-10-02T12:56:55Z", "action": "T039", "status": "done", "files": ["internal/tools/web_fetch_extractor_test.go", "cmd/gateway_builtin_tools_webfetch_test.go"]}
+{"ts": "2026-10-02T12:57:21Z", "action": "T040", "status": "done", "files": ["ui/web/src/pages/builtin-tools/web-fetch-extractor-chain-form.tsx"]}
+{"ts": "2026-10-02T12:57:21Z", "action": "T041", "status": "done", "files": ["ui/desktop/frontend/src/components/tools/extractor-chain-form.tsx"]}
+{"ts": "2026-10-02T12:57:29Z", "action": "T042", "status": "done", "files": ["migrations", "internal/store/sqlitestore/schema.sql", "internal/upgrade/version.go"]}
+{"ts": "2026-10-02T12:57:29Z", "action": "T043", "status": "done", "files": ["tests/integration/rebrand_seed_test.go"]}
+{"ts": "2026-10-02T12:57:29Z", "action": "T044", "status": "done", "files": ["internal/store/sqlitestore/rebrand_seed_test.go", "cmd/gateway_builtin_tools_webfetch_sqlite_test.go"]}
+{"ts": "2026-10-02T12:57:29Z", "action": "T045", "status": "done", "files": ["ui/desktop/wails.json"]}
+{"ts": "2026-10-02T12:57:30Z", "action": "T046", "status": "done", "files": ["ui/desktop/keyring_test.go"]}
+{"ts": "2026-10-02T12:57:30Z", "action": "T047", "status": "done", "files": ["internal/updater/updater_test.go"]}
+{"ts": "2026-10-02T12:57:31Z", "action": "T048", "status": "done", "files": ["internal/tracing/otelexport/exporter.go", "internal/tracing/otelexport/exporter_test.go"]}
+{"ts": "2026-10-02T12:57:31Z", "action": "T049", "status": "done", "files": ["scripts", "docker-compose.yml", "compose.d", "Makefile", ".gitignore"]}
+{"ts": "2026-10-02T12:57:38Z", "action": "T050", "status": "done", "files": ["ui/web/public", "ui/web/index.html"]}
+{"ts": "2026-10-02T12:57:38Z", "action": "T051", "status": "done", "files": ["ui/desktop/frontend/public", "ui/desktop/frontend/index.html"]}
+{"ts": "2026-10-02T12:57:38Z", "action": "T052", "status": "done", "files": ["_statics"]}
+{"ts": "2026-10-02T12:57:39Z", "action": "T053", "status": "done", "files": ["ui/desktop/build"]}

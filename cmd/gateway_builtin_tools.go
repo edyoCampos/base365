@@ -12,6 +12,10 @@ import (
 
 // builtinToolSeedData returns the canonical list of built-in tools to seed into the database.
 // Seed preserves user-customized enabled/settings values across upgrades.
+// defaultWebFetchSettings is the web_fetch extractor chain seeded on new installs: in-process
+// extraction only. The external Defuddle service is opt-in (disabled, no built-in endpoint).
+const defaultWebFetchSettings = `{"extractors":[{"name":"defuddle","enabled":false,"max_retries":2},{"name":"html-to-markdown","enabled":true}]}`
+
 func builtinToolSeedData() []store.BuiltinToolDef {
 	defs := []store.BuiltinToolDef{
 		// filesystem
@@ -39,7 +43,7 @@ func builtinToolSeedData() []store.BuiltinToolDef {
 			Metadata: json.RawMessage(`{"config_hint":"Config → Tools → Web Search"}`),
 		},
 		{Name: "web_fetch", DisplayName: "Web Fetch", Description: "Fetch a web page or API endpoint and extract its text content", Category: "web", Enabled: true,
-			Settings: json.RawMessage(`{"extractors":[{"name":"defuddle","enabled":true,"base_url":"https://fetch.base365.example.com/","max_retries":2},{"name":"html-to-markdown","enabled":true}]}`),
+			Settings: json.RawMessage(defaultWebFetchSettings),
 		},
 
 		// memory
@@ -241,7 +245,8 @@ func migrateBuiltinToolSettings(ctx context.Context, bts store.BuiltinToolStore)
 
 // backfillWebFetchSettings ensures the web_fetch tool has extractor chain settings.
 // Existing deployments may have a web_fetch row with null/empty settings from a prior seed.
-// This backfills the default chain so Defuddle is available out of the box.
+// The default chain uses the in-process extractor only; the external Defuddle service is
+// opt-in (disabled, no endpoint) and must be enabled with its own base_url.
 func backfillWebFetchSettings(ctx context.Context, bts store.BuiltinToolStore) {
 	t, err := bts.Get(ctx, "web_fetch")
 	if err != nil || t == nil {
@@ -250,7 +255,7 @@ func backfillWebFetchSettings(ctx context.Context, bts store.BuiltinToolStore) {
 	if len(t.Settings) > 0 && string(t.Settings) != "{}" && string(t.Settings) != "null" {
 		return // already has settings, don't overwrite
 	}
-	defaultSettings := json.RawMessage(`{"extractors":[{"name":"defuddle","enabled":true,"base_url":"https://fetch.base365.example.com/","max_retries":2},{"name":"html-to-markdown","enabled":true}]}`)
+	defaultSettings := json.RawMessage(defaultWebFetchSettings)
 	if err := bts.Update(ctx, "web_fetch", map[string]any{"settings": defaultSettings}); err != nil {
 		slog.Warn("builtin_tools: failed to backfill web_fetch settings", "error", err)
 		return

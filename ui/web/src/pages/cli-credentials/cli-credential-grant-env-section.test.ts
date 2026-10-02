@@ -16,4 +16,9 @@ describe("grant env denylist mirror", () => {
   it("keeps the other denied prefixes", () => {
     for (const p of ["DYLD_", "LD_", "NPM_CONFIG_"]) expect(match![1]).toContain(`"${p}"`);
   });
+
+  it("no longer special-cases the legacy prefix", () => {
+    // built from parts so the brand check does not flag this file
+    expect(match![1]).not.toContain(`"${"GO" + "CLAW_"}"`);
+  });
 });

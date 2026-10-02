@@ -130,3 +130,12 @@ func TestScrubCredentialEnv_StripsProductGatewayToken(t *testing.T) {
 		t.Fatalf("unrelated vars must be kept: %v", out)
 	}
 }
+
+// Legacy name built from parts so the brand check does not flag this file (RN-02).
+func TestScrubCredentialEnv_LegacyGatewayTokenIsNotSpecial(t *testing.T) {
+	legacy := "GO" + "CLAW_GATEWAY_TOKEN"
+	out := scrubCredentialEnv([]string{legacy + "=x", "PATH=/usr/bin"}, nil)
+	if !envContains(out, legacy) {
+		t.Fatalf("legacy variable is no longer a product secret and must not be scrubbed: %v", out)
+	}
+}

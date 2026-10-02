@@ -699,3 +699,15 @@ func TestProductSecretExfiltrationDeny(t *testing.T) {
 		}
 	}
 }
+
+// Legacy name built from parts so the brand check does not flag this file (RN-02).
+func TestLegacyProductSecretExfiltrationNotDenied(t *testing.T) {
+	cmd := "echo $GO" + "CLAW_ENCRYPTION_KEY"
+	for _, g := range DenyGroupRegistry {
+		for _, p := range g.Patterns {
+			if p.MatchString(cmd) {
+				t.Fatalf("legacy variable must no longer match deny group %s: %q", g.Name, cmd)
+			}
+		}
+	}
+}

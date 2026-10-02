@@ -149,8 +149,8 @@
       "saving": "저장 중…",
       "cancel": "취소",
       "extractors": {
-        "defuddle": "Defuddle (Cloudflare Worker)",
-        "defuddleDesc": "Defuddle 라이브러리를 사용하여 fetch.base365.example.com를 통해 깨끗한 마크다운을 추출합니다.",
+        "defuddle": "Defuddle (외부 서비스)",
+        "defuddleDesc": "선택 사항입니다. 직접 운영하는 추출 서비스(Defuddle 라이브러리)를 통해 깨끗한 마크다운을 추출합니다. 기본적으로 꺼져 있으며 서비스 URL이 필요합니다. 없으면 페이지를 프로세스 내에서 추출합니다.",
         "html-to-markdown": "내장 HTML→Markdown",
         "html-to-markdownDesc": "숨겨진 요소 감지 기능이 있는 인-프로세스 DOM 기반 변환기입니다."
       }

@@ -23,3 +23,14 @@ func TestGenerateAPIKey_Format(t *testing.T) {
 		t.Fatalf("display prefix %q must be the first 8 hex chars of the random part", prefix)
 	}
 }
+
+// RN-02: keys with the pre-rebrand prefix are not recognized.
+func TestAPIKeyPrefix_LegacyNotUsed(t *testing.T) {
+	raw, _, _, err := GenerateAPIKey()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.HasPrefix(raw, "go"+"claw_") {
+		t.Fatalf("generated key must not use the legacy prefix: %q", raw)
+	}
+}

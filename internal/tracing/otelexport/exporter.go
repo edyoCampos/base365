@@ -34,6 +34,9 @@ type Exporter struct {
 	tracer   trace.Tracer
 }
 
+// DefaultServiceName is the OTEL service name used when Config.ServiceName is empty.
+const DefaultServiceName = "base365-gateway"
+
 // New creates an OTLP exporter with the given config.
 func New(ctx context.Context, cfg Config) (*Exporter, error) {
 	if cfg.Endpoint == "" {
@@ -42,7 +45,7 @@ func New(ctx context.Context, cfg Config) (*Exporter, error) {
 
 	serviceName := cfg.ServiceName
 	if serviceName == "" {
-		serviceName = "base365-gateway"
+		serviceName = DefaultServiceName
 	}
 
 	res, err := resource.New(ctx,

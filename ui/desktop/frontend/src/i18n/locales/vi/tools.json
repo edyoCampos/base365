@@ -148,8 +148,8 @@
       "saving": "Đang lưu…",
       "cancel": "Hủy",
       "extractors": {
-        "defuddle": "Defuddle (Cloudflare Worker)",
-        "defuddleDesc": "Trích xuất markdown sạch qua fetch.base365.example.com sử dụng thư viện Defuddle.",
+        "defuddle": "Defuddle (dịch vụ bên ngoài)",
+        "defuddleDesc": "Tùy chọn. Trích xuất markdown sạch qua dịch vụ trích xuất do bạn vận hành (thư viện Defuddle). Tắt theo mặc định, cần địa chỉ dịch vụ. Nếu không có, trang được trích xuất trực tiếp trong tiến trình.",
         "html-to-markdown": "HTML→Markdown tích hợp",
         "html-to-markdownDesc": "Bộ chuyển đổi dựa trên DOM trong tiến trình với khả năng phát hiện phần tử ẩn."
       }

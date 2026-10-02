@@ -6,3 +6,5 @@ node_modules/
 ui/web/dist/
 ui/desktop/frontend/dist/*
 !ui/desktop/frontend/dist/.gitkeep
+
+/base365

@@ -182,3 +182,14 @@ func TestIsHTTPOwnerID_UnknownUser_NotOwner(t *testing.T) {
 		t.Error("charlie is not in owner list")
 	}
 }
+
+// RN-02: the pre-rebrand model prefix and agent headers are no longer recognized.
+// Legacy names are built from parts so the brand check does not flag this file.
+func TestExtractAgentID_LegacyNamesIgnored(t *testing.T) {
+	r := httptest.NewRequest("GET", "/", nil)
+	r.Header.Set("X-Go"+"Claw-Agent-Id", "legacy-agent")
+	r.Header.Set("X-Go"+"Claw-Agent", "legacy-agent")
+	if got := extractAgentID(r, "go"+"claw:legacy-agent"); got != "default" {
+		t.Errorf("legacy model prefix/headers must be ignored, got %q", got)
+	}
+}

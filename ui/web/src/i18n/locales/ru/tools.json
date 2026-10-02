@@ -221,8 +221,8 @@
       "saving": "Сохранение…",
       "cancel": "Отмена",
       "extractors": {
-        "defuddle": "Defuddle (Cloudflare Worker)",
-        "defuddleDesc": "Извлекает чистый markdown через fetch.base365.example.com с помощью библиотеки Defuddle.",
+        "defuddle": "Defuddle (внешний сервис)",
+        "defuddleDesc": "Необязательно. Извлекает чистый markdown через сервис извлечения, который вы запускаете сами (библиотека Defuddle). По умолчанию выключено, нужен URL сервиса. Без него страницы извлекаются внутри процесса.",
         "html-to-markdown": "Встроенный HTML→Markdown",
         "html-to-markdownDesc": "Внутрипроцессный конвертер на основе DOM с обнаружением скрытых элементов."
       }

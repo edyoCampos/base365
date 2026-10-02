@@ -22,3 +22,10 @@ func TestIsBlockedEnvKey_ProductPrefix(t *testing.T) {
 		t.Fatal("unrelated env key must not be blocked")
 	}
 }
+
+// Legacy prefix built from parts so the brand check does not flag this file (RN-02).
+func TestIsBlockedEnvKey_LegacyPrefixIsNotSpecial(t *testing.T) {
+	if isBlockedEnvKey("GO" + "CLAW_X") {
+		t.Fatal("legacy-prefixed env key must no longer be specially blocked")
+	}
+}

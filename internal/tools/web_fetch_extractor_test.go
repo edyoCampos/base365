@@ -281,8 +281,9 @@ func TestDefuddleExtractorFromEntry(t *testing.T) {
 
 func TestDefuddleExtractorFromEntry_Defaults(t *testing.T) {
 	ext := NewDefuddleExtractorFromEntry(ExtractorEntry{Name: "defuddle", Enabled: true})
-	if ext.baseURL != defuddleBaseURL {
-		t.Errorf("expected default base URL %q, got %q", defuddleBaseURL, ext.baseURL)
+	// No built-in endpoint: only the configured base_url is ever used.
+	if ext.baseURL != "/" {
+		t.Errorf("expected no default endpoint (just the trailing slash), got %q", ext.baseURL)
 	}
 	if ext.client.Timeout != defuddleTimeout {
 		t.Errorf("expected default timeout %v, got %v", defuddleTimeout, ext.client.Timeout)
@@ -434,5 +435,35 @@ func TestFormatFetchResult_Truncation(t *testing.T) {
 		if !strings.Contains(result, "Content truncated") {
 			t.Error("expected truncation indicator in result")
 		}
+	}
+}
+
+// RN-07 / RF-18: an enabled defuddle entry without base_url must never call a built-in endpoint.
+func TestResolveExtractorChain_DefuddleWithoutBaseURLSkipped(t *testing.T) {
+	settings := `{"extractors":[{"name":"defuddle","enabled":true},{"name":"html-to-markdown","enabled":true}]}`
+	ctx := WithBuiltinToolSettings(context.Background(), BuiltinToolSettings{
+		"web_fetch": json.RawMessage(settings),
+	})
+	chain := ResolveExtractorChain(ctx, NewWebFetchTool(WebFetchConfig{}))
+	if chain == nil || len(chain.extractors) != 1 || chain.extractors[0].Name() != "html-to-markdown" {
+		t.Fatalf("expected only the in-process extractor, got %+v", chain)
+	}
+}
+
+func TestResolveExtractorChain_NoSettingsUsesInProcessOnly(t *testing.T) {
+	chain := ResolveExtractorChain(context.Background(), NewWebFetchTool(WebFetchConfig{}))
+	if chain == nil || len(chain.extractors) != 1 || chain.extractors[0].Name() != "html-to-markdown" {
+		t.Fatalf("expected only the in-process extractor, got %+v", chain)
+	}
+}
+
+func TestResolveExtractorChain_DefuddleWithBaseURLUsed(t *testing.T) {
+	settings := `{"extractors":[{"name":"defuddle","enabled":true,"base_url":"https://extractor.example.com/"},{"name":"html-to-markdown","enabled":true}]}`
+	ctx := WithBuiltinToolSettings(context.Background(), BuiltinToolSettings{
+		"web_fetch": json.RawMessage(settings),
+	})
+	chain := ResolveExtractorChain(ctx, NewWebFetchTool(WebFetchConfig{}))
+	if chain == nil || len(chain.extractors) != 2 || chain.extractors[0].Name() != "defuddle" {
+		t.Fatalf("expected defuddle first when base_url is configured, got %+v", chain)
 	}
 }
