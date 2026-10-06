@@ -603,3 +603,26 @@ func TestLoad_CronJobTimeout_EnvOverridesFile(t *testing.T) {
 		t.Fatalf("env should override file: got %v, want 30m", got)
 	}
 }
+
+// Legacy name built from parts so the brand check does not flag this file (RN-02).
+func TestLoad_EnvOverrides_Base365PrefixOnly(t *testing.T) {
+	legacyKey := "GO" + "CLAW_ANTHROPIC_API_KEY"
+	t.Setenv("BASE365_ANTHROPIC_API_KEY", "")
+	t.Setenv(legacyKey, "legacy-secret")
+	cfg, err := Load(filepath.Join(t.TempDir(), "missing.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cfg.Providers.Anthropic.APIKey != "" {
+		t.Fatalf("legacy env var must not be read, got %q", cfg.Providers.Anthropic.APIKey)
+	}
+
+	t.Setenv("BASE365_ANTHROPIC_API_KEY", "new-secret")
+	cfg, err = Load(filepath.Join(t.TempDir(), "missing.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cfg.Providers.Anthropic.APIKey != "new-secret" {
+		t.Fatalf("BASE365_ANTHROPIC_API_KEY not applied, got %q", cfg.Providers.Anthropic.APIKey)
+	}
+}

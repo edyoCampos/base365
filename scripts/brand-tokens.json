@@ -1,0 +1,144 @@
+{
+ "source": "Base365 logo e ícone.pdf, seção 05 CSS (V1)",
+ "light": {
+  "background": "#f4f2f7",
+  "foreground": "#1f1a2e",
+  "card": "#ffffff",
+  "card-foreground": "#1f1a2e",
+  "popover": "#ffffff",
+  "popover-foreground": "#1f1a2e",
+  "primary": "#7c4fe0",
+  "primary-foreground": "#ffffff",
+  "secondary": "#ebe7f3",
+  "secondary-foreground": "#1f1a2e",
+  "muted": "#ebe7f3",
+  "muted-foreground": "#5d5873",
+  "accent": "#ece6fb",
+  "accent-foreground": "#1f1a2e",
+  "destructive": "#c62a3a",
+  "destructive-foreground": "#ffffff",
+  "border": "#ddd8e8",
+  "input": "#8f89a4",
+  "ring": "#7c4fe0",
+  "chat-bubble-user": "#e9e2fb",
+  "sidebar": "#efecf5",
+  "sidebar-foreground": "#1f1a2e",
+  "sidebar-primary": "#7c4fe0",
+  "sidebar-primary-foreground": "#ffffff",
+  "sidebar-accent": "#e4ddf7",
+  "sidebar-accent-foreground": "#1f1a2e",
+  "sidebar-border": "#ddd8e8",
+  "sidebar-ring": "#7c4fe0",
+  "success": "#157a4a",
+  "success-foreground": "#ffffff",
+  "warning": "#f0a92a",
+  "warning-foreground": "#1f1a2e",
+  "chart-1": "#7c4fe0",
+  "chart-2": "#0e8a6a",
+  "chart-3": "#c27400",
+  "chart-4": "#2f86c6",
+  "chart-5": "#4a4560"
+ },
+ "dark": {
+  "background": "#15111f",
+  "foreground": "#f4f2f7",
+  "card": "#1f1a2e",
+  "card-foreground": "#f4f2f7",
+  "popover": "#241e35",
+  "popover-foreground": "#f4f2f7",
+  "primary": "#a487f2",
+  "primary-foreground": "#1f1a2e",
+  "secondary": "#2a2440",
+  "secondary-foreground": "#f4f2f7",
+  "muted": "#241f33",
+  "muted-foreground": "#a9a3bd",
+  "accent": "#2e2745",
+  "accent-foreground": "#f4f2f7",
+  "destructive": "#ef6b73",
+  "destructive-foreground": "#1f1a2e",
+  "border": "#322b47",
+  "input": "#6d6688",
+  "ring": "#a487f2",
+  "chat-bubble-user": "#33295a",
+  "sidebar": "#1a1626",
+  "sidebar-foreground": "#f4f2f7",
+  "sidebar-primary": "#a487f2",
+  "sidebar-primary-foreground": "#1f1a2e",
+  "sidebar-accent": "#2a2440",
+  "sidebar-accent-foreground": "#f4f2f7",
+  "sidebar-border": "#2c2640",
+  "sidebar-ring": "#a487f2",
+  "success": "#3ecf8e",
+  "success-foreground": "#1f1a2e",
+  "warning": "#f5b740",
+  "warning-foreground": "#1f1a2e",
+  "chart-1": "#a487f2",
+  "chart-2": "#2fc79c",
+  "chart-3": "#f2b63a",
+  "chart-4": "#6cc4f0",
+  "chart-5": "#c9c3dc"
+ },
+ "desktop": {
+  "surface-primary": [
+   "#f4f2f7",
+   "#15111f"
+  ],
+  "surface-secondary": [
+   "#ffffff",
+   "#1f1a2e"
+  ],
+  "surface-tertiary": [
+   "#ebe7f3",
+   "#2a2440"
+  ],
+  "text-primary": [
+   "#1f1a2e",
+   "#f4f2f7"
+  ],
+  "text-secondary": [
+   "#4a4560",
+   "#c9c3dc"
+  ],
+  "text-muted": [
+   "#5d5873",
+   "#9690ab"
+  ],
+  "accent": [
+   "#7c4fe0",
+   "#a487f2"
+  ],
+  "accent-hover": [
+   "#6a3dd0",
+   "#b8a0f6"
+  ],
+  "user-bubble": [
+   "#e9e2fb",
+   "#33295a"
+  ],
+  "agent-bubble": [
+   "#ffffff",
+   "#262038"
+  ],
+  "border": [
+   "#ddd8e8",
+   "#322b47"
+  ],
+  "success": [
+   "#157a4a",
+   "#3ecf8e"
+  ],
+  "warning": [
+   "#a5620a",
+   "#f5b740"
+  ],
+  "error": [
+   "#c62a3a",
+   "#ef6b73"
+  ],
+  "idle": [
+   "#6f6a86",
+   "#8a84a0"
+  ]
+ },
+ "desktopFormat": "[claro, escuro]"
+}

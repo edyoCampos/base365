@@ -168,3 +168,5 @@ desktop-dmg: desktop-build
 # Brand check: fails when the old product name appears outside scripts/brand-exceptions.txt
 check-brand:
 	@scripts/check-brand.sh
+	@scripts/check-brand-ui.sh
+	@node scripts/check-brand-tokens.mjs

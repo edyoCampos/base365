@@ -162,7 +162,7 @@ refactor: extract provider retry logic
 The product is **Base365**. The previous product name must not appear in file contents or file names.
 
 ```bash
-make check-brand          # fails and prints file:line when the old name is found
+make check-brand          # fails and prints file:line when the old name is found; also checks UI identity and colour tokens
 scripts/check-brand.test.sh   # self-test of the check
 ```
 
