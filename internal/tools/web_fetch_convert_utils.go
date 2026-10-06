@@ -136,12 +136,10 @@ func cleanTextOutput(s string) string {
 	return strings.TrimSpace(s)
 }
 
-// stripTagsFallback is a last-resort fallback if the HTML parser fails.
-var reStripTags = regexp.MustCompile(`<[^>]+>`)
-
-func stripTagsFallback(s string) string {
-	return strings.TrimSpace(reStripTags.ReplaceAllString(s, ""))
-}
+// unparseableHTMLNotice replaces content the HTML parser rejects (for example nesting deeper
+// than the parser allows). Stripping tags with a regex instead would leak script, hidden and
+// <noscript> text, which an attacker can trigger on purpose.
+const unparseableHTMLNotice = "[Page could not be parsed safely (malformed or too deeply nested HTML). Try browser automation instead.]"
 
 // markdownToText strips markdown formatting for text mode.
 func markdownToText(md string) string {

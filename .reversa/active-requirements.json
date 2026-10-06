@@ -1,10 +1,15 @@
 {
   "schema-version": 1,
-  "feature-dir": "_reversa_forward/001-rebrand-base365",
-  "feature-id": "001",
-  "short-name": "rebrand-base365",
-  "started-at": "2026-10-01T23:09:07-03:00",
-  "current-stage": "requirements",
-  "stages-completed": [],
+  "feature-dir": "_reversa_forward/002-extracao-conteudo-principal",
+  "feature-id": "002",
+  "short-name": "extracao-conteudo-principal",
+  "started-at": "2026-10-06T09:14:15-03:00",
+  "current-stage": "to-do",
+  "stages-completed": [
+    "requirements",
+    "plan",
+    "to-do",
+    "audit"
+  ],
   "paused-features": []
 }

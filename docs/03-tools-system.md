@@ -92,7 +92,7 @@ The agent loop also uses this metadata for parallel tool-call scheduling. Only r
 | Tool | Description |
 |---|---|
 | `web_search` | Search the web (Exa, Tavily, Brave, DuckDuckGo provider chain) |
-| `web_fetch` | Fetch and parse a URL (HTML → Markdown); domain allow/block policy |
+| `web_fetch` | Fetch a URL; HTML returns the main content with title, author and date (whole page for listings, or with `fullPage`); charset detection; domain allow/block policy |
 
 ### Memory (`group:memory`)
 

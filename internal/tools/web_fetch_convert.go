@@ -79,24 +79,28 @@ var blockElements = map[atom.Atom]bool{
 func htmlToMarkdown(rawHTML string) string {
 	doc, err := html.Parse(strings.NewReader(rawHTML))
 	if err != nil {
-		return stripTagsFallback(rawHTML)
+		return unparseableHTMLNotice
 	}
-	body := findBody(doc)
-	c := &converter{mode: modeMarkdown}
-	c.walkChildren(body)
-	return cleanOutput(c.buf.String())
+	return renderNode(findBody(doc), modeMarkdown)
 }
 
 // htmlToText extracts plain text from HTML content using DOM parsing.
 func htmlToText(rawHTML string) string {
 	doc, err := html.Parse(strings.NewReader(rawHTML))
 	if err != nil {
-		return stripTagsFallback(rawHTML)
+		return unparseableHTMLNotice
 	}
-	body := findBody(doc)
-	c := &converter{mode: modeText}
-	c.walkChildren(body)
-	return cleanTextOutput(c.buf.String())
+	return renderNode(findBody(doc), modeText)
+}
+
+// renderNode converts the children of an already-parsed node to markdown or plain text.
+func renderNode(n *html.Node, mode convertMode) string {
+	c := &converter{mode: mode}
+	c.walkChildren(n)
+	if mode == modeText {
+		return cleanTextOutput(c.buf.String())
+	}
+	return cleanOutput(c.buf.String())
 }
 
 func (c *converter) walk(n *html.Node) {

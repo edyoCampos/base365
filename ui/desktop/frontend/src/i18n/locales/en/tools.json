@@ -151,7 +151,7 @@
         "defuddle": "Defuddle (external service)",
         "defuddleDesc": "Optional. Extracts clean markdown through an extraction service you run (Defuddle library). Off by default; requires the service URL. Without it, pages are extracted in-process.",
         "html-to-markdown": "Built-in HTML→Markdown",
-        "html-to-markdownDesc": "In-process DOM-based converter with hidden element detection."
+        "html-to-markdownDesc": "In-process extractor: returns the page's main content with title, author and date, falling back to the whole page for listings and front pages. Detects hidden elements."
       }
     },
     "mediaChain": {

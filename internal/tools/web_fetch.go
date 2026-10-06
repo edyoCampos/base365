@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"log/slog"
@@ -12,9 +13,11 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
+	"unicode/utf8"
 )
 
 // Matching TS src/agents/tools/web-fetch.ts constants.
@@ -34,6 +37,18 @@ type WebFetchTool struct {
 	allowedDomains []string // domains when policy="allowlist" (supports "*.example.com")
 	blockedDomains []string // always checked regardless of policy (supports "*.example.com")
 	mu             sync.RWMutex
+
+	// Test seams, nil in production. Unexported on purpose: no constructor or config sets them.
+	transport http.RoundTripper         // nil = default transport
+	checkSSRF func(rawURL string) error // nil = CheckSSRF
+}
+
+// ssrf applies the SSRF check (CheckSSRF unless a test replaced it).
+func (t *WebFetchTool) ssrf(rawURL string) error {
+	if t.checkSSRF != nil {
+		return t.checkSSRF(rawURL)
+	}
+	return CheckSSRF(rawURL)
 }
 
 // WebFetchConfig holds configuration for the web fetch tool.
@@ -146,7 +161,7 @@ func matchDomainList(hostname string, patterns []string) bool {
 func (t *WebFetchTool) Name() string { return "web_fetch" }
 
 func (t *WebFetchTool) Description() string {
-	return "Fetch a URL and extract its content. Supports HTML (converted to markdown/text), JSON, and plain text. If content exceeds the character limit, full content is saved to a temp file — use shell or read_file to access it. Includes SSRF protection."
+	return "Fetch a URL and extract its content. For HTML pages returns the main content (article text without menus, sidebars or cookie banners) with title, author, date and site when available, falling back to the whole page for listings and front pages; set fullPage to get the whole page. Also supports JSON and plain text. If content exceeds the character limit, full content is saved to a temp file — use shell or read_file to access it. Includes SSRF protection."
 }
 
 func (t *WebFetchTool) Parameters() map[string]any {
@@ -166,6 +181,10 @@ func (t *WebFetchTool) Parameters() map[string]any {
 				"type":        "number",
 				"description": "Maximum characters to return (truncates when exceeded). Default: 60000. Omit to use the default.",
 				"minimum":     100.0,
+			},
+			"fullPage": map[string]any{
+				"type":        "boolean",
+				"description": "Return the whole page instead of only the main content. Use for front pages, listings, search results, or when the main-content result is missing something you need (e.g. a price). Default: false.",
 			},
 		},
 		"required": []string{"url"},
@@ -191,7 +210,7 @@ func (t *WebFetchTool) Execute(ctx context.Context, args map[string]any) *Result
 	}
 
 	// SSRF protection
-	if err := CheckSSRF(rawURL); err != nil {
+	if err := t.ssrf(rawURL); err != nil {
 		return ErrorResult(fmt.Sprintf("SSRF protection: %v", err))
 	}
 
@@ -230,19 +249,20 @@ func (t *WebFetchTool) Execute(ctx context.Context, args map[string]any) *Result
 		}
 	}
 
+	fullPage, _ := args["fullPage"].(bool)
+
 	// Check cache (scoped per channel to prevent cross-channel cache poisoning)
 	channel := ToolChannelFromCtx(ctx)
-	cacheKey := fmt.Sprintf("fetch:%s:%s:%s:%d", channel, rawURL, extractMode, maxChars)
+	cacheKey := fmt.Sprintf("fetch:%s:%s:%s:%d:%t", channel, rawURL, extractMode, maxChars, fullPage)
 	if cached, ok := t.cache.get(cacheKey); ok {
 		slog.Debug("web_fetch cache hit", "url", rawURL)
 		return NewResult(cached)
 	}
 
 	// Fetch
-	result, err := t.doFetch(ctx, rawURL, extractMode, maxChars, pol)
+	result, err := t.doFetch(ctx, rawURL, extractMode, maxChars, fullPage, pol)
 	if err != nil {
-		errMsg := truncateStr(err.Error(), defaultErrorMaxChars)
-		return ErrorResult(fmt.Sprintf("fetch failed: %s", errMsg))
+		return ErrorResult(fetchErrorMessage(err))
 	}
 
 	wrapped := wrapExternalContent(result, "Web Fetch", true)
@@ -250,38 +270,106 @@ func (t *WebFetchTool) Execute(ctx context.Context, args map[string]any) *Result
 	return NewResult(wrapped)
 }
 
-func (t *WebFetchTool) doFetch(ctx context.Context, rawURL, extractMode string, maxChars int, pol webFetchPolicy) (string, error) {
+// fetchErrorMessage builds the error shown to the model. The diagnostic part is truncated; an
+// origin error page excerpt is appended afterwards, whole and wrapped as untrusted content, so
+// truncation can never cut the wrapper.
+func fetchErrorMessage(err error) string {
+	msg := "fetch failed: " + truncateStr(err.Error(), defaultErrorMaxChars)
+	var statusErr *httpStatusError
+	if errors.As(err, &statusErr) && statusErr.Excerpt != "" {
+		msg += "\n\nResponse body excerpt:\n" + wrapExternalContent(statusErr.Excerpt, "Web Fetch error response", true)
+	}
+	return msg
+}
+
+func (t *WebFetchTool) doFetch(ctx context.Context, rawURL, extractMode string, maxChars int, fullPage bool, pol webFetchPolicy) (string, error) {
 	// For markdown mode, use the extractor chain (Defuddle → InProcess waterfall)
 	// resolved from builtin_tools settings stored in context.
-	// InProcessExtractor delegates to fetchRawContent (same path as doDirectFetch),
+	// InProcessExtractor delegates to fetchRaw (same path as doDirectFetch),
 	// so no fallthrough is needed — it would just retry the same request.
 	if extractMode == "markdown" {
 		chain := ResolveExtractorChain(ctx, t)
 		if chain != nil {
-			result, err := chain.Extract(ctx, rawURL)
-			if err == nil {
-				return formatFetchResult(result.Content, result.Extractor, rawURL, maxChars, ctx), nil
+			result, err := chain.Extract(ctx, ExtractRequest{URL: rawURL, MaxChars: maxChars, FullPage: fullPage})
+			if err != nil {
+				if isTerminalFetchError(err) {
+					return "", err
+				}
+				return "", fmt.Errorf("all extractors failed: %w", err)
 			}
-			return "", fmt.Errorf("all extractors failed: %w", err)
+			return formatFetchResult(fetchHeader{
+				requestedURL:   rawURL,
+				finalURL:       result.FinalURL,
+				status:         result.Status,
+				extractor:      result.Extractor,
+				method:         result.Method,
+				fallbackReason: result.FallbackReason,
+				meta:           result.Meta,
+			}, result.Content, maxChars, ctx), nil
 		}
 	}
 
 	// Text mode or no chain available — use direct HTTP fetch.
-	return t.doDirectFetch(ctx, rawURL, extractMode, maxChars, pol)
+	return t.doDirectFetch(ctx, rawURL, extractMode, maxChars, fullPage, pol)
 }
 
-// fetchRawResult holds the output from fetchRawContent.
+// fetchRawResult holds the output from fetchRaw.
 type fetchRawResult struct {
-	content    string
-	extractor  string
-	finalURL   string
-	statusCode int
+	content        string
+	extractor      string
+	finalURL       string
+	statusCode     int
+	method         string // HTML only: contentMain | contentFullPage
+	fallbackReason string // HTML only, when method is contentFullPage
+	meta           pageMeta
 }
 
-// fetchRawContent performs HTTP GET with full security checks (SSRF, domain policy on
-// redirects) and routes content by type. Returns raw extracted content without formatting.
-// Used by both doDirectFetch (text mode) and InProcessExtractor (chain fallback).
-func (t *WebFetchTool) fetchRawContent(ctx context.Context, rawURL, extractMode string, maxChars int, pol webFetchPolicy) (fetchRawResult, error) {
+// fetchOptions controls a single fetch.
+type fetchOptions struct {
+	extractMode string // "markdown" | "text"
+	maxChars    int
+	fullPage    bool // HTML: skip main-content extraction
+}
+
+const (
+	fetchReadFloor        = 512 * 1024
+	fetchHTMLReadFloor    = 2 << 20 // extraction shrinks HTML, so read more of it
+	fetchReadCeiling      = 8 << 20 // hard cap on bytes read, whatever maxChars asks for
+	httpErrorExcerptRunes = 500
+)
+
+// httpStatusError is an HTTP 4xx/5xx response from the origin. It is permanent: retrying or
+// asking another extractor for the same URL cannot help. Excerpt is untrusted page text and
+// must be wrapped with wrapExternalContent before it reaches the model.
+type httpStatusError struct {
+	Code    int
+	Text    string
+	Excerpt string
+}
+
+func (e *httpStatusError) Error() string {
+	return fmt.Sprintf("HTTP %d %s", e.Code, e.Text)
+}
+
+// fetchPolicyError is a redirect refused by SSRF protection, the domain policy or the hop limit. It is
+// permanent: another extractor (an external service following redirects itself) must not be
+// asked for the same URL, or it would fetch the blocked target.
+type fetchPolicyError struct{ err error }
+
+func (e *fetchPolicyError) Error() string { return e.err.Error() }
+func (e *fetchPolicyError) Unwrap() error { return e.err }
+
+// isTerminalFetchError reports whether err must end the extractor chain without retry or cascade.
+func isTerminalFetchError(err error) bool {
+	var statusErr *httpStatusError
+	var policyErr *fetchPolicyError
+	return errors.As(err, &statusErr) || errors.As(err, &policyErr)
+}
+
+// fetchRaw performs HTTP GET with full security checks (SSRF, domain policy on redirects),
+// decodes the charset and routes content by type. Returns extracted content without formatting.
+// The caller (Execute) has already SSRF-checked rawURL.
+func (t *WebFetchTool) fetchRaw(ctx context.Context, rawURL string, opts fetchOptions, pol webFetchPolicy) (fetchRawResult, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", rawURL, nil)
 	if err != nil {
 		return fetchRawResult{}, fmt.Errorf("create request: %w", err)
@@ -289,29 +377,35 @@ func (t *WebFetchTool) fetchRawContent(ctx context.Context, rawURL, extractMode 
 	req.Header.Set("User-Agent", fetchUserAgent)
 	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
 
-	redirectCount := 0
-	client := &http.Client{
-		Timeout: time.Duration(fetchTimeoutSeconds) * time.Second,
-		Transport: &http.Transport{
+	transport := t.transport
+	if transport == nil {
+		transport = &http.Transport{
 			ForceAttemptHTTP2:   true,
 			MaxIdleConns:        10,
 			IdleConnTimeout:     30 * time.Second,
 			TLSHandshakeTimeout: 15 * time.Second,
-		},
+		}
+	}
+	redirectCount := 0
+	client := &http.Client{
+		Timeout:   time.Duration(fetchTimeoutSeconds) * time.Second,
+		Transport: transport,
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			redirectCount++
-			if redirectCount > defaultFetchMaxRedirect {
-				return fmt.Errorf("stopped after %d redirects", defaultFetchMaxRedirect)
-			}
-			if err := CheckSSRF(req.URL.String()); err != nil {
-				return fmt.Errorf("redirect SSRF protection: %w", err)
+			// Policy first, so every hop is checked; then the hop limit. Both are terminal: an
+			// external extractor that follows redirects itself must not get the same URL.
+			if err := t.ssrf(req.URL.String()); err != nil {
+				return &fetchPolicyError{fmt.Errorf("redirect SSRF protection: %w", err)}
 			}
 			redirectHost := req.URL.Hostname()
 			if matchDomainList(redirectHost, pol.blockedDomains) {
-				return fmt.Errorf("redirect to %q blocked: domain is in blocklist", redirectHost)
+				return &fetchPolicyError{fmt.Errorf("redirect to %q blocked: domain is in blocklist", redirectHost)}
 			}
 			if pol.mode == "allowlist" && !matchDomainList(redirectHost, pol.allowedDomains) {
-				return fmt.Errorf("redirect to %q blocked: domain not in allowlist", redirectHost)
+				return &fetchPolicyError{fmt.Errorf("redirect to %q blocked: domain not in allowlist", redirectHost)}
+			}
+			redirectCount++
+			if redirectCount > defaultFetchMaxRedirect {
+				return &fetchPolicyError{fmt.Errorf("stopped after %d redirects", defaultFetchMaxRedirect)}
 			}
 			return nil
 		},
@@ -323,83 +417,156 @@ func (t *WebFetchTool) fetchRawContent(ctx context.Context, rawURL, extractMode 
 	}
 	defer resp.Body.Close()
 
-	readLimit := int64(max(maxChars*10, 512*1024))
-	body, err := io.ReadAll(io.LimitReader(resp.Body, readLimit))
+	contentType := resp.Header.Get("Content-Type")
+	isHTML := strings.Contains(contentType, "text/html") || strings.Contains(contentType, "application/xhtml")
+	readFloor := fetchReadFloor
+	if isHTML {
+		readFloor = fetchHTMLReadFloor
+	}
+	body, err := io.ReadAll(io.LimitReader(resp.Body, fetchReadLimit(opts.maxChars, readFloor)))
 	if err != nil {
 		return fetchRawResult{}, fmt.Errorf("read body: %w", err)
 	}
+	finalURL := resp.Request.URL
 
-	contentType := resp.Header.Get("Content-Type")
-	finalURL := resp.Request.URL.String()
+	if resp.StatusCode >= 400 {
+		return fetchRawResult{}, &httpStatusError{
+			Code:    resp.StatusCode,
+			Text:    http.StatusText(resp.StatusCode),
+			Excerpt: errorExcerpt(body, contentType, isHTML),
+		}
+	}
 
-	var text string
-	var extractor string
-
+	res := fetchRawResult{finalURL: finalURL.String(), statusCode: resp.StatusCode}
 	switch {
 	case strings.Contains(contentType, "application/json"):
-		text, extractor = extractJSON(body)
+		res.content, res.extractor = extractJSON(body)
 
 	case strings.Contains(contentType, "text/markdown"):
-		text = string(body)
-		extractor = "cf-markdown"
-		if extractMode == "text" {
-			text = markdownToText(text)
+		res.content, _ = decodeBody(body, contentType)
+		res.extractor = "cf-markdown"
+		if opts.extractMode == "text" {
+			res.content = markdownToText(res.content)
 		}
 
-	case strings.Contains(contentType, "text/html"),
-		strings.Contains(contentType, "application/xhtml"):
-		if extractMode == "markdown" {
-			text = htmlToMarkdown(string(body))
-			extractor = "html-to-markdown"
-		} else {
-			text = htmlToText(string(body))
-			extractor = "html-to-text"
+	case isHTML:
+		text, charsetName := decodeBody(body, contentType)
+		mode, extractor := modeMarkdown, "html-to-markdown"
+		if opts.extractMode == "text" {
+			mode, extractor = modeText, "html-to-text"
 		}
-		if text == "" && len(body) > 0 {
-			text = "[No content extracted. The page may require JavaScript to render, " +
+		page := extractPage(text, finalURL, mode, opts.fullPage, charsetName)
+		res.content, res.extractor = page.content, extractor
+		res.method, res.fallbackReason, res.meta = page.method, page.fallbackReason, page.meta
+		if res.content == "" && len(body) > 0 {
+			res.content = "[No content extracted. The page may require JavaScript to render, " +
 				"or returned a bot-protection challenge. Try using browser automation instead.]"
 		}
 
-	default:
-		text = string(body)
-		extractor = "raw"
-	}
+	case strings.HasPrefix(contentType, "text/"):
+		res.content, _ = decodeBody(body, contentType)
+		res.extractor = "raw"
 
-	return fetchRawResult{
-		content:    text,
-		extractor:  extractor,
-		finalURL:   finalURL,
-		statusCode: resp.StatusCode,
-	}, nil
+	default:
+		res.content = string(body)
+		res.extractor = "raw"
+	}
+	return res, nil
 }
 
-// doDirectFetch wraps fetchRawContent with full HTTP metadata formatting.
+// fetchReadLimit is max(maxChars×10, floor), capped at fetchReadCeiling. maxChars comes from
+// the model and is otherwise unbounded.
+func fetchReadLimit(maxChars, floor int) int64 {
+	if maxChars <= 0 || maxChars > fetchReadCeiling/10 {
+		return fetchReadCeiling
+	}
+	return int64(max(maxChars*10, floor))
+}
+
+// errorExcerpt returns the start of an error response body as plain text.
+func errorExcerpt(body []byte, contentType string, isHTML bool) string {
+	text, _ := decodeBody(body, contentType)
+	if isHTML {
+		text = htmlToText(text)
+	}
+	return truncateRunes(strings.TrimSpace(text), httpErrorExcerptRunes)
+}
+
+// doDirectFetch wraps fetchRaw with full HTTP metadata formatting.
 // Used for text mode extraction and as ultimate fallback.
-func (t *WebFetchTool) doDirectFetch(ctx context.Context, rawURL, extractMode string, maxChars int, pol webFetchPolicy) (string, error) {
-	raw, err := t.fetchRawContent(ctx, rawURL, extractMode, maxChars, pol)
+func (t *WebFetchTool) doDirectFetch(ctx context.Context, rawURL, extractMode string, maxChars int, fullPage bool, pol webFetchPolicy) (string, error) {
+	raw, err := t.fetchRaw(ctx, rawURL, fetchOptions{extractMode: extractMode, maxChars: maxChars, fullPage: fullPage}, pol)
 	if err != nil {
 		return "", err
 	}
-
-	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("URL: %s\n", raw.finalURL))
-	if raw.finalURL != rawURL {
-		sb.WriteString(fmt.Sprintf("Redirected from: %s\n", rawURL))
-	}
-	sb.WriteString(fmt.Sprintf("Status: %d\n", raw.statusCode))
-	sb.WriteString(fmt.Sprintf("Extractor: %s\n", raw.extractor))
-	appendContent(&sb, raw.content, maxChars, raw.finalURL, ctx)
-
-	return sb.String(), nil
+	return formatFetchResult(fetchHeader{
+		requestedURL:   rawURL,
+		finalURL:       raw.finalURL,
+		status:         raw.statusCode,
+		extractor:      raw.extractor,
+		method:         raw.method,
+		fallbackReason: raw.fallbackReason,
+		meta:           raw.meta,
+	}, raw.content, maxChars, ctx), nil
 }
 
-// formatFetchResult builds the metadata-prefixed response for chain-extracted content.
-func formatFetchResult(content, extractorName, rawURL string, maxChars int, ctx context.Context) string {
+// fetchHeader is what the result header reports about a fetch.
+type fetchHeader struct {
+	requestedURL   string
+	finalURL       string // empty = requestedURL
+	status         int    // 0 = unknown (external extraction service)
+	extractor      string
+	method         string // contentMain | contentFullPage | "external" | "" (non-HTML)
+	fallbackReason string
+	meta           pageMeta
+}
+
+// formatFetchResult builds the metadata-prefixed response. Empty fields are omitted.
+func formatFetchResult(h fetchHeader, content string, maxChars int, ctx context.Context) string {
+	finalURL := h.finalURL
+	if finalURL == "" {
+		finalURL = h.requestedURL
+	}
 	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("URL: %s\n", rawURL))
-	sb.WriteString(fmt.Sprintf("Extractor: %s\n", extractorName))
-	appendContent(&sb, content, maxChars, rawURL, ctx)
+	line := func(key, value string) {
+		if value != "" {
+			fmt.Fprintf(&sb, "%s: %s\n", key, value)
+		}
+	}
+	line("URL", finalURL)
+	if finalURL != h.requestedURL {
+		line("Redirected from", h.requestedURL)
+	}
+	if h.status > 0 {
+		line("Status", strconv.Itoa(h.status))
+	}
+	line("Extractor", h.extractor)
+	switch {
+	case h.method == contentFullPage && h.fallbackReason != "":
+		line("Content", fmt.Sprintf("%s (fallback: %s)", contentFullPage, h.fallbackReason))
+	case h.method == contentMain || h.method == contentFullPage:
+		line("Content", h.method)
+	}
+	line("Title", h.meta.Title)
+	line("Author", h.meta.Author)
+	line("Published", h.meta.Published)
+	line("Description", h.meta.Description)
+	line("Site", h.meta.Site)
+	line("Language", h.meta.Language)
+	appendContent(&sb, content, maxChars, finalURL, ctx)
 	return sb.String()
+}
+
+// cutAtRuneBoundary returns the longest prefix of s that is at most n bytes and does not
+// split a UTF-8 rune.
+func cutAtRuneBoundary(s string, n int) string {
+	if len(s) <= n {
+		return s
+	}
+	for n > 0 && !utf8.RuneStart(s[n]) {
+		n--
+	}
+	return s[:n]
 }
 
 // appendContent writes content to the builder, handling truncation and temp file overflow.
@@ -409,7 +576,7 @@ func appendContent(sb *strings.Builder, text string, maxChars int, sourceURL str
 		tmpPath, writeErr := writeWebFetchTempFile(workspace, text, sourceURL)
 		if writeErr != nil {
 			slog.Warn("web_fetch: failed to write temp file, falling back to truncation", "error", writeErr)
-			text = text[:maxChars]
+			text = cutAtRuneBoundary(text, maxChars)
 			sb.WriteString(fmt.Sprintf("Truncated: true (limit: %d chars)\n", maxChars))
 			sb.WriteString(fmt.Sprintf("Length: %d\n", len(text)))
 			sb.WriteString("\n")
@@ -419,7 +586,7 @@ func appendContent(sb *strings.Builder, text string, maxChars int, sourceURL str
 			sb.WriteString(fmt.Sprintf("Full-Content-File: %s\n", tmpPath))
 			sb.WriteString(fmt.Sprintf("Length: %d\n", maxChars))
 			sb.WriteString("\n")
-			sb.WriteString(text[:maxChars])
+			sb.WriteString(cutAtRuneBoundary(text, maxChars))
 			sb.WriteString(fmt.Sprintf("\n\n[Content truncated at %d chars. Full content (%d chars) saved to: %s — use shell/read_file to access the rest.]",
 				maxChars, len(text), tmpPath))
 		}

@@ -8,7 +8,6 @@ A checagem de marca (`make check-brand`) imprime um aviso com a contagem de term
 |---|---------|-------------------------|--------------------|-------------------|
 | 1 | Documentação e site | `https://edyocampos.github.io/base365/` (GitHub Pages do repositório). Os links com âncoras de páginas, como `#quick-start`, ainda não existem. | Publicar o GitHub Pages com as páginas, ou um domínio próprio. | Links de documentação quebrados na interface, nos READMEs e nas mensagens. |
 | 2 | Domínio e e-mail de contato | `base365.example.com` (exemplos), `contact@base365.example.com` (`ui/desktop/wails.json`). | Domínio próprio e caixa de e-mail. | E-mail de autor errado nos metadados do app desktop. |
-| 3 | Serviço de extração de páginas | Extrator `defuddle` desativado e sem endereço. A leitura de páginas usa a extração interna. | Cloudflare Worker próprio com Defuddle. Plano em `_reversa_forward/backlog/extrator-proprio-base365.md`. | Nenhum: a extração interna funciona. Perde-se qualidade em páginas muito dependentes de JavaScript. |
 | 4 | Registro de imagens | `ghcr.io/edyocampos/base365` (e `-web`). | Habilitar o GHCR no repositório e publicar as imagens. | `docker pull` e os compose falham até a primeira publicação. |
 | 5 | Docker Hub | `edyocampos/base365`. | Criar o repositório no Docker Hub ou remover as referências. | Instruções de instalação por Docker Hub não funcionam. |
 | 6 | Releases do app desktop | `edyoCampos/base365` (tags `lite-v*`), artefatos `base365-lite.app` e `base365-lite.exe`. | Fluxo de release (`release-desktop.yaml`) publicando esses nomes. O `.github/` **não existe** neste checkout. | O atualizador do desktop não encontra versões. |
@@ -19,3 +18,7 @@ A checagem de marca (`make check-brand`) imprime um aviso com a contagem de term
 | 11 | Scripts de instalação | `scripts/install.sh`, `scripts/install-lite.sh`, `scripts/install-lite.ps1` apontam para `edyoCampos/base365` e para o GitHub Pages. | Publicar as releases e, se quiser, uma URL curta. | Instalação por `curl \| bash` falha até haver releases. |
 | 12 | Bots e contas nos provedores de canal | Nomes de bots em Telegram, Zalo, Feishu e Discord ficam fora do código. | Renomear ou criar os bots com a marca nova. | O nome visível nos canais continua o antigo. |
 | 13 | Licença | `LICENSE` é CC BY-NC 4.0 (atribuição, uso não comercial). A confirmação de que a aquisição cobre uso comercial e a remoção de créditos está em `_reversa_forward/001-rebrand-base365/reports/licenca-confirmacao.md`. Os READMEs traduzidos ainda mostram o selo "MIT" e o texto de licença MIT. | Confirmar o texto de licença correto e alinhar os READMEs traduzidos ao `LICENSE`. | Informação de licença contraditória. |
+
+## Resolvidos
+
+- **3. Serviço de extração de páginas** (2026-10-06): deixou de ser necessário. A ferramenta `web_fetch` passou a extrair o conteúdo principal dentro do próprio gateway (título, autor, data e texto sem menus nem banners), com detecção de charset e sem enviar URLs a terceiros. O extrator externo `defuddle` continua opcional e desativado. Os números dos demais itens foram mantidos.

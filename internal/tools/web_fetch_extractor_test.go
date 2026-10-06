@@ -3,6 +3,7 @@ package tools
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -48,11 +49,11 @@ type mockExtractor struct {
 }
 
 func (m *mockExtractor) Name() string { return m.name }
-func (m *mockExtractor) Extract(_ context.Context, _ string) (string, error) {
+func (m *mockExtractor) Extract(_ context.Context, _ ExtractRequest) (ExtractOutput, error) {
 	if m.err != nil {
-		return "", m.err
+		return ExtractOutput{}, m.err
 	}
-	return m.content, nil
+	return ExtractOutput{Content: m.content}, nil
 }
 
 // qualityContent returns a string that passes isQualityContent.
@@ -67,7 +68,7 @@ func TestExtractorChain_FirstSuccess(t *testing.T) {
 		&mockExtractor{name: "first", content: qualityContent()},
 		&mockExtractor{name: "second", content: "should not reach"},
 	)
-	result, err := chain.Extract(context.Background(), "https://example.com")
+	result, err := chain.Extract(context.Background(), ExtractRequest{URL: "https://example.com"})
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -81,7 +82,7 @@ func TestExtractorChain_FirstFailsSecondSucceeds(t *testing.T) {
 		&mockExtractor{name: "first", err: fmt.Errorf("network error")},
 		&mockExtractor{name: "second", content: qualityContent()},
 	)
-	result, err := chain.Extract(context.Background(), "https://example.com")
+	result, err := chain.Extract(context.Background(), ExtractRequest{URL: "https://example.com"})
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -95,7 +96,7 @@ func TestExtractorChain_FirstLowQualitySecondSucceeds(t *testing.T) {
 		&mockExtractor{name: "first", content: "too short"},
 		&mockExtractor{name: "second", content: qualityContent()},
 	)
-	result, err := chain.Extract(context.Background(), "https://example.com")
+	result, err := chain.Extract(context.Background(), ExtractRequest{URL: "https://example.com"})
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -109,7 +110,7 @@ func TestExtractorChain_AllFail(t *testing.T) {
 		&mockExtractor{name: "first", err: fmt.Errorf("fail1")},
 		&mockExtractor{name: "second", err: fmt.Errorf("fail2")},
 	)
-	_, err := chain.Extract(context.Background(), "https://example.com")
+	_, err := chain.Extract(context.Background(), ExtractRequest{URL: "https://example.com"})
 	if err == nil {
 		t.Fatal("expected error when all extractors fail")
 	}
@@ -123,7 +124,7 @@ func TestExtractorChain_AllLowQuality(t *testing.T) {
 		&mockExtractor{name: "first", content: "short"},
 		&mockExtractor{name: "second", content: "also short"},
 	)
-	_, err := chain.Extract(context.Background(), "https://example.com")
+	_, err := chain.Extract(context.Background(), ExtractRequest{URL: "https://example.com"})
 	if err == nil {
 		t.Fatal("expected error when all extractors return low quality")
 	}
@@ -131,7 +132,7 @@ func TestExtractorChain_AllLowQuality(t *testing.T) {
 
 func TestExtractorChain_Empty(t *testing.T) {
 	chain := NewExtractorChain()
-	_, err := chain.Extract(context.Background(), "https://example.com")
+	_, err := chain.Extract(context.Background(), ExtractRequest{URL: "https://example.com"})
 	if err == nil {
 		t.Fatal("expected error with empty chain")
 	}
@@ -144,7 +145,7 @@ func TestExtractorChain_SingleSuccess(t *testing.T) {
 	chain := NewExtractorChain(
 		&mockExtractor{name: "only", content: qualityContent()},
 	)
-	result, err := chain.Extract(context.Background(), "https://example.com")
+	result, err := chain.Extract(context.Background(), ExtractRequest{URL: "https://example.com"})
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -172,7 +173,8 @@ func TestDefuddleExtractor_Success(t *testing.T) {
 	defer server.Close()
 
 	ext := newTestDefuddleExtractor(server.URL)
-	result, err := ext.Extract(context.Background(), "https://example.com/page")
+	out, err := ext.Extract(context.Background(), ExtractRequest{URL: "https://example.com/page"})
+	result := out.Content
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -197,7 +199,7 @@ func TestDefuddleExtractor_URLConstruction(t *testing.T) {
 			w.Write([]byte(qualityContent()))
 		}))
 		ext := newTestDefuddleExtractor(server.URL)
-		_, _ = ext.Extract(context.Background(), tt.input)
+		_, _ = ext.Extract(context.Background(), ExtractRequest{URL: tt.input})
 		server.Close()
 
 		if gotPath != tt.expectedPath {
@@ -213,7 +215,7 @@ func TestDefuddleExtractor_HTTP404(t *testing.T) {
 	defer server.Close()
 
 	ext := newTestDefuddleExtractor(server.URL)
-	_, err := ext.Extract(context.Background(), "https://example.com/missing")
+	_, err := ext.Extract(context.Background(), ExtractRequest{URL: "https://example.com/missing"})
 	if err == nil {
 		t.Fatal("expected error for 404 response")
 	}
@@ -229,7 +231,7 @@ func TestDefuddleExtractor_HTTP500(t *testing.T) {
 	defer server.Close()
 
 	ext := newTestDefuddleExtractor(server.URL)
-	_, err := ext.Extract(context.Background(), "https://example.com/error")
+	_, err := ext.Extract(context.Background(), ExtractRequest{URL: "https://example.com/error"})
 	if err == nil {
 		t.Fatal("expected error for 500 response")
 	}
@@ -245,7 +247,8 @@ func TestDefuddleExtractor_EmptyBody(t *testing.T) {
 	defer server.Close()
 
 	ext := newTestDefuddleExtractor(server.URL)
-	result, err := ext.Extract(context.Background(), "https://example.com/empty")
+	out, err := ext.Extract(context.Background(), ExtractRequest{URL: "https://example.com/empty"})
+	result := out.Content
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -266,7 +269,8 @@ func TestDefuddleExtractorFromEntry(t *testing.T) {
 		Timeout: 5,
 		BaseURL: server.URL + "/",
 	})
-	result, err := ext.Extract(context.Background(), "https://example.com/page")
+	out, err := ext.Extract(context.Background(), ExtractRequest{URL: "https://example.com/page"})
+	result := out.Content
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -290,7 +294,7 @@ func TestDefuddleExtractorFromEntry_Defaults(t *testing.T) {
 	}
 }
 
-// --- InProcessExtractor Tests (delegate to fetchRawContent) ---
+// --- InProcessExtractor Tests (delegate to fetchRaw) ---
 
 func TestInProcessExtractor_HTML(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
@@ -301,7 +305,8 @@ func TestInProcessExtractor_HTML(t *testing.T) {
 
 	tool := NewWebFetchTool(WebFetchConfig{})
 	ext := &InProcessExtractor{tool: tool}
-	result, err := ext.Extract(context.Background(), server.URL)
+	out, err := ext.Extract(context.Background(), ExtractRequest{URL: server.URL})
+	result := out.Content
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -322,7 +327,8 @@ func TestInProcessExtractor_JSON(t *testing.T) {
 
 	tool := NewWebFetchTool(WebFetchConfig{})
 	ext := &InProcessExtractor{tool: tool}
-	result, err := ext.Extract(context.Background(), server.URL)
+	out, err := ext.Extract(context.Background(), ExtractRequest{URL: server.URL})
+	result := out.Content
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -416,7 +422,7 @@ func TestResolveExtractorChain_MalformedJSON(t *testing.T) {
 // --- formatFetchResult Tests ---
 
 func TestFormatFetchResult_Basic(t *testing.T) {
-	result := formatFetchResult("hello world", "defuddle", "https://example.com", 60000, context.Background())
+	result := formatFetchResult(fetchHeader{requestedURL: "https://example.com", extractor: "defuddle"}, "hello world", 60000, context.Background())
 	if !strings.Contains(result, "URL: https://example.com") {
 		t.Error("missing URL in result")
 	}
@@ -428,9 +434,34 @@ func TestFormatFetchResult_Basic(t *testing.T) {
 	}
 }
 
+func TestFormatFetchResult_FullHeader(t *testing.T) {
+	result := formatFetchResult(fetchHeader{
+		requestedURL:   "https://example.com/old",
+		finalURL:       "https://example.com/new",
+		status:         200,
+		extractor:      "html-to-markdown",
+		method:         contentFullPage,
+		fallbackReason: fallbackBelowRatio,
+		meta:           pageMeta{Title: "A title", Author: "An author", Published: "2026-10-06"},
+	}, "body", 60000, context.Background())
+	want := "URL: https://example.com/new\nRedirected from: https://example.com/old\nStatus: 200\n" +
+		"Extractor: html-to-markdown\nContent: full-page (fallback: below-ratio)\n" +
+		"Title: A title\nAuthor: An author\nPublished: 2026-10-06\nLength: 4\n\nbody"
+	if result != want {
+		t.Errorf("header mismatch:\n got: %q\nwant: %q", result, want)
+	}
+}
+
+func TestFormatFetchResult_UnknownStatusOmitted(t *testing.T) {
+	result := formatFetchResult(fetchHeader{requestedURL: "https://example.com", extractor: "defuddle", method: "external"}, "x", 100, context.Background())
+	if strings.Contains(result, "Status:") || strings.Contains(result, "Content:") || strings.Contains(result, "Redirected from") {
+		t.Errorf("unexpected header lines for external extractor: %q", result)
+	}
+}
+
 func TestFormatFetchResult_Truncation(t *testing.T) {
 	longContent := strings.Repeat("x", 200)
-	result := formatFetchResult(longContent, "test", "https://example.com", 100, context.Background())
+	result := formatFetchResult(fetchHeader{requestedURL: "https://example.com", extractor: "test"}, longContent, 100, WithToolWorkspace(context.Background(), t.TempDir()))
 	if !strings.Contains(result, "Truncated: true") && !strings.Contains(result, "Content-Length:") {
 		if !strings.Contains(result, "Content truncated") {
 			t.Error("expected truncation indicator in result")
@@ -465,5 +496,67 @@ func TestResolveExtractorChain_DefuddleWithBaseURLUsed(t *testing.T) {
 	chain := ResolveExtractorChain(ctx, NewWebFetchTool(WebFetchConfig{}))
 	if chain == nil || len(chain.extractors) != 2 || chain.extractors[0].Name() != "defuddle" {
 		t.Fatalf("expected defuddle first when base_url is configured, got %+v", chain)
+	}
+}
+
+// --- Chain rules: full-page requests and origin HTTP errors ---
+
+type countingExtractor struct {
+	mockExtractor
+	calls int
+}
+
+func (c *countingExtractor) Extract(ctx context.Context, req ExtractRequest) (ExtractOutput, error) {
+	c.calls++
+	return c.mockExtractor.Extract(ctx, req)
+}
+
+func TestExtractorChain_FullPageSkipsExternalExtractors(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "text/html")
+		w.Write([]byte(`<html><body><p>` + qualityContent() + `</p></body></html>`))
+	}))
+	defer server.Close()
+
+	external := &countingExtractor{mockExtractor: mockExtractor{name: "defuddle", content: qualityContent()}}
+	tool := NewWebFetchTool(WebFetchConfig{})
+	chain := &ExtractorChain{
+		extractors: []ContentExtractor{external},
+		maxRetries: []int{1},
+		timeouts:   []time.Duration{0},
+		inProcess:  &InProcessExtractor{tool: tool},
+	}
+
+	result, err := chain.Extract(context.Background(), ExtractRequest{URL: server.URL, FullPage: true})
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if external.calls != 0 {
+		t.Errorf("external extractor called %d times on a full-page request, want 0", external.calls)
+	}
+	if result.Method != contentFullPage || result.FallbackReason != fallbackRequested {
+		t.Errorf("method/reason = %q/%q, want %q/%q", result.Method, result.FallbackReason, contentFullPage, fallbackRequested)
+	}
+}
+
+func TestExtractorChain_OriginHTTPErrorIsFinal(t *testing.T) {
+	first := &countingExtractor{mockExtractor: mockExtractor{name: "html-to-markdown", err: &httpStatusError{Code: 404, Text: "Not Found"}}}
+	second := &countingExtractor{mockExtractor: mockExtractor{name: "defuddle", content: qualityContent()}}
+	chain := &ExtractorChain{
+		extractors: []ContentExtractor{first, second},
+		maxRetries: []int{3, 1},
+		timeouts:   []time.Duration{0, 0},
+	}
+
+	_, err := chain.Extract(context.Background(), ExtractRequest{URL: "https://example.com/missing"})
+	var statusErr *httpStatusError
+	if !errors.As(err, &statusErr) || statusErr.Code != 404 {
+		t.Fatalf("expected *httpStatusError 404, got %v", err)
+	}
+	if first.calls != 1 {
+		t.Errorf("first extractor called %d times, want 1 (no retry on origin HTTP error)", first.calls)
+	}
+	if second.calls != 0 {
+		t.Errorf("second extractor called %d times, want 0 (origin error must not cascade)", second.calls)
 	}
 }
